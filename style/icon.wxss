@@ -49,3 +49,7 @@
 .icon-tel::before{
   content: '\e64a';
 }
+
+.icon-time::before{
+  content: '\e647';
+}
