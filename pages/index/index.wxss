@@ -129,3 +129,6 @@
     color: #FFAF48;
     font-size: 40rpx;
 }
+.cfaftsman-box {
+  height: 220rpx;
+}
