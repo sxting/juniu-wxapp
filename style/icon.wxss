@@ -41,7 +41,15 @@
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
-
+.icon-location::before{
+  content: '\e642';
+}
+.icon-tel::before{
+  content: '\e64a';
+}
+.icon-time::before{
+  content: '\e647';
+}
 .icon-success::before{
   content: '\e652';
 }
