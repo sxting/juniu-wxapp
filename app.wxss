@@ -4,6 +4,7 @@
 .container {
   font-size: 30rpx;
   font-family: "PingFangSC-Regular";
+<<<<<<< HEAD
 }
 
 .w-inner {
@@ -31,3 +32,7 @@ page {
   font-size: 34rpx;
   color: #222;
 }
+=======
+  background-color: #F5F5F5;
+} 
+>>>>>>> 5120b3221258f562ce9a2d22fb0c072d0a326153
