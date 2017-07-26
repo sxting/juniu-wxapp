@@ -1,6 +1,33 @@
 @import 'shared/component/common.wxss';
-
+@import 'style/weui.wxss';
+@import 'style/common.wxss';
 .container {
   font-size: 30rpx;
   font-family: "PingFangSC-Regular";
-} 
+}
+
+.w-inner {
+  width: 690rpx;
+  margin: 0 auto;
+}
+
+.save {
+  margin-top: 60rpx;
+  background-color: #f60;
+  color: #fff;
+  margin-bottom: 80px;
+}
+
+.cancel {
+  margin-top: 60rpx;
+  margin-bottom: 30rpx;
+  font-size: 36rpx;
+  color: #f60;
+  border: 1px solid #f60;
+}
+
+page {
+  background-color: #f5f5f5;
+  font-size: 34rpx;
+  color: #222;
+}

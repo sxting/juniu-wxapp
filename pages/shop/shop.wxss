@@ -1,0 +1,15 @@
+/* pages/shop/shop.wxss */
+.shop-box {
+  padding: 30rpx;
+  background-color: white;
+}
+
+.complete {
+  width: 508rpx;
+  background-color: #ff6600;
+  color: #fff;
+}
+
+.list{
+  margin-top: 32rpx;
+}
