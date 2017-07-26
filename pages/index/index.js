@@ -4,8 +4,7 @@ var app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {},
-    region: ['广东省', '广州市', '海珠区']
+    userInfo: {}
   },
   //事件处理函数
   bindViewTap: function() {
