@@ -13,3 +13,7 @@
 .list{
   margin-top: 32rpx;
 }
+
+.shop-ico{
+  color: #D9D9D9;
+}
