@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import {constant} from 'constant';
+=======
+>>>>>>> 0af21f166290c694dfbc9ce8025f7fe806d9fbf4
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -6,7 +9,11 @@ function formatTime(date) {
 
   var hour = date.getHours()
   var minute = date.getMinutes()
+<<<<<<< HEAD
   var second = date.getSeconds();
+=======
+  var second = date.getSeconds()
+>>>>>>> 0af21f166290c694dfbc9ce8025f7fe806d9fbf4
 
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
@@ -16,6 +23,7 @@ function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+<<<<<<< HEAD
 function errCheck(res) {
   if(res.errorCode === '0'){
     return true;
@@ -85,4 +93,9 @@ module.exports = {
   checkMobile: checkMobile,
   checkPhone: checkPhone,
   getUserInfo: getUserInfo
+=======
+
+module.exports = {
+  formatTime: formatTime
+>>>>>>> 0af21f166290c694dfbc9ce8025f7fe806d9fbf4
 }
