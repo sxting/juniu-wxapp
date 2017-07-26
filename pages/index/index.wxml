@@ -1,18 +1,60 @@
-<!--index.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-</view>
-<view class="section">
-  <view class="section__title">省市区选择器</view>
-  <picker mode="region" bindchange="bindRegionChange" value="{{region}}">
-    <view class="picker">
-      当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+    <!--轮播图部分-->
+    <view class="banner-box">
+        <view class="img-box">
+
+        </view>
+        <view class="store-btn jn-icon icon-dianpu1"></view>
+        <view class="personal-btn jn-icon icon-ren"></view>
+        <view class="new-order-tip-box">
+            <view class="jn-icon icon-message"></view>
+            <text>您有一条新的预约，点击查看</text>
+            <view class="jn-icon icon-more more-right"></view>
+        </view>
     </view>
-  </picker>
+
+    <!--服务项目-->
+    <view class="product-list">
+        <view class="sub-title">
+            <view class="sub-title-left">
+                <icon class="jn-icon icon-fuwuxiangmu"></icon>
+                <view class="sub-title-text">服务项目</view>
+            </view>
+            <view class="sub-title-right">
+                <view>全部50个项目</view>
+                <icon class="jn-icon icon-more"></icon>
+            </view>
+        </view>
+        <!--循环的项目-->
+        <view class="product-box">
+            <view class="product-img-box"></view>
+            <view class="product-right">
+                <text class="product-name">商品名称商品名称商品名称商品名称商品名称商品名称</text>
+                <text class="current-price">99元</text>
+                <text class="original-price">500元</text>                
+            </view>
+        </view>
+        <view class="product-box">
+            <view class="product-img-box"></view>
+            <view class="product-right">
+                <text class="product-name">商品名称商品名称商品名称商品名称商品名称商品名称</text>
+                <text class="current-price">99元</text>
+                <text class="original-price">500元</text> 
+            </view>
+        </view>
+    </view>
+
+    <!--手艺人-->
+    <view class="cfaftsman-list">
+        <view class="sub-title">
+            <view class="sub-title-left">
+                <icon class="jn-icon icon-jinpai"></icon>
+                <view class="sub-title-text">金牌手艺人</view>
+            </view>
+            <view class="sub-title-right">
+                <view>全部24位手艺人</view>
+                <icon class="jn-icon icon-more"></icon>
+            </view>
+        </view>
+    </view>
 </view>

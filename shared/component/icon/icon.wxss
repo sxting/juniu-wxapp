@@ -55,3 +55,6 @@
 .icon-fuwuxiangmu:before {
   content: '\e660'
 }
+.icon-jinpai:before {
+  content: '\e674'
+}
