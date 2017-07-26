@@ -46,3 +46,12 @@
 .icon-message:before{
      content: '\e639';
  }
+ .icon-dianpu1:before {
+   content: '\e612';
+ }
+ .icon-ren:before {
+   content: '\e611';
+ }
+.icon-fuwuxiangmu:before {
+  content: '\e660'
+}

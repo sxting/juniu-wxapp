@@ -1,11 +1,34 @@
 <view class="container">
+    <!--轮播图部分-->
     <view class="banner-box">
-        <view class="store-btn"></view>
-        <view class="personal-btn"></view>
+        <view class="img-box">
+
+        </view>
+        <view class="store-btn jn-icon icon-dianpu1"></view>
+        <view class="personal-btn jn-icon icon-ren"></view>
         <view class="new-order-tip-box">
-            <icon class="jn-icon icon-message"></icon>
+            <view class="jn-icon icon-message"></view>
             <text>您有一条新的预约，点击查看</text>
-            <icon class="jn-icon icon-more"></icon>
+            <view class="jn-icon icon-more more-right"></view>
         </view>
     </view>
+
+    <!--服务项目-->
+    <view class="product-list">
+        <view class="sub-title">
+            <view class="sub-title-left">
+                <icon class="jn-icon icon-fuwuxiangmu"></icon>
+                <view class="sub-title-text">服务项目</view>
+            </view>
+            <view class="sub-title-right">
+                <view>全部50个项目</view>
+                <icon class="jn-icon icon-more"></icon>
+            </view>
+        </view>
+        <!--循环的项目-->
+        <view class="product-box">
+        </view>
+    </view>
+
+    <!--手艺人-->
 </view>

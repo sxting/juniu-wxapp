@@ -3,4 +3,5 @@
 .container {
   font-size: 30rpx;
   font-family: "PingFangSC-Regular";
+  background-color: #F5F5F5;
 } 

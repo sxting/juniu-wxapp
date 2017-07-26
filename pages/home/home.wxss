@@ -1,17 +1,29 @@
 .banner-box {
     height: 360rpx;
     position: relative;
+    color: #fff;    
 }
-.store-btn {
+.img-box {
+    width: 100%;
+    height:  360rpx;
+    background: #ccc;
+    z-index: -1;
+}
+.store-btn, .personal-btn {
     width: 80rpx;
     height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
     background-color: rgba(0,0,0, 0.6);
+    color: #fff;
+    font-size: 40rpx;
+    position: absolute;
+    border-radius: 50%;
+    top: 30rpx;
+    margin-left: 30rpx; 
 }
 .personal-btn {
-    width: 80rpx;
-    height: 80rpx;
-    background-color: rgba(0,0,0, 0.6); 
-    float: right;
+    right: 30rpx; 
 }
 .new-order-tip-box {
     height: 60rpx;
@@ -20,10 +32,16 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    color: #fff;
+    padding: 0 30rpx;
+    box-sizing: border-box;
 }
 .new-order-tip-box text {
     font-size: 26rpx;
+    padding-left: 4rpx;
+}
+.more-right {
+    position: absolute;
+    right: 24rpx;
 }
 .icon-more {
     font-size: 30rpx;
@@ -31,7 +49,34 @@
 .icon-message {
     font-size: 30rpx;
 }
-
-
-
+.product-list {
+    margin-top: 20rpx;
+    background-color: #fff;
+    padding: 0 30rpx;
+}
+.sub-title {
+    height: 90rpx;
+    line-height: 90rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.sub-title-left ,.sub-title-right {
+    display: flex;
+}
+.sub-title-right {
+    color: #999;
+}
+.icon-fuwuxiangmu {
+    font-size: 32rpx;
+    color: #569CFF; 
+}
+.sub-title-text {
+    font-family: "PingFangSC-Medium";
+    font-size: 34rpx;
+    color: #222222;
+}
+.product-box {
+    height: 190rpx;
+    border-bottom: 1px solid #e5e5e5;
+}
 
