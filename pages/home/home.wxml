@@ -1,0 +1,11 @@
+<view class="container">
+    <view class="banner-box">
+        <view class="store-btn"></view>
+        <view class="personal-btn"></view>
+        <view class="new-order-tip-box">
+            <icon class="jn-icon icon-message"></icon>
+            <text>您有一条新的预约，点击查看</text>
+            <icon class="jn-icon icon-more"></icon>
+        </view>
+    </view>
+</view>
