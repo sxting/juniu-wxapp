@@ -56,5 +56,12 @@
                 <icon class="jn-icon icon-more"></icon>
             </view>
         </view>
+        <view class="cfaftsman-box">
+            <!--循环的手艺人-->
+            <view>
+                <image src=""></image>
+                <text>阿金</text>
+            </view>
+        </view>
     </view>
 </view>
