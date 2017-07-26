@@ -37,7 +37,7 @@
 }
 .new-order-tip-box text {
     font-size: 26rpx;
-    padding-left: 4rpx;
+    padding-left: 10rpx;
 }
 .more-right {
     position: absolute;

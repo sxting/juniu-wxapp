@@ -4,12 +4,12 @@
         <view class="img-box">
 
         </view>
-        <view class="store-btn jn-icon icon-dianpu1"></view>
-        <view class="personal-btn jn-icon icon-ren"></view>
+        <view class="store-btn jn-icon icon-Shop"></view>
+        <view class="personal-btn jn-icon icon-man"></view>
         <view class="new-order-tip-box">
-            <view class="jn-icon icon-message"></view>
+            <view class="jn-icon icon-remind"></view>
             <text>您有一条新的预约，点击查看</text>
-            <view class="jn-icon icon-more more-right"></view>
+            <view class="jn-icon icon-rightblue more-right"></view>
         </view>
     </view>
 
@@ -17,12 +17,12 @@
     <view class="product-list">
         <view class="sub-title">
             <view class="sub-title-left">
-                <icon class="jn-icon icon-fuwuxiangmu"></icon>
+                <view class="jn-icon icon-commodity"></view>
                 <view class="sub-title-text">服务项目</view>
             </view>
             <view class="sub-title-right">
                 <view>全部50个项目</view>
-                <icon class="jn-icon icon-more"></icon>
+                <view class="jn-icon icon-rightblue"></view>
             </view>
         </view>
         <!--循环的项目-->
@@ -48,12 +48,12 @@
     <view class="cfaftsman-list">
         <view class="sub-title">
             <view class="sub-title-left">
-                <icon class="jn-icon icon-jinpai"></icon>
+                <view class="jn-icon icon-goldmedal"></view>
                 <view class="sub-title-text">金牌手艺人</view>
             </view>
             <view class="sub-title-right">
                 <view>全部24位手艺人</view>
-                <icon class="jn-icon icon-more"></icon>
+                <view class="jn-icon icon-rightblue"></view>
             </view>
         </view>
         <view class="cfaftsman-box">
