@@ -7,7 +7,9 @@
     "pages/personal/index/index",
     "pages/personal/comment/comment",
     "pages/personal/appointment/appointment",
-    "pages/craftsman/select/select"
+    "pages/craftsman/select/select",
+    "pages/product/select/select",
+    "pages/result/result"
   ],
   "window":{
     "backgroundTextStyle":"light",
