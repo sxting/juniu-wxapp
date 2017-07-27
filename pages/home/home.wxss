@@ -115,7 +115,7 @@
     background-color: #fff;
     margin-top: 20rpx;
 }
-.cfaftsman-list .sub-title, .member-rights .sub-title {
+.cfaftsman-list .sub-title {
     margin-left: 0;
 }
 .icon-goldmedal {
@@ -141,7 +141,54 @@
 .member-rights {
   margin-top: 20rpx;
   background-color: #fff;
+  padding: 0 30rpx;
 }
 .icon-VIPcard {
   color: #AE7AE4;
+}
+.card {
+    height: 88rpx;
+    line-height: 88rpx;
+    border-bottom: 1px solid #e5e5e5;
+}
+.card view {
+    float: left;
+}
+.card-label {
+    width: 28rpx;
+    height: 28rpx;
+    text-align: center;
+    color: #fff;
+    font-family: 'PingFangSC-Regular';
+    font-size: 20rpx;
+    line-height: 28rpx;
+    margin-top: 28rpx;
+    margin-right: 10rpx;
+}
+.card-name {
+    width: 300rpx;
+    display: inline－block;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+.card-rule {
+    float: right !important;
+    color: #999;
+}
+/*储值卡bg*/
+.chu-card-bg {
+    background-color: #9BDE56;
+}
+/*计次卡bg*/
+.num-card-bg {
+    background-color: #F377D7;
+}
+/*期限卡bg*/
+.date-card-bg {
+    background-color: #78A1FF;
+}
+/*折扣卡bg*/
+.zhe-card-bg {
+    background-color: #FDBC04;
 }
