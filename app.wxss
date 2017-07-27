@@ -34,3 +34,8 @@ page {
 
 }
 
+.placeholder {
+  font-family: "PingFangSC-Regular";
+  font-size: 28rpx;
+  color: #999999;
+}
