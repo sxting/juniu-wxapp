@@ -1,4 +1,24 @@
 /* pages/result/result.wxss */
+
 .confirm {
   background: #f60 !important;
+}
+
+.msg-label {
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+  color: #999;
+  text-align: left;
+  margin-left: 136rpx;
+}
+
+.msg-content {
+  text-align: left;
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+  color: #222;
+}
+
+.msg-wdith {
+  width: 80%;
 }
