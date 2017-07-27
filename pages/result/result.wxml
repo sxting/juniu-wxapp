@@ -1,2 +1,17 @@
-<!--pages/result/result.wxml-->
-<text>pages/result/result.wxml</text>
+<view class="page">
+    <view class="weui-msg">
+        <view class="weui-msg__icon-area">
+            <icon type="success" size="65"></icon>
+        </view>
+        <view class="weui-msg__text-area">
+            <view class="weui-msg__title">预约成功!</view>
+            <view class="weui-msg__desc">请等待商家接单</view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn confirm" type="primary">推荐操作</button>
+                <button class="weui-btn" type="default">辅助操作</button>
+            </view>
+        </view>
+    </view>
+</view>

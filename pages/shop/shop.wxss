@@ -1,4 +1,5 @@
 /* pages/shop/shop.wxss */
+
 .shop-box {
   padding: 30rpx;
   background-color: white;
@@ -6,14 +7,15 @@
 
 .complete {
   width: 508rpx;
-  background-color: #ff6600;
+  background-color: #f60;
   color: #fff;
 }
 
-.list{
+.list {
   margin-top: 32rpx;
 }
 
-.shop-ico{
-  color: #D9D9D9;
+.shop-ico {
+  color: #d9d9d9;
 }
+
