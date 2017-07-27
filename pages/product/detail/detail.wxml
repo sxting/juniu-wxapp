@@ -1,0 +1,6 @@
+<view class="container">
+    <image class="product-image" src="/asset/images/personal-bg.png"></image>
+    <view class="product-box">
+        <view class="product-name"></view>
+    </view>
+</view>

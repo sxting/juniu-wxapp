@@ -9,6 +9,7 @@
     "pages/personal/appointment/appointment",
     "pages/craftsman/select/select",
     "pages/product/select/select",
+    "pages/product/detail/detail",
     "pages/result/result",
     "pages/pay/pay"
   ],
