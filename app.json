@@ -5,7 +5,8 @@
     "pages/home/home",
     "pages/shop/shop",
     "pages/personal/index/index",
-    "pages/personal/appointment/appointment"
+    "pages/personal/appointment/appointment",
+    "pages/craftsman/select/select"
   ],
   "window":{
     "backgroundTextStyle":"light",

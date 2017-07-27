@@ -24,7 +24,7 @@
 .main {
   width: 92%;
   margin: 0 auto;
-  margin-bottom: 30rpx;
+  margin-bottom: 28rpx;
 }
 
 .main>view {
