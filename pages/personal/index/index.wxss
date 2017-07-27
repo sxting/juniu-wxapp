@@ -1,0 +1,55 @@
+.top-bg {
+    width: 100vw;
+    height: 324rpx;
+    background-image: url('/asset/images/personal-bg.png');
+    background-size: 100% 100%;
+}
+.personal-message {
+    height: 112rpx;
+    background-color: #fff;
+}
+.personal-message image {
+    width: 160rpx;
+    height: 160rpx;
+    margin-top: -80rpx;
+    margin-left: 30rpx;
+}
+.nickname {
+    font-size: 32rpx;
+    position: relative;
+    top: -16rpx;
+    left: 30rpx;
+}
+.my-order, .my-comment {
+    height: 90rpx;
+    line-height: 90rpx;
+    background-color: #fff;
+    margin-top: 20rpx;
+    padding: 0 30rpx;
+}
+.icon-opentime, .icon-Evaluation {
+    display: inline-block;
+    font-size: 34rpx;
+    color: #D9D9D9;
+    padding-right: 10rpx;
+}
+.icon-Evaluation {
+    color: #e5e5e5;
+}
+.icon-rightblue {
+    font-size: 26rpx;
+    color: #c7c7c7;
+    text-align: right;
+    float: right;
+}
+.go-back-btn {
+    width: 690rpx;
+    height: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    border: 1px solid #ff6600;
+    border-radius: 4px;
+    color: #ff6600;
+    font-size: 32rpx;
+    margin: 100rpx auto;
+}
