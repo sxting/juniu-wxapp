@@ -1,0 +1,43 @@
+<view class="comment-list">
+    <view class="comment-title w-inner">全部评价(129)</view>
+    <!--循环的评论-->
+    <view class="comment-box w-inner" wx:for="1234">
+        <view class="comment-top">
+            <image src="/asset/images/head-portrait.png"></image>
+            <view class="comment-top-center">
+                <view>顾客昵称</view>
+                <!--星级-->
+                <view class="start-box">
+                    <view class="space-start-box">
+                        <icon class="jn-icon icon-starempty"></icon>
+                        <icon class="jn-icon icon-starempty"></icon>
+                        <icon class="jn-icon icon-starempty"></icon>
+                        <icon class="jn-icon icon-starempty"></icon>
+                        <icon class="jn-icon icon-starempty"></icon>
+                    </view>
+                    <view class="starts-box">
+                        <icon class="jn-icon icon-stars"></icon>
+                        <icon class="jn-icon icon-stars"></icon>
+                        <icon class="jn-icon icon-stars"></icon>
+                    </view>
+                </view>
+            </view>
+            <view class="comment-time-box">
+                <view>2017.06.26</view>
+                <view>18:30:35</view>
+            </view>
+        </view>
+        <view class="comment-content">
+            旧南阁子也。室仅方丈，可容一人居。百年老屋，尘泥泥渗漉，雨泽下注；每移案，顾视，无可置者。又百年老屋，尘泥
+        </view>
+        <view class="comment-images">
+            <image src="/asset/images/personal-bg.png"></image>
+            <image src="/asset/images/personal-bg.png"></image>
+            <image src="/asset/images/personal-bg.png"></image>
+            <!--<image src="/asset/images/personal-bg.png"></image>
+            <image src="/asset/images/personal-bg.png"></image>-->
+        </view>
+    </view>
+</view>
+<!--底部写评价btn-->
+<view class="go-comment">写评价</view>

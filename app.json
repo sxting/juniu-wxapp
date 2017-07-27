@@ -9,6 +9,7 @@
     "pages/craftsman/select/select",
     "pages/product/select/select",
     "pages/product/detail/detail",
+    "pages/comment/list/list",
     "pages/result/result",
     "pages/pay/pay"
   ],
