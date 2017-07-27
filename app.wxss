@@ -42,6 +42,7 @@ page {
 
 /*评论的样式start*/
 .comment-box {
+    padding-bottom:10rpx;
     border-bottom: 1px solid #e5e5e5;
 }
 .comment-box:last-child {
