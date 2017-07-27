@@ -1,0 +1,21 @@
+<view class="container">
+    <!--搜索框-->
+    <view class="search-box w-inner">
+        <picker value="" range="">
+            <view class="city-name">北京</view>
+            <icon class="jn-icon icon-xl"></icon>
+        </picker> 
+        <view class="vertical-line"></view>
+        <view class="input-box">
+            <input placeholder="输入搜索地址" placeholder-class="placeholder"/>
+            <icon class="jn-icon icon-search"></icon>
+        </view>
+    </view>
+    <!--搜索地址列表-->
+    <view class="address-list">
+        <view class="address-box" hover-class="address-box-active">
+            <view>星巴克天畅园店</view>
+            <view class="address-detail">北京市朝阳区红军营南路天畅园7号楼</view>
+        </view>
+    </view>
+</view>
