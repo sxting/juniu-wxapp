@@ -1,2 +1,31 @@
 <!--pages/personal/appointment/appointment.wxml-->
-<text>pages/personal/appointment/appointment.wxml</text>
+  <scroll-view scroll-y="true" lower-threshold="100" class="mainBox" >
+    <view class="classname" >
+      <view class="BOX" >
+        <view class="main">
+          <view class="mainTop">
+            <view class="topLeft">13800138000</view>
+            <view class="topRight">
+              <text > item</text>
+            </view>
+          </view>
+          <view class="middle bottom">
+            <view class="middle1">预约时间</view>
+            <view class="middle3">item元</view>
+          </view>
+          <view class="bottom">
+            <view class="bottomLeft">预约项目</view>
+            <view class="bottomRight">item</view>
+          </view>
+          <view class="bottom">
+            <view class="bottomLeft">预约手艺人</view>
+            <view class="bottomRight">item</view>
+          </view>
+           <view class="bottom">
+            <view class="bottomLeft">备注</view>
+            <view class="bottomRight">item</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
