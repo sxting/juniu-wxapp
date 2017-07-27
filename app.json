@@ -9,7 +9,8 @@
     "pages/personal/appointment/appointment",
     "pages/craftsman/select/select",
     "pages/product/select/select",
-    "pages/result/result"
+    "pages/result/result",
+    "pages/pay/pay"
   ],
   "window":{
     "backgroundTextStyle":"light",

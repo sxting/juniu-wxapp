@@ -1,0 +1,11 @@
+<view class="bigBox">
+  <view class="main">
+    <view class="mainBottom">
+      <view class="bottomTop">订单金额(元)</view>
+      <view class="bottomMiddle">
+        <input type="digit" bindinput="focus" bindblur="save" value="{{value}}" />
+      </view>
+    </view>
+  </view>
+  <button>确认支付</button>
+</view>

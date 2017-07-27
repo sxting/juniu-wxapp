@@ -1,0 +1,84 @@
+/* pages/pay/pay.wxss */
+
+.bigBox {
+  height: 100%;
+}
+
+.main {
+  width: 92%;
+  background: #fff;
+  margin: 0 auto;
+  margin-top: 32rpx;
+}
+
+.middile {
+  flex: 2;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #f60;
+}
+
+.mainBottom {
+  padding-left: 30rpx;
+}
+
+.bottomTop {
+  height: 88rpx;
+  line-height: 88rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 34rpx;
+  color: #222;
+}
+
+.bottomMiddle {
+  height: 120rpx;
+  line-height: 120rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 48rpx;
+  color: #222;
+  display: flex;
+}
+
+.bottomMiddle>input {
+  margin-top: 34rpx;
+  margin-left: 20rpx;
+}
+
+.bottomBottom {
+  height: 88rpx;
+  line-height: 88rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #888;
+}
+
+.bottomBottom>text {
+  color: #f60;
+}
+
+button {
+  display: block;
+  width: 92% !important;
+  margin: 0 auto;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 36rpx;
+  color: #fff;
+  background: #f60 !important;
+  margin-top: 100rpx;
+}
+
+.disabled {
+  background: #ffb27f !important;
+}
+
+.tishi {
+  color: red !important;
+}
+
+.cancel {
+  background: #fff !important;
+  color: #f60 !important;
+}
