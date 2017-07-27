@@ -12,10 +12,16 @@
         </view>
     </view>
     <!--搜索地址列表-->
-    <view class="address-list">
+    <view class="address-list" wx:if="">
         <view class="address-box" hover-class="address-box-active">
             <view>星巴克天畅园店</view>
             <view class="address-detail">北京市朝阳区红军营南路天畅园7号楼</view>
         </view>
+    </view>
+
+    <!--未找到门店-->
+    <view class="space-box" wx:else="">
+        <view class="space-bg"></view>
+        <view class="space-text">未找到门店</view>
     </view>
 </view>

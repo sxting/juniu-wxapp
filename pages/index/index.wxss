@@ -71,3 +71,20 @@
    font-size: 26rpx;
    color: #999999;
 }
+.space-box {
+    border-top: 1px solid #E5E5E5;
+    text-align: center;
+    padding-top: 320rpx;
+}
+.space-bg {
+    width: 180rpx;
+    height: 160rpx;
+    background: url("/asset/images/nofind.png");
+    background-size: 100% 100%;
+    margin: 0 auto;    
+}
+.space-text {
+   font-size: 36rpx;
+    color: #999999;
+    padding-top: 20rpx;
+}
