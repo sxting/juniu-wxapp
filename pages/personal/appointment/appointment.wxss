@@ -1,1 +1,93 @@
 /* pages/personal/appointment/appointment.wxss */
+
+.text {
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #888;
+  width: 92%;
+  margin: 0 auto;
+}
+
+.mainBox {
+  width: 100%;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #888;
+  margin-top: 20rpx;
+}
+
+.BOX {
+  width: 100%;
+  background: #fff;
+}
+
+.main {
+  width: 92%;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+}
+
+.main>view {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainTop {
+  height: 160rpx;
+  line-height: 160rpx;
+}
+
+.bottom {
+  height: 76rpx;
+  line-height: 76rpx;
+}
+
+.topRight {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+}
+
+.topLeft {
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+  color: #222;
+}
+
+.mainTop {
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+scroll-view {
+  height: 1200rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.texts {
+  font-size: 34rpx;
+  color: #222;
+}
+
+.title1 {
+  color: #b2b2b2 !important;
+}
+
+.reject {
+  color: #999;
+}
+
+.accept {
+  color: #1aae18;
+}
+
+.wait {
+  color: #f64444;
+}
+
+.middle3 {
+  color: #222;
+}
+
+.bottomRight {
+  color: #222;
+}
