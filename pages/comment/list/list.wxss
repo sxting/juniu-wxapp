@@ -1,0 +1,23 @@
+page {
+    background-color: #fff;
+}
+.comment-list {
+    border-top: 1px solid #e5e5e5;
+    margin-bottom: 90rpx;
+}
+.comment-title {
+    height: 90rpx;
+    line-height: 90rpx;
+    border-bottom: 1px solid #e5e5e5;
+}
+.go-comment {
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    color: #fff;
+    background-color: #ff6600;
+    font-size: 34rpx;
+}
