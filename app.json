@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/home/home",
-    "pages/shop/shop"
+    "pages/shop/shop",
+    "pages/personal/appointment/appointment"
   ],
   "window":{
     "backgroundTextStyle":"light",
