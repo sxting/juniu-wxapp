@@ -10,7 +10,7 @@
                 <image src="{{icon20}}" class="head-img" />
               </view>
               <view class="weui-cell__bd weui-cell_primary">
-                <view>谢彤老师</view>
+                <view>谢彤老师 <text class="label">本店·排名第3</text></view>
                 <view class="weui-media-box__desc">累计服务389次</view>
               </view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -20,7 +20,7 @@
                 <image src="{{icon20}}" class="head-img" />
               </view>
               <view class="weui-cell__bd weui-cell_primary">
-                <view>谢彤老师</view>
+                <view>谢彤老师 <text class="red-label">朝阳区·排名第1</text></view>
                 <view class="weui-media-box__desc">累计服务389次</view>
               </view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>

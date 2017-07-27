@@ -15,6 +15,24 @@
   border-radius: 25px;
 }
 
-.name-label{
+.name-label {
   margin-bottom: 9px;
+}
+
+.label {
+  border: 1rpx solid #197dd1;
+  color: #197dd1;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  border-radius: 2px;
+  font-size: 20rpx;
+}
+
+.red-label {
+  border: 1rpx solid #d11921;
+  color: #d11921;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  border-radius: 2px;
+  font-size: 20rpx;
 }
