@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 365926 */
-  src: url('//at.alicdn.com/t/font_1wlb49pnsb4holxr.eot');
-  src: url('//at.alicdn.com/t/font_1wlb49pnsb4holxr.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1wlb49pnsb4holxr.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1wlb49pnsb4holxr.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1wlb49pnsb4holxr.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_xlo0fnclkbsdobt9.eot');
+  src: url('//at.alicdn.com/t/font_xlo0fnclkbsdobt9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_xlo0fnclkbsdobt9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_xlo0fnclkbsdobt9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_xlo0fnclkbsdobt9.svg#iconfont') format('svg');
 }
 .jn-icon {
   display: inline-block;
@@ -40,6 +40,15 @@
 
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+.icon-zanwuneirong::before {
+  content: '\e613';
+}
+.icon-search::before {
+  content: '\e653'
+}
+.icon-xl::before {
+  content: '\e654'
 }
 .icon-location::before{
   content: '\e642';

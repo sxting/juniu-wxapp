@@ -73,5 +73,34 @@
                 <view class="sub-title-text">会员权益</view>
             </view>
         </view>
+        <view class="card-list">
+            <!--循环会员卡-->
+            <view class="card">
+                <view class="card-label chu-card-bg">储</view>
+                <view class="card-name">储值卡名称储值卡名称储值卡名称</view>
+                <view class="card-rule">充100元得120元</view>
+            </view>
+            <view class="card">
+                <view class="card-label num-card-bg">次</view>
+                <view class="card-name">计次卡计次卡计次卡计次卡计次卡</view>
+                <view class="card-rule">充100元得120次</view>
+            </view>
+            <view class="card">
+                <view class="card-label date-card-bg">期</view>
+                <view class="card-name">期限卡</view>
+                <view class="card-rule">充100元用120天</view>
+            </view>
+            <view class="card">
+                <view class="card-label zhe-card-bg">折</view>
+                <view class="card-name">折扣卡</view>
+                <view class="card-rule">充100元打9折</view>
+            </view>
+        </view>
+    </view>
+
+    <!--底部按钮-->
+    <view class="bottom">
+        <view class="comment-btn">顾客评价(1099)</view>
+        <view class="pay-btn">买单</view>
     </view>
 </view>
