@@ -1,0 +1,29 @@
+/* pages/product/select/select.wxss */
+
+.head-img {
+  width: 170rpx;
+  height: 130rpx;
+  margin-right: 20rpx;
+}
+
+.product-name {
+  margin-bottom: 32rpx;
+}
+
+.title {
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.drown {
+  transform: rotate(90deg);
+}
+
+.original-price {
+  text-decoration: line-through;
+}
+
+.current-price {
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #f60;
+}
