@@ -3,13 +3,15 @@
   <view class="list">
     <view class="classname">
       <view class="jn-icon icon-location shop-ico"></view>
-      xxxxx</view>
-    <view>
+      {{addr}}</view>
+    <view bindtap="makeCall">
       <view class="jn-icon icon-tel shop-ico"></view>
-      xxxx</view>
+      {{tell}}
+      <view class="jn-icon icon-rightwhite shop-ico"></view>
+    </view>
     <view class="classname">
       <view class="jn-icon icon-time shop-ico"></view>
-      xxxx
+      {{time}}
     </view>
   </view>
 </view>

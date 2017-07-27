@@ -11,6 +11,9 @@ Page({
       width: 50,
       height: 50
     }],
+    tell: '010-90441899',
+    addr: '北京市朝阳区红军营南路媒体村8号楼',
+    time: '09:00-21:00'
   },
 
   /**
@@ -71,6 +74,11 @@ Page({
   goHome: function() {
     wx.redirectTo({
       url: '/pages/index/index'
+    })
+  },
+  makeCall: function() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.tell
     })
   }
 })
