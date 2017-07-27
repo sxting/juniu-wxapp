@@ -140,6 +140,7 @@
 /*会员权益*/
 .member-rights {
   margin-top: 20rpx;
+  margin-bottom: 120rpx;
   background-color: #fff;
   padding: 0 30rpx;
 }
@@ -150,6 +151,9 @@
     height: 88rpx;
     line-height: 88rpx;
     border-bottom: 1px solid #e5e5e5;
+}
+.card:last-child {
+    border-bottom: none;
 }
 .card view {
     float: left;
@@ -191,4 +195,24 @@
 /*折扣卡bg*/
 .zhe-card-bg {
     background-color: #FDBC04;
+}
+
+/*底部*/
+.bottom {
+    height: 100rpx;
+    line-height: 100rpx;
+    position: fixed;
+    bottom: 0;
+    background: #1F2734;
+    color: #fff;
+    font-size: 34rpx;
+    text-align: center;
+    display: flex;
+}
+.comment-btn {
+    width: 564rpx;
+}
+.pay-btn {
+     width: 186rpx;
+    background-color: #FF6600;
 }

@@ -97,4 +97,10 @@
             </view>
         </view>
     </view>
+
+    <!--底部按钮-->
+    <view class="bottom">
+        <view class="comment-btn">顾客评价(1099)</view>
+        <view class="pay-btn">买单</view>
+    </view>
 </view>
