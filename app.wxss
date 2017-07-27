@@ -39,3 +39,68 @@ page {
   font-size: 28rpx;
   color: #999999;
 }
+
+/*评论的样式start*/
+.comment-box {
+    border-bottom: 1px solid #e5e5e5;
+}
+.comment-box:last-child {
+    border-bottom: none;
+}
+.comment-top {
+    display: flex;
+}
+.comment-top image {
+    width: 100rpx;
+    min-width: 100rpx;
+    height: 100rpx;
+    margin-top: 30rpx;
+}
+.comment-top-center {
+    width: 100%;
+    padding-top: 40rpx;
+    padding-left: 22rpx;
+}
+.icon-starempty, .icon-stars  {
+    font-size: 24rpx;
+    color: #FF6600;
+    padding-right:  8rpx;
+}
+.comment-time-box {
+    font-family: "PingFangSC-Regular";
+    font-size: 26rpx;
+    color: #999999;
+    text-align: right;
+    padding-top: 44rpx;
+}
+.comment-content {
+    font-size: 28rpx;
+    color: #666;
+    padding-top: 20rpx;
+    margin-bottom: 20rpx;
+
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    display: -webkit-box; 
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.start-box {
+    position: relative;
+    top: -20rpx;
+}
+.space-start-box, .starts-box {
+    position: absolute
+}
+.starts-box {
+    z-index: 10;
+}
+.comment-images image {
+    width: 122rpx;
+    height: 122rpx;
+    margin-right: 20rpx;
+}
+.comment-images image:last-child {
+    margin-right: 0;
+}
+/*评论的样式end*/
