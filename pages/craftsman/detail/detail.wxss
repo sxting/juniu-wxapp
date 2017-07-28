@@ -1,0 +1,54 @@
+.top-bg {
+    width: 100vw;
+    height: 324rpx;
+    background-image: url('/asset/images/personal-bg.png');
+    background-size: 100% 100%;
+    color: #fff;
+}
+.craftsman-name {
+    font-size: 32rpx;
+    padding: 80rpx 30rpx 40rpx;
+}
+.carftsman-msg {
+    padding-left: 30rpx;
+    font-size: 26rpx;
+}
+.carftsman-msg text {
+    padding-right: 60rpx;
+}
+.personal-message {
+    height: 112rpx;
+    background-color: #fff;
+    position: relative;
+}
+.personal-message image {
+    width: 160rpx;
+    height: 160rpx;
+    margin-top: -80rpx;
+    margin-left: 30rpx;
+}
+.craftsman-start-box {
+    position: absolute;
+    top: 0;
+    left: 220rpx;
+    padding-top: 10rpx;
+    box-sizing: border-box;
+}
+.personal-message .icon-starempty, .personal-message .icon-stars {
+    font-size: 34rpx;
+    padding-right: 16rpx;
+}
+.comment-list {
+    margin-top: 20rpx;
+    background-color: #fff;
+}
+.sub-title {
+    height: 90rpx;
+    line-height: 90rpx;
+    padding-left: 30rpx;
+    border-bottom: 1px solid #e5e5e5;
+}
+.icon-Evaluation {
+    font-size: 32rpx;
+    color: #e5e5e5;
+}
