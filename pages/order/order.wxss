@@ -1,0 +1,86 @@
+.select-box, .user-msg-box {
+    margin-bottom: 20rpx;
+    background: #fff;
+    border-top: 1px solid #e5e5e5;
+    padding: 0 30rpx;
+}
+.craftsman-select, .product-select {
+    height: 90rpx;
+    line-height: 90rpx;
+}
+.craftsman-select {
+    border-bottom: 1px solid #e5e5e5;
+}
+.craftsman-name, .product-name {
+    color: #999;
+    float: right;
+    padding-right: 10rpx;
+}
+.icon-rightblue {
+    float: right;
+}
+/*选择到店时间*/
+.select-time-box {
+    background: #fff;
+    margin-bottom: 20rpx;
+}
+.sub-title {
+    padding-left: 30rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-family: "PingFangSC-Medium";
+}
+.date-box {
+    height: 110rpx;
+    border-top: 1px solid #e5e5e5;
+    background: #FFF0E5;
+    display: flex;
+}
+.per-day {
+    border-right: 1px solid #e5e5e5;
+    width: 14.28%;
+    text-align: center;
+    line-height: 50rpx;
+}
+.per-day:last-child {
+    border: none;
+}
+.day-active {
+    background: #ff6600;
+    color: #fff;
+}
+.time-box {
+    background: #fff;
+}
+
+.user-msg-box {
+    border: none;
+}
+.tel-box, .note {
+     height: 90rpx;
+     line-height: 90rpx;
+     border-bottom: 1px solid #e5e5e5;
+}
+.note {
+    border: none;
+}
+.tel-box input, .note input {
+    float: right;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: right;
+}
+.placeholder {
+    font-size: 30rpx;
+}
+.sure-btn {
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    background: #ff6600;
+    color: #fff;
+    width: 100vw;
+    font-size: 34rpx;
+}

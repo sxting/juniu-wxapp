@@ -40,6 +40,11 @@ page {
   color: #999999;
 }
 
+.icon-rightblue {
+    font-size: 26rpx;
+    color: #c7c7c7;
+}
+
 /*评论的样式start*/
 .comment-box {
     padding-bottom:10rpx;
