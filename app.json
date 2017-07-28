@@ -11,6 +11,7 @@
     "pages/product/detail/detail",
     "pages/comment/list/list",
     "pages/comment/detail/detail",
+    "pages/comment/making/making",
     "pages/result/result",
     "pages/pay/pay"
   ],
