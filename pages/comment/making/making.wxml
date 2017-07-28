@@ -1,0 +1,42 @@
+<view class="container">
+    <!--整体评价-->
+    <view class="comment-start-box">
+        <text>整体评价</text>
+        <view class="making-comment-start-box">
+            <icon class="jn-icon icon-starempty"></icon>
+            <icon class="jn-icon icon-starempty"></icon>
+            <icon class="jn-icon icon-starempty"></icon>
+            <icon class="jn-icon icon-starempty"></icon>
+            <icon class="jn-icon icon-starempty"></icon>
+        </view>
+        <view class="making-comment-start-box">
+            <icon class="jn-icon icon-stars"></icon>
+        </view>
+    </view>
+    <!--描述服务-->
+    <view class="textarea-box">
+        <textarea placeholder-class="placeholder" placeholder="描述一下商家的服务" />
+    </view>
+    <!--添加图片-->
+    <view class="pictures-box">
+        <view class="add-picture-btn">
+            <view wx:if="1">
+                <view class="jn-icon icon-camera"></view>
+                <view class="text">添加图片</view>
+            </view>
+            <view wx:else class="jn-icon icon-add"></view>
+        </view>
+    </view>
+    <!--选择项目-->
+    <view class="select-product">
+        <text>选择项目</text>
+        <icon class="jn-icon icon-rightblue"></icon>
+    </view>
+    <!--选择手艺人-->
+    <view class="select-craftsman">
+        <text>选择手艺人</text>
+        <icon class="jn-icon icon-rightblue"></icon>
+    </view>
+    <!--提交按钮-->
+    <view class="submit-btn w-inner">提交评价</view>
+</view>
