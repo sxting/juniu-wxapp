@@ -1,5 +1,10 @@
 /* pages/personal/comment/detail/detail.wxss */
-
+page {
+  background-color: #fff;
+}
+.comment-list {
+  border-top: 1px solid #e5e5e5;
+}
 .label {
   font-family: PingFangSC-Regular;
   font-size: 15px;

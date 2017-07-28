@@ -5,12 +5,12 @@
     "pages/shop/shop",
     "pages/personal/index/index",
     "pages/personal/comment/comment",
-    "pages/personal/comment/detail/detail",
     "pages/personal/appointment/appointment",
     "pages/craftsman/select/select",
     "pages/product/select/select",
     "pages/product/detail/detail",
     "pages/comment/list/list",
+    "pages/comment/detail/detail",
     "pages/result/result",
     "pages/pay/pay"
   ],
