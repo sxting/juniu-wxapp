@@ -71,11 +71,11 @@ Page({
   onShareAppMessage: function () {
     
   },
-  goHome: function() {
-    wx.redirectTo({
-      url: '/pages/index/index'
-    })
-  },
+  // goHome: function() {
+  //   wx.redirectTo({
+  //     url: '/pages/index/index'
+  //   })
+  // },
   makeCall: function() {
     wx.makePhoneCall({
       phoneNumber: this.data.tell

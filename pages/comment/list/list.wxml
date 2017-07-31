@@ -40,4 +40,4 @@
     </view>
 </view>
 <!--底部写评价btn-->
-<view class="go-comment">写评价</view>
+<view class="go-comment" bindtap="goMakingComment">写评价</view>

@@ -6,5 +6,12 @@ Page({
   },
   onLoad: function () {
     
-  }
+  },
+
+  //提交评价 
+  commit: function() {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 })
