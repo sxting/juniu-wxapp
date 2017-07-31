@@ -1,8 +1,10 @@
 .top-bg {
     width: 100vw;
     height: 324rpx;
-    background-image: url('/asset/images/personal-bg.png');
-    background-size: 100% 100%;
+}
+.top-bg image {
+  width: 100%;
+  height: 100%;
 }
 .personal-message {
     height: 112rpx;

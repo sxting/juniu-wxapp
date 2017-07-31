@@ -21,7 +21,9 @@
 
     <!--未找到门店-->
     <view class="space-box" wx:else="">
-        <view class="space-bg"></view>
+        <view class="space-bg">
+          <image src="/asset/images/nofind.png"></image>
+        </view>
         <view class="space-text">未找到门店</view>
     </view>
 </view>
