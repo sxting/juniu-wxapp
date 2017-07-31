@@ -23,6 +23,7 @@
 .select-time-box {
     background: #fff;
     margin-bottom: 20rpx;
+    position: relative;
 }
 .sub-title {
     padding-left: 30rpx;
@@ -33,6 +34,7 @@
 .date-box {
     height: 110rpx;
     border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
     background: #FFF0E5;
     display: flex;
 }
@@ -51,6 +53,38 @@
 }
 .time-box {
     background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+}
+.time {
+  width: 16.67%;
+  min-width: 16.67%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  box-sizing: border-box;
+}
+.time:nth-child(6n) {
+  border-right: none;
+}
+
+/*当前选中时间样式*/
+.time-active {
+  color: #ff6600;
+}
+/*禁止点击*/
+.prevent-click {
+  background-color: #fcfcfc;
+  color: #e5e5e5;
+}
+
+.prevent-click-tip {
+  position: absolute;
+  width: 100vw;
+  text-align: center;
+  top: 50%;
 }
 
 .user-msg-box {
