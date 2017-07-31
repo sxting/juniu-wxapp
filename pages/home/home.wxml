@@ -1,9 +1,11 @@
 <view class="container">
     <!--轮播图部分-->
     <view class="banner-box">
-        <view class="img-box">
-
-        </view>
+        <swiper class="img-box" autoplay="true" interval="3000" duration="500">
+          <swiper-item wx:for="{{productImages}}" wx:key="{{item}}">
+            <image src="{{item.url}}"></image>
+          </swiper-item>
+        </swiper>  
         <view class="store-btn jn-icon icon-Shop"></view>
         <view class="personal-btn jn-icon icon-man"></view>
         <view class="new-order-tip-box">
@@ -101,6 +103,8 @@
     <!--底部按钮-->
     <view class="bottom">
         <view class="comment-btn">顾客评价(1099)</view>
-        <view class="pay-btn">买单</view>
+        <view wx:if="" class="pay-btn">买单</view>
+        <!--线上预约  -->
+        <view wx:else class="pay-btn">预约</view>
     </view>
 </view>

@@ -9,6 +9,10 @@
     background: #ccc;
     z-index: -1;
 }
+.img-box image {
+  width: 100%;
+  height:  360rpx;
+}
 .store-btn, .personal-btn {
     width: 80rpx;
     height: 80rpx;
