@@ -2,7 +2,7 @@
     <!--轮播图部分-->
     <view class="banner-box">
         <swiper class="img-box" autoplay="true" interval="3000" duration="500">
-          <swiper-item wx:for="{{productImages}}" wx:key="{{item}}">
+          <swiper-item wx:for="{{productImages}}">
             <image src="{{item.url}}"></image>
           </swiper-item>
         </swiper>  

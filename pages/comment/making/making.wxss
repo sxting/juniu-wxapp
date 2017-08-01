@@ -14,7 +14,8 @@
     color: #999;
     font-size: 34rpx;
     padding: 0;
-    padding-left: 36rpx;
+    padding-left: 18rpx;
+    padding-right: 18rpx;
 }
 .making-comment-start-box .icon-stars {
     color: #ff6600;
@@ -34,17 +35,30 @@
     font-size: 30rpx;
 }
 .pictures-box {
-    height: 180rpx;
+    /* height: 180rpx; */
     padding: 30rpx;
+    padding-bottom: 0;
+    padding-right: 0; 
     box-sizing: border-box;
     background-color: #fff;
     display: flex;
+    flex-wrap: wrap;
+}
+.image-item {
+    width: 120rpx;
+    height: 120rpx;
+    margin-right: 30rpx;
+    margin-bottom: 30rpx;
+    /* border: 1px solid #e5e5e5; */
 }
 .add-picture-btn {
     width: 120rpx;
     height: 120rpx;
     border: 1px solid #e5e5e5;
+    box-sizing: border-box;
     text-align: center;
+    margin-bottom: 30rpx;
+    margin-right: 30rpx;
 }
 .add-picture-btn .icon-camera {
     color: #e5e5e5;
