@@ -10,7 +10,7 @@
         <view class="personal-btn jn-icon icon-man" bindtap="goPersonalPage"></view>
         <view class="new-order-tip-box" bindtap="goMyAppointment">
             <view class="jn-icon icon-remind"></view>
-            <text>您有一条新的预约，点击查看</text>
+            <text>点击查看我的预约</text>
             <view class="jn-icon icon-rightblue more-right"></view>
         </view>
     </view>

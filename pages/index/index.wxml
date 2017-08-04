@@ -7,7 +7,7 @@
         </picker> 
         <view class="vertical-line"></view>
         <view class="input-box">
-            <input placeholder="输入搜索地址" placeholder-class="placeholder"/>
+            <input bindinput="searchAddr" placeholder="输入搜索地址" placeholder-class="placeholder"/>
             <icon class="jn-icon icon-search"></icon>
         </view>
     </view>
