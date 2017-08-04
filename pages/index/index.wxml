@@ -1,8 +1,8 @@
 <view class="container">
     <!--搜索框-->
     <view class="search-box w-inner">
-        <picker mode="region" value="" range="">
-            <view class="city-name">北京</view>
+        <picker mode="region" value="" range="" bindchange="bindRegionChange">
+            <view class="city-name">{{provinceName}}</view>
             <icon class="jn-icon icon-xl"></icon>
         </picker> 
         <view class="vertical-line"></view>

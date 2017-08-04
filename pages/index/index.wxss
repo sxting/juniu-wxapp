@@ -15,11 +15,16 @@
 }
 .search-box picker {
     width: 140rpx;
-    padding-left: 34rpx;
+    padding-left: 22rpx;
     box-sizing: border-box;
 }
 .city-name {
+  width: 92rpx;
     float: left;
+    display:block;
+    white-space:nowrap; 
+    overflow:hidden; 
+    text-overflow:ellipsis;
 }
 .icon-xl {
     font-size: 14rpx;
