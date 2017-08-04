@@ -18,7 +18,7 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 function errCheck(res) {
-  if(res.errorCode === '0'){
+  if (res.errorCode === '10000'){
     return true;
   } else {
     return false;

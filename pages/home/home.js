@@ -4,7 +4,7 @@ var app = getApp()
 Page({
   data: {
     productImages: [
-      { url: '/asset/images/personal-bg.png'},
+      { url: '/asset/images/shop-bg.png'},
       { url: '/asset/images/head-portrait.png'}
     ]
   },

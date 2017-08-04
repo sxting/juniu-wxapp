@@ -1,11 +1,11 @@
 <view class="container">
     <view class="select-box">
-        <view class="craftsman-select">
+        <view class="craftsman-select" bindtap="onCraftsmanClick">
             <text>手艺人</text>
             <icon class="jn-icon icon-rightblue"></icon>
             <text class="craftsman-name">请选择手艺人</text>
         </view>
-        <view class="product-select">
+        <view class="product-select" bindtap="onProductClick">
             <text>商品</text>
             <icon class="jn-icon icon-rightblue"></icon>
             <text class="product-name">请选择商品</text>
