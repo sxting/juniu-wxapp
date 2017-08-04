@@ -1,6 +1,6 @@
 <view class="container">
-    <view class="select-box">
-        <view class="craftsman-select" bindtap="onCraftsmanClick">
+    <view class="select-box" wx:if="reserveType != 'TIME'">
+        <view class="craftsman-select" bindtap="onCraftsmanClick" wx:if="reserveType === 'MAN'">
             <text>手艺人</text>
             <icon class="jn-icon icon-rightblue"></icon>
             <text class="craftsman-name">请选择手艺人</text>

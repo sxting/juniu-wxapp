@@ -100,7 +100,7 @@ function http_request(
         header: header,
         method: method,
         success: res => {
-          if(res.data.errorCode === '0'){
+          if (res.data.errorCode === '10000'){
             return listener.next(res);
           } else {
             return listener.error(res.data.errorInfo);
