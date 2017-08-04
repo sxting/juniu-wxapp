@@ -3,6 +3,15 @@
     min-height: 100vh;
     padding-top: 20rpx;
 }
+.search-box-bg {
+  background: #fff;
+  height: 80rpx;
+  position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100vw;
+}
 .search-box {
     height: 60rpx;
     line-height: 60rpx;
@@ -59,6 +68,9 @@
     top:-4rpx;
     width:70rpx;
     text-align:center;
+}
+scroll-view {
+  margin-top: 80rpx;
 }
 .address-list {
     padding: 0 30rpx;
