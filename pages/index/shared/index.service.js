@@ -11,7 +11,7 @@ indexService.getDistrict = (key, loc) => {
  */
 indexService.getStoreList = (data) => {
   // GET /appstore/list
-  let apiUrl = constant.apiUrl + '/account/appstore/list';
+  let apiUrl = constant.apiUrl + '/account/appstore/list.json';
   return http.get(apiUrl, data);
 }
 module.exports = {

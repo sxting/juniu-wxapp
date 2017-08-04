@@ -1,5 +1,7 @@
 //index.js
 //获取应用实例
+import { constant } from '../../utils/constant'
+import { errDialog } from '../../utils/util'
 import { indexService } from 'shared/index.service';
 var app = getApp()
 Page({
@@ -17,6 +19,11 @@ Page({
   //   })
   // },
   onLoad: function () {
+    try {
+      wx.setStorageSync(constant.TOKEN, '27f3733b5daeb3d89a53b6c561f5c753')
+    } catch (e) {
+    }
+    getStoreListInfo.call();
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.userLocation']) {
@@ -69,6 +76,7 @@ Page({
 function getStoreListInfo() {
   indexService.getStoreList().subscribe({
     next: res => {
+      console.log(res);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -79,6 +87,7 @@ function getStoreListInfo() {
 function getDistrictInfo(key, loc) {
   indexService.getDistrict().subscribe({
     next: res => {
+      console.log(res);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
