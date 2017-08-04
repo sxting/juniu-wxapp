@@ -6,6 +6,14 @@ indexService.getDistrict = (key, loc) => {
   let apiUrl = constant.apiUrl + '/pay/collectMoney.json';
   return http.post(apiUrl, data);
 }
+/**
+ * 获取门店列表
+ */
+indexService.getStoreList = (data) => {
+  // GET /appstore/list
+  let apiUrl = constant.apiUrl + '/account/appstore/list';
+  return http.get(apiUrl, data);
+}
 module.exports = {
   indexService: indexService
 }
