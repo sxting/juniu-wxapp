@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 import { constant } from '../../utils/constant'
-import { errDialog } from '../../utils/util'
+import { errDialog, loading } from '../../utils/util'
 import { indexService } from 'shared/index.service';
 var app = getApp()
 Page({
@@ -83,6 +83,12 @@ Page({
     console.log(e.detail.value)
   }
 })
+
+/**城市转id */
+function changeaddrToId() {
+  let self = this;
+
+}
 
 /**获取门店列表 */
 function getStoreListInfo() {
