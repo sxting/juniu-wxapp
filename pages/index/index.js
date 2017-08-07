@@ -8,8 +8,8 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    provinceName: '北京',
-    region: ['广东省', '广州市', '海珠区'],
+    provinceName: '北京市',
+    region: ['北京市', '北京市', '东城区'],
     webServeKey: '3e9b7b7b8d1511312c029f5bf45e1023',
     // 门店选择列表
     storeList: [],
