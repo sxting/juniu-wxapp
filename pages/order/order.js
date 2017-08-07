@@ -8,13 +8,14 @@ Page({
     storeId: '1498790748991165413217',
     reserveType: '', //预约配置类型 MAN、PRODUCT、TIME 
     dateList: [],
+    date: '',
     timeList: [],
+    reserveTimeArr: [],
     craftsmanId: '',
     craftsmanName: '',
     productId: '',
     productName: '',
     price: '',
-    date: '',
   },
   onLoad: function (options) {
     let today = changeDate.call(this,new Date());
@@ -27,6 +28,7 @@ Page({
     
     this.setData({
       dateList: dateArr,
+      date: dateArr[0].dateData,
       craftsmanId: options.craftsmanId ? options.craftsmanId : this.data.craftsmanId,
       productId: options.productId,
       craftsmanName: options.craftsmanName ? options.craftsmanName : this.data.craftsmanName,
@@ -53,6 +55,25 @@ Page({
     wx.navigateTo({
       url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}`,
     })
+  },
+
+  // 选择日期
+  onDateClick: function(e) {
+    console.log(e)
+    if (this.data.showPreventBox) {return;}
+    this.setData({
+      date: e.currentTarget.dataset.date
+    })
+
+    if (this.data.reserveType === 'MAN') {
+      getStaffReserve.call(this);
+    }
+
+  },
+
+  // 选择时间
+  onTimeClick: function() {
+    if (this.data.showPreventBox) {return;}
   }
 })
 
@@ -81,8 +102,11 @@ function reserveConfig() {
         timeArr.time.push(new Date(new Date(todayDay + ' ' + timeDataArr[0] + ':00').getTime() + 30 * 60 * 1000 * i));
       }
       for (let i = 0; i < timeArr.timeShow.length; i++) {
-        timeArr.timeShow[i] = (timeArr.timeShow[i].getHours().toString().length > 1 ? timeArr.timeShow[i].getHours() : '0' + timeArr.timeShow[i].getHours()) + ':' +
-          (timeArr.timeShow[i].getMinutes().toString().length > 1 ? timeArr.timeShow[i].getMinutes() : '0' + timeArr.timeShow[i].getMinutes());
+        timeArr.timeShow[i] = {
+          time: (timeArr.timeShow[i].getHours().toString().length > 1 ? timeArr.timeShow[i].getHours() : '0' + timeArr.timeShow[i].getHours()) + ':' +
+          (timeArr.timeShow[i].getMinutes().toString().length > 1 ? timeArr.timeShow[i].getMinutes() : '0' + timeArr.timeShow[i].getMinutes()),
+          reserve: false
+        }
       }
       //生成时间end
 
@@ -91,17 +115,12 @@ function reserveConfig() {
         timeList: timeArr.timeShow
       })
 
-      console.log(this.data.craftsmanId);
-      console.log(this.data.productId);
       if (this.data.reserveType === 'MAN') {
         if (this.data.craftsmanId && this.data.productId) {
-          this.setData({
-            showPreventBox: false
-          })
+          this.setData({showPreventBox: false})
+          getStaffReserve.call(this)
         } else {
-          this.setData({
-            showPreventBox: true
-          })
+          this.setData({showPreventBox: true})
         }
       } else if (this.data.reserveType === 'PRODUCT') {
         if (this.data.productId) {
@@ -129,9 +148,44 @@ function getStaffReserve() {
   let data = {
     token: '27f3733b5daeb3d89a53b6c561f5c753',
     staffId: this.data.craftsmanId,
-    date: this.data.date
+    date: this.data.date,
+    storeId: this.data.storeId
   }
-  orderService.reserveStaff(data)
+  orderService.reserveStaff(data).subscribe({
+    next: res => {
+      // 如果查询的手艺人当前的日期下不上班，则返回的data='';
+      if(res) {
+        let workTimeList = res.timeList;
+        let reserveTimeArr = [];
+        for (let i = 0; i < res.reservations.length; i++) {
+          reserveTimeArr.push(res.reservations[i].time)
+        }
+        for (let i = 0; i < res.timeList.length; i++) {
+          workTimeList[i] = {
+            time: res.timeList[i],
+            reserve: false
+          }
+        }
+
+        for (let i = 0; i < reserveTimeArr.length; i++) {
+          for (let j = 0; j < workTimeList.length; j++) {
+            if (reserveTimeArr.indexOf(workTimeList[j].time) > -1) {
+              workTimeList[j].reserve = true;
+            }
+          }
+        }
+        this.setData({
+          timeList: workTimeList
+        })
+      } else {
+        this.setData({
+          timeList: []
+        })
+      }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
 }
 
 // 获取未来N天的日期
@@ -146,13 +200,15 @@ function getAfterSomeDay(date, num) {
     return {
       date: (odate.getMonth() + 1) + '.' + dateNum,
       year: odate.getFullYear(),
-      week: changeDayToChinese.call(this,odate.getDay())
+      week: changeDayToChinese.call(this,odate.getDay()),
+      dateData: odate.getFullYear() + '-' + (odate.getMonth() + 1) + '-' + dateNum
     };
   } else {
     return {
       date: '0' + (odate.getMonth() + 1) + '.' + dateNum,
       year: odate.getFullYear(),
-      week: changeDayToChinese.call(this,odate.getDay())
+      week: changeDayToChinese.call(this,odate.getDay()),
+      dateData: odate.getFullYear() + '-' + '0' + (odate.getMonth() + 1) + '-' + dateNum
     };
   }
 }
