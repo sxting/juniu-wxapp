@@ -4,14 +4,19 @@ import { errDialog } from '../../utils/util';
 var app = getApp()
 Page({
   data: {
-    storeId: '1498113571836349700342',
+    showPreventBox: true,
+    storeId: '1498790748991165413217',
     reserveType: '', //预约配置类型 MAN、PRODUCT、TIME 
     dateList: [],
     timeList: [],
     craftsmanId: '',
+    craftsmanName: '',
     productId: '',
+    productName: '',
+    price: '',
+    date: '',
   },
-  onLoad: function () {
+  onLoad: function (options) {
     let today = changeDate.call(this,new Date());
     let dateArr = [];
     for(let i=0; i<7; i++) {
@@ -19,22 +24,34 @@ Page({
     }
     dateArr[0].week = '今天';
     dateArr[1].week = '明天';
+    
     this.setData({
-      dateList: dateArr
+      dateList: dateArr,
+      craftsmanId: options.craftsmanId ? options.craftsmanId : this.data.craftsmanId,
+      productId: options.productId,
+      craftsmanName: options.craftsmanName ? options.craftsmanName : this.data.craftsmanName,
+      productName: options.productName,
+      price: options.price
     })
 
     reserveConfig.call(this)
   },
 
+  // 选择手艺人
   onCraftsmanClick: function() {
     wx.navigateTo({
       url: '/pages/craftsman/select/select',
     })
   },
 
+  // 选择商品
   onProductClick: function() {
+    if (this.data.reserveType === 'MAN' && !this.data.craftsmanId) {
+      errDialog('请选择手艺人');
+      return;
+    }
     wx.navigateTo({
-      url: '/pages/product/select/select',
+      url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}`,
     })
   }
 })
@@ -45,10 +62,8 @@ function reserveConfig() {
     token: '27f3733b5daeb3d89a53b6c561f5c753',
     storeId: this.data.storeId
   }
-
   orderService.reserveConfig(data).subscribe({
     next: res => {
-      console.log(res);
       let todayDay = changeDate.call(this, new Date())
       let timeArr = {
         time: [],
@@ -76,10 +91,47 @@ function reserveConfig() {
         timeList: timeArr.timeShow
       })
 
+      console.log(this.data.craftsmanId);
+      console.log(this.data.productId);
+      if (this.data.reserveType === 'MAN') {
+        if (this.data.craftsmanId && this.data.productId) {
+          this.setData({
+            showPreventBox: false
+          })
+        } else {
+          this.setData({
+            showPreventBox: true
+          })
+        }
+      } else if (this.data.reserveType === 'PRODUCT') {
+        if (this.data.productId) {
+          this.setData({
+            showPreventBox: false
+          })
+        } else {
+          this.setData({
+            showPreventBox: true
+          })
+        }
+      } else if (this.data.reserveType === 'TIME') {
+        this.setData({
+          showPreventBox: false
+        })
+      }
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
   })
+}
+
+// 查询手艺人预约信息
+function getStaffReserve() {
+  let data = {
+    token: '27f3733b5daeb3d89a53b6c561f5c753',
+    staffId: this.data.craftsmanId,
+    date: this.data.date
+  }
+  orderService.reserveStaff(data)
 }
 
 // 获取未来N天的日期

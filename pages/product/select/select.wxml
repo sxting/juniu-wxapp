@@ -10,31 +10,19 @@
       <view class="weui-panel__bd">
         <view class="weui-media-box weui-media-box_small-appmsg">
           <view class="weui-cells weui-cells_in-small-appmsg">
-            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <navigator wx:for="{{productList}}" 
+            url="/pages/order/order?productId={{item.productId}}&productName={{item.productName}}&price={{item.currentPrice}}&craftsmanId={{craftsmanId}}&craftsmanName={{craftsmanName}}" 
+            class="weui-cell weui-cell_access" 
+            hover-class="weui-cell_active">
               <view class="weui-cell__hd">
-                <image src="{{icon20}}" class="head-img" />
+                <image src="{{item.picUrl}}" class="head-img" />
               </view>
               <view class="weui-cell__bd weui-cell_primary">
-                <view>谢彤老师</view>
+                <view>{{item.productName}}</view>
                 <view class="weui-media-box__desc">
                   <view class="weui-media-box__info">
-                    <view class="weui-media-box__info__meta current-price">99元</view>
-                    <view class="weui-media-box__info__meta original-price">100元</view>
-                  </view>
-                </view>
-              </view>
-              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
-            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-              <view class="weui-cell__hd">
-                <image src="{{icon20}}" class="head-img" />
-              </view>
-              <view class="weui-cell__bd weui-cell_primary">
-                <view>谢彤老师</view>
-                <view class="weui-media-box__desc">
-                  <view class="weui-media-box__info">
-                    <view class="weui-media-box__info__meta current-price">99元</view>
-                    <view class="weui-media-box__info__meta original-price">100元</view>
+                    <view class="weui-media-box__info__meta current-price">{{item.currentPrice}}元</view>
+                    <view class="weui-media-box__info__meta original-price">{{item.originalPrice}}元</view>
                   </view>
                 </view>
               </view>

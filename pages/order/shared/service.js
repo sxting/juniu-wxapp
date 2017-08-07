@@ -2,7 +2,7 @@ import { constant } from '../../../utils/constant';
 import { http } from '../../../utils/http';
 let orderService = {};
 
-let apiUrl = 'http://b-test.juniuo.com:8780'
+let apiUrl = 'http://b-test.juniuo.com/merchant/reserve'
 
 // 查询门店预约配置
 orderService.reserveConfig = (data) => {
