@@ -15,9 +15,15 @@ indexService.getStoreList = (data) => {
   return http.get(apiUrl, data);
 }
 /**地址转id */
-// GET /nameToId.json
+// GET GET /TencentNameToId.json
+
 indexService.nameToId = (data) => {
-  let apiUrl = constant.apiUrl + '/account/nameToId.json';
+  let apiUrl = constant.apiUrl + '/account/TencentNameToId.json';
+  return http.get(apiUrl, data);
+}
+//经纬度转地址 GET /TencentLongAndLatiToAddress.json
+indexService.TencentLongAndLatiToAddress = (data) => {
+  let apiUrl = constant.apiUrl + '/account//TencentLongAndLatiToAddress.json';
   return http.get(apiUrl, data);
 }
 module.exports = {
