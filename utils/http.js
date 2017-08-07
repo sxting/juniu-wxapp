@@ -1,5 +1,6 @@
 import xs from '../lib/xstream/index';
-import {constant} from 'constant';
+import { constant } from 'constant';
+import { loading } from 'util';
 const REQ_METHOD = {
   GET: 'GET',
   POST: 'POST',
@@ -7,9 +8,9 @@ const REQ_METHOD = {
   DELETE: 'DELETE'
 }
 
-let http =  {}
+let http = {}
 
-http.get = (url, data={}, header={'content-type': 'application/json'}) => {
+http.get = (url, data = {}, header = { 'content-type': 'application/json' }) => {
   try {
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
@@ -23,15 +24,15 @@ http.get = (url, data={}, header={'content-type': 'application/json'}) => {
   } catch (e) {
     // Do something when catch error
   }
-  for (let objName in data){
-    if(data[objName] === undefined || data[objName] === 'undefined'){
+  for (let objName in data) {
+    if (data[objName] === undefined || data[objName] === 'undefined') {
       data[objName] = '';
     }
   }
   return http_request(url, REQ_METHOD.GET, data, header)
 }
 
-http.post = (url, data={}, header={'content-type': 'application/x-www-form-urlencoded'}) => {
+http.post = (url, data = {}, header = { 'content-type': 'application/x-www-form-urlencoded' }) => {
   try {
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
@@ -45,15 +46,15 @@ http.post = (url, data={}, header={'content-type': 'application/x-www-form-urlen
   } catch (e) {
     // Do something when catch error
   }
-  for (let objName in data){
-    if(data[objName] === undefined || data[objName] === 'undefined'){
+  for (let objName in data) {
+    if (data[objName] === undefined || data[objName] === 'undefined') {
       data[objName] = '';
     }
   }
   return http_request(url, REQ_METHOD.POST, data, header)
 }
 
-http.put = (url, data={}, header={'content-type': 'application/json'}) => {
+http.put = (url, data = {}, header = { 'content-type': 'application/json' }) => {
   try {
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
@@ -70,7 +71,7 @@ http.put = (url, data={}, header={'content-type': 'application/json'}) => {
   return http_request(url, REQ_METHOD.PUT, data, header)
 }
 
-http.delete = (url, data={}, header={'content-type': 'application/json'}) => {
+http.delete = (url, data = {}, header = { 'content-type': 'application/json' }) => {
   try {
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
@@ -89,27 +90,29 @@ http.delete = (url, data={}, header={'content-type': 'application/json'}) => {
 
 function http_request(
   url,
-  method=REQ_METHOD.GET,
-  data={},
-  header={'content-type': 'application/json'}) {
+  method = REQ_METHOD.GET,
+  data = {},
+  header = { 'content-type': 'application/json' }) {
   const producer = {
     start: listener => {
+      loading();
       wx.request({
         url: url,
         data: data,
         header: header,
         method: method,
         success: res => {
-          if (res.data.errorCode === '10000'){
+          if (res.data.errorCode === '10000') {
             return listener.next(res.data.data);
           } else {
             return listener.error(res.data.errorInfo);
-          }},
+          }
+        },
         fail: res => listener.error(res.data.errorInfo),
         complete: () => listener.complete()
       })
     },
-    stop: () => {}
+    stop: () => { }
   }
   return xs.create(producer)
 }
@@ -118,8 +121,8 @@ http.uploadFile = (
   url,
   filePath,
   name,
-  header={},
-  formData={}) => {
+  header = {},
+  formData = {}) => {
   const producer = {
     start: listener => {
       wx.uploadFile({
@@ -133,14 +136,14 @@ http.uploadFile = (
         complete: () => listener.complete()
       })
     },
-    stop: () => {}
+    stop: () => { }
   }
   return xs.create(producer)
 }
 
 http.downloadFile = (
   url,
-  header={}) => {
+  header = {}) => {
   const producer = {
     start: listener => {
       wx.downloadFile({
@@ -151,7 +154,7 @@ http.downloadFile = (
         complete: () => listener.complete()
       })
     },
-    stop: () => {}
+    stop: () => { }
   }
   return xs.create(producer)
 }

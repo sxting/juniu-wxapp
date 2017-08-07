@@ -14,6 +14,12 @@ indexService.getStoreList = (data) => {
   let apiUrl = constant.apiUrl + '/account/appstore/list.json';
   return http.get(apiUrl, data);
 }
+/**地址转id */
+// GET /nameToId.json
+indexService.nameToId = (data) => {
+  let apiUrl = constant.apiUrl + '/account/nameToId.json';
+  return http.get(apiUrl, data);
+}
 module.exports = {
   indexService: indexService
 }

@@ -36,6 +36,14 @@ function setTitle() {
   });
 }
 
+function loading() {
+  wx.showToast({
+    title: '加载中',
+    icon: 'loading',
+    mask: true
+  });
+}
+
 function errDialog(content) {
   wx.hideToast();
   wx.showModal({
@@ -94,5 +102,6 @@ module.exports = {
   checkMobile: checkMobile,
   checkPhone: checkPhone,
   getUserInfo: getUserInfo,
-  changeDate: changeDate
+  changeDate: changeDate,
+  loading: loading
 }
