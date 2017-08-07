@@ -79,7 +79,11 @@ Page({
   },
   bindRegionChange: function (e) {
     let self = this;
-    console.log('picker发送选择改变，携带值为', e.detail.value);
+    self.setData({
+      provinceId: '', 
+      cityId: '',
+      areaId: ''
+    });
     if (e.detail.value) {
       changeaddrToId.call(self, e.detail.value[0]);
       setTimeout(() => {
