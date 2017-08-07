@@ -78,6 +78,14 @@ function getUrlParma(url, name)
 function getUserInfo() {
   return JSON.parse(wx.getStorageSync(constant.USER_INFO));
 }
+//将日期时间戳转换成日期格式
+function changeDate(date) {
+  console.log(date);
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  return year + '-' + (month.toString().length > 1 ? month : ('0' + month)) + '-' + (day.toString().length > 1 ? day : ('0' + day));
+}
 module.exports = {
   formatTime: formatTime,
   errCheck: errCheck,
@@ -85,5 +93,6 @@ module.exports = {
   errDialog: errDialog,
   checkMobile: checkMobile,
   checkPhone: checkPhone,
-  getUserInfo: getUserInfo
+  getUserInfo: getUserInfo,
+  changeDate: changeDate
 }
