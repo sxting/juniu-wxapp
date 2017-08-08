@@ -85,6 +85,9 @@ function getStoreIndexInfo(storeId, merchantId) {
     merchantId: merchantId
   }).subscribe({
     next: res => {
+      wx.setNavigationBarTitle({
+        title: res.branchStoreName
+      })
       console.log(res);
     },
     error: err => errDialog(err),
