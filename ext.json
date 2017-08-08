@@ -1,0 +1,25 @@
+{
+    "extEnable": true,
+    "extAppid": "wxedcf0f0c4cc429c8",
+    "ext": {
+        "name": "wechat",
+        "attr": {
+            "host": "open.weixin.qq.com",
+            "users": [
+                "user_1",
+                "user_2"
+            ]
+        }
+    },
+    "extPages": {},
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "桔牛",
+        "navigationBarTextStyle": "black"
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "downloadFile": 10000
+    }
+}

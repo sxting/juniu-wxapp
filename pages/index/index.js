@@ -31,11 +31,6 @@ Page({
   // },
   onLoad: function () {
     let self = this;
-    console.log(app.globalData.merchantId);
-    try {
-      wx.setStorageSync(constant.TOKEN, '27f3733b5daeb3d89a53b6c561f5c753')
-    } catch (e) {
-    }
     wx.getSystemInfo({
       success: function (res) {
         self.setData({
@@ -43,7 +38,9 @@ Page({
         });
       }
     })
+
     getStoreListInfo.call(this);
+    // 获取当前地理位置
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.userLocation']) {

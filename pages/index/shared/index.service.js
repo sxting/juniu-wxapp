@@ -26,6 +26,11 @@ indexService.TencentLongAndLatiToAddress = (data) => {
   let apiUrl = constant.apiUrl + '/account//TencentLongAndLatiToAddress.json';
   return http.get(apiUrl, data);
 }
+/**登录 */
+indexService.logIn = (data) => {
+  let apiUrl = constant.apiUrl + '/member/platformUsers/wxapp/login.json';
+  return http.get(apiUrl, data);
+}
 module.exports = {
   indexService: indexService
 }
