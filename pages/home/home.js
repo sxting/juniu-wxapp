@@ -10,11 +10,13 @@ Page({
       { url: '/asset/images/shop-bg.png' },
       { url: '/asset/images/head-portrait.png' }
     ],
-    storeId: ''
+    storeId: '',
+    scene: 0
   },
   onLoad: function (option) {
     this.setData({
-      storeId: option.storeid
+      storeId: option.storeid,
+      scene: app.globalData.scene
     });
     getStoreIndexInfo.call(this, this.data.storeId, app.globalData.merchantId)
   },

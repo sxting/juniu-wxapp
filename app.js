@@ -59,7 +59,6 @@ function logIn(code, appid, rawData) {
         wx.setStorageSync(constant.TOKEN, res.juniuToken);
       } catch (e) {
       }
-      console.log(res);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
