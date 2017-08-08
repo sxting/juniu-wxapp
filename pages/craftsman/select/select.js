@@ -25,5 +25,11 @@ Page({
       error: err => errDialog(err),
       complete: () => wx.hideToast()
     })
+  },
+
+  onItemClick: function(e) {
+    wx.redirectTo({
+      url: `/pages/order/order?craftsmanId=${e.currentTarget.dataset.staffId}&craftsmanName=${e.currentTarget.dataset.staffName}`,
+    })
   }
 })

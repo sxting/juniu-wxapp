@@ -10,22 +10,32 @@ Page({
   },
 
   onLoad: function (options) {
-    this.setData({
-      craftsmanId: options.craftsmanId,
-      craftsmanName: options.craftsmanName
-    })
-    let data = {
-      token: '27f3733b5daeb3d89a53b6c561f5c753',
-      staffId: options.craftsmanId
+    if (options.craftsmanId) {
+      this.setData({
+        craftsmanId: options.craftsmanId,
+        craftsmanName: options.craftsmanName
+      })
+      let data = {
+        staffId: options.craftsmanId
+      }
+      productService.getStaffProduct(data).subscribe({
+        next: res => {
+          this.setData({
+            productList: res
+          })
+        },
+        error: err => errDialog(err),
+        complete: () => wx.hideToast()
+      })
+    } else {
+      
     }
-    productService.getStaffProduct(data).subscribe({
-      next: res => {
-        this.setData({
-          productList: res
-        })
-      },
-      error: err => errDialog(err),
-      complete: () => wx.hideToast()
+  },
+
+  onItemClick: function(e) {
+    wx.redirectTo({
+      url: `/pages/order/order?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&productId=${e.currentTarget.dataset.productId}&productName=${e.currentTarget.dataset.productName}&price=${e.currentTarget.dataset.price}`,
     })
+    
   }
 })

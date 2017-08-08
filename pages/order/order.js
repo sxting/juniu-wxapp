@@ -5,17 +5,26 @@ var app = getApp()
 Page({
   data: {
     showPreventBox: true,
+    nowTime: new Date().getTime(),
     storeId: '1498790748991165413217',
+    storeName: 'mendian',
     reserveType: '', //预约配置类型 MAN、PRODUCT、TIME 
     dateList: [],
-    date: '',
-    timeList: [],
-    reserveTimeArr: [],
+    date: '', //选择的日期
+    timeList: {
+      time: [],
+      timeShow: []
+    },
+    time: '', //选择的时间
     craftsmanId: '',
     craftsmanName: '',
     productId: '',
     productName: '',
     price: '',
+    tel: '', //手机号
+    note: '',  //备注
+    peopleNumber: '1', //预约人数
+    isToday: true, 
   },
   onLoad: function (options) {
     let today = changeDate.call(this,new Date());
@@ -41,7 +50,7 @@ Page({
 
   // 选择手艺人
   onCraftsmanClick: function() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/craftsman/select/select',
     })
   },
@@ -52,7 +61,7 @@ Page({
       errDialog('请选择手艺人');
       return;
     }
-    wx.navigateTo({
+    wx.redirectTo({
       url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}`,
     })
   },
@@ -65,6 +74,19 @@ Page({
       date: e.currentTarget.dataset.date
     })
 
+    let today = new Date();
+    let date = new Date(e.currentTarget.dataset.date + ' ' + '00:00:00')
+    // tslint:disable-next-line:max-line-length
+    if (date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
+      this.setData({
+        isToday: true
+      })
+    } else {
+      this.setData({
+        isToday: false
+      })
+    }
+
     if (this.data.reserveType === 'MAN') {
       getStaffReserve.call(this);
     }
@@ -72,15 +94,49 @@ Page({
   },
 
   // 选择时间
-  onTimeClick: function() {
+  onTimeClick: function(e) {
     if (this.data.showPreventBox) {return;}
+    let index = e.currentTarget.dataset.index
+    if (this.data.timeList.time[index] < this.data.nowTime && this.data.isToday) {
+      this.setData({
+        time: ''
+      });
+      return;
+    }
+    this.setData({
+      time: e.currentTarget.dataset.time
+    })
+  },
+
+  // 填写手机号
+  onTelChange: function(e) {
+    this.setData({
+      tel: e.detail.value
+    })
+  },
+
+  // 填写备注
+  onNoteChange: function(e) {
+    this.setData({
+      note: e.detail.value
+    })
+  },
+
+  // 确认预约
+  onCommitBtnClick: function() {
+    if(!this.data.time) {
+      errDialog('请选择时间'); return;
+    }
+    if (!this.data.tel) {
+      errDialog('请填写手机号'); return;
+    }
+    saveReserve.call(this)
   }
 })
 
 // 查询店铺预约配置
 function reserveConfig() {
   let data = {
-    token: '27f3733b5daeb3d89a53b6c561f5c753',
     storeId: this.data.storeId
   }
   orderService.reserveConfig(data).subscribe({
@@ -112,7 +168,7 @@ function reserveConfig() {
 
       this.setData({
         reserveType: res.reserveType,
-        timeList: timeArr.timeShow
+        timeList: timeArr
       })
 
       if (this.data.reserveType === 'MAN') {
@@ -146,7 +202,6 @@ function reserveConfig() {
 // 查询手艺人预约信息
 function getStaffReserve() {
   let data = {
-    token: '27f3733b5daeb3d89a53b6c561f5c753',
     staffId: this.data.craftsmanId,
     date: this.data.date,
     storeId: this.data.storeId
@@ -174,12 +229,60 @@ function getStaffReserve() {
             }
           }
         }
+        let timeData = [];
+        let todayDay = changeDate.call(this, new Date())
+        for (let i = 0; i < workTimeList.length; i++) {
+          timeData.push(new Date(todayDay + ' ' + workTimeList[i].time + ':00').getTime());
+        }
+
         this.setData({
-          timeList: workTimeList
+          timeList: {
+            timeShow:workTimeList,
+            time: timeData
+          }
         })
       } else {
         this.setData({
           timeList: []
+        })
+      }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+// 保存预约信息
+function saveReserve() {
+  let data = {
+    storeId: this.data.storeId,
+    storeName: this.data.storeName,
+    date: this.data.date,
+    time: this.data.time + ':00',
+    note: this.data.note,
+    phone: this.data.tel,
+    peopleNumber: this.data.peopleNumber,
+    reservationsType: 'RESERVE',
+    reserveType: this.data.reserveType,
+    productId: this.data.productId,
+    productName: this.data.productName,
+    staffId: this.data.craftsmanId,
+    staffName: this.data.craftsmanName,
+  }
+  if (this.data.reserveType === 'PRODUCT') {
+    delete data.staffId;
+    delete data.staffName;
+  } else if (this.data.reserveType === 'TIME') {
+    delete data.staffId;
+    delete data.staffName;
+    delete data.productId;
+    delete data.productName;
+  }
+  orderService.saveReserve(data).subscribe({
+    next: res => {
+      if(res) {
+        wx.navigateTo({
+          url: '/pages/pay/pay',
         })
       }
     },
