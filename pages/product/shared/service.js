@@ -10,6 +10,18 @@ productService.getStaffProduct = (data) => {
   return http.get(url, data)
 }
 
+// 获取商品列表s
+productService.getProductList = (data) => {
+  let url = apiUrl + '/list.json';
+  return http.get(url, data)
+}
+
+// 获取商品详情
+productService.getProductDetail = (data) => {
+  let url = apiUrl + '/app/productinfo.json';
+  return http.get(url, data)
+}
+
 module.exports = {
   productService: productService
 }
