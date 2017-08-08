@@ -31,6 +31,7 @@ Page({
   // },
   onLoad: function () {
     let self = this;
+    console.log(app.globalData.merchantId);
     try {
       wx.setStorageSync(constant.TOKEN, '27f3733b5daeb3d89a53b6c561f5c753')
     } catch (e) {
@@ -100,7 +101,15 @@ Page({
   },
   /**搜索具体地址 */
   searchAddr: function (e) {
-    console.log(e.detail.value)
+    this.setData({
+      address: e.detail.value
+    });
+    getStoreListInfo.call(this);
+  },
+  routerToStoreIndex: function(e) {
+    wx.navigateTo({
+      url: '/pages/home/home?storeid=' + e.currentTarget.dataset.storeid
+    });
   }
 })
 
