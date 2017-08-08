@@ -32,14 +32,14 @@ http.get = (url, data = {}, header = { 'content-type': 'application/json' }) => 
   return http_request(url, REQ_METHOD.GET, data, header)
 }
 
-http.post = (url, data = {}, header = { 'content-type': 'application/x-www-form-urlencoded' }) => {
+http.post = (url, data = {}, header = { 'content-type': 'application/json' }) => {
   try {
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       : wx.getStorageSync(constant.TOKEN);
     if (value) {
       header = {
-        'content-type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/json',
         'token': value
       }
     }

@@ -10,8 +10,8 @@
       <view class="weui-panel__bd">
         <view class="weui-media-box weui-media-box_small-appmsg">
           <view class="weui-cells weui-cells_in-small-appmsg">
-            <navigator wx:for="{{productList}}" 
-            url="/pages/order/order?productId={{item.productId}}&productName={{item.productName}}&price={{item.currentPrice}}&craftsmanId={{craftsmanId}}&craftsmanName={{craftsmanName}}" 
+            <view wx:for="{{productList}}" bindtap="onItemClick" data-product-id="{{item.productId}}"
+             data-product-name="{{item.productName}}" data-price="{{item.currentPrice}}"
             class="weui-cell weui-cell_access" 
             hover-class="weui-cell_active">
               <view class="weui-cell__hd">
@@ -27,7 +27,7 @@
                 </view>
               </view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </navigator>
+            </view>
           </view>
         </view>
       </view>
