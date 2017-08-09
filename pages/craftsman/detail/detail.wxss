@@ -1,9 +1,17 @@
 .top-bg {
     width: 100vw;
     height: 324rpx;
-    background-image: url('/asset/images/personal-bg.png');
-    background-size: 100% 100%;
     color: #fff;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.top-image {
+  width: 100vw;
+  height: 324rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .craftsman-name {
     font-size: 32rpx;
@@ -20,12 +28,15 @@
     height: 112rpx;
     background-color: #fff;
     position: relative;
+    top:324rpx;
 }
 .personal-message image {
     width: 160rpx;
     height: 160rpx;
     margin-top: -80rpx;
     margin-left: 30rpx;
+    border-radius: 50%;
+    border:1px solid #e5e5e5;
 }
 .craftsman-start-box {
     position: absolute;
@@ -39,7 +50,7 @@
     padding-right: 16rpx;
 }
 .comment-list {
-    margin-top: 20rpx;
+    margin-top:344rpx;
     background-color: #fff;
 }
 .sub-title {

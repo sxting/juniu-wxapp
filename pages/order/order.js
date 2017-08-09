@@ -51,7 +51,7 @@ Page({
   // 选择手艺人
   onCraftsmanClick: function() {
     wx.redirectTo({
-      url: '/pages/craftsman/select/select',
+      url: '/pages/craftsman/select/select?label=order',
     })
   },
 
