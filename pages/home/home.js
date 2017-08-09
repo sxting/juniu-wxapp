@@ -76,6 +76,12 @@ Page({
       url: '/pages/order/order',
     })
   },
+
+  goStaffDetail: function (e) {
+    wx.navigateTo({
+      url: '/pages/craftsman/detail/detail?staffId=' + e.currentTarget.dataset.staffid,
+    })
+  }
 })
 
 

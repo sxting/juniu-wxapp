@@ -52,7 +52,7 @@
     </view>
     <view class="cfaftsman-box">
       <!--循环的手艺人-->
-      <view class="cfaftsman" wx:for="{{storeInfo.staffList}}">
+      <view class="cfaftsman" bindtap="goStaffDetail" data-staffid="{{item.staffId}}" wx:for="{{storeInfo.staffList}}">
         <image src="{{item.headPortrait}}"></image>
         <view>{{item.staffName}}</view>
       </view>
