@@ -72,17 +72,17 @@
       <view class="card" wx:if="{{item.type === 'STORED'}}">
         <view class="card-label chu-card-bg">储</view>
         <view class="card-name">{{item.cardConfigName}}</view>
-        <view class="card-rule">充100元得120元</view>
+        <view class="card-rule">充{{item.rules[0].price / 100}}元得{{(item.rules[0].balance - item.rules[0].price)/100}}元</view>
       </view>
       <view class="card" wx:elif="{{item.type === 'METERING'}}">
         <view class="card-label num-card-bg">次</view>
         <view class="card-name">{{item.cardConfigName}}</view>
-        <view class="card-rule">充100元得120次</view>
+        <view class="card-rule">充{{item.rules[0].price / 100}}元得{{item.rules[0].balance}}次</view>
       </view>
       <view class="card" wx:elif="{{item.type === 'TIMES'}}">
         <view class="card-label date-card-bg">期</view>
         <view class="card-name">{{item.cardConfigName}}</view>
-        <view class="card-rule">充100元用120天</view>
+        <view class="card-rule">充{{item.rules[0].price / 100}}元用{{item.rules[0].validate}}天</view>
       </view>
       <view class="card" wx:else>
         <view class="card-label zhe-card-bg">折</view>
