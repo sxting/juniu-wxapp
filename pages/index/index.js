@@ -17,7 +17,7 @@ Page({
     windowHeight: 0,
     pageNo: 0,
     pageSize: 10,
-    merchantId: '1498730761897131221738',
+    merchantId: '1498644115879207297302',
     address: '',
     provinceId: '',
     cityId: '',

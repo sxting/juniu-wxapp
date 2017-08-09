@@ -1,102 +1,102 @@
 <view class="container">
-    <!--轮播图部分-->
-    <view class="banner-box">
-        <swiper class="img-box" autoplay="true" interval="3000" duration="500">
-          <swiper-item wx:for="{{productImages}}">
-            <image src="{{item.url}}"></image>
-          </swiper-item>
-        </swiper>  
-        <view class="store-btn jn-icon icon-Shop" bindtap="goShopPage"></view>
-        <view class="personal-btn jn-icon icon-man" bindtap="goPersonalPage"></view>
-        <view class="new-order-tip-box" bindtap="goMyAppointment">
-            <view class="jn-icon icon-remind"></view>
-            <text>点击查看我的预约</text>
-            <view class="jn-icon icon-rightblue more-right"></view>
-        </view>
+  <!--轮播图部分-->
+  <view class="banner-box">
+    <swiper class="img-box" autoplay="true" interval="3000" duration="500">
+      <swiper-item wx:for="{{productImages}}">
+        <image src="{{item.url}}"></image>
+      </swiper-item>
+    </swiper>
+    <view class="store-btn jn-icon icon-Shop" bindtap="goShopPage"></view>
+    <view class="personal-btn jn-icon icon-man" bindtap="goPersonalPage"></view>
+    <view class="new-order-tip-box" bindtap="goMyAppointment">
+      <view class="jn-icon icon-remind"></view>
+      <text>点击查看我的预约</text>
+      <view class="jn-icon icon-rightblue more-right"></view>
     </view>
+  </view>
 
-    <!--服务项目-->
-    <view class="product-list">
-        <view class="sub-title">
-            <view class="sub-title-left">
-                <view class="jn-icon icon-commodity"></view>
-                <view class="sub-title-text">服务项目</view>
-            </view>
-            <view class="sub-title-right" bindtap="goProductPage">
-                <view>全部50个项目</view>
-                <view class="jn-icon icon-rightblue"></view>
-            </view>
-        </view>
-        <!--循环的项目-->
-        <view class="product-box">
-            <view class="product-img-box"></view>
-            <view class="product-right">
-                <text class="product-name">商品名称商品名称商品名称商品名称商品名称商品名称</text>
-                <text class="current-price">99元</text>
-                <text class="original-price">500元</text>                
-            </view>
-        </view>
+  <!--服务项目-->
+  <view class="product-list">
+    <view class="sub-title">
+      <view class="sub-title-left">
+        <view class="jn-icon icon-commodity"></view>
+        <view class="sub-title-text">服务项目</view>
+      </view>
+      <view class="sub-title-right" bindtap="goProductPage">
+        <view>全部{{storeInfo.productList.length}}个项目</view>
+        <view class="jn-icon icon-rightblue"></view>
+      </view>
     </view>
+    <!--循环的项目-->
+    <view class="product-box">
+      <view class="product-img-box"></view>
+      <view class="product-right">
+        <text class="product-name">商品名称商品名称商品名称商品名称商品名称商品名称</text>
+        <text class="current-price">99元</text>
+        <text class="original-price">500元</text>
+      </view>
+    </view>
+  </view>
 
-    <!--手艺人-->
-    <view class="cfaftsman-list">
-        <view class="sub-title">
-            <view class="sub-title-left">
-                <view class="jn-icon icon-goldmedal"></view>
-                <view class="sub-title-text">金牌手艺人</view>
-            </view>
-            <view class="sub-title-right" bindtap="goCraftsmanPage">
-                <view>全部24位手艺人</view>
-                <view class="jn-icon icon-rightblue"></view>
-            </view>
-        </view>
-        <view class="cfaftsman-box">
-            <!--循环的手艺人-->
-            <view class="cfaftsman">
-                <image src="/asset/images/head-portrait.png"></image>
-                <view>阿金</view>
-            </view>
-        </view>
+  <!--手艺人-->
+  <view class="cfaftsman-list">
+    <view class="sub-title">
+      <view class="sub-title-left">
+        <view class="jn-icon icon-goldmedal"></view>
+        <view class="sub-title-text">金牌手艺人</view>
+      </view>
+      <view class="sub-title-right" bindtap="goCraftsmanPage">
+        <view>全部{{storeInfo.staffList.length}}位手艺人</view>
+        <view class="jn-icon icon-rightblue"></view>
+      </view>
     </view>
+    <view class="cfaftsman-box">
+      <!--循环的手艺人-->
+      <view class="cfaftsman">
+        <image src="/asset/images/head-portrait.png"></image>
+        <view>阿金</view>
+      </view>
+    </view>
+  </view>
 
-    <!--会员权益-->
-    <view class="member-rights">
-        <view class="sub-title">
-            <view class="sub-title-left">
-                <view class="jn-icon icon-VIPcard"></view>
-                <view class="sub-title-text">会员权益</view>
-            </view>
-        </view>
-        <view class="card-list">
-            <!--循环会员卡-->
-            <view class="card">
-                <view class="card-label chu-card-bg">储</view>
-                <view class="card-name">储值卡名称储值卡名称储值卡名称</view>
-                <view class="card-rule">充100元得120元</view>
-            </view>
-            <view class="card">
-                <view class="card-label num-card-bg">次</view>
-                <view class="card-name">计次卡计次卡计次卡计次卡计次卡</view>
-                <view class="card-rule">充100元得120次</view>
-            </view>
-            <view class="card">
-                <view class="card-label date-card-bg">期</view>
-                <view class="card-name">期限卡</view>
-                <view class="card-rule">充100元用120天</view>
-            </view>
-            <view class="card">
-                <view class="card-label zhe-card-bg">折</view>
-                <view class="card-name">折扣卡</view>
-                <view class="card-rule">充100元打9折</view>
-            </view>
-        </view>
+  <!--会员权益-->
+  <view class="member-rights">
+    <view class="sub-title">
+      <view class="sub-title-left">
+        <view class="jn-icon icon-VIPcard"></view>
+        <view class="sub-title-text">会员权益</view>
+      </view>
     </view>
+    <view class="card-list" wx:for="{{storeInfo.cardConfigList}}">
+      <!--循环会员卡-->
+      <view class="card" wx:if="{{item.type === 'STORED'}}">
+        <view class="card-label chu-card-bg">储</view>
+        <view class="card-name">{{item.cardConfigName}}</view>
+        <view class="card-rule">充{{item.rules[0].price / 100}}元得{{(item.rules[0].balance - item.rules[0].price)/100}}元</view>
+      </view>
+      <view class="card" wx:elif="{{item.type === 'METERING'}}">
+        <view class="card-label num-card-bg">次</view>
+        <view class="card-name">{{item.cardConfigName}}</view>
+        <view class="card-rule">充{{item.rules[0].price / 100}}元得{{item.rules[0].balance}}次</view>
+      </view>
+      <view class="card" wx:elif="{{item.type === 'TIMES'}}">
+        <view class="card-label date-card-bg">期</view>
+        <view class="card-name">{{item.cardConfigName}}</view>
+        <view class="card-rule">充{{item.rules[0].price / 100}}元用{{item.rules[0].validate}}天</view>
+      </view>
+      <view class="card" wx:else>
+        <view class="card-label zhe-card-bg">折</view>
+        <view class="card-name">{{item.cardConfigName}}</view>
+        <view class="card-rule">充100元打9折</view>
+      </view>
+    </view>
+  </view>
 
-    <!--底部按钮-->
-    <view class="bottom">
-        <view class="comment-btn" bindtap="goCommentPage">顾客评价(1099)</view>
-        <view wx:if="" class="pay-btn" bindtap="goPayPage">买单</view>
-        <!--线上预约  -->
-        <view wx:else class="pay-btn" bindtap="goOrderPage">预约</view>
-    </view>
+  <!--底部按钮-->
+  <view class="bottom">
+    <view class="comment-btn" bindtap="goCommentPage">顾客评价(1099)</view>
+    <view wx:if="" class="pay-btn" bindtap="goPayPage">买单</view>
+    <!--线上预约  -->
+    <view wx:else class="pay-btn" bindtap="goOrderPage">预约</view>
+  </view>
 </view>
