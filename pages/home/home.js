@@ -11,7 +11,8 @@ Page({
       { url: '/asset/images/head-portrait.png' }
     ],
     storeId: '',
-    scene: 0
+    scene: 0,
+    storeInfo: {}
   },
   onLoad: function (option) {
     this.setData({
@@ -80,15 +81,18 @@ Page({
 
 /**门店主页信息 */
 function getStoreIndexInfo(storeId, merchantId) {
+  let self = this;
   homeService.storeIndex({
     storeId: storeId,
     merchantId: merchantId
   }).subscribe({
     next: res => {
       wx.setNavigationBarTitle({
-        title: res.branchStoreName
+        title: res.storeName
       })
-      console.log(res);
+      self.setData({
+        storeInfo: res
+      });
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

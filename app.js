@@ -46,7 +46,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    merchantId: '1498730761897131221738',
+    merchantId: '1498644115879207297302',
     appId: 'wxedcf0f0c4cc429c8',
     scene: 0
   }
