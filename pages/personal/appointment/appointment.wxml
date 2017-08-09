@@ -2,7 +2,7 @@
   <scroll-view scroll-y="true" lower-threshold="100" class="mainBox" >
     <view class="classname" >
       <view class="BOX" >
-        <view class="main">
+        <view class="main" wx:for="{{appointmentInfo}}">
           <view class="mainTop">
             <view class="topLeft">13800138000</view>
             <view class="topRight">

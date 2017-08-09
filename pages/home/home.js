@@ -7,8 +7,8 @@ var app = getApp()
 Page({
   data: {
     productImages: [
-      { url: '/asset/images/shop-bg.png' },
-      { url: '/asset/images/head-portrait.png' }
+      { picUrl: '/asset/images/shop-bg.png' },
+      { picUrl: '/asset/images/head-portrait.png' }
     ],
     storeId: '',
     scene: 0,
@@ -91,7 +91,8 @@ function getStoreIndexInfo(storeId, merchantId) {
         title: res.storeName
       })
       self.setData({
-        storeInfo: res
+        storeInfo: res,
+        productImages: res.pictureVOS
       });
     },
     error: err => errDialog(err),

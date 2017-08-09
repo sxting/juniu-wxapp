@@ -4,13 +4,15 @@ import { errDialog } from '../../../utils/util';
 var app = getApp()
 Page({
   data: {
-  
+    appointmentInfo: {}
   },
 
   onLoad: function (options) {
     personalService.reserveConfig().subscribe({
       next: res => {
-
+        this.setData({
+          appointmentInfo: res
+        });
       },
       error: err => errDialog(err),
       complete: () => wx.hideToast()
