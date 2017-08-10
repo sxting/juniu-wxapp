@@ -45,7 +45,7 @@ Page({
   // 跳转到服务项目列表
   goProductPage: function () {
     wx.navigateTo({
-      url: '/pages/product/select/select',
+      url: '/pages/product/select/select?storeId=' + this.data.storeId,
     })
   },
 

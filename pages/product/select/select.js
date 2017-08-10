@@ -4,7 +4,7 @@ import { errDialog, changeDate } from '../../../utils/util';
 Page({
   data: {
     icon20: 'http://i.zeze.com/attachment/forum/201610/30/150453u3oo7n3c702j7f08.jpg',
-    storeId: '1498790748991165413217',
+    storeId: '',
     productList: [],
     craftsmanId: '',
     craftsmanName: '',
@@ -15,10 +15,13 @@ Page({
   },
 
   onLoad: function (options) {
+    this.setData({
+      storeId: options.storeId
+    })
     if (options.craftsmanId) {
       this.setData({
         craftsmanId: options.craftsmanId,
-        craftsmanName: options.craftsmanName
+        craftsmanName: options.craftsmanName,
       })
       let data = {
         staffId: options.craftsmanId

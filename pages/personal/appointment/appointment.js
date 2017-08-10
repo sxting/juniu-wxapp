@@ -1,6 +1,7 @@
 import { personalService } from '../shared/service.js'
 import { errDialog } from '../../../utils/util';
 //获取应用实例
+//     INIT("初始化预约"),SUCCESS("预约成功"),CANCEL("取消"),REFUSE("拒绝");
 var app = getApp()
 Page({
   data: {
