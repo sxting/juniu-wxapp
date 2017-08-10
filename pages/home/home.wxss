@@ -135,6 +135,8 @@
 .cfaftsman-box image {
   width: 110rpx;
   height: 110rpx;
+  border-radius: 50%;
+  border: 1px solid #e5e5e5;
 }
 .cfaftsman {
   width: 20%;
