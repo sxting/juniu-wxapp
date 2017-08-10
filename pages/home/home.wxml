@@ -89,7 +89,7 @@
       <view class="card" wx:else>
         <view class="card-label zhe-card-bg">折</view>
         <view class="card-name">{{item.cardConfigName}}</view>
-        <view class="card-rule">充100元打9折</view>
+        <view class="card-rule">充{{item.rules[0].price / 100}}元打{{item.rules[0].rebate}}折</view>
       </view>
     </view>
   </view>
