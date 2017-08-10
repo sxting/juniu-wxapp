@@ -12,6 +12,7 @@ Page({
     pageNo: 1,
     totalPages: 1,
     searchLoading: false,
+    categoryList: []
   },
 
   onLoad: function (options) {
@@ -38,10 +39,11 @@ Page({
     } else {
       getProductList.call(this)
     }
+    getProductTyeList.call(this);
   },
 
   //上拉加载更多
-  scrolltolower: function() {
+  scrolltolower: function () {
     console.log(this.data.pageNo)
     if (this.data.pageNo == this.data.totalPages) {
       return;
@@ -53,7 +55,7 @@ Page({
   },
 
   //点击商品 
-  onItemClick: function(e) {
+  onItemClick: function (e) {
     if (this.data.craftsmanId) {
       wx.redirectTo({
         url: `/pages/order/order?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&productId=${e.currentTarget.dataset.productId}&productName=${e.currentTarget.dataset.productName}&price=${e.currentTarget.dataset.price}`,
@@ -80,6 +82,22 @@ function getProductList() {
         productList: this.data.productList.concat(res.content),
         totalPages: res.totalPages
       })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+
+// 获取商品分类列表
+function getProductTyeList() {
+  // getProdTypeList
+  let self = this;
+  productService.getProdTypeList().subscribe({
+    next: res => {
+      self.setData({
+        categoryList: res
+      });
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

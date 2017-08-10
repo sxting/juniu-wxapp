@@ -21,7 +21,11 @@ productService.getProductDetail = (data) => {
   let url = apiUrl + '/app/productinfo.json';
   return http.get(url, data)
 }
-
+// GET /app/categoryList.json
+productService.getProdTypeList = (data) => {
+  let url = apiUrl + '/app/categoryList.json';
+  return http.get(url, data)
+}
 module.exports = {
   productService: productService
 }
