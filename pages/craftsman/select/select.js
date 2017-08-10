@@ -10,6 +10,7 @@ Page({
     pageNo: 1,
     pageSize: 6,
     totalPages: 1,
+    staffNumber: 0
   },
 
   onLoad: function (options) {
@@ -17,13 +18,13 @@ Page({
       let todayDate = new Date();
       let data = {
         storeId: this.data.storeId,
-        date: changeDate(todayDate),
-        token: '27f3733b5daeb3d89a53b6c561f5c753'
+        date: changeDate(todayDate)
       }
       craftsmanService.getReserveList(data).subscribe({
         next: res => {
           console.log(res);
           this.setData({
+            staffNumber: res.pageInfo.countTotal,
             reserveList: res
           })
         },
@@ -73,7 +74,8 @@ function getStaffList() {
     next: res => {
       this.setData({
         staffList: res.staffAppVOS,
-        totalPages: res.pageInfo.countPage
+        totalPages: res.pageInfo.countPage,
+        staffNumber: res.pageInfo.countTotal
       })
     },
     error: err => errDialog(err),
