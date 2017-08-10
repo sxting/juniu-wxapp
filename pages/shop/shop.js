@@ -92,9 +92,21 @@ Page({
 
 //获取门店信息
 function getStoreInfo(storId) {
+  let self = this;
   shopService.storeInfoDetail({ storId: storId }).subscribe({
     next: res => {
-     console.log(res);
+      self.setData({
+        addr: res.address,
+        tell: res.mobie,
+        time: res.businessStart + '-' + res.businessEnd,
+        markers: [{
+          id: 0,
+          latitude: res.latitude,
+          longitude: res.longitude,
+          width: 50,
+          height: 50
+        }],
+      });
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
