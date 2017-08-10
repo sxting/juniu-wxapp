@@ -31,3 +31,8 @@ function getStaffDetail() {
     complete: () => wx.hideToast()
   })
 }
+
+// 查询员工评论列表
+function getComments() {
+
+}
