@@ -15,6 +15,8 @@
     height: 160rpx;
     margin-top: -80rpx;
     margin-left: 30rpx;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
 }
 .nickname {
     font-size: 32rpx;
