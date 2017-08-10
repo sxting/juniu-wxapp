@@ -7,8 +7,8 @@ var app = getApp()
 Page({
   data: {
     productImages: [
-      { url: '/asset/images/shop-bg.png' },
-      { url: '/asset/images/head-portrait.png' }
+      { picUrl: '/asset/images/shop-bg.png' },
+      { picUrl: '/asset/images/head-portrait.png' }
     ],
     storeId: '',
     scene: 0,
@@ -45,7 +45,7 @@ Page({
   // 跳转到服务项目列表
   goProductPage: function () {
     wx.navigateTo({
-      url: '/pages/product/select/select',
+      url: '/pages/product/select/select?storeId=' + this.data.storeId,
     })
   },
 
@@ -76,6 +76,12 @@ Page({
       url: '/pages/order/order',
     })
   },
+
+  goStaffDetail: function (e) {
+    wx.navigateTo({
+      url: '/pages/craftsman/detail/detail?staffId=' + e.currentTarget.dataset.staffid,
+    })
+  }
 })
 
 
@@ -91,7 +97,8 @@ function getStoreIndexInfo(storeId, merchantId) {
         title: res.storeName
       })
       self.setData({
-        storeInfo: res
+        storeInfo: res,
+        productImages: res.pictureVOS
       });
     },
     error: err => errDialog(err),

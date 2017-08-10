@@ -1,31 +1,34 @@
 <!--pages/personal/appointment/appointment.wxml-->
-  <scroll-view scroll-y="true" lower-threshold="100" class="mainBox" >
-    <view class="classname" >
-      <view class="BOX" >
-        <view class="main">
-          <view class="mainTop">
-            <view class="topLeft">13800138000</view>
-            <view class="topRight">
-              <text > item</text>
-            </view>
+<scroll-view scroll-y="true" lower-threshold="100" class="mainBox">
+  <view class="classname">
+    <view class="BOX" wx:for="{{appointmentInfo}}">
+      <view class="main">
+        <view class="mainTop">
+          <view class="topLeft">{{item.phone}}</view>
+          <view class="topRight">
+            <text wx:if="{{item.status==='INIT'}}"> 初始化预约</text>
+            <text wx:if="{{item.status==='SUCCESS'}}"> 商家已接单</text>
+            <text wx:if="{{item.status==='CANCEL'}}"> 预约已取消</text>
+            <text wx:if="{{item.status==='REFUSE'}}"> 商家已拒绝</text>
           </view>
-          <view class="middle bottom">
-            <view class="middle1">预约时间</view>
-            <view class="middle3">item元</view>
-          </view>
-          <view class="bottom">
-            <view class="bottomLeft">预约项目</view>
-            <view class="bottomRight">item</view>
-          </view>
-          <view class="bottom">
-            <view class="bottomLeft">预约手艺人</view>
-            <view class="bottomRight">item</view>
-          </view>
-           <view class="bottom">
-            <view class="bottomLeft">备注</view>
-            <view class="bottomRight">item</view>
-          </view>
+        </view>
+        <view class="middle bottom">
+          <view class="middle1">预约时间</view>
+          <view class="middle3">{{item.reserveDate}}</view>
+        </view>
+        <view class="bottom">
+          <view class="bottomLeft">预约项目</view>
+          <view class="bottomRight">{{item.productName}}</view>
+        </view>
+        <view class="bottom">
+          <view class="bottomLeft">预约手艺人</view>
+          <view class="bottomRight">{{item.staffName}}</view>
+        </view>
+        <view class="bottom">
+          <view class="bottomLeft">备注</view>
+          <view class="bottomRight">{{item.note}}</view>
         </view>
       </view>
     </view>
-  </scroll-view>
+  </view>
+</scroll-view>
