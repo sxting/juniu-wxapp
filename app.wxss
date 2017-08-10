@@ -61,6 +61,8 @@ page {
     min-width: 100rpx;
     height: 100rpx;
     margin-top: 30rpx;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
 }
 .comment-top-center {
     width: 100%;
