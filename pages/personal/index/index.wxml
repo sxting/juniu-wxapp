@@ -5,8 +5,8 @@
     </view>
     <!--个人信息-->
     <view class="personal-message">
-        <image src="/asset/images/head-portrait.png"></image>
-        <text class="nickname">昵称</text>
+        <image src="{{userInfo.avatarUrl}}"></image>
+        <text class="nickname">{{userInfo.nickName}}</text>
     </view>
     <!--我的预约-->
     <view class="my-order" bindtap="goMyAppointment">
