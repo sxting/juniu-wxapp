@@ -97,8 +97,8 @@
   <!--底部按钮-->
   <view class="bottom">
     <view class="comment-btn" bindtap="goCommentPage">顾客评价(1099)</view>
-    <view wx:if="{{fromNeighbourhood}}" class="pay-btn" bindtap="goPayPage">买单</view>
+    <!-- <view wx:if="{{!fromNeighbourhood}}" class="pay-btn" bindtap="goPayPage">买单</view> -->
     <!--线上预约  -->
-    <view wx:else class="pay-btn" bindtap="goOrderPage">预约</view>
+    <view class="pay-btn" bindtap="goOrderPage">预约</view>
   </view>
 </view>
