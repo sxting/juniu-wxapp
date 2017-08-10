@@ -12,13 +12,19 @@ Page({
     ],
     storeId: '',
     scene: 0,
-    storeInfo: {}
+    storeInfo: {},
+    fromNeighbourhood: false
   },
   onLoad: function (option) {
     this.setData({
       storeId: option.storeid,
       scene: app.globalData.scene
     });
+    if (this.data.scene === 1026) {
+      this.setData({
+        fromNeighbourhood: true
+      })
+    }
     getStoreIndexInfo.call(this, this.data.storeId, app.globalData.merchantId)
   },
   // 跳转到店铺页面
