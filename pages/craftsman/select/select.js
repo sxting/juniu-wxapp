@@ -15,6 +15,9 @@ Page({
 
   onLoad: function (options) {
     if (options.label == 'order') {
+      this.setData({
+        label: options.label
+      })
       let todayDate = new Date();
       let data = {
         storeId: this.data.storeId,
@@ -24,7 +27,7 @@ Page({
         next: res => {
           console.log(res);
           this.setData({
-            staffNumber: res.pageInfo.countTotal,
+            staffNumber: res.length,
             reserveList: res
           })
         },
