@@ -5,6 +5,7 @@ import { errDialog, loading } from 'utils/util'
 App({
   onLaunch: function (options) {
     let appId = 'wxedcf0f0c4cc429c8';
+    let self = this;
     if (this.globalData.scene) {
       this.globalData.scene = options.scene;
     } else {
@@ -13,6 +14,7 @@ App({
     wx.getUserInfo({
       withCredentials: true,
       success: function (res) {
+        self.globalData.userInfo = res.userInfo;
         wx.login({
           success: function (result) {
             let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}

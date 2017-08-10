@@ -6,7 +6,9 @@ Page({
   },
  
   onLoad: function () {
-    console.log(app.globalData.userInfo)
+    this.setData({
+      userInfo: app.globalData.userInfo
+    });
   },
 
   //跳转到我的预约页面 
