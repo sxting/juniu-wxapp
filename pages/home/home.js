@@ -81,6 +81,11 @@ Page({
     wx.navigateTo({
       url: '/pages/craftsman/detail/detail?staffId=' + e.currentTarget.dataset.staffid,
     })
+  },
+  goProductDetail: function (e) {
+    wx.navigateTo({
+      url: '/pages/product/detail/detail?productId=' + e.currentTarget.dataset.productid,
+    })
   }
 })
 
