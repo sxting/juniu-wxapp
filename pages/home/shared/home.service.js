@@ -6,6 +6,7 @@ homeService.storeIndex = (data) => {
   let apiUrl = constant.apiUrl + '/account/appstore/app/storeIndex.json';
   return http.get(apiUrl, data);
 }
+
 module.exports = {
   homeService: homeService
 }

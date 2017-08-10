@@ -24,7 +24,7 @@ Page({
   // 跳转到店铺页面
   goShopPage: function () {
     wx.navigateTo({
-      url: '/pages/shop/shop'
+      url: '/pages/shop/shop?storeId=' + this.data.storeId
     })
   },
 

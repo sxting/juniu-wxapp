@@ -1,3 +1,6 @@
+import { shopService } from 'shared/shop.service';
+import { errDialog } from '../../utils/util';
+
 Page({
 
   /**
@@ -13,14 +16,18 @@ Page({
     }],
     tell: '010-90441899',
     addr: '北京市朝阳区红军营南路媒体村8号楼',
-    time: '09:00-21:00'
+    time: '09:00-21:00',
+    storeId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({
+      storeId: options.storeId
+    })
+    getStoreInfo.call(this, this.data.storeId);
   },
 
   /**
@@ -82,3 +89,14 @@ Page({
     })
   }
 })
+
+//获取门店信息
+function getStoreInfo(storId) {
+  shopService.storeInfoDetail({ storId: storId }).subscribe({
+    next: res => {
+     console.log(res);
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
