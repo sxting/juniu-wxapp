@@ -3,7 +3,7 @@
     <!--循环的评论-->
     <view class="comment-box w-inner" wx:for="{{comments}}">
         <view class="comment-top">
-            <image src="/asset/images/head-portrait.png"></image>
+            <image src="{{item.imagesUrl? item.imagesUrl : '/asset/images/head-portrait.png'}}"></image>
             <view class="comment-top-center">
                 <view>{{item.nick}}</view>
                 <!--星级-->
@@ -16,9 +16,7 @@
                         <icon class="jn-icon icon-starempty"></icon>
                     </view>
                     <view class="starts-box">
-                        <icon class="jn-icon icon-stars"></icon>
-                        <icon class="jn-icon icon-stars"></icon>
-                        <icon class="jn-icon icon-stars"></icon>
+                        <icon class="jn-icon icon-stars" wx:for="{{item.score}}"></icon>
                     </view>
                 </view>
             </view>

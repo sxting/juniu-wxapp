@@ -1,7 +1,7 @@
 //app.js
 import { service } from 'service';
 import { errDialog, loading } from 'utils/util'
-
+import { constant } from 'utils/constant'
 App({
   onLaunch: function (options) {
     let appId = 'wxedcf0f0c4cc429c8';
@@ -57,10 +57,10 @@ App({
 function logIn(code, appid, rawData) {
   service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
     next: res => {
-      try {
-        wx.setStorageSync(constant.TOKEN, res.juniuToken);
-      } catch (e) {
-      }
+      wx.setStorage({
+        key: constant.TOKEN,
+        data: res.juniuToken
+      })
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
