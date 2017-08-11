@@ -1,6 +1,6 @@
 <view class="container">
-    <view class="select-box" wx:if="reserveType != 'TIME'">
-        <view class="craftsman-select" bindtap="onCraftsmanClick" wx:if="reserveType === 'MAN'">
+    <view class="select-box" wx:if="{{reserveType != 'TIME'}}">
+        <view class="craftsman-select" bindtap="onCraftsmanClick" wx:if="{{reserveType === 'MAN'}}">
             <text>手艺人</text>
             <icon class="jn-icon icon-rightblue"></icon>
             <text class="craftsman-name" wx:if="{{!craftsmanId}}">请选择手艺人</text>
@@ -32,13 +32,14 @@
           <view class="no-work" wx:if="{{timeList.timeShow.length == 0}}">请选择其他日期</view>
         </view>
         <!--需要选择手艺人和商品但是没选择手艺人或商品的时候显示， 上面的日期和时间加 prevent-click类名-->
-        <view wx:if="{{showPreventBox}}" class="prevent-click-tip">要先选择上面的手艺人和商品哦! </view>
+        <view wx:if="{{showPreventBox && reserveType == 'MAN'}}" class="prevent-click-tip">要先选择上面的手艺人和商品哦! </view>
+        <view wx:if="{{showPreventBox && reserveType == 'PRODUCT'}}" class="prevent-click-tip">要先选择上面的商品哦! </view>
     </view>
     <!--用户填写信息-->
     <view class="user-msg-box">
         <view class="tel-box">
             <text>手机号(必填)</text>
-            <input bindinput="onTelChange" placeholder-class="placeholder" placeholder="请填写手机号"/>
+            <input type="tel" bindinput="onTelChange" placeholder-class="placeholder" placeholder="请填写手机号"/>
         </view>
         <view class="note">
             <text>备注</text>

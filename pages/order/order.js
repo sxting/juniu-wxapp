@@ -130,6 +130,10 @@ Page({
     if (!this.data.tel) {
       errDialog('请填写手机号'); return;
     }
+    if (this.data.tel.length !== 11) {
+      errDialog('请填写正确的手机号'); return;
+    }
+
     saveReserve.call(this)
   }
 })
@@ -155,7 +159,7 @@ function reserveConfig() {
       let endTime = new Date(todayDay + ' ' + timeDataArr[1] + ':00').getTime();
       for (let i = 0; i < ((endTime - startTime) / 1000 / 60 / 30); i++) {
         timeArr.timeShow.push(new Date(new Date(todayDay + ' ' + timeDataArr[0] + ':00').getTime() + 30 * 60 * 1000 * i));
-        timeArr.time.push(new Date(new Date(todayDay + ' ' + timeDataArr[0] + ':00').getTime() + 30 * 60 * 1000 * i));
+        timeArr.time.push(new Date(new Date(todayDay + ' ' + timeDataArr[0] + ':00').getTime() + 30 * 60 * 1000 * i).getTime());
       }
       for (let i = 0; i < timeArr.timeShow.length; i++) {
         timeArr.timeShow[i] = {
@@ -167,7 +171,7 @@ function reserveConfig() {
       //生成时间end
 
       this.setData({
-        reserveType: res.reserveType,
+        reserveType: 'TIME',
         timeList: timeArr
       })
 
