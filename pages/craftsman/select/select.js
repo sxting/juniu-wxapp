@@ -4,7 +4,7 @@ import { errDialog, changeDate } from '../../../utils/util';
 Page({
   data: {
     label: '',
-    storeId: '1498790748991165413217',
+    storeId: '',
     reserveList: [],
     staffList: [],
     pageNo: 1,
@@ -14,6 +14,9 @@ Page({
   },
 
   onLoad: function (options) {
+    this.setData({
+      storeId: options.storeId
+    })
     if (options.label == 'order') {
       this.setData({
         label: options.label
@@ -42,15 +45,15 @@ Page({
   onItemClick: function(e) {
     if(this.data.label == 'order') {
       wx.redirectTo({
-        url: `/pages/order/order?craftsmanId=${e.currentTarget.dataset.staffId}&craftsmanName=${e.currentTarget.dataset.staffName}`,
+        url: `/pages/order/order?storeId=${this.data.storeId}&craftsmanId=${e.currentTarget.dataset.staffId}&craftsmanName=${e.currentTarget.dataset.staffName}`,
       })
     } else if (this.data.label == 'comment') {
       wx.redirectTo({
-        url: `/pages/comment/making/making?staffId=${e.currentTarget.dataset.staffId}&staffId=${e.currentTarget.dataset.staffName}`,
+        url: `/pages/comment/making/making?storeId=${this.data.storeId}&staffId=${e.currentTarget.dataset.staffId}&staffId=${e.currentTarget.dataset.staffName}`,
       })
     } else {
       wx.navigateTo({
-        url: `/pages/craftsman/detail/detail?staffId=${e.currentTarget.dataset.staffId}`,
+        url: `/pages/craftsman/detail/detail?storeId=${this.data.storeId}&staffId=${e.currentTarget.dataset.staffId}`,
       })
     }
   },

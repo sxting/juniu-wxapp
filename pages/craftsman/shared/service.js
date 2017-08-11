@@ -3,7 +3,8 @@ import { http } from '../../../utils/http';
 let craftsmanService = {};
 
 let apiUrl1 = 'http://b-test.juniuo.com/merchant/reserve';
-let apiUrl2 = 'http://b-test.juniuo.com/merchant/account'
+let apiUrl2 = 'http://b-test.juniuo.com/merchant/account';
+let apiUrl3 = 'http://b-test.juniuo.com/merchant/member';
 
 // 传当前日期和门店id，查询预约手艺人列表
 craftsmanService.getReserveList = (data) => {
@@ -20,6 +21,12 @@ craftsmanService.getStaffList = (data) => {
 // 查询员工详情
 craftsmanService.getStaffDetail = (data) => {
   let url = apiUrl2 + '/staffInfo.json';
+  return http.get(url, data)
+}
+
+// 查询员工评价
+craftsmanService.getStaffCommentList = (data) => {
+  let url = apiUrl3 + '/comment/app/queryAppCommenCtraftsmanList.json';
   return http.get(url, data)
 }
 

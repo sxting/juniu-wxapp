@@ -58,11 +58,11 @@ Page({
   onItemClick: function (e) {
     if (this.data.craftsmanId) {
       wx.redirectTo({
-        url: `/pages/order/order?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&productId=${e.currentTarget.dataset.productId}&productName=${e.currentTarget.dataset.productName}&price=${e.currentTarget.dataset.price}`,
+        url: `/pages/order/order?storeId=${this.data.storeId}&craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&productId=${e.currentTarget.dataset.productId}&productName=${e.currentTarget.dataset.productName}&price=${e.currentTarget.dataset.price}`,
       })
     } else {
       wx.navigateTo({
-        url: `/pages/product/detail/detail?productId=${e.currentTarget.dataset.productId}`,
+        url: `/pages/product/detail/detail?productId=${e.currentTarget.dataset.productId}&storeId=${this.data.storeId}`,
       })
     }
   },
