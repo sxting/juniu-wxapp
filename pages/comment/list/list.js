@@ -20,12 +20,12 @@ Page({
     commentList.call(this, this.data.pageIndex, this.data.pageSize, this.data.storeId);
   },
 
-  onShow: function() {
+  onShow: function () {
 
   },
 
   // 跳转到写评价页面
-  goMakingComment: function() {
+  goMakingComment: function () {
     wx.navigateTo({
       url: '/pages/comment/making/making',
     })
@@ -41,6 +41,11 @@ function commentList(pageIndex, pageSize, storeId) {
     storeId: storeId
   }).subscribe({
     next: res => {
+      res.comments.forEach((item) => {
+        let dateArray = item.juniuoModel.dateCreated.split(' ');
+        item.date = dateArray[0];
+        item.time = dateArray[1];
+      });
       self.setData({
         comments: res.comments,
         countTotal: res.pageInfo.countTotal

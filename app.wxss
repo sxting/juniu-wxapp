@@ -80,6 +80,7 @@ page {
     color: #999999;
     text-align: right;
     padding-top: 44rpx;
+    min-width: 156rpx;
 }
 .comment-content {
     font-size: 28rpx;

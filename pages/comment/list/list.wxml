@@ -23,8 +23,8 @@
                 </view>
             </view>
             <view class="comment-time-box">
-                <view>2017.06.26</view>
-                <view>18:30:35</view>
+                <view>{{item.date}}</view>
+                <view>{{item.time}}</view>
             </view>
         </view>
         <view class="comment-content">
