@@ -1,40 +1,39 @@
 <view class="page">
   <view class="page__bd">
     <view class="weui-panel">
-      <view class="weui-cell weui-cell_access title">
-        <view class="weui-cell__bd weui-cell_primary">
-          <view>所有分类</view>
+      <picker range="{{categoryList}}">
+        <view class="weui-cell weui-cell_access title">
+          <view class="weui-cell__bd weui-cell_primary">
+            <view>所有分类</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access drown"></view>
         </view>
-        <view class="weui-cell__ft weui-cell__ft_in-access drown"></view>
-      </view>
-      
+      </picker>
+
       <view class="weui-panel__bd">
         <view class="weui-media-box weui-media-box_small-appmsg">
           <view class="weui-cells weui-cells_in-small-appmsg">
-          <scroll-view scroll-y="true" bindscrolltolower="scrolltolower">
-            <view wx:for="{{productList}}" bindtap="onItemClick" data-product-id="{{item.productId}}"
-             data-product-name="{{item.productName}}" data-price="{{item.currentPrice}}"
-            class="weui-cell weui-cell_access" 
-            hover-class="weui-cell_active">
-              <view class="weui-cell__hd">
-                <image src="{{item.picUrl}}" class="head-img" />
-              </view>
-              <view class="weui-cell__bd weui-cell_primary">
-                <view>{{item.productName}}</view>
-                <view class="weui-media-box__desc">
-                  <view class="weui-media-box__info">
-                    <view class="weui-media-box__info__meta current-price">{{item.currentPrice}}元</view>
-                    <view class="weui-media-box__info__meta original-price">{{item.originalPrice}}元</view>
+            <scroll-view scroll-y="true" bindscrolltolower="scrolltolower">
+              <view wx:for="{{productList}}" bindtap="onItemClick" data-product-id="{{item.productId}}" data-product-name="{{item.productName}}" data-price="{{item.currentPrice}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__hd">
+                  <image src="{{item.picUrl}}" class="head-img" />
+                </view>
+                <view class="weui-cell__bd weui-cell_primary">
+                  <view>{{item.productName}}</view>
+                  <view class="weui-media-box__desc">
+                    <view class="weui-media-box__info">
+                      <view class="weui-media-box__info__meta current-price">{{item.currentPrice}}元</view>
+                      <view class="weui-media-box__info__meta original-price">{{item.originalPrice}}元</view>
+                    </view>
                   </view>
                 </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
               </view>
-              <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-            </view>
-          </scroll-view>
+            </scroll-view>
           </view>
         </view>
       </view>
-      
+
     </view>
   </view>
 </view>

@@ -65,7 +65,7 @@ Page({
   // 跳转到全部评价列表
   goCommentPage: function () {
     wx.navigateTo({
-      url: '/pages/comment/list/list',
+      url: '/pages/comment/list/list?storeId=' + this.data.storeId,
     })
   },
 
