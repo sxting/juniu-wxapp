@@ -6,11 +6,15 @@ Page({
     imgUrl: '/asset/images/head-portrait.png',
     starArr: [0,1,2,3,4],
     staffId: '',
-    staffInfo: {}
+    staffInfo: {},
+    pageIndex: 1,
+    pageSize: 5,
+    storeId: '',
   },
   onLoad: function (options) {
     this.setData({
-      staffId: options.staffId
+      staffId: options.staffId,
+      storeId: options.storeId
     })
     getStaffDetail.call(this)
   }
@@ -34,5 +38,17 @@ function getStaffDetail() {
 
 // 查询员工评论列表
 function getComments() {
-
+  let data = {
+    pageIndex: this.data.pageIndex,
+    pageSize: this.data.pageSize,
+    storeId: this.data.storeId,
+    ctraftsmanId: this.data.staffId
+  }
+  craftsmanService.getStaffCommentList(data).subscribe({
+    next: res => {
+      
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
 }

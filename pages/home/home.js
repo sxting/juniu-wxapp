@@ -7,8 +7,7 @@ var app = getApp()
 Page({
   data: {
     productImages: [
-      { picUrl: '/asset/images/shop-bg.png' },
-      { picUrl: '/asset/images/head-portrait.png' }
+      { picUrl: '/asset/images/shop-bg.png' }
     ],
     storeId: '',
     scene: 0,
@@ -58,7 +57,7 @@ Page({
   // 跳转到手艺人列表
   goCraftsmanPage: function () {
     wx.navigateTo({
-      url: '/pages/craftsman/select/select',
+      url: '/pages/craftsman/select/select?storeId=' + this.data.storeId,
     })
   },
 
@@ -79,7 +78,7 @@ Page({
   // 跳转到线上预约页面
   goOrderPage: function () {
     wx.navigateTo({
-      url: '/pages/order/order',
+      url: '/pages/order/order?storeId=' + this.data.storeId,
     })
   },
 
@@ -107,9 +106,13 @@ function getStoreIndexInfo(storeId, merchantId) {
       wx.setNavigationBarTitle({
         title: res.storeName
       })
+      if (res.pictureVOS && res.pictureVOS.length > 0) {
+        self.setData({
+          productImages: res.pictureVOS
+        })
+      }
       self.setData({
         storeInfo: res,
-        productImages: res.pictureVOS
       });
     },
     error: err => errDialog(err),

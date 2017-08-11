@@ -6,7 +6,7 @@ Page({
   data: {
     showPreventBox: true,
     nowTime: new Date().getTime(),
-    storeId: '1498790748991165413217',
+    storeId: '',
     storeName: 'mendian',
     reserveType: '', //预约配置类型 MAN、PRODUCT、TIME 
     dateList: [],
@@ -36,6 +36,7 @@ Page({
     dateArr[1].week = '明天';
     
     this.setData({
+      storeId: options.storeId,
       dateList: dateArr,
       date: dateArr[0].dateData,
       craftsmanId: options.craftsmanId ? options.craftsmanId : this.data.craftsmanId,
@@ -51,7 +52,7 @@ Page({
   // 选择手艺人
   onCraftsmanClick: function() {
     wx.redirectTo({
-      url: '/pages/craftsman/select/select?label=order',
+      url: '/pages/craftsman/select/select?label=order&storeId=' + this.data.storeId,
     })
   },
 
@@ -62,7 +63,7 @@ Page({
       return;
     }
     wx.redirectTo({
-      url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}`,
+      url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&storeId=${this.data.storeId}`,
     })
   },
 
@@ -171,7 +172,7 @@ function reserveConfig() {
       //生成时间end
 
       this.setData({
-        reserveType: 'TIME',
+        reserveType: res.reserveType,
         timeList: timeArr
       })
 
