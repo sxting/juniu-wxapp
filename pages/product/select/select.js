@@ -66,6 +66,13 @@ Page({
       })
     }
   },
+  rangeValueChange: function (event) {
+    this.setData({
+      categoryId: this.data.categoryList[event.detail.value].categoryId,
+      productList: []
+    });
+    getProductList.call(this);
+  }
 
 })
 
@@ -75,6 +82,9 @@ function getProductList() {
     storeId: this.data.storeId,
     pageNo: this.data.pageNo,
     pageSize: this.data.pageSize
+  }
+  if (this.data.categoryId) {
+    data.categoryId = this.data.categoryId;
   }
   productService.getProductList(data).subscribe({
     next: res => {
