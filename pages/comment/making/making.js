@@ -107,4 +107,14 @@ Page({
 
 
   },
+  selectProduct: function () {
+    wx.navigateTo({
+      url: '/pages/product/select/select?storeId=' + this.data.storeId,
+    })
+  },
+  selectStaff: function () {
+    wx.navigateTo({
+      url: '/pages/craftsman/select/select?storeId=' + this.data.storeId,
+    })
+  }
 })
