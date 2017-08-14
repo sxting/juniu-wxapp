@@ -8,7 +8,7 @@ const constant = {
   // apiUrl: 'https://tiyan.juniuo.com',
   // imgUrl: 'http://ts.diankayi.net/',
   apiUrl: 'http://b-test.juniuo.com/merchant',
-  imgUrl: 'http://static.diankayi.net/',
+  imgUrl: 'http://b-test.juniuo.com/',
   APP_ID: 'wxedcf0f0c4cc429c8',
   TOKEN: 'app-token',
   EXPERIENCE_TOKEN: 'experience-token',
