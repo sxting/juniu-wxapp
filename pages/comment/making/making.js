@@ -1,35 +1,42 @@
 import { commentService } from '../shared/comment.service';
 import { errDialog, loading } from '../../../utils/util';
+import { constant } from '../../../utils/constant';
+
 var app = getApp()
 Page({
   data: {
-    starArr: [0,1,2,3,4],
+    starArr: [0, 1, 2, 3, 4],
     starCount: 0, //整体评价
     imageArr: [],
-    commentContent: ''
+    commentContent: '',
+    storeId: '',
+    merchantId: ''
   },
   onLoad: function () {
-    
+    this.setData({
+      storeId: wx.getStorageSync(constant.STORE_INFO),
+      merchantId: wx.getStorageSync(constant.MERCHANTID)
+    })
   },
 
   // 整体评价
-  onStarClick: function(e) {
+  onStarClick: function (e) {
     this.setData({
-      starCount: e.currentTarget.dataset.index+1
+      starCount: e.currentTarget.dataset.index + 1
     })
   },
 
   // 评价内容
-  commentContentChange: function(e) {
+  commentContentChange: function (e) {
     this.setData({
       commentContent: e.detail.value
     })
   },
-  
+
 
   // 添加图片
-  addImage: function() {
-    if (this.data.imageArr.length >=5) {
+  addImage: function () {
+    if (this.data.imageArr.length >= 5) {
       wx.showModal({
         title: '温馨提示',
         content: `最多可添加五张图片`,
@@ -55,7 +62,7 @@ Page({
   },
 
   //提交评价 
-  commit: function() {
+  commit: function () {
     if (this.data.starCount == 0) {
       wx.showModal({
         title: '温馨提示',
@@ -76,12 +83,28 @@ Page({
       });
       return;
     }
+    let data = {
+      merchantId: this.data.merchantId,
+      storeId: this.data.storeId,
+      productId: "xxxxx",
+      craftsmanId: "xxxxxx",
+      score: this.data.starCount,
+      content: this.data.commentContent,
+      isShow: true,
+      imageIds: "xxxxxx"
+    };
 
-
-
-
-    wx.navigateBack({
-      delta: 1
+    commentService.making(data).subscribe({
+      next: res => {
+        console.log(res)
+        wx.navigateBack({
+          delta: 1
+        })
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
     })
+
+
   },
 })
