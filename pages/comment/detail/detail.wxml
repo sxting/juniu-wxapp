@@ -5,7 +5,7 @@
       <view class="comment-top">
         <image src="/asset/images/head-portrait.png"></image>
         <view class="comment-top-center">
-          <view>顾客昵称</view>
+          <view>{{detail.nick}}</view>
           <!--星级-->
           <view class="start-box">
             <view class="space-start-box">
@@ -15,22 +15,20 @@
               <icon class="jn-icon icon-starempty"></icon>
               <icon class="jn-icon icon-starempty"></icon>
             </view>
-            <view class="starts-box">
-              <icon class="jn-icon icon-stars"></icon>
-              <icon class="jn-icon icon-stars"></icon>
+            <view class="starts-box" wx:for="{{detail.score}}">
               <icon class="jn-icon icon-stars"></icon>
             </view>
           </view>
         </view>
         <view class="comment-time-box">
-          <view>2017.06.26</view>
-          <view>18:30:35</view>
+          <view>{{detail.date}}</view>
+          <view>{{detail.time}}</view>
         </view>
       </view>
       <view class="label">项目:<text>商品名称</text></view>
       <view class="label">手艺人:<text>商品名称</text></view>
       <view class="weui-article__p">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      {{detail.content}}
       </view>
       <view class="comment-images">
         <image src="/asset/images/personal-bg.png"></image>

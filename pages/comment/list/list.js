@@ -23,6 +23,11 @@ Page({
   onShow: function () {
 
   },
+  routerCommentDetail: function (e) {
+    wx.redirectTo({
+      url: '/pages/comment/detail/detail?commentid=' + e.currentTarget.dataset.commentid,
+    })
+  },
 
   // 跳转到写评价页面
   goMakingComment: function () {

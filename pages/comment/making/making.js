@@ -1,3 +1,5 @@
+import { commentService } from '../shared/comment.service';
+import { errDialog, loading } from '../../../utils/util';
 var app = getApp()
 Page({
   data: {
