@@ -10,7 +10,10 @@ personalService.reserveConfig = () => {
   return http.get(url)
 }
 
-
+personalService.myComment = (data) => {
+  let url = constant.apiUrl + '/member/comment/app/userComment.json';
+  return http.get(url, data);
+}
 module.exports = {
   personalService: personalService
 }

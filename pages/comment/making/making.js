@@ -132,7 +132,7 @@ Page({
       score: this.data.starCount,
       content: this.data.commentContent,
       isShow: true,
-      imageIds: "xxxxxx"
+      imageIds: this.data.pictureId
     };
 
     commentService.making(data).subscribe({
