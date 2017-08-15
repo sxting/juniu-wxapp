@@ -38,3 +38,7 @@
     font-size: 32rpx;
     color: #e5e5e5;
 }
+scroll-view {
+  height: 100%;
+  max-height: 786rpx;
+}
