@@ -29,9 +29,7 @@
             {{item.content}}
         </view>
         <view class="comment-images">
-            <image src="/asset/images/personal-bg.png"></image>
-            <image src="/asset/images/personal-bg.png"></image>
-            <image src="/asset/images/personal-bg.png"></image>
+            <image wx:for="{{item.imagesUrl}}" wx:for-item="img" src="{{img}}"></image>
             <!--<image src="/asset/images/personal-bg.png"></image>
             <image src="/asset/images/personal-bg.png"></image>-->
         </view>

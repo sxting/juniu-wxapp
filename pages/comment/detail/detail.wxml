@@ -25,15 +25,13 @@
           <view>{{detail.time}}</view>
         </view>
       </view>
-      <view class="label">项目:<text>商品名称</text></view>
-      <view class="label">手艺人:<text>商品名称</text></view>
+      <view class="label">项目:<text>{{item.productName}}</text></view>
+      <view class="label">手艺人:<text>{{item.craftsmanId}}</text></view>
       <view class="weui-article__p">
       {{detail.content}}
       </view>
       <view class="comment-images">
-        <image src="/asset/images/personal-bg.png"></image>
-        <image src="/asset/images/personal-bg.png"></image>
-        <image src="/asset/images/personal-bg.png"></image>
+        <image wx:for="{{item.imagesUrl}}" wx:for-item="img" src="{{img}}"></image>
         <!--<image src="/asset/images/personal-bg.png"></image>
             <image src="/asset/images/personal-bg.png"></image>-->
       </view>
