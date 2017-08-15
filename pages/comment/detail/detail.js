@@ -1,18 +1,20 @@
 // pages/personal/comment/detail/detail.js
+import { commentService } from '../shared/comment.service';
+import { errDialog, loading } from '../../../utils/util';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    detail: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    getCommentDetail.call(this, options.commentid)
   },
 
   /**
@@ -64,3 +66,20 @@ Page({
   
   }
 })
+
+// 评论详情
+function getCommentDetail(commentId) {
+  let self = this;
+  commentService.queryCommentDetail({ commentId: commentId}).subscribe({
+    next: res => {
+      let dateArray = res.juniuoModel.dateCreated.split(' ');
+      res.date = dateArray[0];
+      res.time = dateArray[1];
+      self.setData({
+        detail: res
+      });
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}

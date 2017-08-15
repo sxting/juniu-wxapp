@@ -1,9 +1,9 @@
 <view class="comment-list">
     <view class="comment-title w-inner">全部评价({{countTotal}})</view>
     <!--循环的评论-->
-    <view class="comment-box w-inner" wx:for="{{comments}}">
+    <view class="comment-box w-inner" bindtap="routerCommentDetail" data-commentid="{{item.commentId}}" wx:for="{{comments}}">
         <view class="comment-top">
-            <image src="{{item.imagesUrl? item.imagesUrl : '/asset/images/head-portrait.png'}}"></image>
+            <image src="{{item.headImageUrl? item.headImageUrl : '/asset/images/head-portrait.png'}}"></image>
             <view class="comment-top-center">
                 <view>{{item.nick}}</view>
                 <!--星级-->

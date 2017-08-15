@@ -1,10 +1,10 @@
 <view class="page">
   <view class="page__bd">
     <view class="weui-panel">
-      <picker range="{{categoryList}}">
+      <picker range-key="categoryName" range="{{categoryList}}" bindchange="rangeValueChange">
         <view class="weui-cell weui-cell_access title">
           <view class="weui-cell__bd weui-cell_primary">
-            <view>所有分类</view>
+            <view>{{selectName}}</view>
           </view>
           <view class="weui-cell__ft weui-cell__ft_in-access drown"></view>
         </view>

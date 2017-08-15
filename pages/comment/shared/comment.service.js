@@ -7,6 +7,15 @@ commentService.queryCommentList = (data) => {
   return http.get(apiUrl, data);
 }
 
+commentService.queryCommentDetail = (data) => {
+  let apiUrl = constant.apiUrl + '/member/comment/queryCommentDetail.json';
+  return http.get(apiUrl, data);
+}
+
+commentService.making = (data) => {
+  let apiUrl = constant.apiUrl + '/member/comment/save.json';
+  return http.post(apiUrl, data);
+}
 module.exports = {
   commentService: commentService
 }

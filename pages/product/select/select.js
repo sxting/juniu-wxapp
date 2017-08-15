@@ -12,7 +12,8 @@ Page({
     pageNo: 1,
     totalPages: 1,
     searchLoading: false,
-    categoryList: []
+    categoryList: [],
+    selectName: '所有分类'
   },
 
   onLoad: function (options) {
@@ -66,6 +67,14 @@ Page({
       })
     }
   },
+  rangeValueChange: function (event) {
+    this.setData({
+      categoryId: this.data.categoryList[event.detail.value].categoryId,
+      productList: [],
+      selectName: this.data.categoryList[event.detail.value].categoryName
+    });
+    getProductList.call(this);
+  }
 
 })
 
@@ -75,6 +84,9 @@ function getProductList() {
     storeId: this.data.storeId,
     pageNo: this.data.pageNo,
     pageSize: this.data.pageSize
+  }
+  if (this.data.categoryId) {
+    data.categoryId = this.data.categoryId;
   }
   productService.getProductList(data).subscribe({
     next: res => {

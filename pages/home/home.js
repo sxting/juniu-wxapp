@@ -2,6 +2,7 @@
 //获取应用实例
 import { homeService } from 'shared/home.service';
 import { errDialog, loading } from '../../utils/util'
+import { constant } from '../../utils/constant'
 
 var app = getApp()
 Page({
@@ -24,6 +25,8 @@ Page({
         fromNeighbourhood: true
       })
     }
+    wx.setStorageSync(constant.MERCHANTID, app.globalData.merchantId);
+    wx.setStorageSync(constant.STORE_INFO, option.storeid);
     getStoreIndexInfo.call(this, this.data.storeId, app.globalData.merchantId)
   },
   // 跳转到店铺页面
