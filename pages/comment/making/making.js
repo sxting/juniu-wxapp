@@ -11,12 +11,16 @@ Page({
     commentContent: '',
     storeId: '',
     merchantId: '',
-    pictureId: ''
+    pictureId: '',
+    productId: '',
+    staffId: ''
   },
-  onLoad: function () {
+  onLoad: function (options) {
     this.setData({
       storeId: wx.getStorageSync(constant.STORE_INFO),
-      merchantId: wx.getStorageSync(constant.MERCHANTID)
+      merchantId: wx.getStorageSync(constant.MERCHANTID),
+      productId: options.productId,
+      staffId: options.staffId
     })
   },
 
@@ -127,11 +131,11 @@ Page({
     let data = {
       merchantId: this.data.merchantId,
       storeId: this.data.storeId,
-      productId: "xxxxx",
-      craftsmanId: "xxxxxx",
+      productId: this.data.productId ? this.data.productId : '',
+      craftsmanId: this.data.staffId ? this.data.staffId : '',
       score: this.data.starCount,
       content: this.data.commentContent,
-      isShow: true,
+      isShow: 1,
       imageIds: this.data.pictureId
     };
 
@@ -149,13 +153,13 @@ Page({
 
   },
   selectProduct: function () {
-    wx.navigateTo({
-      url: '/pages/product/select/select?storeId=' + this.data.storeId,
+    wx.redirectTo({
+      url: '/pages/product/select/select?from=making&storeId=' + this.data.storeId,
     })
   },
   selectStaff: function () {
-    wx.navigateTo({
-      url: '/pages/craftsman/select/select?storeId=' + this.data.storeId,
+    wx.redirectTo({
+      url: '/pages/craftsman/select/select?from=making&storeId=' + this.data.storeId,
     })
   }
 })

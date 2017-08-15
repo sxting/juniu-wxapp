@@ -3,9 +3,9 @@
     <!--循环评论-->
     <view class="comment-box w-inner">
       <view class="comment-top">
-        <image src="/asset/images/head-portrait.png"></image>
+        <image src="{{ detail.headImageUrl ? detail.headImageUrl : '/asset/images/head-portrait.png'}}"></image>
         <view class="comment-top-center">
-          <view>{{detail.nick}}</view>
+          <view>{{detail.nick?detail.nick:''}}</view>
           <!--星级-->
           <view class="start-box">
             <view class="space-start-box">
@@ -25,13 +25,13 @@
           <view>{{detail.time}}</view>
         </view>
       </view>
-      <view class="label">项目:<text>{{item.productName}}</text></view>
-      <view class="label">手艺人:<text>{{item.craftsmanId}}</text></view>
+      <view class="label">项目:<text>{{detail.productName?detail.productName:''}}</text></view>
+      <view class="label">手艺人:<text>{{detail.craftsmanName?detail.craftsmanName:''}}</text></view>
       <view class="weui-article__p">
       {{detail.content}}
       </view>
       <view class="comment-images">
-        <image wx:for="{{item.imagesUrl}}" wx:for-item="img" src="{{img}}"></image>
+        <image wx:for="{{detail.imagesUrl}}" wx:for-item="img" src="{{img}}"></image>
         <!--<image src="/asset/images/personal-bg.png"></image>
             <image src="/asset/images/personal-bg.png"></image>-->
       </view>

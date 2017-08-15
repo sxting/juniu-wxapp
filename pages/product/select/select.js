@@ -13,12 +13,14 @@ Page({
     totalPages: 1,
     searchLoading: false,
     categoryList: [],
-    selectName: '所有分类'
+    selectName: '所有分类',
+    from: ''
   },
 
   onLoad: function (options) {
     this.setData({
-      storeId: options.storeId
+      storeId: options.storeId,
+      from: options.from
     })
     if (options.craftsmanId) {
       this.setData({
@@ -60,6 +62,10 @@ Page({
     if (this.data.craftsmanId) {
       wx.redirectTo({
         url: `/pages/order/order?storeId=${this.data.storeId}&craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&productId=${e.currentTarget.dataset.productId}&productName=${e.currentTarget.dataset.productName}&price=${e.currentTarget.dataset.price}`,
+      })
+    } else if (this.data.from === 'making') {
+      wx.redirectTo({
+        url: `/pages/comment/making/making?productId=${e.currentTarget.dataset.productId}&storeId=${this.data.storeId}`,
       })
     } else {
       wx.navigateTo({
