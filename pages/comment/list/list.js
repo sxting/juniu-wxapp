@@ -31,7 +31,7 @@ Page({
 
   // 跳转到写评价页面
   goMakingComment: function () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/comment/making/making',
     })
   },
