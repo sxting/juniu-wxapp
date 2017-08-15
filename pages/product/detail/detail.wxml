@@ -36,7 +36,7 @@
             </view>
             <view class="comment-content"> {{comment.content}} </view>
             <view class="comment-images">
-                <image wx:for="{{comment.imagesUrl}}" src="/asset/images/personal-bg.png"></image>
+                <image wx:for="{{comment.imagesUrl}}" src="{{item}}"></image>
             </view>
         </view>
         </scroll-view>

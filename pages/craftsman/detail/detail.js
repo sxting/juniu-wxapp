@@ -10,7 +10,7 @@ Page({
     commentList: [],
     pageIndex: 1,
     pageSize: 10,
-    countTotal: 1,
+    countPage: 1,
     storeId: '',
   },
   
@@ -24,7 +24,7 @@ Page({
   },
 
   onScrollTolower: function () {
-    if (this.data.pageIndex == this.data.countTotal) {
+    if (this.data.pageIndex == this.data.countPage) {
       return;
     }
     this.setData({
@@ -68,7 +68,7 @@ function getComments() {
 
       this.setData({
         commentList: res.comments,
-        countTotal: res.pageInfo.countTotal
+        countPage: res.pageInfo.countPage
       })
     },
     error: err => errDialog(err),
