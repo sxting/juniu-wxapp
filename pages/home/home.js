@@ -84,12 +84,12 @@ Page({
 
   goStaffDetail: function (e) {
     wx.navigateTo({
-      url: '/pages/craftsman/detail/detail?staffId=' + e.currentTarget.dataset.staffid,
+      url: '/pages/craftsman/detail/detail?staffId=' + e.currentTarget.dataset.staffid + '&storeId=' + this.data.storeId,
     })
   },
   goProductDetail: function (e) {
     wx.navigateTo({
-      url: '/pages/product/detail/detail?productId=' + e.currentTarget.dataset.productid,
+      url: '/pages/product/detail/detail?productId=' + e.currentTarget.dataset.productid + '&storeId=' + this.data.storeId,
     })
   }
 })
