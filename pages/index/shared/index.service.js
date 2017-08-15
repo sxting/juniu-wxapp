@@ -23,7 +23,7 @@ indexService.nameToId = (data) => {
 }
 //经纬度转地址 GET /TencentLongAndLatiToAddress.json
 indexService.TencentLongAndLatiToAddress = (data) => {
-  let apiUrl = constant.apiUrl + '/account//TencentLongAndLatiToAddress.json';
+  let apiUrl = constant.apiUrl + '/account/TencentLongAndLatiToAddress.json';
   return http.get(apiUrl, data);
 }
 /**登录 */
