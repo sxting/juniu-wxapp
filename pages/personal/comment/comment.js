@@ -7,7 +7,7 @@ var app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {},
+    userInfo: [],
     pageNo: 1,
     pageSize: 100,
   },
@@ -18,13 +18,21 @@ Page({
 
 
 function getMyComment(pageNo, pageSize) {
+  let self = this;
   personalService.myComment({
     pageIndex: pageNo,
     pageSize: pageSize,
     storeId: wx.getStorageSync(constant.STORE_INFO)
   }).subscribe({
     next: res => {
-      console.log(res)
+      res.comments.forEach((item) => {
+        let dateArray = item.juniuoModel.dateCreated.split(' ');
+        item.date = dateArray[0];
+        item.time = dateArray[1];
+      });
+      self.setData({
+        userInfo: res.comments
+      })
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
