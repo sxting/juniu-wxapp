@@ -10,12 +10,14 @@ Page({
     pageNo: 1,
     pageSize: 6,
     totalPages: 1,
-    staffNumber: 0
+    staffNumber: 0,
+    from: ''
   },
 
   onLoad: function (options) {
     this.setData({
-      storeId: options.storeId
+      storeId: options.storeId,
+      from: options.from
     })
     if (options.label == 'order') {
       this.setData({
@@ -49,7 +51,11 @@ Page({
       })
     } else if (this.data.label == 'comment') {
       wx.redirectTo({
-        url: `/pages/comment/making/making?storeId=${this.data.storeId}&staffId=${e.currentTarget.dataset.staffId}&staffId=${e.currentTarget.dataset.staffName}`,
+        url: `/pages/comment/making/making?storeId=${this.data.storeId}&staffId=${e.currentTarget.dataset.staffId}&staffName=${e.currentTarget.dataset.staffName}`,
+      })
+    } else if (this.data.from === 'making') {
+      wx.redirectTo({
+        url: `/pages/comment/making/making?storeId=${this.data.storeId}&staffId=${e.currentTarget.dataset.staffId}&staffName=${e.currentTarget.dataset.staffName}`,
       })
     } else {
       wx.navigateTo({
