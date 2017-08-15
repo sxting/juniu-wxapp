@@ -135,7 +135,7 @@ Page({
       craftsmanId: this.data.staffId ? this.data.staffId : '',
       score: this.data.starCount,
       content: this.data.commentContent,
-      isShow: true,
+      isShow: 1,
       imageIds: this.data.pictureId
     };
 
