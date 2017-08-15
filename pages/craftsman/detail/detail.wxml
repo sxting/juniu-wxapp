@@ -27,7 +27,7 @@
         <!--循环的评价-->
         <view wx:for="{{commentList}}" wx:for-item="comment" class="comment-box w-inner">
             <view class="comment-top">
-                <image src="/asset/images/head-portrait.png"></image>
+                <image src="{{comment.headImageUrl}}"></image>
                 <view class="comment-top-center">
                     <view>{{comment.nick}}</view>
                     <!--星级-->

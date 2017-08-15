@@ -7,7 +7,7 @@ Page({
     showPreventBox: true,
     nowTime: new Date().getTime(),
     storeId: '',
-    storeName: 'mendian',
+    storeName: '',
     reserveType: '', //预约配置类型 MAN、PRODUCT、TIME 
     dateList: [],
     date: '', //选择的日期
