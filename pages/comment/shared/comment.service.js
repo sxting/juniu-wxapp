@@ -16,6 +16,17 @@ commentService.making = (data) => {
   let apiUrl = constant.apiUrl + '/member/comment/save.json';
   return http.post(apiUrl, data);
 }
+
+commentService.getStaffList = (data) => {
+  let url = constant.apiUrl + '/account' + '/list.json';
+  return http.get(url, data)
+}
+
+commentService.getProductList = (data) => {
+  let url = constant.apiUrl + '/product' + '/list.json';
+  return http.get(url, data)
+}
+
 module.exports = {
   commentService: commentService
 }

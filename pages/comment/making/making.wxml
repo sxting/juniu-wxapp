@@ -1,40 +1,46 @@
 <view class="container">
-    <!--整体评价-->
-    <view class="comment-start-box">
-        <text>整体评价</text>
-        <view class="making-comment-start-box">
-            <icon class="jn-icon icon-starempty" wx:for="{{starArr}}" bindtap="onStarClick" data-index="{{item}}"></icon>
-        </view>
-        <view class="making-comment-start-box">
-            <icon wx:for="{{starArr}}" wx:if="{{starCount>item}}" bindtap="onStarClick" data-index="{{item}}" class="jn-icon icon-stars"></icon>           
-        </view>
+  <!--整体评价-->
+  <view class="comment-start-box">
+    <text>整体评价</text>
+    <view class="making-comment-start-box">
+      <icon class="jn-icon icon-starempty" wx:for="{{starArr}}" bindtap="onStarClick" data-index="{{item}}"></icon>
     </view>
-    <!--描述服务-->
-    <view class="textarea-box">
-        <textarea value="{{commentContent}}" bindinput="commentContentChange" placeholder-class="placeholder" placeholder="描述一下商家的服务" />
+    <view class="making-comment-start-box">
+      <icon wx:for="{{starArr}}" wx:if="{{starCount>item}}" bindtap="onStarClick" data-index="{{item}}" class="jn-icon icon-stars"></icon>
     </view>
-    <!--添加图片-->
-    <view class="pictures-box">
-        <!--上传的图片view  -->
-        <image class="image-item" wx:for="{{imageArr}}" src="{{item}}"></image>
-        <view class="add-picture-btn" bindtap="addImage">
-            <view wx:if="{{imageArr.length === 0}}">
-                <view class="jn-icon icon-camera"></view>
-                <view class="text">添加图片</view>
-            </view>
-             <view wx:else class="jn-icon icon-add"></view> 
-        </view>
+  </view>
+  <!--描述服务-->
+  <view class="textarea-box">
+    <textarea value="{{commentContent}}" bindinput="commentContentChange" placeholder-class="placeholder" placeholder="描述一下商家的服务" />
+  </view>
+  <!--添加图片-->
+  <view class="pictures-box">
+    <!--上传的图片view  -->
+    <image class="image-item" wx:for="{{imageArr}}" src="{{item}}"></image>
+    <view class="add-picture-btn" bindtap="addImage">
+      <view wx:if="{{imageArr.length === 0}}">
+        <view class="jn-icon icon-camera"></view>
+        <view class="text">添加图片</view>
+      </view>
+      <view wx:else class="jn-icon icon-add"></view>
     </view>
-    <!--选择项目-->
-    <view class="select-product" bindtap="selectProduct">
-        <text>选择项目</text>
-        <icon class="jn-icon icon-rightblue"></icon>
+  </view>
+  <!--选择项目-->
+  <picker range-key="productName" range="{{productList}}" bindchange="productValueChange">
+    <view class="select-product">
+      <text>选择项目</text>
+      <icon class="jn-icon icon-rightblue"></icon>
     </view>
-    <!--选择手艺人-->
-    <view class="select-craftsman" bindtap="selectStaff">
-        <text>选择手艺人</text>
-        <icon class="jn-icon icon-rightblue"></icon>
+  </picker>
+
+  <!--选择手艺人-->
+  <picker range-key="staffName" range="{{staffList}}" bindchange="staffValueChange">
+    <view class="select-craftsman">
+      <text>选择手艺人</text>
+      <icon class="jn-icon icon-rightblue"></icon>
     </view>
-    <!--提交按钮-->
-    <view class="submit-btn w-inner" bindtap="commit">提交评价</view>
+  </picker>
+
+  <!--提交按钮-->
+  <view class="submit-btn w-inner" bindtap="commit">提交评价</view>
 </view>

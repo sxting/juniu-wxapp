@@ -13,7 +13,11 @@ Page({
     merchantId: '',
     pictureId: '',
     productId: '',
-    staffId: ''
+    staffId: '',
+    pageNo: 1,
+    pageSize: 1000,
+    staffList: [],
+    productList: []
   },
   onLoad: function (options) {
     this.setData({
@@ -22,6 +26,8 @@ Page({
       productId: options.productId,
       staffId: options.staffId
     })
+    getStaffList.call(this);
+    getProductList.call(this);
   },
 
   // 整体评价
@@ -161,5 +167,50 @@ Page({
     wx.redirectTo({
       url: '/pages/craftsman/select/select?from=making&storeId=' + this.data.storeId,
     })
+  },
+  productValueChange: function (event) {
+    this.setData({
+      productId: this.data.productList[event.detail.value].productId
+    });
+  },
+  staffValueChange: function (event) {
+    this.setData({
+      craftsmanId: this.data.staffList[event.detail.value].staffId
+    });
   }
 })
+
+function getStaffList() {
+  let self = this;
+  let data = {
+    storeId: self.data.storeId,
+    pageNo: self.data.pageNo,
+    pageSize: self.data.pageSize
+  }
+  commentService.getStaffList(data).subscribe({
+    next: res => {
+      this.setData({
+        staffList: res.staffAppVOS
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+function getProductList() {
+  let data = {
+    storeId: this.data.storeId,
+    pageNo: this.data.pageNo,
+    pageSize: this.data.pageSize
+  }
+  commentService.getProductList(data).subscribe({
+    next: res => {
+      this.setData({
+        productList: res.content
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
