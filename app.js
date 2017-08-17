@@ -58,14 +58,11 @@ App({
 function logIn(code, appid, rawData) {
   service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
     next: res => {
-      wx.setStorage({
-        key: constant.TOKEN,
-        data: res.juniuToken
-      })
-      wx.setStorage({
-        key: constant.MERCHANTID,
-        data: res.merchantId,
-      })
+      try {
+        wx.setStorageSync(constant.TOKEN, res.juniuToken);
+        wx.setStorageSync(constant.MERCHANTID, res.merchantId);
+      } catch (e) {
+      }
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

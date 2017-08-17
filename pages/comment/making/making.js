@@ -169,9 +169,16 @@ Page({
     })
   },
   productValueChange: function (event) {
-    this.setData({
-      productId: this.data.productList[event.detail.value].productId
-    });
+    if (this.data.productList.length > 0) {
+      this.setData({
+        productId: this.data.productList[event.detail.value].productId
+      });
+    } else {
+      wx.showModal({
+        title: '暂无服务可选',
+        content: '',
+      })
+    }
   },
   staffValueChange: function (event) {
     this.setData({

@@ -39,42 +39,52 @@ Page({
         });
       }
     })
-    if (wx.getStorageSync(constant.TOKEN)) {
-      getStoreListInfo.call(this);
-    } else {
-      wx.getUserInfo({
-        withCredentials: true,
-        success: function (res) {
-          self.globalData.userInfo = res.userInfo;
-          wx.login({
-            success: function (result) {
-              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-              console.log(extConfig)
-              if (result.code) {
-                logIn.call(this, result.code, extConfig.theAppid, res.rawData);
-              } else {
-                console.log('获取用户登录态失败！' + result.errMsg)
-              }
-            },
-            fail: function (res) { },
-            complete: function (res) { },
-          });
-        }
-      })
-    }
-    // 获取当前地理位置
-    wx.getLocation({
-      type: 'wgs84',
+    let token = wx.getStorageSync(constant.TOKEN);
+    wx.getStorage({
+      //获取数据的key
+      key: 'app-token',
       success: function (res) {
-        tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
+        if (res.data) {
+          getStoreListInfo.call(self);
+          // 获取当前地理位置
+          wx.getLocation({
+            type: 'wgs84',
+            success: function (res) {
+              tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
+              var latitude = res.latitude
+              var longitude = res.longitude
+              var speed = res.speed
+              var accuracy = res.accuracy
+            }
+          })
+        }
+      },
+      /**
+       * 失败会调用
+       */
+      fail: function (res) {
+        wx.login({
+          success: function (result) {
+            wx.getUserInfo({
+              withCredentials: true,
+              success: function (res) {
+                let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+                console.log(extConfig)
+                if (result.code) {
+                  logIn.call(self, result.code, extConfig.theAppid, res.rawData);
+                } else {
+                  console.log('获取用户登录态失败！' + result.errMsg)
+                }
+              }
+            });
+          },
+          fail: function (res) { },
+          complete: function (res) { },
+        });
+        
       }
     })
-
-
+    
   },
   bindRegionChange: function (e) {
     let self = this;
@@ -91,6 +101,9 @@ Page({
       setTimeout(() => {
         changeaddrToId.call(self, e.detail.value[2], 'areaId');
       }, 650);
+      setTimeout(() => {
+        getStoreListInfo.call(self);
+      }, 900);
     }
     this.setData({
       provinceName: e.detail.value[0],
@@ -136,7 +149,6 @@ function changeaddrToId(address, areaId) {
             areaId: item.id
           });
         }
-        getStoreListInfo.call(self);
       });
     },
     error: err => errDialog(err),
@@ -162,6 +174,7 @@ function getStoreListInfo() {
       this.setData({
         storeList: res.content
       })
+      console.log(res)
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -203,9 +216,22 @@ function logIn(code, appid, rawData) {
     next: res => {
       wx.setStorage({
         key: constant.TOKEN,
-        data: res.juniuToken
+        data: res.juniuToken,
+        success: function (res) {
+          getStoreListInfo.call(self);
+          // 获取当前地理位置
+          wx.getLocation({
+            type: 'wgs84',
+            success: function (res) {
+              tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
+              var latitude = res.latitude
+              var longitude = res.longitude
+              var speed = res.speed
+              var accuracy = res.accuracy
+            }
+          })
+        }
       })
-      getStoreListInfo.call(self);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
