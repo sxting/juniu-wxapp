@@ -18,7 +18,7 @@
     <scroll-view scroll-y style="height: {{windowHeight}}px;">
       <view class="address-list" wx:for="{{storeList}}" data-storeid="{{item.storeId}}" bindtap="routerToStoreIndex">
         <view class="address-box" hover-class="address-box-active">
-          <view>{{item.branchStoreName}}</view>
+          <view>{{item.storeName}}</view>
           <view class="address-detail">{{item.address}}</view>
         </view>
       </view>

@@ -25,9 +25,8 @@ Page({
         fromNeighbourhood: true
       })
     }
-    wx.setStorageSync(constant.MERCHANTID, app.globalData.merchantId);
     wx.setStorageSync(constant.STORE_INFO, option.storeid);
-    getStoreIndexInfo.call(this, this.data.storeId, app.globalData.merchantId)
+    getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID))
   },
   // 跳转到店铺页面
   goShopPage: function () {

@@ -3,6 +3,7 @@
 import { constant } from '../../utils/constant'
 import { errDialog, loading } from '../../utils/util'
 import { indexService } from 'shared/index.service';
+import { service } from '../../service';
 var app = getApp()
 Page({
   data: {
@@ -17,7 +18,7 @@ Page({
     windowHeight: 0,
     pageNo: 0,
     pageSize: 10,
-    merchantId: '1498644115879207297302',
+    merchantId: '',
     address: '',
     provinceId: '',
     cityId: '',
@@ -38,47 +39,47 @@ Page({
         });
       }
     })
-
-    getStoreListInfo.call(this);
-    // 获取当前地理位置
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userLocation']) {
-          wx.openSetting({
-            success: (res) => {
-              if (res.authSetting['scope.userLocation']) {
-                wx.getLocation({
-                  type: 'wgs84',
-                  success: function (res) {
-                    var latitude = res.latitude
-                    var longitude = res.longitude
-                    var speed = res.speed
-                    var accuracy = res.accuracy
-                  }
-                })
+    if (wx.getStorageSync(constant.TOKEN)) {
+      getStoreListInfo.call(this);
+    } else {
+      wx.getUserInfo({
+        withCredentials: true,
+        success: function (res) {
+          self.globalData.userInfo = res.userInfo;
+          wx.login({
+            success: function (result) {
+              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+              console.log(extConfig)
+              if (result.code) {
+                logIn.call(this, result.code, extConfig.theAppid, res.rawData);
+              } else {
+                console.log('获取用户登录态失败！' + result.errMsg)
               }
-            }
-          })
-        } else {
-          wx.getLocation({
-            type: 'wgs84',
-            success: function (res) {
-              tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
-              var latitude = res.latitude
-              var longitude = res.longitude
-              var speed = res.speed
-              var accuracy = res.accuracy
-            }
-          })
+            },
+            fail: function (res) { },
+            complete: function (res) { },
+          });
         }
+      })
+    }
+    // 获取当前地理位置
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
+        var latitude = res.latitude
+        var longitude = res.longitude
+        var speed = res.speed
+        var accuracy = res.accuracy
       }
     })
+
 
   },
   bindRegionChange: function (e) {
     let self = this;
     self.setData({
-      provinceId: '', 
+      provinceId: '',
       cityId: '',
       areaId: ''
     });
@@ -103,7 +104,7 @@ Page({
     });
     getStoreListInfo.call(this);
   },
-  routerToStoreIndex: function(e) {
+  routerToStoreIndex: function (e) {
     wx.navigateTo({
       url: '/pages/home/home?storeid=' + e.currentTarget.dataset.storeid
     });
@@ -150,7 +151,7 @@ function getStoreListInfo() {
   let shopQuery = {
     pageNo: self.data.pageNo,
     pageSize: self.data.pageSize,
-    merchantId: self.data.merchantId,
+    merchantId: wx.getStorageSync(constant.MERCHANTID),
     address: self.data.address,
     provinceId: self.data.provinceId,
     cityId: self.data.cityId,
@@ -190,6 +191,21 @@ function tencentLongAndLatiToAddress(latitude, longitude) {
         region: [res.province, res.city, res.district],
         provinceName: res.province
       })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+function logIn(code, appid, rawData) {
+  let self = this;
+  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
+    next: res => {
+      wx.setStorage({
+        key: constant.TOKEN,
+        data: res.juniuToken
+      })
+      getStoreListInfo.call(self);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

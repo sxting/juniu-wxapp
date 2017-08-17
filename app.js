@@ -17,9 +17,10 @@ App({
         self.globalData.userInfo = res.userInfo;
         wx.login({
           success: function (result) {
-            let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}
+            let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+            console.log(extConfig)
             if (result.code) {
-              logIn.call(this, result.code, appId, res.rawData);
+              logIn.call(this, result.code, extConfig.theAppid ? extConfig.theAppid :appId, res.rawData);
             } else {
               console.log('获取用户登录态失败！' + result.errMsg)
             }
@@ -60,6 +61,10 @@ function logIn(code, appid, rawData) {
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken
+      })
+      wx.setStorage({
+        key: constant.MERCHANTID,
+        data: res.merchantId,
       })
     },
     error: err => errDialog(err),
