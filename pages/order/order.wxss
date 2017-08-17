@@ -100,15 +100,19 @@
      height: 90rpx;
      line-height: 90rpx;
      border-bottom: 1px solid #e5e5e5;
+     position: relative;
 }
 .note {
     border: none;
 }
 .tel-box input, .note input {
-    float: right;
+    /* float: right; */
     height: 90rpx;
     line-height: 90rpx;
     text-align: right;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 .placeholder {
     font-size: 30rpx;

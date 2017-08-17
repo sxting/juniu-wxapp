@@ -131,7 +131,7 @@ Page({
     if (!this.data.tel) {
       errDialog('请填写手机号'); return;
     }
-    if (this.data.tel.length !== 11) {
+    if ((this.data.tel + '').length !== 11) {
       errDialog('请填写正确的手机号'); return;
     }
 
