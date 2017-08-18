@@ -9,6 +9,7 @@
 .personal-message {
     height: 112rpx;
     background-color: #fff;
+    z-index: 100;
 }
 .personal-message image {
     width: 160rpx;
@@ -17,6 +18,7 @@
     margin-left: 30rpx;
     border-radius: 50%;
     border: 1px solid #e5e5e5;
+    z-index: 100;
 }
 .nickname {
     font-size: 32rpx;

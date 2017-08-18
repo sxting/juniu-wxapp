@@ -286,8 +286,17 @@ function saveReserve() {
   orderService.saveReserve(data).subscribe({
     next: res => {
       if(res) {
-        wx.navigateTo({
-          url: '/pages/pay/pay',
+        wx.showModal({
+          title: '提示',
+          content: '预约成功',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          }
         })
       }
     },
