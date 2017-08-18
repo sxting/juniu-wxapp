@@ -64,6 +64,11 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  previewImg: function (e) {
+    wx.previewImage({
+      urls: [e.currentTarget.dataset.img],
+    })
   }
 })
 

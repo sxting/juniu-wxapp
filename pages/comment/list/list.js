@@ -35,6 +35,11 @@ Page({
       url: '/pages/comment/making/making',
     })
   },
+  previewImg: function(e) {
+    wx.previewImage({
+      urls: [e.currentTarget.dataset.img],
+    })
+  }
 })
 
 // 评论列表

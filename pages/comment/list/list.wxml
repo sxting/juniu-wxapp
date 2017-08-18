@@ -29,7 +29,7 @@
             {{item.content}}
         </view>
         <view class="comment-images">
-            <image wx:for="{{item.imagesUrl}}" wx:for-item="img" src="{{img}}"></image>
+            <image wx:for="{{item.imagesUrl}}" wx:for-index="idx" data-img="{{item.imagesUrl[idx]}}" bindtap="previewImg" wx:for-item="img" src="{{img}}"></image>
             <!--<image src="/asset/images/personal-bg.png"></image>
             <image src="/asset/images/personal-bg.png"></image>-->
         </view>
