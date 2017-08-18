@@ -59,7 +59,7 @@ Page({
 
   //点击商品 
   onItemClick: function (e) {
-    if (this.data.craftsmanId) {
+    if (this.data.from === 'order') {
       wx.redirectTo({
         url: `/pages/order/order?storeId=${this.data.storeId}&craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&productId=${e.currentTarget.dataset.productId}&productName=${e.currentTarget.dataset.productName}&price=${e.currentTarget.dataset.price}`,
       })
@@ -97,8 +97,9 @@ function getProductList() {
   productService.getProductList(data).subscribe({
     next: res => {
       this.setData({
-        productList: this.data.productList.concat(res.content),
-        totalPages: res.totalPages
+        // productList: this.data.productList.concat(res.content),
+        totalPages: res.totalPages,
+        productList: []
       })
     },
     error: err => errDialog(err),

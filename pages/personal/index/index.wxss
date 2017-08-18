@@ -8,10 +8,10 @@
 }
 .personal-message {
     height: 112rpx;
+    line-height: 112rpx;
     background-color: #fff;
-    z-index: 100;
 }
-.personal-message image {
+.personal-image {
     width: 160rpx;
     height: 160rpx;
     margin-top: -80rpx;
@@ -19,12 +19,15 @@
     border-radius: 50%;
     border: 1px solid #e5e5e5;
     z-index: 100;
+    position: relative;
+    top: -120rpx;
 }
 .nickname {
     font-size: 32rpx;
-    position: relative;
+    padding-left: 200rpx;
+    /* position: relative;
     top: -16rpx;
-    left: 30rpx;
+    left: 30rpx; */
 }
 .my-order, .my-comment {
     height: 90rpx;
