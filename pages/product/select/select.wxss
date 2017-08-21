@@ -32,3 +32,7 @@ scroll-view {
   max-height: 100vh;
   height: 100%;
 }
+
+.space-box {
+     padding-bottom:552rpx;
+}

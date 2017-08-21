@@ -63,7 +63,7 @@ Page({
       return;
     }
     wx.redirectTo({
-      url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&storeId=${this.data.storeId}`,
+      url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&storeId=${this.data.storeId}&from=order`,
     })
   },
 
@@ -156,11 +156,13 @@ function reserveConfig() {
       let timeData = res.businessStart + '-' + res.businessEnd;
       // let timeData = '09:00-19:30';
       let timeDataArr = timeData.split('-');
-      let startTime = new Date(todayDay + ' ' + timeDataArr[0] + ':00').getTime();
-      let endTime = new Date(todayDay + ' ' + timeDataArr[1] + ':00').getTime();
+      let startTime = new Date(todayDay + ' ' + timeDataArr[0]).getTime();
+      let endTime = new Date(todayDay + ' ' + timeDataArr[1]).getTime();
+
+
       for (let i = 0; i < ((endTime - startTime) / 1000 / 60 / 30); i++) {
-        timeArr.timeShow.push(new Date(new Date(todayDay + ' ' + timeDataArr[0] + ':00').getTime() + 30 * 60 * 1000 * i));
-        timeArr.time.push(new Date(new Date(todayDay + ' ' + timeDataArr[0] + ':00').getTime() + 30 * 60 * 1000 * i).getTime());
+        timeArr.timeShow.push(new Date(new Date(todayDay + ' ' + timeDataArr[0]).getTime() + 30 * 60 * 1000 * i));
+        timeArr.time.push(new Date(new Date(todayDay + ' ' + timeDataArr[0]).getTime() + 30 * 60 * 1000 * i).getTime());
       }
       for (let i = 0; i < timeArr.timeShow.length; i++) {
         timeArr.timeShow[i] = {
@@ -169,7 +171,6 @@ function reserveConfig() {
           reserve: false
         }
       }
-      //生成时间end
 
       this.setData({
         reserveType: res.reserveType,
@@ -336,7 +337,7 @@ function changeDate(date) {
   let year = date.getFullYear();
   let month = date.getMonth() + 1;
   let day = date.getDate();
-  return year + '-' + (month.toString().length > 1 ? month : ('0' + month)) + '-' + (day.toString().length > 1 ? day : ('0' + day));
+  return year+'/'+(month.toString().length > 1 ? month : ('0' + month))+'/'+(day.toString().length > 1?day:('0' + day));
 }
 
 function changeDayToChinese(num) {

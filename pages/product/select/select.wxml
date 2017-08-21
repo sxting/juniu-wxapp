@@ -10,7 +10,7 @@
         </view>
       </picker>
 
-      <view class="weui-panel__bd">
+      <view class="weui-panel__bd" wx:if="{{productList.length > 0}}">
         <view class="weui-media-box weui-media-box_small-appmsg">
           <view class="weui-cells weui-cells_in-small-appmsg">
             <scroll-view scroll-y="true" bindscrolltolower="scrolltolower">
@@ -33,6 +33,13 @@
           </view>
         </view>
       </view>
+
+      <view class="space-box" wx:else>
+        <view class="space-bg">
+         <image src="/asset/images/nofind.png"></image>
+        </view>
+      <view class="space-text">未找到商品</view>
+  </view>
 
     </view>
   </view>
