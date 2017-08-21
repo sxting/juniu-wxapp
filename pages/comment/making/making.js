@@ -17,7 +17,9 @@ Page({
     pageNo: 1,
     pageSize: 1000,
     staffList: [],
-    productList: []
+    productList: [],
+    selectProductName: '',
+    selectStaffName: ''
   },
   onLoad: function (options) {
     this.setData({
@@ -171,7 +173,8 @@ Page({
   productValueChange: function (event) {
     if (this.data.productList.length > 0) {
       this.setData({
-        productId: this.data.productList[event.detail.value].productId
+        productId: this.data.productList[event.detail.value].productId,
+        selectProductName: this.data.productList[event.detail.value].productName
       });
     } else {
       wx.showModal({
@@ -182,7 +185,8 @@ Page({
   },
   staffValueChange: function (event) {
     this.setData({
-      craftsmanId: this.data.staffList[event.detail.value].staffId
+      craftsmanId: this.data.staffList[event.detail.value].staffId,
+      selectStaffName: this.data.staffList[event.detail.value].staffName
     });
   }
 })
