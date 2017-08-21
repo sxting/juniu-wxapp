@@ -30,6 +30,8 @@
     <view class="select-product">
       <text>选择项目</text>
       <icon class="jn-icon icon-rightblue"></icon>
+      {{selectProductName}}
+      
     </view>
   </picker>
 
@@ -37,6 +39,7 @@
   <picker range-key="staffName" range="{{staffList}}" bindchange="staffValueChange">
     <view class="select-craftsman">
       <text>选择手艺人</text>
+      {{selectStaffName}}
       <icon class="jn-icon icon-rightblue"></icon>
     </view>
   </picker>

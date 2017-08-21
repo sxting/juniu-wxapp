@@ -16,7 +16,7 @@ Page({
     storeList: [],
     // 屏幕高度
     windowHeight: 0,
-    pageNo: 0,
+    pageNo: 1,
     pageSize: 10,
     merchantId: '',
     address: '',
