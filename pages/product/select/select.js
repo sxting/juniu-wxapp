@@ -97,9 +97,8 @@ function getProductList() {
   productService.getProductList(data).subscribe({
     next: res => {
       this.setData({
-        // productList: this.data.productList.concat(res.content),
+        productList: this.data.productList.concat(res.content),
         totalPages: res.totalPages,
-        productList: []
       })
     },
     error: err => errDialog(err),
