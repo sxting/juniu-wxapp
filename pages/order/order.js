@@ -9,6 +9,7 @@ Page({
     storeId: '',
     storeName: '',
     reserveType: '', //预约配置类型 MAN、PRODUCT、TIME 
+    productIds: '',
     dateList: [],
     date: '', //选择的日期
     timeList: {
@@ -57,14 +58,20 @@ Page({
   },
 
   // 选择商品
-  onProductClick: function() {
+  onProductClick: function(e) {
     if (this.data.reserveType === 'MAN' && !this.data.craftsmanId) {
       errDialog('请选择手艺人');
       return;
     }
-    wx.redirectTo({
-      url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&storeId=${this.data.storeId}&from=order`,
-    })
+    if (this.data.reserveType === 'MAN') {
+      wx.redirectTo({
+        url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&storeId=${this.data.storeId}&from=order`,
+      })
+    } else if (this.data.reserveType === 'PRODUCT') {
+      wx.redirectTo({
+        url: `/pages/product/select/select?productIds=${this.data.productIds}&storeId=${this.data.storeId}&from=order`,
+      })
+    }
   },
 
   // 选择日期
@@ -174,6 +181,7 @@ function reserveConfig() {
 
       this.setData({
         reserveType: res.reserveType,
+        productIds: res.productIds,
         timeList: timeArr
       })
 

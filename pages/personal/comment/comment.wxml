@@ -1,4 +1,4 @@
-<view class="comment-list">
+<view wx:if="{{userInfo.length > 0}}" class="comment-list">
     <!--循环评论-->
     <view class="comment-box w-inner" wx:for="{{userInfo}}">
         <view class="comment-top">
@@ -33,4 +33,8 @@
             <image src="/asset/images/personal-bg.png"></image>-->
         </view>
     </view>
+</view>
+<view class="space-box" wx:else>
+  <view class="space-bg"><image src="/asset/images/nofind.png"></image></view>
+  <view class="space-text">您还没有评论任何商品</view>
 </view>

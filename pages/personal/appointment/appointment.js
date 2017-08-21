@@ -12,7 +12,7 @@ Page({
     personalService.reserveConfig().subscribe({
       next: res => {
         this.setData({
-          appointmentInfo: res
+          appointmentInfo: res,
         });
       },
       error: err => errDialog(err),

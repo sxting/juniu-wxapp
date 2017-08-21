@@ -1,7 +1,14 @@
 <view class="page">
   <view class="page__bd">
     <view class="weui-panel">
-      <picker range-key="categoryName" range="{{categoryList}}" bindchange="rangeValueChange">
+    
+      <view wx:if="{{from === 'order'}}" class="weui-cell weui-cell_access title">
+        <view class="weui-cell__bd weui-cell_primary">
+            <view>所有商品</view>
+        </view>
+      </view>
+
+      <picker wx:else range-key="categoryName" range="{{categoryList}}" bindchange="rangeValueChange">
         <view class="weui-cell weui-cell_access title">
           <view class="weui-cell__bd weui-cell_primary">
             <view>{{selectName}}</view>
@@ -38,8 +45,8 @@
         <view class="space-bg">
          <image src="/asset/images/nofind.png"></image>
         </view>
-      <view class="space-text">未找到商品</view>
-  </view>
+        <view class="space-text">未找到商品</view>
+      </view>
 
     </view>
   </view>

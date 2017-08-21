@@ -14,13 +14,12 @@
 .personal-image {
     width: 160rpx;
     height: 160rpx;
-    margin-top: -80rpx;
     margin-left: 30rpx;
     border-radius: 50%;
     border: 1px solid #e5e5e5;
     z-index: 100;
-    position: relative;
-    top: -120rpx;
+    position:absolute;
+    top:240rpx;
 }
 .nickname {
     font-size: 32rpx;

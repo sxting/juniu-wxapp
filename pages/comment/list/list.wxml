@@ -1,4 +1,4 @@
-<view class="comment-list">
+<view wx:if="{{comments.length > 0}}" class="comment-list">
     <view class="comment-title w-inner">全部评价({{countTotal}})</view>
     <!--循环的评论-->
     <view class="comment-box w-inner" bindtap="routerCommentDetail" data-commentid="{{item.commentId}}" wx:for="{{comments}}">
@@ -34,6 +34,10 @@
             <image src="/asset/images/personal-bg.png"></image>-->
         </view>
     </view>
+</view>
+<view class="space-box" wx:else>
+  <view class="space-bg"><image src="/asset/images/nofind.png"></image></view>
+  <view class="space-text">暂无评价</view>
 </view>
 <!--底部写评价btn-->
 <view class="go-comment" bindtap="goMakingComment">写评价</view>

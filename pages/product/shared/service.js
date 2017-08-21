@@ -11,7 +11,13 @@ productService.getStaffProduct = (data) => {
   return http.get(url, data)
 }
 
-// 获取商品列表s
+// 获取预约商品列表
+productService.getReserveProduct = (data) => {
+  let url = apiUrl + '/app/findProductByIds.json';
+  return http.get(url, data)
+}
+
+// 获取商品列表
 productService.getProductList = (data) => {
   let url = apiUrl + '/list.json';
   return http.get(url, data)

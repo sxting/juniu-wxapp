@@ -22,23 +22,31 @@ Page({
       storeId: options.storeId,
       from: options.from
     })
-    if (options.craftsmanId) {
-      this.setData({
-        craftsmanId: options.craftsmanId,
-        craftsmanName: options.craftsmanName,
-      })
-      let data = {
-        staffId: options.craftsmanId
+    if (options.from === 'order') {
+      if (options.craftsmanId) {
+        this.setData({
+          craftsmanId: options.craftsmanId,
+          craftsmanName: options.craftsmanName,
+        })
+        let data = {
+          staffId: options.craftsmanId
+        }
+        productService.getStaffProduct(data).subscribe({
+          next: res => {
+            this.setData({
+              productList: res
+            })
+          },
+          error: err => errDialog(err),
+          complete: () => wx.hideToast()
+        })
+      } else {
+        let data = {
+          ids: options.productIds,
+          storeId: this.data.storeId
+        }
+        getReserveProductList.call(this, data)
       }
-      productService.getStaffProduct(data).subscribe({
-        next: res => {
-          this.setData({
-            productList: res
-          })
-        },
-        error: err => errDialog(err),
-        complete: () => wx.hideToast()
-      })
     } else {
       getProductList.call(this)
     }
@@ -74,6 +82,9 @@ Page({
     }
   },
   rangeValueChange: function (event) {
+    if (this.data.from === 'order') {
+      return;
+    }
     this.setData({
       categoryId: this.data.categoryList[event.detail.value].categoryId,
       productList: [],
@@ -83,6 +94,19 @@ Page({
   }
 
 })
+
+// 获取预约商品列表
+function getReserveProductList(data) {
+  productService.getReserveProduct(data).subscribe({
+    next: res => {
+      this.setData({
+        productList: res
+      })
+    },
+    error: err => errDialog(err),
+    complete:() => wx.hideToast()
+  })
+}
 
 // 获取商品列表
 function getProductList() {
