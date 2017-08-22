@@ -70,6 +70,7 @@
 }
 .icon-commodity {
     color: #569CFF; 
+    font-size:36rpx;
 }
 .sub-title-text {
     font-family: "PingFangSC-Medium";
