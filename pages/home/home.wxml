@@ -41,7 +41,7 @@
   </view>
 
   <!--手艺人-->
-  <view class="cfaftsman-list" wx:if="{{storeInfo.staffList}}">
+  <view class="cfaftsman-list" wx:if="{{storeInfo.staffList.length > 0}}">
     <view class="sub-title">
       <view class="sub-title-left">
         <view class="jn-icon icon-goldmedal"></view>

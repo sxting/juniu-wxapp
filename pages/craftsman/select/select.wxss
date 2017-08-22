@@ -27,6 +27,10 @@
   padding-right: 10rpx;
   border-radius: 2px;
   font-size: 20rpx;
+  position:absolute;
+top:9rpx;
+margin-left:15rpx;
+
 }
 
 .red-label {
@@ -45,4 +49,8 @@ scroll-view {
 
 .space-box {
      padding-bottom:552rpx;
+}
+
+.staff-height{
+  line-height: 48rpx !important;
 }
