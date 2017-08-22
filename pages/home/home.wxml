@@ -16,7 +16,7 @@
   </view>
 
   <!--服务项目-->
-  <view class="product-list">
+  <view class="product-list" wx:if="{{storeInfo.productList}}">
     <view class="sub-title">
       <view class="sub-title-left">
         <view class="jn-icon icon-commodity"></view>
@@ -28,7 +28,7 @@
       </view>
     </view>
     <!--循环的项目-->
-    <view class="product-box" data-productid="{{item.productId}}" bindtap="goProductDetail" wx:for="{{storeInfo.productList}}">
+    <view class="product-box" wx:if="{{storeInfo.productList}}" data-productid="{{item.productId}}" bindtap="goProductDetail" wx:for="{{storeInfo.productList}}">
       <view class="product-img-box">
         <image src="{{item.picUrl}}" class="product-img-box"></image>
       </view>
@@ -41,7 +41,7 @@
   </view>
 
   <!--手艺人-->
-  <view class="cfaftsman-list">
+  <view class="cfaftsman-list" wx:if="{{storeInfo.staffList}}">
     <view class="sub-title">
       <view class="sub-title-left">
         <view class="jn-icon icon-goldmedal"></view>
@@ -62,7 +62,7 @@
   </view>
 
   <!--会员权益-->
-  <view class="member-rights">
+  <view class="member-rights" wx:if="{{storeInfo.cardConfigList}}">
     <view class="sub-title">
       <view class="sub-title-left">
         <view class="jn-icon icon-VIPcard"></view>
