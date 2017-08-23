@@ -8,7 +8,6 @@ var app = getApp()
 Page({
   data: {
     productImages: [
-      { picUrl: '/asset/images/shop-bg.png' }
     ],
     storeId: '',
     scene: 0,

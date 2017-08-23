@@ -59,6 +59,7 @@ function logIn(code, appid, rawData) {
   service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
     next: res => {
       try {
+        wx.removeStorageSync(constant.TOKEN);
         wx.setStorageSync(constant.TOKEN, res.juniuToken);
         wx.setStorageSync(constant.MERCHANTID, res.merchantId);
       } catch (e) {
