@@ -1,0 +1,50 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true
+	},
+	"compileType": "weapp",
+	"libVersion": "1.5.2",
+	"appid": "wx0c66057a9b376be1",
+	"projectname": "%E6%A1%94%E7%89%9B%E6%8E%A8%E5%B9%BF",
+	"condition": {
+		"weapp": {
+			"current": 0,
+			"list": [
+				{
+					"name": "test",
+					"pathName": "COMPONENT/music",
+					"query": "a=哈哈",
+					"scene": 1044,
+					"shareInfo": {},
+					"referrerInfo": {}
+				}
+			]
+		},
+		"search": {
+			"current": -1,
+			"list": [
+				{
+					"name": "test",
+					"pathName": "",
+					"title": "",
+					"cacheKey": ""
+				}
+			]
+		},
+		"conversation": {
+			"current": 0,
+			"list": [
+				{
+					"name": "test",
+					"query": "",
+					"boxQI": "",
+					"service": {}
+				}
+			]
+		}
+	}
+}

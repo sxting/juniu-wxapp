@@ -18,9 +18,8 @@ App({
         wx.login({
           success: function (result) {
             let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-            console.log(extConfig)
             if (result.code) {
-              logIn.call(this, result.code, extConfig.theAppid ? extConfig.theAppid :appId, res.rawData);
+              // logIn.call(this, result.code, extConfig.theAppid ? extConfig.theAppid :appId, res.rawData);
             } else {
               console.log('获取用户登录态失败！' + result.errMsg)
             }

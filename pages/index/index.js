@@ -40,51 +40,24 @@ Page({
       }
     })
     let token = wx.getStorageSync(constant.TOKEN);
-    wx.getStorage({
-      //获取数据的key
-      key: 'app-token',
-      success: function (res) {
-        if (res.data) {
-          getStoreListInfo.call(self);
-          // 获取当前地理位置
-          wx.getLocation({
-            type: 'wgs84',
-            success: function (res) {
-              tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
-              var latitude = res.latitude
-              var longitude = res.longitude
-              var speed = res.speed
-              var accuracy = res.accuracy
+    wx.login({
+      success: function (result) {
+        wx.getUserInfo({
+          withCredentials: true,
+          success: function (res) {
+            let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+            let appId = 'wxedcf0f0c4cc429c8';
+            if (result.code) {
+              logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+            } else {
+              console.log('获取用户登录态失败！' + result.errMsg)
             }
-          })
-        }
-      },
-      /**
-       * 失败会调用
-       */
-      fail: function (res) {
-        wx.login({
-          success: function (result) {
-            wx.getUserInfo({
-              withCredentials: true,
-              success: function (res) {
-                let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-                console.log(extConfig)
-                if (result.code) {
-                  logIn.call(self, result.code, extConfig.theAppid, res.rawData);
-                } else {
-                  console.log('获取用户登录态失败！' + result.errMsg)
-                }
-              }
-            });
-          },
-          fail: function (res) { },
-          complete: function (res) { },
+          }
         });
-        
-      }
-    })
-    
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    });
   },
   bindRegionChange: function (e) {
     let self = this;
@@ -214,6 +187,7 @@ function logIn(code, appid, rawData) {
   let self = this;
   service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
     next: res => {
+      wx.setStorageSync(constant.MERCHANTID, res.merchantId);
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,
