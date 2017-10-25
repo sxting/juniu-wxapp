@@ -17,6 +17,9 @@ Page({
     this.setData({
       height: res.windowHeight
     })
+    wx.setNavigationBarTitle({
+      title: '会员卡详情',
+    })
   },
 
   /**

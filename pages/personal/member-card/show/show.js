@@ -1,18 +1,30 @@
 // pages/personal/member-card/show/show.js
+import { barcode } from '../../../../utils/util';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    height: '100'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#EFC849',
+    })
+    wx.setNavigationBarTitle({
+      title: '会员卡号',
+    });
+    var res = wx.getSystemInfoSync();
+    this.setData({
+      height: res.windowHeight
+    })
+    barcode('barcode', '123456799', 680, 120);
   },
 
   /**

@@ -1,2 +1,16 @@
-<!--pages/personal/member-card/show/show.wxml-->
-<text>pages/personal/member-card/show/show.wxml</text>
+<view class="bd" style="height: {{height}}px">
+  <view class='card-block'>
+    <view class='head'></view>
+    <view class='bar-code'>
+      <canvas canvas-id="barcode" />
+    </view>
+    <view class='phone-number'>
+      <text>18310051758</text>
+    </view>
+    <view class='footer'>
+      <view class="weui-footer ">
+        <view class="weui-footer__text">请向收银员出示</view>
+      </view>
+    </view>
+  </view>
+</view>

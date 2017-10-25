@@ -17,7 +17,7 @@
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/personal/member-card/detail/detail",
+					"pathName": "pages/personal/member-card/show/show",
 					"query": ""
 				}
 			]

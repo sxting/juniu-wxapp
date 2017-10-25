@@ -1,4 +1,5 @@
 import {constant} from 'constant';
+var barcode = require('./barcode');
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -94,6 +95,22 @@ function changeDate(date) {
   let day = date.getDate();
   return year + '-' + (month.toString().length > 1 ? month : ('0' + month)) + '-' + (day.toString().length > 1 ? day : ('0' + day));
 }
+
+function convert_length(length) {
+  return Math.round(wx.getSystemInfoSync().windowWidth * length / 750);
+}
+
+function barc(id, code, width, height) {
+  barcode.code128(wx.createCanvasContext(id), code, convert_length(width), convert_length(height))
+}
+
+function qrc(id, code, width, height) {
+  qrcode.api.draw(code, {
+    ctx: wx.createCanvasContext(id),
+    width: convert_length(width),
+    height: convert_length(height)
+  })
+}
 module.exports = {
   formatTime: formatTime,
   errCheck: errCheck,
@@ -103,5 +120,6 @@ module.exports = {
   checkPhone: checkPhone,
   getUserInfo: getUserInfo,
   changeDate: changeDate,
-  loading: loading
+  loading: loading,
+  barcode: barc
 }
