@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 365926 */
-  src: url('//at.alicdn.com/t/font_4nw51o7nm4h1tt9.eot');
-  src: url('//at.alicdn.com/t/font_4nw51o7nm4h1tt9.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_4nw51o7nm4h1tt9.woff') format('woff'),
-  url('//at.alicdn.com/t/font_4nw51o7nm4h1tt9.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_4nw51o7nm4h1tt9.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_365926_7ykcrxueo6iggb9.eot');
+  src: url('//at.alicdn.com/t/font_365926_7ykcrxueo6iggb9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_365926_7ykcrxueo6iggb9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_365926_7ykcrxueo6iggb9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_365926_7ykcrxueo6iggb9.svg#iconfont') format('svg');
 }
 .jn-icon {
   display: inline-block;
@@ -128,4 +128,7 @@
 
 .icon-rightblue::before {
   content: '\e64d'
+}
+.icon-member-card::before {
+  content: '\e600'
 }
