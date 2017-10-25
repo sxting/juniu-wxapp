@@ -12,6 +12,14 @@
   margin: 0 auto;
 }
 
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
 .save {
   margin-top: 60rpx;
   background-color: #f60;

@@ -1,0 +1,45 @@
+page {
+  background: #fff;
+}
+.card-box {
+  border-top: 1px solid #e5e5e5;
+  position: relative;
+  margin: 0 auto;
+  background-color: #fff;
+}
+.card-bg-box, .card-msg-box {
+  position: absolute;
+  width: 690rpx;
+  height: 360rpx;
+  top: 40rpx;
+  left: 30rpx;
+  background: pink;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.card-msg-box {
+  font-family: '.PingFangSC-Regular';
+  font-size: 32rpx;
+  color: #FFFFFF;
+  padding: 20rpx 30rpx;
+}
+.card-name {
+  font-size: 40rpx;
+  font-family: '.PingFangSC-Medium';
+}
+.member-name {
+  position: absolute;
+  right: 30rpx;
+  top: 80rpx;
+}
+.card-member {
+  position: absolute;
+  bottom: 20rpx;
+  left: 30rpx;
+}
+
+.record-box {
+  height: 90rpx;
+  width: 690rpx;
+  margin: 40rpx auto 0; 
+}

@@ -6,6 +6,7 @@
     "pages/personal/index/index",
     "pages/personal/comment/comment",
     "pages/personal/appointment/appointment",
+    "pages/personal/member-card/index/index",
     "pages/craftsman/select/select",
     "pages/craftsman/detail/detail",
     "pages/product/select/select",
