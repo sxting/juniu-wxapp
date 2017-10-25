@@ -1,5 +1,6 @@
 <view class="container">
   <view class="card-box">
+    <!-- 如果有多张会员卡， 加类名 cards-bg-box -->
     <view class="card-bg-box">
       <image src=""></image>
     </view>
@@ -8,7 +9,21 @@
       <text class="tel fr">13800138000</text>
       <text class="member-name">会员姓名</text>
       <text class="card-member">卡号：000222</text>
-      <icon class="jn-icon" />
+      <icon class="jn-icon erweima" />
+    </view>
+  </view>
+
+  <view class="record-box">
+    <view>
+      <text>消费记录</text>
+      <icon class="jn-icon icon-rightblue" />
+    </view>
+  </view>
+
+  <view class="card-detail">
+    <view>
+      <text>会员卡详情</text>
+      <icon class="jn-icon icon-rightblue" />
     </view>
   </view>
 </view>

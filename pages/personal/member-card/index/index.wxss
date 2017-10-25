@@ -1,11 +1,13 @@
-page {
-  background: #fff;
-}
 .card-box {
   border-top: 1px solid #e5e5e5;
   position: relative;
   margin: 0 auto;
   background-color: #fff;
+  height: 460rpx;
+}
+.cards-bg-box {
+  height: 500rpx;
+  background: #fff;
 }
 .card-bg-box, .card-msg-box {
   position: absolute;
@@ -37,9 +39,27 @@ page {
   bottom: 20rpx;
   left: 30rpx;
 }
+.erweima {
+  font-size: 48rpx;
+  color: #fff;
+  position: absolute;
+  bottom: 20rpx;
+  right: 30rpx;
+}
 
-.record-box {
+.record-box, .card-detail {
   height: 90rpx;
-  width: 690rpx;
-  margin: 40rpx auto 0; 
+  padding: 0 30rpx;
+  margin: 0 auto;
+  line-height: 90rpx;
+  background: #fff;
+}
+.record-box>view, .card-detail>view {
+  border-top: 1rpx solid #e5e5e5;
+}
+.icon-rightblue {
+  font-size: 26rpx;
+  color: #c7c7c7;
+  text-align: right;
+  float: right;
 }
