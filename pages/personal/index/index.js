@@ -30,5 +30,10 @@ Page({
     wx.redirectTo({
       url: '/pages/home/home',
     })
+  },
+  goMyMemberCard: function() {
+    wx.redirectTo({
+      url: '/pages/personal/member-card/index/index',
+    })
   }
 })

@@ -1,0 +1,41 @@
+/* pages/personal/member-card/band/band.wxss */
+
+.input {
+  margin-top: 10px;
+}
+
+.btn-bd {
+  margin-top: 40rpx;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-normal {
+  background: #c4c4c4 !important;
+  border-radius: 4px;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #fff !important;
+  border: none;
+}
+
+.btn-active {
+  background: #f60 !important;
+  border-radius: 4px;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #fff !important;
+  border: none;
+}
+
+.btn-send-normal {
+  background: #c4c4c4 !important;
+  font-family: PingFangSC-Regular;
+  color: #fff !important;
+}
+
+.btn-send-active {
+  background: #f60 !important;
+  font-family: PingFangSC-Regular;
+  color: #fff !important;
+}

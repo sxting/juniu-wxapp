@@ -15,12 +15,10 @@
 			"current": 0,
 			"list": [
 				{
-					"name": "test",
-					"pathName": "COMPONENT/music",
-					"query": "a=哈哈",
-					"scene": 1044,
-					"shareInfo": {},
-					"referrerInfo": {}
+					"id": 0,
+					"name": "band",
+					"pathName": "pages/personal/member-card/detail/detail",
+					"query": ""
 				}
 			]
 		},
