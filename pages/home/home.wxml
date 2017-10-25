@@ -23,7 +23,7 @@
         <view class="sub-title-text">服务项目</view>
       </view>
       <view class="sub-title-right" bindtap="goProductPage">
-        <view>全部{{storeInfo.productList.length}}个项目</view>
+        <view>全部{{storeInfo.productCount}}个项目</view>
         <view class="jn-icon icon-rightblue"></view>
       </view>
     </view>
@@ -48,7 +48,7 @@
         <view class="sub-title-text">金牌手艺人</view>
       </view>
       <view class="sub-title-right" bindtap="goCraftsmanPage">
-        <view>全部{{storeInfo.staffList.length}}位手艺人</view>
+        <view>全部{{storeInfo.staffCount}}位手艺人</view>
         <view class="jn-icon icon-rightblue"></view>
       </view>
     </view>
