@@ -9,5 +9,15 @@ Page({
     
   },
   onLoad: function () {
+  },
+  goConsume: function () {
+    wx.redirectTo({
+      url: '/pages/personal/member-card/consume/consume',
+    })
+  },
+  goDetail: function () {
+    wx.redirectTo({
+      url: '/pages/personal/member-card/detail/detail',
+    })
   }
 })

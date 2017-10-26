@@ -13,14 +13,14 @@
     </view>
   </view>
 
-  <view class="record-box">
+  <view class="record-box" bindtap='goConsume'>
     <view>
       <text>消费记录</text>
       <icon class="jn-icon icon-rightblue" />
     </view>
   </view>
 
-  <view class="card-detail">
+  <view class="card-detail" bindtap='goDetail'>
     <view>
       <text>会员卡详情</text>
       <icon class="jn-icon icon-rightblue" />
