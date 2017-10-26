@@ -19,7 +19,8 @@
     "pages/order/order",
     "pages/pay/pay",
     "pages/personal/member-card/show/show",
-    "pages/personal/member-card/detail/detail"
+    "pages/personal/member-card/detail/detail",
+    "pages/personal/member-card/consume/consume"
   ],
   "window": {
     "backgroundTextStyle": "light",

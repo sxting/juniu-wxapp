@@ -1,0 +1,37 @@
+<view class="toolbar">
+  <view>
+    <image src="/asset/images/background.png" class='img'></image>
+  </view>
+  <view class='content'>
+    <view>
+      <text class='content-title'>卡内余额(元)</text>
+    </view>
+    <view>
+      <text class='content-price'>88888</text>
+    </view>
+  </view>
+</view>
+<view class="weui-form-preview">
+  <view class="weui-form-preview__hd">
+    <view class="weui-form-preview__item">
+      <view class="weui-form-preview__label">
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title product-name">标题一</view>
+          <view class="weui-media-box__desc product-time">1990-01-01</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__value_in-hd">¥2400.00</view>
+    </view>
+  </view>
+  <view class="weui-form-preview__hd">
+    <view class="weui-form-preview__item">
+      <view class="weui-form-preview__label">
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title product-name">标题一</view>
+          <view class="weui-media-box__desc product-time">1990-01-01</view>
+        </view>
+      </view>
+      <view class="weui-form-preview__value_in-hd">¥2400.00</view>
+    </view>
+  </view>
+</view>
