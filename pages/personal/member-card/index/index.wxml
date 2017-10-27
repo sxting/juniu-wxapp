@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" wx:if="{{showClickBind === 'F'}}">
   <view class="card-box">
     <!-- 如果有多张会员卡， 加类名 cards-bg-box -->
     <view class="card-bg-box">
@@ -25,5 +25,14 @@
       <text>会员卡详情</text>
       <icon class="jn-icon icon-rightblue" />
     </view>
+  </view>
+</view>
+<view class="space-box" wx:else>
+  <view class="space-bg">
+    <image src="/asset/images/nofind.png"></image>
+  </view>
+  <view class="space-text">暂无会员卡信息</view>
+  <view>
+    <button class='btn-open-card' bindtap='bindMemberCard'>去绑定会员卡</button>
   </view>
 </view>

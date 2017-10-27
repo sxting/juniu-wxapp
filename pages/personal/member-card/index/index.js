@@ -6,10 +6,15 @@ import { memberCardService } from '../shared/service';
 var app = getApp()
 Page({
   data: {
-
+    cards: [],
+    showClickBind: 'T'
   },
   onLoad: function () {
-    getCardList.call(this);
+    wx.setNavigationBarTitle({
+      title: '我的会员卡',
+    });
+    let storeId = wx.getStorageSync(constant.STORE_INFO);
+    getCardList.call(this, storeId);
   },
   goConsume: function () {
     wx.redirectTo({
@@ -20,16 +25,24 @@ Page({
     wx.redirectTo({
       url: '/pages/personal/member-card/detail/detail',
     })
+  },
+  bindMemberCard: function() {
+    wx.redirectTo({
+      url: '/pages/personal/member-card/band/band',
+    });
   }
 })
 
 // 获取卡列表
-function getCardList() {
-  console.log(memberCardService)
-  memberCardService.cardList().subscribe({
+function getCardList(storeId) {
+  let self = this;
+  memberCardService.cardList({ storeId: storeId }).subscribe({
     next: res => {
-      console.log(res);
-     },
+      self.setData({
+        cards: res.cards,
+        showClickBind: res.showClickBind
+      });
+    },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
   });
