@@ -1,5 +1,5 @@
-import { constant } from '../../../utils/constant';
-import { http } from '../../../utils/http';
+import { constant } from '../../../../utils/constant';
+import { http } from '../../../../utils/http';
 let memberCardService = {};
 // 会员卡绑定
 memberCardService.bindCard = (data) => {

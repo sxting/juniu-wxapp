@@ -5,9 +5,9 @@
 const constant = {
   // apiUrl: 'http://localhost:3004',
   // apiUrl: 'https://tiyan.juniuo.com',
-  // apiUrl: 'https://tiyan.juniuo.com',
+  apiUrl: 'http://b-test.juniuo.com/wxapp',
   // imgUrl: 'http://ts.diankayi.net/',
-  apiUrl: 'https://biz.juniuo.com/wxapp',
+  // apiUrl: 'https://biz.juniuo.com/wxapp',
   imgUrl: 'https://biz.juniuo.com/',
   APP_ID: 'wxedcf0f0c4cc429c8',
   TOKEN: 'app-token',
