@@ -6,6 +6,7 @@ const constant = {
   // apiUrl: 'http://localhost:3004',
   // apiUrl: 'https://tiyan.juniuo.com',
   apiUrl: 'http://b-test.juniuo.com/wxapp',
+  apiUrlTwo: 'http://b-test.juniuo.com',
   // imgUrl: 'http://ts.diankayi.net/',
   // apiUrl: 'https://biz.juniuo.com/wxapp',
   imgUrl: 'https://biz.juniuo.com/',
