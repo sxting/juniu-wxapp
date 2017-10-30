@@ -8,7 +8,9 @@ Page({
   data: {
     cards: [],
     showClickBind: 'T',
-    indicatorDots: true
+    indicatorDots: true,
+    selectCardIndex: 0,
+    showRecord: true
   },
   onLoad: function () {
     wx.setNavigationBarTitle({
@@ -19,7 +21,7 @@ Page({
   },
   goConsume: function () {
     wx.redirectTo({
-      url: '/pages/personal/member-card/consume/consume',
+      url: `/pages/personal/member-card/consume/consume?cardId=${this.data.cards[this.data.selectCardIndex].cardId}&cardType=${this.data.cards[this.data.selectCardIndex].cardType}`,
     })
   },
   goDetail: function () {
@@ -36,6 +38,20 @@ Page({
     wx.redirectTo({
       url: `/pages/personal/member-card/show/show?phone=${e.currentTarget.dataset.phone}`,
     })
+  },
+  swiperChange: function(e) {
+    this.setData({
+      selectCardIndex: e.detail.current
+    })
+    if (this.data.cards[this.data.selectCardIndex].cardType !== 'TIMES') {
+      this.setData({
+        showRecord: true
+      })
+    } else {
+      this.setData({
+        showRecord: false
+      })
+    }
   }
 })
 

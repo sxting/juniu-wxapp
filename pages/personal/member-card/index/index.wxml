@@ -1,6 +1,6 @@
 <view class="container" wx:if="{{showClickBind === 'F'}}">
   <view class="card-box">
-    <swiper indicator-dots="{{indicatorDots}}" style='height: 470rpx'>
+    <swiper indicator-dots="{{indicatorDots}}" bindchange='swiperChange' style='height: 470rpx'>
       <block wx:for="{{cards}}">
         <swiper-item bindtap='showMemberCardNumber' data-phone='{{item.phone}}'>
           <!-- 如果有多张会员卡， 加类名 cards-bg-box -->
@@ -18,7 +18,7 @@
       </block>
     </swiper>
   </view>
-  <view class="record-box" bindtap='goConsume'>
+  <view class="record-box" wx:if="{{showRecord}}" bindtap='goConsume'>
     <view>
       <text>消费记录</text>
       <icon class="jn-icon icon-rightblue" />

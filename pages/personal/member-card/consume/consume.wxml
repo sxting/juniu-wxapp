@@ -7,7 +7,7 @@
       <text class='content-title'>卡内余额(元)</text>
     </view>
     <view>
-      <text class='content-price'>88888</text>
+      <text class='content-price'>{{balance}}</text>
     </view>
   </view>
 </view>
