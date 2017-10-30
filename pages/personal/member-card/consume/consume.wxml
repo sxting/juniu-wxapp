@@ -13,26 +13,15 @@
   </view>
 </view>
 <view class="weui-form-preview" wx:if="{{consumeRecords.length > 0}}">
-  <view class="weui-form-preview__hd">
+  <view class="weui-form-preview__hd" wx:for='{{consumeRecords}}'>
     <view class="weui-form-preview__item">
       <view class="weui-form-preview__label">
         <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title product-name">标题一</view>
-          <view class="weui-media-box__desc product-time">1990-01-01</view>
+          <view class="weui-media-box__title product-name">{{item.bizName}}</view>
+          <view class="weui-media-box__desc product-time">{{item.bizTime}}</view>
         </view>
       </view>
-      <view class="weui-form-preview__value_in-hd">¥2400.00</view>
-    </view>
-  </view>
-  <view class="weui-form-preview__hd">
-    <view class="weui-form-preview__item">
-      <view class="weui-form-preview__label">
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title product-name">标题一</view>
-          <view class="weui-media-box__desc product-time">1990-01-01</view>
-        </view>
-      </view>
-      <view class="weui-form-preview__value_in-hd">¥2400.00</view>
+      <view class="weui-form-preview__value_in-hd">{{item.recordType === 'out' ? '-' : '+'}}{{item.money}}</view>
     </view>
   </view>
 </view>
