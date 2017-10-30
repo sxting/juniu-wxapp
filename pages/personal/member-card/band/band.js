@@ -1,6 +1,9 @@
 // pages/personal/member-card/band/band.js
 import { memberCardService } from '../shared/service';
 import { errDialog, checkMobile } from '../../../../utils/util';
+import { constant } from '../../../../utils/constant';
+
+let wait = 60;
 Page({
 
   /**
@@ -10,7 +13,9 @@ Page({
     sendMegLabel: '获取验证码',
     isDisabled: false,
     phoneNumber: null,
-    remark: ''
+    remark: '',
+    validCode: '',
+    storeId: ''
   },
 
   /**
@@ -19,7 +24,12 @@ Page({
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '绑定会员卡',
-    })
+    });
+    this.setData(
+      {
+        storeId: wx.getStorageSync(constant.STORE_INFO)
+      }
+    )
   },
 
   /**
@@ -82,7 +92,7 @@ Page({
           let changePhoneResult = phone.substring(0, 3)
             + '****'
             + phone.substring(phone.length - 4, phone.length);
-          phone.setData({
+          self.setData({
             remark: `验证码将发送到手机(${changePhoneResult}),请注意查收。`
           })
           time.call(self);
@@ -98,9 +108,40 @@ Page({
     this.setData({
       phoneNumber: e.detail.value
     })
+  },
+  getValidCode: function (e) {
+    this.setData({
+      validCode: e.detail.value
+    })
+  },
+  bindCard: function (e) {
+    if (this.data.validCode) {
+      bindMemberCard.call(this, this.data.storeId, this.data.phoneNumber, this.data.validCode);
+    } else {
+      errDialog('验证码不能为空');
+    }
   }
 })
-
+//绑定会员卡
+function bindMemberCard(storeId, phone, validCode) {
+  memberCardService.bindCard({
+    storeId: storeId,
+    phone: phone,
+    validCode: validCode
+  }).subscribe({
+    next: res => {
+      if (res.showClickBind === 'T') {
+        errDialog('未找到手机号相关的会员卡，请到店里办理')
+      } else {
+        wx.redirectTo({
+          url: '/pages/personal/member-card/index/index',
+        })
+      }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  });
+}
 /**
  * 发送验证码倒计时
  * @param o

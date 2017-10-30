@@ -1,12 +1,16 @@
 // pages/personal/member-card/show/show.js
 import { barcode } from '../../../../utils/util';
+import { constant } from '../../../../utils/constant';
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    height: '100'
+    height: '100',
+    phone: '',
+    appLogo: ''
   },
 
   /**
@@ -22,9 +26,11 @@ Page({
     });
     var res = wx.getSystemInfoSync();
     this.setData({
-      height: res.windowHeight
+      height: res.windowHeight,
+      phone: options.phone,
+      appLogo: wx.getStorageSync(constant.CARD_LOGO)
     })
-    barcode('barcode', '123456799', 680, 120);
+    barcode('barcode', this.data.phone, 680, 120);
   },
 
   /**

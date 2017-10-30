@@ -188,6 +188,7 @@ function logIn(code, appid, rawData) {
   service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
     next: res => {
       wx.setStorageSync(constant.MERCHANTID, res.merchantId);
+      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg)
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,

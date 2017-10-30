@@ -7,7 +7,7 @@
     </view>
     <view class="weui-cell weui-cell_input weui-cell_vcode">
       <view class="weui-cell__bd">
-        <input class="weui-input" type="number" placeholder="请输入验证码" />
+        <input class="weui-input" type="number" bindinput='getValidCode' placeholder="请输入验证码" />
       </view>
       <view class="weui-cell__ft ">
           <view class="weui-vcode-btn btn-send-normal" wx:if="{{isDisabled}}">{{sendMegLabel}}</view>
@@ -19,5 +19,5 @@
   <view class="weui-cells__tips">{{remark}}</view>
 </view>
 <view class="btn-bd">
-  <button class="weui-btn  {{phoneNumber?'btn-active':'btn-normal'}}" type="default">确认绑定</button>
+  <button class="weui-btn  {{phoneNumber?'btn-active':'btn-normal'}}" bindtap='bindCard' type="default">确认绑定</button>
 </view>

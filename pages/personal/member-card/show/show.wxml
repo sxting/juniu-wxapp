@@ -1,11 +1,13 @@
 <view class="bd" style="height: {{height}}px">
   <view class='card-block'>
-    <view class='head'></view>
+    <view class='head'>
+      <image class='logo' src='{{appLogo}}'></image>
+    </view>
     <view class='bar-code'>
       <canvas canvas-id="barcode" />
     </view>
     <view class='phone-number'>
-      <text>18310051758</text>
+      <text>{{phone}}</text>
     </view>
     <view class='footer'>
       <view class="weui-footer ">

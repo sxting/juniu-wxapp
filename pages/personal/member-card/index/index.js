@@ -7,7 +7,8 @@ var app = getApp()
 Page({
   data: {
     cards: [],
-    showClickBind: 'T'
+    showClickBind: 'T',
+    indicatorDots: true
   },
   onLoad: function () {
     wx.setNavigationBarTitle({
@@ -30,6 +31,11 @@ Page({
     wx.redirectTo({
       url: '/pages/personal/member-card/band/band',
     });
+  },
+  showMemberCardNumber: function(e) {
+    wx.redirectTo({
+      url: `/pages/personal/member-card/show/show?phone=${e.currentTarget.dataset.phone}`,
+    })
   }
 })
 

@@ -27,6 +27,15 @@
   border-radius: 40px;
 }
 
+.logo {
+  width: 80px;
+  height: 80px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 40px;
+}
+
 .bar-code {
   padding-left: 20px;
   padding-right: 20px;
@@ -44,10 +53,10 @@
   height: 80px;
 }
 
-.footer{
+.footer {
   position: absolute;
   top: 248px;
-    left: 0;
+  left: 0;
   right: 0;
   margin: auto;
   width: 100px;

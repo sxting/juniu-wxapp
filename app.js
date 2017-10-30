@@ -61,6 +61,7 @@ function logIn(code, appid, rawData) {
         wx.removeStorageSync(constant.TOKEN);
         wx.setStorageSync(constant.TOKEN, res.juniuToken);
         wx.setStorageSync(constant.MERCHANTID, res.merchantId);
+        wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg)
       } catch (e) {
       }
     },
