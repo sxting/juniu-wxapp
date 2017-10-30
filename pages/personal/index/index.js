@@ -9,6 +9,9 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     });
+    wx.setNavigationBarTitle({
+      title: wx.getStorageSync('storeName'),
+    })
   },
 
   //跳转到我的预约页面 

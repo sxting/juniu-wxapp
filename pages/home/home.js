@@ -107,6 +107,7 @@ function getStoreIndexInfo(storeId, merchantId) {
       wx.setNavigationBarTitle({
         title: res.storeName
       })
+      wx.setStorageSync('storeName', res.storeName);
       if (res.pictureVOS && res.pictureVOS.length > 0) {
         self.setData({
           productImages: res.pictureVOS
