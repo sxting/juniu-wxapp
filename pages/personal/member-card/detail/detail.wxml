@@ -2,11 +2,11 @@
   <view class="weui-panel__bd ">
     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg msg">
       <view class="weui-media-box__title">特权说明</view>
-      <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
+      <view class="weui-media-box__desc">{{privilegeNote}}</view>
     </view>
     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg msg">
       <view class="weui-media-box__title">使用须知</view>
-      <view class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</view>
+      <view class="weui-media-box__desc">{{useNote}}</view>
     </view>
     <view class="weui-media-box__bd weui-media-box__bd_in-appmsg msg">
       <view class="weui-media-box__title">电话</view>

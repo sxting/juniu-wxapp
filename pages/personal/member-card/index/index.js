@@ -26,7 +26,7 @@ Page({
   },
   goDetail: function () {
     wx.redirectTo({
-      url: '/pages/personal/member-card/detail/detail',
+      url: `/pages/personal/member-card/detail/detail?cardId=${this.data.cards[this.data.selectCardIndex].cardId}`,
     })
   },
   bindMemberCard: function() {

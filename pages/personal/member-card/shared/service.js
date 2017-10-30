@@ -23,6 +23,10 @@ memberCardService.cardList = (data) => {
   let apiUrl = constant.apiUrl + '/member/sp/member/card/list.json';
   return http.get(apiUrl, data);
 }
+memberCardService.getStoreInfo = (data) => {
+  let apiUrl = constant.apiUrl + '/account/appstore/app/storeInfo.json';
+  return http.get(apiUrl, data);
+}
 // 获取绑定会员卡的验证码
 memberCardService.getVaildCode = (data) => {
   let apiUrl = constant.apiUrlTwo + '/common/validCode/getValidCode.json';

@@ -1,11 +1,17 @@
 // pages/personal/member-card/detail/detail.js
+import { memberCardService } from '../shared/service';
+import { errDialog, checkMobile } from '../../../../utils/util';
+import { constant } from '../../../../utils/constant';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    height: '100'
+    height: '100',
+    cardId: '',
+    privilegeNote: '',
+    useNote: ''
   },
 
   /**
@@ -15,11 +21,15 @@ Page({
 
     var res = wx.getSystemInfoSync();
     this.setData({
-      height: res.windowHeight
+      height: res.windowHeight,
+      cardId: options.cardId
     })
     wx.setNavigationBarTitle({
       title: '会员卡详情',
-    })
+    });
+    let storeId = wx.getStorageSync(constant.STORE_INFO);
+    getCardInfo.call(this, this.data.cardId);
+    getStoreInfo.call(this, storeId);
   },
 
   /**
@@ -71,3 +81,32 @@ Page({
   
   }
 })
+
+function getStoreInfo(storeId) {
+  let self = this;
+  memberCardService.getStoreInfo({
+    storeId: storeId
+  }).subscribe({
+    next: res => {
+      console.log(res)
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  });
+}
+
+function getCardInfo(cardId) {
+  let self = this;
+  memberCardService.cardInfo({
+    cardId: cardId
+  }).subscribe({
+    next: res => {
+      self.setData({
+        useNote: res.useNote,
+        privilegeNote: res.privilegeNote
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  });
+}
