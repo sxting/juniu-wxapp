@@ -4,14 +4,15 @@
   </view>
   <view class='content'>
     <view>
-      <text class='content-title'>卡内余额(元)</text>
+      <text class='content-title'>卡内余额 {{cardType !== 'METERING' ? '(元)': '(次)'}}
+      </text>
     </view>
     <view>
-      <text class='content-price'>{{balance}}</text>
+      <text class='content-price'>{{cardType !== 'METERING' ? balance/100: balance}}</text>
     </view>
   </view>
 </view>
-<view class="weui-form-preview">
+<view class="weui-form-preview" wx:if="{{consumeRecords.length > 0}}">
   <view class="weui-form-preview__hd">
     <view class="weui-form-preview__item">
       <view class="weui-form-preview__label">
@@ -34,4 +35,10 @@
       <view class="weui-form-preview__value_in-hd">¥2400.00</view>
     </view>
   </view>
+</view>
+<view class="space-box" wx:if="{{consumeRecords.length === 0}}">
+  <view class="space-bg">
+    <image src="/asset/images/nofind.png"></image>
+  </view>
+  <view class="space-text">暂无会员消费记录</view>
 </view>

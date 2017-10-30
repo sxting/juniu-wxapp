@@ -11,7 +11,8 @@ Page({
     cardId: '',
     storeId: '',
     balance: 0,
-    cardType: ''
+    cardType: '',
+    consumeRecords: []
   },
 
   /**
@@ -30,7 +31,7 @@ Page({
       storeId: wx.getStorageSync(constant.STORE_INFO),
       cardType: options.cardType
     })
-    getConsume.call(this, this.data.cardId, this.data.storeId, 1 ,10)
+    getConsume.call(this, this.data.cardId, this.data.storeId, 1 ,50)
   },
 
   /**
@@ -93,7 +94,8 @@ function getConsume(cardId, storeId, pageIndex, pageSize) {
   }).subscribe({
     next: res => {
       self.setData({
-        balance: res.balance
+        balance: res.balance,
+        consumeRecords: res.consumeRecords
       })
     },
     error: err => errDialog(err),
