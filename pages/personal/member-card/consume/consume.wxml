@@ -21,7 +21,7 @@
           <view class="weui-media-box__desc product-time">{{item.bizTime}}</view>
         </view>
       </view>
-      <view class="weui-form-preview__value_in-hd">{{item.recordType === 'out' ? '-' : '+'}}{{item.money}}</view>
+      <view class="weui-form-preview__value_in-hd">{{item.recordType === 'out' ? '-' : '+'}}{{cardType !== 'METERING'?item.money / 100 : item.money }}</view>
     </view>
   </view>
 </view>
