@@ -10,7 +10,8 @@ Page({
   data: {
     height: '100',
     phone: '',
-    appLogo: ''
+    appLogo: '',
+    screenWidth: ''
   },
 
   /**
@@ -28,9 +29,10 @@ Page({
     this.setData({
       height: res.windowHeight,
       phone: options.phone,
+      screenWidth: res.screenWidth,
       appLogo: wx.getStorageSync(constant.CARD_LOGO)
     })
-    barcode('barcode', this.data.phone, 680, 120);
+    barcode('barcode', this.data.phone, this.data.screenWidth*1.9, 120);
   },
 
   /**
