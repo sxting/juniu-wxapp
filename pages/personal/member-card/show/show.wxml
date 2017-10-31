@@ -3,7 +3,7 @@
     <view class='head'>
       <image class='logo' src='{{appLogo}}'></image>
     </view>
-    <view class='bar-code'>
+    <view class='bar-code' style='margin-left: -{{barWidth}}px;'>
       <canvas canvas-id="barcode" />
     </view>
     <view class='phone-number'>
