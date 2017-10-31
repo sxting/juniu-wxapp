@@ -23,6 +23,14 @@
   box-shadow: 0 1px 2px;
 }
 
+.card-bg-box image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 690rpx;
+  height: 360rpx;
+}
+
 .card-msg-box {
   font-family: '.PingFangSC-Regular';
   font-size: 32rpx;
