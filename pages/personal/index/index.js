@@ -35,7 +35,7 @@ Page({
     })
   },
   goMyMemberCard: function() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/personal/member-card/index/index',
     })
   }

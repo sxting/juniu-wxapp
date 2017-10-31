@@ -20,22 +20,22 @@ Page({
     getCardList.call(this, storeId);
   },
   goConsume: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: `/pages/personal/member-card/consume/consume?cardId=${this.data.cards[this.data.selectCardIndex].cardId}&cardType=${this.data.cards[this.data.selectCardIndex].cardType}`,
     })
   },
   goDetail: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: `/pages/personal/member-card/detail/detail?cardId=${this.data.cards[this.data.selectCardIndex].cardId}`,
     })
   },
   bindMemberCard: function() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/personal/member-card/band/band',
     });
   },
   showMemberCardNumber: function(e) {
-    wx.redirectTo({
+    wx.navigateTo({
       url: `/pages/personal/member-card/show/show?phone=${e.currentTarget.dataset.phone}`,
     })
   },

@@ -91,7 +91,7 @@ Page({
     getStoreListInfo.call(this);
   },
   routerToStoreIndex: function (e) {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/home/home?storeid=' + e.currentTarget.dataset.storeid
     });
   }
