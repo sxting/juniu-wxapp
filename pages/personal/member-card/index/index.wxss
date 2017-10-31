@@ -17,7 +17,7 @@
   height: 360rpx;
   top: 40rpx;
   left: 30rpx;
-  background: pink;
+  
   border-radius: 4px;
   box-sizing: border-box;
   box-shadow: 0 1px 2px;
