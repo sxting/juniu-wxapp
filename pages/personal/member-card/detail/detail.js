@@ -11,7 +11,8 @@ Page({
     height: '100',
     cardId: '',
     privilegeNote: '',
-    useNote: ''
+    useNote: '',
+    mobie: ''
   },
 
   /**
@@ -88,7 +89,9 @@ function getStoreInfo(storeId) {
     storeId: storeId
   }).subscribe({
     next: res => {
-      console.log(res)
+      self.setData({
+        mobie: res.mobie
+      });
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
