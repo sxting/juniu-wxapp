@@ -31,9 +31,17 @@ Page({
       height: res.windowHeight,
       phone: options.phone,
       screenWidth: res.windowWidth,
-      appLogo: wx.getStorageSync(constant.CARD_LOGO),
-      barWidth: (res.windowWidth * 0.5)/2
+      appLogo: wx.getStorageSync(constant.CARD_LOGO)
     })
+    if (res.windowWidth > 320) {
+      this.setData({
+        barWidth: 125
+      })
+    } else {
+      this.setData({
+        barWidth: 150
+      })
+    }
     barcode('barcode', this.data.phone, this.data.screenWidth, 120);
   },
 
