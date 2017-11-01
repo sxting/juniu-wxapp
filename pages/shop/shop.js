@@ -93,7 +93,7 @@ Page({
 //获取门店信息
 function getStoreInfo(storId) {
   let self = this;
-  shopService.storeInfoDetail({ storId: storId }).subscribe({
+  shopService.storeInfoDetail({ storeId: storId }).subscribe({
     next: res => {
       self.setData({
         addr: res.address,

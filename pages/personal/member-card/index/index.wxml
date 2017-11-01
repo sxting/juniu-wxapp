@@ -38,7 +38,7 @@
   </view>
   <view class="space-text">尚未办理会员卡，请到店内办理</view>
 </view>
-<view class="space-box" wx:else>
+<view class="space-box" wx:if="{{showClickBind === 'T' && cards.length === 0}}">
   <view class="space-bg">
     <image src="/asset/images/nofind.png"></image>
   </view>

@@ -113,6 +113,9 @@ function getStoreIndexInfo(storeId, merchantId) {
           productImages: res.pictureVOS
         })
       }
+      res.productList.forEach((item) => {
+        item.picUrl = item.picUrl.split('.png')[0] + '_78x58.png';
+      })
       self.setData({
         storeInfo: res,
       });
