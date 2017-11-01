@@ -4,10 +4,7 @@
       <image class='logo' src='{{appLogo}}'></image>
     </view>
     <view class='bar-code' style='margin-left: -{{barWidth}}px;'>
-      <canvas canvas-id="barcode" />
-    </view>
-    <view class='phone-number'>
-      <text>{{phone}}</text>
+      <image src="{{barcode}}" style='height: 200rpx;width:{{screenWidth}}rpx'></image>
     </view>
     <view class='footer'>
       <view class="weui-footer ">

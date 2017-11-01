@@ -13,6 +13,7 @@
   height: 278px;
   margin-top: 164px;
   position: relative;
+  
 }
 
 .head {

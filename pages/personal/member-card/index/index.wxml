@@ -1,8 +1,8 @@
 <view class="container" wx:if="{{showClickBind === 'F'}}">
   <view class="card-box">
-    <swiper indicator-dots="{{indicatorDots}}" bindchange='swiperChange' style='height: 470rpx'>
+    <swiper indicator-dots="{{indicatorDots}}" bindchange='swiperChange' style='height: 524rpx'>
       <block wx:for="{{cards}}">
-        <swiper-item bindtap='showMemberCardNumber' data-phone='{{item.phone}}'>
+        <swiper-item bindtap='showMemberCardNumber' data-barcode="{{item.barCode}}" data-phone='{{item.phone}}'>
           <!-- 如果有多张会员卡， 加类名 cards-bg-box -->
           <view class="card-bg-box" style="{{item.background?'':'background: pink;'}}">
             <image src="{{item.background}}" width="690" height="360"></image>

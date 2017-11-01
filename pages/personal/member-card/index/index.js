@@ -36,7 +36,7 @@ Page({
   },
   showMemberCardNumber: function(e) {
     wx.navigateTo({
-      url: `/pages/personal/member-card/show/show?phone=${e.currentTarget.dataset.phone}`,
+      url: `/pages/personal/member-card/show/show?phone=${e.currentTarget.dataset.phone}&barCode=${e.currentTarget.dataset.barcode}`,
     })
   },
   swiperChange: function(e) {

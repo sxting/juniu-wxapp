@@ -1,7 +1,5 @@
 // pages/personal/member-card/show/show.js
-import { barcode } from '../../../../utils/util';
 import { constant } from '../../../../utils/constant';
-
 Page({
 
   /**
@@ -12,7 +10,8 @@ Page({
     phone: '',
     appLogo: '',
     screenWidth: '',
-    barWidth: 0
+    barWidth: 0,
+    barcode: ''
   },
 
   /**
@@ -31,18 +30,18 @@ Page({
       height: res.windowHeight,
       phone: options.phone,
       screenWidth: res.windowWidth,
-      appLogo: wx.getStorageSync(constant.CARD_LOGO)
+      appLogo: wx.getStorageSync(constant.CARD_LOGO),
+      barcode: options.barCode
     })
     if (res.windowWidth > 320) {
       this.setData({
-        barWidth: 125
+        barWidth: res.windowWidth /3
       })
     } else {
       this.setData({
-        barWidth: 150
+        barWidth: res.windowWidth / 3
       })
     }
-    barcode('barcode', this.data.phone, this.data.screenWidth, 120);
   },
 
   /**
