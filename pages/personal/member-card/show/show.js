@@ -35,11 +35,11 @@ Page({
     })
     if (res.windowWidth > 320) {
       this.setData({
-        barWidth: res.windowWidth /3
+        barWidth: res.windowWidth /4
       })
     } else {
       this.setData({
-        barWidth: res.windowWidth / 3
+        barWidth: res.windowWidth / 4
       })
     }
   },

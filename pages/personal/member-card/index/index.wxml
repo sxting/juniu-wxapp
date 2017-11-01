@@ -1,4 +1,4 @@
-<view class="container" wx:if="{{showClickBind === 'F'}}">
+<view class="container" wx:if="{{cards.length > 0}}">
   <view class="card-box">
     <swiper indicator-dots="{{indicatorDots}}" bindchange='swiperChange' style='height: 524rpx'>
       <block wx:for="{{cards}}">
@@ -31,6 +31,12 @@
       <icon class="jn-icon icon-rightblue" />
     </view>
   </view>
+</view>
+<view class="space-box" wx:if="{{showClickBind === 'F' && cards.length === 0}}">
+  <view class="space-bg">
+    <image src="/asset/images/nofind.png"></image>
+  </view>
+  <view class="space-text">尚未办理会员卡，请到店内办理</view>
 </view>
 <view class="space-box" wx:else>
   <view class="space-bg">
