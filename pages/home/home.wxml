@@ -81,6 +81,7 @@
       </view>
       <view class="div">
         <view class="yuan1"></view>
+        <view class='dot-line'></view>
         <view class="yuan2"></view>
       </view>
     </view>

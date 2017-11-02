@@ -309,6 +309,10 @@
 }
 
 .dot-line {
-  width: 4rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 180rpx;
+  width: 0;
   height: 112rpx;
+  border: 1rpx dashed #ffd1b2;
 }
