@@ -275,11 +275,12 @@
 
 .div {
   position: relative;
-  width: 690rpx;
+  width: 650rpx;
   height: 160rpx;
   background: #fff8f2;
   border: 1rpx solid #ffd1b2;
   margin-bottom: 20rpx;
+  padding: 20rpx;
 }
 
 .ticket-block {
@@ -313,6 +314,6 @@
   top: 20rpx;
   right: 180rpx;
   width: 0;
-  height: 112rpx;
+  height: 162rpx;
   border: 1rpx dashed #ffd1b2;
 }
