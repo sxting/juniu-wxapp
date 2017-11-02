@@ -1,225 +1,314 @@
 .banner-box {
-    height: 360rpx;
-    position: relative;
-    color: #fff;    
+  height: 360rpx;
+  position: relative;
+  color: #fff;
 }
+
 .img-box {
-    width: 100%;
-    height:  360rpx;
-    background: #ccc;
-    z-index: -1;
+  width: 100%;
+  height: 360rpx;
+  background: #ccc;
+  z-index: -1;
 }
+
 .img-box image {
   width: 100%;
-  height:  360rpx;
+  height: 360rpx;
 }
+
 .store-btn, .personal-btn {
-    width: 80rpx;
-    height: 80rpx;
-    line-height: 80rpx;
-    text-align: center;
-    background-color: rgba(0,0,0, 0.6);
-    color: #fff;
-    font-size: 40rpx;
-    position: absolute;
-    border-radius: 50%;
-    top: 30rpx;
-    margin-left: 30rpx; 
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 40rpx;
+  position: absolute;
+  border-radius: 50%;
+  top: 30rpx;
+  margin-left: 30rpx;
 }
+
 .personal-btn {
-    right: 30rpx; 
+  right: 30rpx;
 }
+
 .new-order-tip-box {
-    height: 60rpx;
-    line-height: 60rpx;
-    background-color: rgba(0,0,0, 0.6);
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 0 30rpx;
-    box-sizing: border-box;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0 30rpx;
+  box-sizing: border-box;
 }
+
 .new-order-tip-box text {
-    font-size: 26rpx;
-    padding-left: 10rpx;
+  font-size: 26rpx;
+  padding-left: 10rpx;
 }
+
 .more-right {
-    position: absolute;
-    right: 24rpx;
+  position: absolute;
+  right: 24rpx;
 }
+
 .product-list {
-    margin-top: 20rpx;
-    background-color: #fff;
-    padding: 0 30rpx;
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding: 0 30rpx;
 }
+
 .sub-title {
-    width: 100vw;
-    margin-left: -30rpx;
-    height: 90rpx;
-    line-height: 90rpx;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #e5e5e5;
+  width: 100vw;
+  margin-left: -30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e5e5;
 }
-.sub-title-left ,.sub-title-right {
-    display: flex;
-    padding: 0 30rpx;
+
+.sub-title-left, .sub-title-right {
+  display: flex;
+  padding: 0 30rpx;
 }
+
 .sub-title-right {
-    color: #999;
+  color: #999;
 }
+
 .icon-commodity {
-    color: #569CFF; 
-    font-size:36rpx;
+  color: #569cff;
+  font-size: 36rpx;
 }
+
 .sub-title-text {
-    font-family: "PingFangSC-Medium";
-    font-size: 34rpx;
-    color: #222222;
-    padding-left: 10rpx;
+  font-family: "PingFangSC-Medium";
+  font-size: 34rpx;
+  color: #222;
+  padding-left: 10rpx;
 }
+
 .product-box {
-    height: 190rpx;
-    box-sizing: border-box;
-    border-bottom: 1px solid #e5e5e5;
-    padding: 30rpx 0;
-    display: flex;
+  height: 190rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 30rpx 0;
+  display: flex;
 }
+
 .product-box:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
+
 .product-img-box {
-    width: 170rpx;
-    min-width:170rpx;
-    height: 130rpx;
-    background-color: #ccc;
+  width: 170rpx;
+  min-width: 170rpx;
+  height: 130rpx;
+  background-color: #ccc;
 }
+
 .product-right {
-    padding-left: 20rpx;
-    color: #222222;
-    line-height: 70rpx;
+  padding-left: 20rpx;
+  color: #222;
+  line-height: 70rpx;
 }
+
 .product-name {
-    overflow:hidden; 
-    text-overflow:ellipsis;
-    display:-webkit-box; 
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 }
+
 .current-price {
-    color: #ff6600;
-    font-size: 32rpx;
+  color: #f60;
+  font-size: 32rpx;
 }
+
 .original-price {
-    color: #999;
-    text-decoration: line-through;
-    font-size: 26rpx;
-    padding-left: 18rpx;
+  color: #999;
+  text-decoration: line-through;
+  font-size: 26rpx;
+  padding-left: 18rpx;
 }
+
 .cfaftsman-list {
-    background-color: #fff;
-    margin-top: 20rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
 }
+
 .cfaftsman-list .sub-title {
-    margin-left: 0;
+  margin-left: 0;
 }
+
 .icon-goldmedal {
-    color: #FFAF48;
-    font-size: 36rpx;
+  color: #ffaf48;
+  font-size: 36rpx;
 }
+
 .cfaftsman-box {
   height: 220rpx;
   padding: 30rpx 0;
   box-sizing: border-box;
   display: flex;
 }
+
 .cfaftsman-box image {
   width: 110rpx;
   height: 110rpx;
   border-radius: 50%;
   border: 1px solid #e5e5e5;
 }
+
 .cfaftsman {
   width: 20%;
   text-align: center;
 }
 
 /*会员权益*/
+
 .member-rights {
   margin-top: 20rpx;
   background-color: #fff;
   padding: 0 30rpx;
   padding-bottom: 120rpx;
 }
+
 .icon-VIPcard {
-  color: #AE7AE4;
+  color: #ae7ae4;
 }
+
 .card {
-    height: 88rpx;
-    line-height: 88rpx;
-    border-bottom: 1px solid #e5e5e5;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-bottom: 1px solid #e5e5e5;
 }
+
 .card:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
+
 .card view {
-    float: left;
+  float: left;
 }
+
 .card-label {
-    width: 28rpx;
-    height: 28rpx;
-    text-align: center;
-    color: #fff;
-    font-family: 'PingFangSC-Regular';
-    font-size: 20rpx;
-    line-height: 28rpx;
-    margin-top: 28rpx;
-    margin-right: 10rpx;
+  width: 28rpx;
+  height: 28rpx;
+  text-align: center;
+  color: #fff;
+  font-family: 'PingFangSC-Regular';
+  font-size: 20rpx;
+  line-height: 28rpx;
+  margin-top: 28rpx;
+  margin-right: 10rpx;
 }
+
 .card-name {
-    width: 300rpx;
-    display: inline－block;
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis;
+  width: 300rpx;
+  display: inline－block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .card-rule {
-    float: right !important;
-    color: #999;
+  float: right !important;
+  color: #999;
 }
+
 /*储值卡bg*/
+
 .chu-card-bg {
-    background-color: #9BDE56;
+  background-color: #9bde56;
 }
+
 /*计次卡bg*/
+
 .num-card-bg {
-    background-color: #F377D7;
+  background-color: #f377d7;
 }
+
 /*期限卡bg*/
+
 .date-card-bg {
-    background-color: #78A1FF;
+  background-color: #78a1ff;
 }
+
 /*折扣卡bg*/
+
 .zhe-card-bg {
-    background-color: #FDBC04;
+  background-color: #fdbc04;
 }
 
 /*底部*/
+
 .bottom {
-    height: 100rpx;
-    line-height: 100rpx;
-    position: fixed;
-    bottom: 0;
-    background: #1F2734;
-    color: #fff;
-    font-size: 34rpx;
-    text-align: center;
-    display: flex;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  background: #1f2734;
+  color: #fff;
+  font-size: 34rpx;
+  text-align: center;
+  display: flex;
 }
+
 .comment-btn {
-    width: 564rpx;
+  width: 564rpx;
 }
+
 .pay-btn {
-     width: 186rpx;
-    background-color: #FF6600;
+  width: 186rpx;
+  background-color: #f60;
+}
+
+.ticket-color {
+  color: #fa6f6f;
+}
+
+.div {
+  position: relative;
+  width: 690rpx;
+  height: 160rpx;
+  background: #fff8f2;
+  border: 1rpx solid #ffd1b2;
+  margin-bottom: 20rpx;
+}
+
+.ticket-block {
+  padding-left: 30rpx;
+  padding-top: 34rpx;
+  padding-bottom: 20rpx;
+}
+
+.yuan1 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  right: 160rpx;
+  top: -10px;
+}
+
+.yuan2 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  right: 160rpx;
+  bottom: -10px;
+}
+
+.dot-line {
+  width: 4rpx;
+  height: 112rpx;
 }
