@@ -20,7 +20,9 @@
     "pages/pay/pay",
     "pages/personal/member-card/show/show",
     "pages/personal/member-card/detail/detail",
-    "pages/personal/member-card/consume/consume"
+    "pages/personal/member-card/consume/consume",
+    "pages/ticket/index/index",
+    "pages/ticket/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

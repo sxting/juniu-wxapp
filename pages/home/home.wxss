@@ -275,7 +275,7 @@
 
 .div {
   position: relative;
-  width: 650rpx;
+  width: 90%;
   height: 160rpx;
   background: #fff8f2;
   border: 1rpx solid #ffd1b2;
@@ -316,4 +316,52 @@
   width: 0;
   height: 162rpx;
   border: 1rpx dashed #ffd1b2;
+}
+
+.ticket-image {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  left: 50rpx;
+  top: 50rpx;
+  margin-left: -20px;
+  margin-top: -10px;
+}
+
+.ticket-content {
+  position: absolute;
+  top: 20rpx;
+  left: 200rpx;
+  width: 264rpx;
+  overflow: hidden;
+}
+
+.ticket-btn {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+}
+
+.ticket-title {
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+  color: #222;
+  margin-top: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.font-color {
+  font-family: '.PingFangSC-Medium';
+  font-size: 15px;
+  color: #f60;
+  letter-spacing: 0;
+  line-height: 15px;
+}
+
+.tip {
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 13px;
 }

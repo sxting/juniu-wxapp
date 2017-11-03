@@ -76,11 +76,21 @@
       <!--循环的项目-->
       <view class="div">
         <view class="yuan1"></view>
-        <view class='dot-line'></view>
-        <view class="yuan2"></view>
-      </view>
-      <view class="div">
-        <view class="yuan1"></view>
+        <view class='ticket-image'>
+          <image src='http://img1.imgtn.bdimg.com/it/u=594559231,2167829292&fm=27&gp=0.jpg' class="product-img-box"></image>
+        </view>
+        <view class='ticket-content'>
+          <view class='ticket-title'>
+            优惠券xxx</view>
+          <view>
+            <text class='font-color'>5元</text>代金券</view>
+        </view>
+        <view class='ticket-btn'>
+          <view>
+            <button style='margin-top: 24rpx;background-color: #FF6600 !important;' class="weui-btn mini-btn" type="primary" size="mini">领取</button>
+          </view>
+          <view class='tip'>已领取222</view>
+        </view>
         <view class='dot-line'></view>
         <view class="yuan2"></view>
       </view>

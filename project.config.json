@@ -4,24 +4,14 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
-		"minified": true
+		"minified": true,
+		"newFeature": true
 	},
-	"compileType": "weapp",
-	"libVersion": "1.5.2",
+	"compileType": "miniprogram",
+	"libVersion": "1.6.4",
 	"appid": "wx0c66057a9b376be1",
 	"projectname": "%E6%A1%94%E7%89%9B%E6%8E%A8%E5%B9%BF",
 	"condition": {
-		"weapp": {
-			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "band",
-					"pathName": "pages/personal/member-card/consume/consume",
-					"query": ""
-				}
-			]
-		},
 		"search": {
 			"current": -1,
 			"list": [
@@ -41,6 +31,17 @@
 					"query": "",
 					"boxQI": "",
 					"service": {}
+				}
+			]
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "band",
+					"pathName": "pages/personal/member-card/consume/consume",
+					"query": ""
 				}
 			]
 		}
