@@ -35,12 +35,12 @@
 			]
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/personal/member-card/consume/consume",
+					"pathName": "pages/ticket/index/index",
 					"query": ""
 				}
 			]
