@@ -1,1 +1,118 @@
-/* pages/ticket/detail/detail.wxss */
+/* pages/ticket/index/index.wxss */
+.ticket-color {
+  color: #fa6f6f;
+}
+
+.div {
+  position: relative;
+  width: 90%;
+  height: 160rpx;
+  background: #fff8f2;
+  border: 1rpx solid #ffd1b2;
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+}
+
+.ticket-block {
+  padding-left: 30rpx;
+  padding-top: 34rpx;
+  padding-bottom: 20rpx;
+}
+
+.yuan1 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  right: 160rpx;
+  top: -10px;
+}
+
+.yuan2 {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  right: 160rpx;
+  bottom: -10px;
+}
+
+.dot-line {
+  position: absolute;
+  top: 20rpx;
+  right: 180rpx;
+  width: 0;
+  height: 162rpx;
+  border: 1rpx dashed #ffd1b2;
+}
+
+.ticket-image {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  left: 50rpx;
+  top: 50rpx;
+  margin-left: -20px;
+  margin-top: -10px;
+}
+
+.ticket-content {
+  position: absolute;
+  top: 20rpx;
+  left: 200rpx;
+  width: 264rpx;
+  overflow: hidden;
+}
+
+.ticket-btn {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+}
+
+.ticket-title {
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+  color: #222;
+  margin-top: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.font-color {
+  font-family: '.PingFangSC-Medium';
+  font-size: 15px;
+  color: #f60;
+  letter-spacing: 0;
+  line-height: 15px;
+}
+
+.tip {
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+  color: #999;
+  letter-spacing: 0;
+  line-height: 13px;
+}
+
+.product-img-box {
+  width: 170rpx;
+  min-width: 170rpx;
+  height: 130rpx;
+  background-color: #ccc;
+}
+
+.con{
+  background-color: white;
+  height: 100%;
+
+}
+
+.bar{
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1rpx solid #E5E5E5;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+}
