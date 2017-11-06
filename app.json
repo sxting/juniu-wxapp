@@ -22,7 +22,8 @@
     "pages/personal/member-card/detail/detail",
     "pages/personal/member-card/consume/consume",
     "pages/ticket/index/index",
-    "pages/ticket/detail/detail"
+    "pages/ticket/detail/detail",
+    "pages/personal/ticket/ticket"
   ],
   "window": {
     "backgroundTextStyle": "light",

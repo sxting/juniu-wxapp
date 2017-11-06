@@ -40,7 +40,7 @@
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/ticket/detail/detail",
+					"pathName": "pages/personal/ticket/ticket",
 					"query": ""
 				}
 			]
