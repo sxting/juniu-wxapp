@@ -3,7 +3,7 @@
   <view class="banner-box">
     <swiper class="img-box" autoplay="true" interval="3000" duration="500">
       <swiper-item wx:for="{{productImages}}">
-        <image src="{{item.picUrl}}"></image>
+        <image binderror="imgError" src="{{item.picUrl}}"></image>
       </swiper-item>
     </swiper>
     <view class="store-btn jn-icon icon-Shop" bindtap="goShopPage"></view>

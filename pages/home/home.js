@@ -92,6 +92,18 @@ Page({
     wx.navigateTo({
       url: '/pages/product/detail/detail?productId=' + e.currentTarget.dataset.productid + '&storeId=' + this.data.storeId,
     })
+  },
+  imgError: function (event) {
+    this.data.productImages.forEach((item) => {
+      if (event.detail.errMsg.indexOf(item.picUrl)>0) {
+        if (item.picUrl.indexOf('_375x360')>0) {
+          item.picUrl = item.picUrl.split('_375x360')[0] + '.' + 'png';
+        }
+      }
+    });
+    this.setData({
+      productImages: this.data.productImages
+    })
   }
 })
 
@@ -109,6 +121,11 @@ function getStoreIndexInfo(storeId, merchantId) {
       })
       wx.setStorageSync('storeName', res.storeName);
       if (res.pictureVOS && res.pictureVOS.length > 0) {
+        res.pictureVOS.forEach((item) => {
+          if (item.picUrl) {
+            item.picUrl = item.picUrl.split('.png')[0] + '_375x360.png';
+          }
+        })
         self.setData({
           productImages: res.pictureVOS
         })
