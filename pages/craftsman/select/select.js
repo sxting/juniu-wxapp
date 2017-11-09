@@ -84,6 +84,9 @@ function getStaffList() {
   }
   craftsmanService.getStaffList(data).subscribe({
     next: res => {
+      res.staffAppVOS.forEach((item) => {
+        item.headPortrait = item.headPortrait.split('.png')[0] + '_78x58.png';
+      });
       this.setData({
         staffList: res.staffAppVOS,
         totalPages: res.pageInfo.countPage,

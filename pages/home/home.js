@@ -116,6 +116,9 @@ function getStoreIndexInfo(storeId, merchantId) {
       res.productList.forEach((item) => {
         item.picUrl = item.picUrl.split('.png')[0] + '_78x58.png';
       })
+      res.staffList.forEach((item) => {
+        item.headPortrait = item.headPortrait.split('.png')[0] + '_78x58.png';
+      });
       self.setData({
         storeInfo: res,
       });

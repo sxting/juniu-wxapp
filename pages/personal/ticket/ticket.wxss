@@ -79,7 +79,7 @@ color:#FF6600;
 .ticket-content {
   position: absolute;
   top: 20rpx;
-  left: 200rpx;
+  left: 20rpx;
   width: 264rpx;
   overflow: hidden;
 }
