@@ -1,11 +1,15 @@
 // pages/ticket/index/index.js
+import { ticketService } from '../shared/ticket.service';
+import { constant } from '../../../utils/constant';
+import { errDialog } from '../../../utils/util';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    height: 0
+    height: 0,
+    ticketList: []
   },
 
   /**
@@ -19,7 +23,10 @@ Page({
           height: res.windowHeight
         })
       }
-    })
+    });
+    let storeId = wx.getStorageSync(constant.STORE_INFO);
+    console.log(storeId)
+    getAllTicket.call(this, storeId);
   },
 
   /**
@@ -71,3 +78,19 @@ Page({
   
   }
 })
+
+// 获取全部的优惠券
+function getAllTicket(storeId) {
+  let self = this;
+  ticketService.allCouponlist({
+    storeId: storeId
+  }).subscribe({
+    next: res => {
+      self.setData({
+        ticketList: res
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}

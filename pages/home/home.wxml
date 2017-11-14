@@ -67,7 +67,7 @@
         <view class="jn-icon ticket ticket-color"></view>
         <view class="sub-title-text">优惠券</view>
       </view>
-      <view class="sub-title-right">
+      <view class="sub-title-right" bindtap='goAllTicket'>
         <view>更多优惠券</view>
         <view class="jn-icon icon-rightblue"></view>
       </view>

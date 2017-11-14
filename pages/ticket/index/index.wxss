@@ -105,8 +105,6 @@
 
 .con{
   background-color: white;
-  height: 100%;
-
 }
 
 .bar{

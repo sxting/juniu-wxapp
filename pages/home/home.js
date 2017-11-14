@@ -106,6 +106,11 @@ Page({
     this.setData({
       productImages: this.data.productImages
     })
+  },
+  goAllTicket: function(){
+    wx.navigateTo({
+      url: '/pages/ticket/index/index',
+    })
   }
 })
 
