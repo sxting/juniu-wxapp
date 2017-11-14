@@ -2,7 +2,7 @@
 //获取应用实例
 import { homeService } from 'shared/home.service';
 import { errDialog, loading } from '../../utils/util'
-import { constant } from '../../utils/constant'
+import { constant } from '../../utils/constant';
 // MONEY，DISCOUNT，GIFT
 var app = getApp()
 Page({
@@ -111,6 +111,11 @@ Page({
     wx.navigateTo({
       url: '/pages/ticket/index/index',
     })
+  },
+  goTicketDetail: function (e) {
+    wx.navigateTo({
+      url: '/pages/ticket/detail/detail?marketingId=' + e.currentTarget.dataset.marketingid,
+    })
   }
 })
 
@@ -169,3 +174,4 @@ function getStoreIndexInfo(storeId, merchantId) {
     complete: () => wx.hideToast()
   })
 }
+

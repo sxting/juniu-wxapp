@@ -76,10 +76,10 @@
       <!--循环的项目-->
       <view class="div" wx:for="{{ticketList}}">
         <view class="yuan1"></view>
-        <view class='ticket-image'>
+        <view class='ticket-image' bindtap='goTicketDetail' data-marketingid="{{item.marketingId}}">
           <image src='{{item.picUrl}}' class="product-img-box"></image>
         </view>
-        <view class='ticket-content'>
+        <view class='ticket-content' bindtap='goTicketDetail' data-marketingid="{{item.marketingId}}">
           <view class='ticket-title'>
             {{item.marketingName}}</view>
           <view>

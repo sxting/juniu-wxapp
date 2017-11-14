@@ -1,18 +1,26 @@
 // pages/ticket/detail/detail.js
+import { ticketService } from '../shared/ticket.service';
+import { errDialog } from '../../../utils/util';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    marketingId: '',
+    ticket: {
+      useLimitMoney: 0
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      marketingId: options.marketingId
+    });
+    getTicketDetail.call(this, this.data.marketingId);
   },
 
   /**
@@ -64,3 +72,19 @@ Page({
   
   }
 })
+
+// 获取卡券详情
+function getTicketDetail(marketingId) {
+  let self = this;
+  ticketService.getDetail({
+    marketingId: marketingId
+  }).subscribe({
+    next: res => {
+      self.setData({
+        ticket: res
+      });
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}

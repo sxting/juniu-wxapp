@@ -76,6 +76,11 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  goTicketDetail: function() {
+    wx.navigateTo({
+      url: '/pages/ticket/detail/detail',
+    })
   }
 })
 

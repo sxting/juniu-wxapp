@@ -5,19 +5,24 @@
     <view class="div">
       <view class="yuan1"></view>
       <view class='ticket-image'>
-        <image src='http://img1.imgtn.bdimg.com/it/u=594559231,2167829292&fm=27&gp=0.jpg' class="product-img-box"></image>
+        <image src='{{ticket.picUrl}}' class="product-img-box"></image>
       </view>
       <view class='ticket-content'>
         <view class='ticket-title'>
-          优惠券xxx</view>
+          {{ticket.marketingName}}</view>
         <view>
-          <text class='font-color'>5元</text>代金券</view>
+          <text class='font-color' wx:if="{{ticket.couponDefType === 'MONEY'}}">{{ticket.couponDefAmount / 100}}元</text>
+          <text class='font-color' wx:elif="{{ticket.couponDefType === 'DISCOUNT'}}">{{ticket.couponDefDiscount}}折</text>
+          <block wx:if="{{ticket.couponDefType === 'MONEY'}}">代金券</block>
+          <block wx:elif="{{ticket.couponDefType === 'DISCOUNT'}}">折扣券</block>
+          <block wx:else="{{ticket.couponDefType === 'GIFT'}}">礼品券</block>
+        </view>
       </view>
       <view class='ticket-btn'>
         <view>
           <button style='margin-top: 24rpx;background-color: #FF6600 !important;' class="weui-btn mini-btn" type="primary" size="mini">领取</button>
         </view>
-        <view class='tip'>已领取222</view>
+        <view class='tip'>已领取{{ticket.count}}</view>
       </view>
       <view class='dot-line'></view>
       <view class="yuan2"></view>
@@ -26,15 +31,20 @@
   <view class="weui-form-preview__bd">
     <view class="weui-form-preview__item">
       <view class="weui-form-preview__label">使用有效期</view>
-      <view class="weui-form-preview__value">电动打蛋机</view>
+      <view class="weui-form-preview__value">{{ticket.validDateStart}}至{{ticket.validDateEnd}}</view>
     </view>
     <view class="weui-form-preview__item">
       <view class="weui-form-preview__label">使用门槛</view>
-      <view class="weui-form-preview__value">名字名字名字</view>
+      <block wx:if="{{ticket.useLimitMoney > 0}}">
+        <view class="weui-form-preview__value">{{ticket.useLimitMoney}} </view>
+      </block>
+      <block wx:else>
+        <view class="weui-form-preview__value">无限制</view>
+      </block>
     </view>
     <view class="weui-form-preview__item">
       <view class="weui-form-preview__label">消费项目</view>
-      <view class="weui-form-preview__value">很长很长的名字很长很长的名字很长很长的名字很长很长的名字很长很长的名字</view>
+      <view class="weui-form-preview__value">{{ticket.consumeLimitProductNames? ticket.consumeLimitProductNames: ''}}</view>
     </view>
   </view>
 </view>
