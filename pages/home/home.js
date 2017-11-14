@@ -121,7 +121,7 @@ Page({
   reciveTicket: function (e) {
     let self = this;
     let marketingId = e.currentTarget.dataset.marketingid;
-    ticketService.receiveTicket({ marketingId: marketingId}).subscribe({
+    ticketService.receiveTicket({ marketingId: marketingId, storeId: self.data.storeId}).subscribe({
       next: res => {
         wx.showModal({
           title: '领取成功',

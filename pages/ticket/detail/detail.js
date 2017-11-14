@@ -70,6 +70,26 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  reciveTicket: function (e) {
+    let self = this;
+    let marketingId = e.currentTarget.dataset.marketingid;
+    ticketService.receiveTicket({ marketingId: marketingId }).subscribe({
+      next: res => {
+        wx.showModal({
+          title: '领取成功',
+          content: '请到个中心我的优惠券中查看',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              getTicketDetail.call(self, self.data.marketingId);
+            }
+          }
+        })
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
   }
 })
 
