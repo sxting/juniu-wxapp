@@ -3,7 +3,7 @@
 import { homeService } from 'shared/home.service';
 import { errDialog, loading } from '../../utils/util'
 import { constant } from '../../utils/constant'
-
+// MONEY，DISCOUNT，GIFT
 var app = getApp()
 Page({
   data: {
@@ -12,7 +12,8 @@ Page({
     storeId: '',
     scene: 0,
     storeInfo: {},
-    fromNeighbourhood: false
+    fromNeighbourhood: false,
+    ticketList: []
   },
   onLoad: function (option) {
     this.setData({
@@ -25,7 +26,8 @@ Page({
       })
     }
     wx.setStorageSync(constant.STORE_INFO, option.storeid);
-    getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID))
+    getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));
+    getTicketInfo.call(this, this.data.storeId);
   },
   // 跳转到店铺页面
   goShopPage: function () {
@@ -107,6 +109,24 @@ Page({
   }
 })
 
+// 获取卡券信息
+function getTicketInfo(storeId) {
+  let self = this;
+  homeService.ticketList({
+    storeId: storeId
+  }).subscribe({
+    next: res => { 
+      res.forEach((item) => {
+        item.picUrl = item.picUrl.split('.png')[0] + '_78x58.png';
+      });
+      self.setData({
+        ticketList: res
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
 
 /**门店主页信息 */
 function getStoreIndexInfo(storeId, merchantId) {

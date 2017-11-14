@@ -7,6 +7,11 @@ homeService.storeIndex = (data) => {
   return http.get(apiUrl, data);
 }
 
+homeService.ticketList = (data) => {
+  let apiUrl = constant.apiUrl + '/member/sp/coupon/couponlist.json';
+  return http.get(apiUrl, data);
+}
+
 module.exports = {
   homeService: homeService
 }
