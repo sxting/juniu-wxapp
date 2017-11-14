@@ -14,6 +14,12 @@ personalService.myComment = (data) => {
   let url = constant.apiUrl + '/member/comment/app/userComment.json';
   return http.get(url, data);
 }
+
+personalService.myTicket = (data) => {
+  let url = constant.apiUrl + '/member/sp/coupon/userCouponList.json';
+  return http.get(url, data);
+}
+
 module.exports = {
   personalService: personalService
 }

@@ -25,6 +25,11 @@
     <text>我的会员卡</text>
         <icon class="jn-icon icon-rightblue"></icon>
   </view>
+   <view class='my-comment' bindtap='goMyTicket'>
+    <view class='jn-icon ticket' style='color: #e5e5e5;padding-right: 10rpx'></view>
+    <text>我的优惠券</text>
+        <icon class="jn-icon icon-rightblue"></icon>
+  </view>
   <!--返回首页btn-->
   <!-- <view class="go-back-btn" bindtap="goHome"> 返回店铺首页</view> -->
 </view>

@@ -3,6 +3,7 @@
 import { homeService } from 'shared/home.service';
 import { errDialog, loading } from '../../utils/util'
 import { constant } from '../../utils/constant';
+import { ticketService } from '../ticket/shared/ticket.service';
 // MONEY，DISCOUNT，GIFT
 var app = getApp()
 Page({
@@ -115,6 +116,26 @@ Page({
   goTicketDetail: function (e) {
     wx.navigateTo({
       url: '/pages/ticket/detail/detail?marketingId=' + e.currentTarget.dataset.marketingid,
+    })
+  },
+  reciveTicket: function (e) {
+    let self = this;
+    let marketingId = e.currentTarget.dataset.marketingid;
+    ticketService.receiveTicket({ marketingId: marketingId}).subscribe({
+      next: res => {
+        wx.showModal({
+          title: '领取成功',
+          content: '请到个中心我的优惠券中查看',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              getTicketInfo.call(self, self.data.storeId);
+            }
+          }
+        })
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
     })
   }
 })

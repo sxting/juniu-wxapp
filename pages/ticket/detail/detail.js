@@ -80,6 +80,7 @@ function getTicketDetail(marketingId) {
     marketingId: marketingId
   }).subscribe({
     next: res => {
+      res.validDateEnd = res.validDateEnd.spli
       self.setData({
         ticket: res
       });

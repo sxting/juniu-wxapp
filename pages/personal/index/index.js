@@ -38,5 +38,10 @@ Page({
     wx.navigateTo({
       url: '/pages/personal/member-card/index/index',
     })
+  },
+  goMyTicket: function() {
+    wx.navigateTo({
+      url: '/pages/personal/ticket/ticket',
+    })
   }
 })
