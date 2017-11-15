@@ -9,7 +9,8 @@ Page({
    */
   data: {
     height: 0,
-    ticketList: []
+    ticketList: [],
+    storeId: ''
   },
 
   /**
@@ -25,7 +26,9 @@ Page({
       }
     });
     let storeId = wx.getStorageSync(constant.STORE_INFO);
-    console.log(storeId)
+    this.setData({
+      storeId: storeId
+    });
     getAllTicket.call(this, storeId);
   },
 
@@ -81,6 +84,9 @@ Page({
     wx.navigateTo({
       url: '/pages/ticket/detail/detail',
     })
+  },
+  pageEventListener: function() {
+    getAllTicket.call(this, this.data.storeId);
   }
 })
 
