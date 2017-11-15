@@ -117,6 +117,10 @@ Page({
     wx.navigateTo({
       url: '/pages/ticket/detail/detail?marketingId=' + e.currentTarget.dataset.marketingid,
     })
+  },
+  pageEventListener: function () {
+    let self = this;
+    getTicketInfo.call(self, self.data.storeId);
   }
 })
 

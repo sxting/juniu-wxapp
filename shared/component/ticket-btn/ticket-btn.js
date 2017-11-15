@@ -27,7 +27,8 @@ export default Component({
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
-                // getTicketInfo.call(self, self.data.storeId);
+                // 
+                self.triggerEvent('customevent', {}, { bubbles: true, composed: true })
               }
             }
           })
