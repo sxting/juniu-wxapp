@@ -39,7 +39,7 @@ export default Component({
     },
     reciveTicketAndBind: function (e) {
       wx.navigateTo({
-        url: '/pages/personal/member-card/band/band',
+        url: '/pages/personal/member-card/band/band?marketingid=' + e.currentTarget.dataset.marketingid,
       })
     }
   }

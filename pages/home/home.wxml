@@ -72,7 +72,7 @@
         <view class="jn-icon icon-rightblue"></view>
       </view>
     </view>
-    <view class='ticket-block'>
+    <view class='ticket-block' wx:if="{{ticketList.length > 0}}">
       <!--循环的项目-->
       <view class="div" wx:for="{{ticketList}}">
         <view class="yuan1"></view>

@@ -2,7 +2,7 @@
 import { memberCardService } from '../shared/service';
 import { errDialog, checkMobile } from '../../../../utils/util';
 import { constant } from '../../../../utils/constant';
-
+import { ticketService } from '../../../ticket/shared/ticket.service';
 let wait = 60;
 Page({
 
@@ -15,7 +15,8 @@ Page({
     phoneNumber: null,
     remark: '',
     validCode: '',
-    storeId: ''
+    storeId: '',
+    marketingid: ''
   },
 
   /**
@@ -27,7 +28,8 @@ Page({
     });
     this.setData(
       {
-        storeId: wx.getStorageSync(constant.STORE_INFO)
+        storeId: wx.getStorageSync(constant.STORE_INFO),
+        marketingid: options.marketingid ? options.marketingid: ''
       }
     )
   },
@@ -122,8 +124,34 @@ Page({
     }
   }
 })
+
+// 领取优惠券
+function reciveTicket() {
+  let marketingId = e.currentTarget.dataset.marketingid;
+  let storeId = wx.getStorageSync(constant.STORE_INFO);
+  ticketService.receiveTicket({ marketingId: marketingId, storeId: storeId }).subscribe({
+    next: res => {
+      wx.showModal({
+        title: '领取成功',
+        content: '请到个中心我的优惠券中查看',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            // 
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        }
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
 //绑定会员卡
 function bindMemberCard(storeId, phone, validCode) {
+  let self = this;
   memberCardService.bindCard({
     storeId: storeId,
     phone: phone,
@@ -132,6 +160,8 @@ function bindMemberCard(storeId, phone, validCode) {
     next: res => {
       if (res.showClickBind === 'T') {
         errDialog('未找到手机号相关的会员卡，请到店里办理')
+      } else if (self.data.marketingid) {
+        reciveTicket.call(self)
       } else {
         wx.redirectTo({
           url: '/pages/personal/member-card/index/index',
