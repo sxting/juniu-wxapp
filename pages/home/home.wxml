@@ -87,13 +87,12 @@
             <text class='font-color' wx:elif="{{item.couponDefType === 'DISCOUNT'}}">{{item.couponDefDiscount}}折</text>
             <block wx:if="{{item.couponDefType === 'MONEY'}}">代金券</block>
             <block wx:elif="{{item.couponDefType === 'DISCOUNT'}}">折扣券</block>
-            <block wx:else="{{item.couponDefType === 'GIFT'}}">礼品券</block>
+            <block wx:else="{{item.couponDefType === 'GIFT'}}">{{item.couponDefProductName}}礼品券</block>
           </view>
         </view>
         <view class='ticket-btn'>
           <view>
-            <button wx:if="{{item.isGet === 'get'}}" style='margin-top: 24rpx;background-color: #FF6600 !important;' class="weui-btn mini-btn" type="primary" size="mini" bindtap='reciveTicket' data-marketingid="{{item.marketingId}}">领取</button>
-            <button wx:if="{{item.isGet !== 'get'}}" style='margin-top: 24rpx;background-color: #999999 !important;' class="weui-btn mini-btn" type="primary" size="mini">已领取</button>
+            <ticket-btn ticket-item="{{item}}"></ticket-btn>
           </view>
           <view class='tip'>已领取{{item.count}}</view>
         </view>

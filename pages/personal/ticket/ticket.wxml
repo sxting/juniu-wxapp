@@ -24,7 +24,7 @@
                     <text class='font-color' wx:elif="{{item.couponDefType === 'DISCOUNT'}}">{{item.couponDefDiscount}}折</text>
                     <block wx:if="{{item.couponDefType === 'MONEY'}}">代金券</block>
                     <block wx:elif="{{item.couponDefType === 'DISCOUNT'}}">折扣券</block>
-                    <block wx:else="{{item.couponDefType === 'GIFT'}}">礼品券</block>
+                    <block wx:else="{{item.couponDefType === 'GIFT'}}">{{item.couponDefProductName}}礼品券</block>
                   </view>
                 </view>
               </view>
