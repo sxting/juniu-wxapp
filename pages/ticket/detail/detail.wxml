@@ -20,8 +20,7 @@
       </view>
       <view class='ticket-btn'>
         <view>
-          <button wx:if="{{ticket.isGet === 'get'}}" style='margin-top: 24rpx;background-color: #FF6600 !important;' class="weui-btn mini-btn" type="primary" size="mini" bindtap='reciveTicket' data-marketingid="{{ticket.marketingId}}">领取</button>
-          <button wx:if="{{ticket.isGet !== 'get'}}" style='margin-top: 24rpx;background-color: #999999 !important;' class="weui-btn mini-btn" type="primary" size="mini">已领取</button>
+        <ticket-btn ticket-item="{{ticket}}" bindcustomevent="pageEventListener"></ticket-btn>
         </view>
         <view class='tip'>已领取{{ticket.count}}</view>
       </view>
