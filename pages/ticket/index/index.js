@@ -80,9 +80,9 @@ Page({
   onShareAppMessage: function () {
   
   },
-  goTicketDetail: function() {
+  goTicketDetail: function (e) {
     wx.navigateTo({
-      url: '/pages/ticket/detail/detail',
+      url: '/pages/ticket/detail/detail?marketingId=' + e.currentTarget.dataset.marketingid,
     })
   },
   pageEventListener: function() {
