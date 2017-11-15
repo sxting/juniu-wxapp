@@ -9,7 +9,8 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    storeId: ''
+    storeId: '',
+    ticketList: []
   },
   onLoad: function () {
     var that = this;
@@ -31,6 +32,17 @@ Page({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
+    switch (e.currentTarget.id) {
+      case "0":
+        getMyTicket.call(this, this.data.storeId, 'UNUSED');
+        break;
+      case "1":
+        getMyTicket.call(this, this.data.storeId, 'USED');
+        break;
+      case "2":
+        getMyTicket.call(this, this.data.storeId, 'OVERDUE');
+        break;
+    }
   }
 });
 // 获取我的优惠券
@@ -41,7 +53,9 @@ function getMyTicket(storeId, couponStatus) {
     couponStatus: couponStatus
   }).subscribe({
     next: res => {
-      console.log(res)
+      self.setData({
+        ticketList: res
+      });
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
