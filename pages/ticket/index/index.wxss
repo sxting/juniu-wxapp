@@ -64,6 +64,8 @@
   left: 200rpx;
   width: 264rpx;
   overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
 }
 
 .ticket-btn {

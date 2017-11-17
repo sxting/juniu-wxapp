@@ -16,6 +16,7 @@
         <view>
           <text class='font-color' wx:if="{{item.couponDefType === 'MONEY'}}">{{item.couponDefAmount / 100}}元</text>
           <text class='font-color' wx:elif="{{item.couponDefType === 'DISCOUNT'}}">{{item.couponDefDiscount}}折</text>
+          <text class='font-color' wx:else>{{item.couponDefProductName}}</text>
           <block wx:if="{{item.couponDefType === 'MONEY'}}">代金券</block>
           <block wx:elif="{{item.couponDefType === 'DISCOUNT'}}">折扣券</block>
           <block wx:else="{{item.couponDefType === 'GIFT'}}">礼品券</block>
