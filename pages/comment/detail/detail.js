@@ -1,6 +1,7 @@
 // pages/personal/comment/detail/detail.js
 import { commentService } from '../shared/comment.service';
-import { errDialog, loading } from '../../../utils/util';
+import { errDialog, loading } from '../../../utils/util'; 
+import { constant } from '../../../utils/constant';
 Page({
 
   /**
@@ -80,6 +81,11 @@ function getCommentDetail(commentId) {
       let dateArray = res.juniuoModel.dateCreated.split(' ');
       res.date = dateArray[0];
       res.time = dateArray[1];
+      if (res.imagesUrl) {
+        res.imagesUrl.forEach((img, index) => {
+          res.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_80_80/mode_fill`;
+        });
+      }
       self.setData({
         detail: res
       });

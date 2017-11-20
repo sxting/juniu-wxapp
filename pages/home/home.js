@@ -155,18 +155,20 @@ function getStoreIndexInfo(storeId, merchantId) {
         title: res.storeName
       })
       wx.setStorageSync('storeName', res.storeName);
+      // {picture_id}/resize_{width}_{height}/mode_fill
       if (res.pictureVOS && res.pictureVOS.length > 0) {
         res.pictureVOS.forEach((item) => {
-          if (item.picUrl) {
-            item.picUrl = item.picUrl.split('.png')[0] + '_375x360.png';
-          }
-        })
+          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_375_180/mode_fill`;
+        });
         self.setData({
           productImages: res.pictureVOS
         })
       }
       res.productList.forEach((item) => {
-        item.picUrl = item.picUrl.split('.png')[0] + '_78x58.png';
+        item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+      })
+      res.staffList.forEach((item) => {
+        item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_78_55/mode_fill`;
       })
       res.staffList.forEach((item) => {
         item.headPortrait = item.headPortrait.split('.png')[0] + '_78x58.png';
