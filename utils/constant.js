@@ -10,6 +10,7 @@ const constant = {
   // imgUrl: 'http://ts.diankayi.net/',
   // apiUrl: 'https://biz.juniuo.com/wxapp',
   imgUrl: 'https://biz.juniuo.com/',
+  OSS_IMAGE_URL: 'https://oss.juniuo.com/juniuo-pic/picture/juniuo/',
   CARD_LOGO: 'card-log',
   APP_ID: 'wxedcf0f0c4cc429c8',
   TOKEN: 'app-token',
