@@ -1,5 +1,6 @@
 import { craftsmanService } from '../shared/service.js'
-import { errDialog } from '../../../utils/util';
+import { errDialog } from '../../../utils/util'; 
+import { constant } from '../../../utils/constant';
 var app = getApp()
 Page({
   data: {
@@ -41,6 +42,7 @@ function getStaffDetail() {
   }
   craftsmanService.getStaffDetail(data).subscribe({
     next: res => {
+      res.headPortrait = constant.OSS_IMAGE_URL + `${res.headPortrait}/resize_80_80/mode_fill`;
       this.setData({
         staffInfo: res
       })
@@ -64,8 +66,12 @@ function getComments() {
         let dateArray = item.juniuoModel.dateCreated.split(' ');
         item.date = dateArray[0];
         item.time = dateArray[1];
+        if (item.imagesUrl) {
+          item.imagesUrl.forEach((img, index) => {
+            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_80_80/mode_fill`;
+          });
+        }
       });
-
       this.setData({
         commentList: res.comments,
         countPage: res.pageInfo.countPage

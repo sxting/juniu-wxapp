@@ -1,6 +1,8 @@
 // pages/product/select/select.js
 import { productService } from '../shared/service.js'
 import { errDialog, changeDate } from '../../../utils/util';
+import { constant } from '../../../utils/constant';
+
 Page({
   data: {
     icon20: 'http://i.zeze.com/attachment/forum/201610/30/150453u3oo7n3c702j7f08.jpg',
@@ -120,6 +122,10 @@ function getProductList() {
   }
   productService.getProductList(data).subscribe({
     next: res => {
+      //         constant.OSS_IMAGE_URL + `${res.url}/resize_375_180/mode_fill`;
+      res.content.forEach((item) => {
+        item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+      });
       this.setData({
         productList: this.data.productList.concat(res.content),
         totalPages: res.totalPages,

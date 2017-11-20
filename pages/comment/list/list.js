@@ -1,7 +1,7 @@
 //获取应用实例
 import { commentService } from '../shared/comment.service';
-import { errDialog, loading } from '../../../utils/util'
-
+import { errDialog, loading } from '../../../utils/util';
+import { constant } from '../../../utils/constant'
 var app = getApp()
 Page({
   data: {
@@ -55,6 +55,11 @@ function commentList(pageIndex, pageSize, storeId) {
         let dateArray = item.juniuoModel.dateCreated.split(' ');
         item.date = dateArray[0];
         item.time = dateArray[1];
+        if (item.imagesUrl) {
+          item.imagesUrl.forEach((img, index) => {
+            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_80_80/mode_fill`;
+          });
+        }
       });
       self.setData({
         comments: res.comments,

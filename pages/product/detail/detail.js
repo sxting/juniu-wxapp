@@ -1,5 +1,6 @@
 import { productService } from '../shared/service.js'
 import { errDialog, changeDate } from '../../../utils/util';
+import { constant } from '../../../utils/constant';
 //获取应用实例
 var app = getApp()
 Page({
@@ -41,6 +42,8 @@ function getProductDetail() {
   }
   productService.getProductDetail(data).subscribe({
     next: res => {
+      res.url = 
+        constant.OSS_IMAGE_URL + `${res.url}/resize_375_180/mode_fill`;
       this.setData({
         productInfo: res
       })

@@ -1,6 +1,8 @@
 // pages/craftsman/select/select.js
 import { craftsmanService } from '../shared/service.js'
 import { errDialog, changeDate } from '../../../utils/util';
+import { constant } from '../../../utils/constant';
+
 Page({
   data: {
     label: '',
@@ -84,6 +86,10 @@ function getStaffList() {
   }
   craftsmanService.getStaffList(data).subscribe({
     next: res => {
+      res.staffAppVOS.forEach((item) => {
+        item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
+
+      });
       this.setData({
         staffList: res.staffAppVOS,
         totalPages: res.pageInfo.countPage,
