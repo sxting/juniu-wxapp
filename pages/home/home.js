@@ -168,10 +168,10 @@ function getStoreIndexInfo(storeId, merchantId) {
         item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
       })
       res.staffList.forEach((item) => {
-        item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_78_55/mode_fill`;
+        item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
       })
       res.staffList.forEach((item) => {
-        item.headPortrait = item.headPortrait.split('.png')[0] + '_78x58.png';
+        item.headPortrait = item.headPortrait.split('.png')[0] + '_58x58.png';
       });
       self.setData({
         storeInfo: res,
