@@ -91,7 +91,7 @@
           </view>
         </view>
         <view class='ticket-btn'>
-          <view>
+          <view style='margin-bottom: 14rpx;'>
             <ticket-btn ticket-item="{{item}}" bindcustomevent="pageEventListener"></ticket-btn>
           </view>
           <view class='tip'>已领取{{item.count}}</view>

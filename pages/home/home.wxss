@@ -9,6 +9,7 @@
   height: 360rpx;
   background: #ccc;
   z-index: -1;
+  
 }
 
 .img-box image {
