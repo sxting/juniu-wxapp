@@ -1,6 +1,8 @@
 // pages/ticket/detail/detail.js
 import { ticketService } from '../shared/ticket.service';
 import { errDialog } from '../../../utils/util';
+import { constant } from '../../../utils/constant';
+
 Page({
 
   /**
@@ -102,7 +104,9 @@ function getTicketDetail(marketingId) {
     marketingId: marketingId
   }).subscribe({
     next: res => {
-      res.validDateEnd = res.validDateEnd.spli
+      // res.validDateEnd = res.validDateEnd.spli
+      res.picUrl =
+        constant.OSS_IMAGE_URL + `${res.picUrl}/resize_78_58/mode_fill`;
       self.setData({
         ticket: res
       });
