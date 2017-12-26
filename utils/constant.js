@@ -3,9 +3,9 @@
  */
 
 const constant = {
-  // apiUrl: 'http://b-test.juniuo.com/wxapp',
+  apiUrl: 'http://b-test.juniuo.com/wxapp',
   // apiUrl: 'https://tiyan.juniuo.com',
-  apiUrl: 'https://biz.juniuo.com/wxapp',
+  // apiUrl: 'https://biz.juniuo.com/wxapp',
   apiUrlTwo: 'https://biz.juniuo.com/',
   // imgUrl: 'http://ts.diankayi.net/',
   // apiUrl: 'https://biz.juniuo.com/wxapp',

@@ -14,7 +14,7 @@ Page({
   },
   onLoad: function () {
     wx.setNavigationBarTitle({
-      title: '我的会员卡',
+      title: '我的会员',
     });
     let storeId = wx.getStorageSync(constant.STORE_INFO);
     getCardList.call(this, storeId);
