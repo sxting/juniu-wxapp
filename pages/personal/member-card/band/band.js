@@ -159,14 +159,19 @@ function bindMemberCard(storeId, phone, validCode) {
   }).subscribe({
     next: res => {
       if (res.showClickBind === 'T') {
-        errDialog('未找到手机号相关的会员卡，请到店里办理')
-      } else if (self.data.marketingid) {
-        reciveTicket.call(self)
-      } else {
         wx.redirectTo({
           url: '/pages/personal/member-card/index/index',
         })
-      }
+      } 
+      // if (res.showClickBind === 'T') {
+      //   errDialog('未找到手机号相关的会员卡，请到店里办理')
+      // } else if (self.data.marketingid) {
+      //   reciveTicket.call(self)
+      // } else {
+      //   wx.redirectTo({
+      //     url: '/pages/personal/member-card/index/index',
+      //   })
+      // }
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

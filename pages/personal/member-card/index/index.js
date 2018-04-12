@@ -19,6 +19,10 @@ Page({
     let storeId = wx.getStorageSync(constant.STORE_INFO);
     getCardList.call(this, storeId);
   },
+  onShow: function() {
+    let storeId = wx.getStorageSync(constant.STORE_INFO);
+    getCardList.call(this, storeId);
+  },
   goConsume: function () {
     wx.navigateTo({
       url: `/pages/personal/member-card/consume/consume?cardId=${this.data.cards[this.data.selectCardIndex].cardId}&cardType=${this.data.cards[this.data.selectCardIndex].cardType}`,
