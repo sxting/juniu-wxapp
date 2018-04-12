@@ -127,7 +127,7 @@ Page({
 
 // 领取优惠券
 function reciveTicket() {
-  let marketingId = e.currentTarget.dataset.marketingid;
+  let marketingId = this.data.marketingid;
   let storeId = wx.getStorageSync(constant.STORE_INFO);
   ticketService.receiveTicket({ marketingId: marketingId, storeId: storeId }).subscribe({
     next: res => {
@@ -158,10 +158,14 @@ function bindMemberCard(storeId, phone, validCode) {
     validCode: validCode
   }).subscribe({
     next: res => {
-      if (res.showClickBind === 'T') {
-        wx.redirectTo({
-          url: '/pages/personal/member-card/index/index',
-        })
+      if (res.showClickBind === 'F') {
+        if (self.data.marketingid) {
+          reciveTicket.call(self)
+        } else {
+          wx.redirectTo({
+            url: '/pages/personal/member-card/index/index',
+          })
+        }
       } 
       // if (res.showClickBind === 'T') {
       //   errDialog('未找到手机号相关的会员卡，请到店里办理')

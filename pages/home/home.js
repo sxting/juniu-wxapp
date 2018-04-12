@@ -30,6 +30,7 @@ Page({
     getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));
     getTicketInfo.call(this, this.data.storeId);
   },
+
   // 跳转到店铺页面
   goShopPage: function () {
     wx.navigateTo({
@@ -121,7 +122,37 @@ Page({
   pageEventListener: function () {
     let self = this;
     getTicketInfo.call(self, self.data.storeId);
+  },
+  reciveTicket: function (e) {
+    let self = this;
+    let marketingId = e.currentTarget.dataset.marketingid;
+    let storeId = wx.getStorageSync(constant.STORE_INFO);
+    ticketService.receiveTicket({ marketingId: marketingId, storeId: storeId }).subscribe({
+      next: res => {
+        wx.showModal({
+          title: '领取成功',
+          content: '请到个中心我的优惠券中查看',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/personal/ticket/ticket',
+              })
+            
+            }
+          }
+        })
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
+  },
+  reciveTicketAndBind: function (e) {
+    wx.navigateTo({
+      url: '/pages/personal/member-card/band/band?marketingid=' + e.currentTarget.dataset.marketingid,
+    })
   }
+
 })
 
 // 获取卡券信息
