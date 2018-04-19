@@ -94,7 +94,7 @@
           <view style='margin-bottom: 24rpx;'>
             <view class="">
               <button 
-                wx:if="{{item.isGet !== 'get' && item.isBind === 'bind'}}" 
+                wx:if="{{item.isGet === 'get' && item.isBind === 'bind'}}" 
                 style='margin-top: 24rpx;background-color: #FF6600 !important;' 
                 class="weui-btn mini-btn" 
                 type="primary" size="mini" 
@@ -102,7 +102,7 @@
                 data-marketingid="{{item.marketingId}}">领取</button>
             
 <button 
-  wx:elif="{{item.isGet === 'get'}}" 
+  wx:elif="{{item.isGet !== 'get'}}" 
   style='margin-top: 24rpx;background-color: #999999 !important;' 
   class="weui-btn mini-btn" type="primary" size="mini">
   已领取

@@ -31,6 +31,21 @@ Page({
     getTicketInfo.call(this, this.data.storeId);
   },
 
+  onShow: function(option) {
+    this.setData({
+      storeId: option.storeid,
+      scene: app.globalData.scene
+    });
+    if (this.data.scene === 1026) {
+      this.setData({
+        fromNeighbourhood: true
+      })
+    }
+    wx.setStorageSync(constant.STORE_INFO, option.storeid);
+    getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));
+    getTicketInfo.call(this, this.data.storeId);
+  },
+
   // 跳转到店铺页面
   goShopPage: function () {
     wx.navigateTo({
