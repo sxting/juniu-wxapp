@@ -4,7 +4,7 @@
       <image class='logo' src='{{appLogo}}'></image>
     </view>
     <view class='bar-code' style='margin-left: -{{barWidth}}px;'>
-      <image src="{{barcode}}" style='height: 200rpx;width:{{screenWidth}}rpx'></image>
+      <image src="https://oss.juniuo.com/juniuo-pic/picture/juniuo/{{barcode}}/resize_187_100/mode_fill" style='height: 200rpx;width:{{screenWidth}}rpx'></image>
     </view>
     <view class='footer'>
       <view class="weui-footer ">

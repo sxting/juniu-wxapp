@@ -33,6 +33,7 @@ Page({
       appLogo: wx.getStorageSync(constant.CARD_LOGO),
       barcode: options.barCode
     })
+    console.log(this.data.barcode);
     if (res.windowWidth > 320) {
       this.setData({
         barWidth: res.windowWidth /4

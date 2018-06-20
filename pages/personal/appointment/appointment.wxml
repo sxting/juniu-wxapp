@@ -19,15 +19,15 @@
         </view>
         <view class="bottom">
           <view class="bottomLeft">预约项目</view>
-          <view class="bottomRight">{{item.productName}}</view>
+          <view class="bottomRight">{{item.productName?item.productName: '无'}}</view>
         </view>
         <view class="bottom">
           <view class="bottomLeft">预约手艺人</view>
-          <view class="bottomRight">{{item.staffName}}</view>
+          <view class="bottomRight">{{item.staffName?item.staffName: '无'}}</view>
         </view>
         <view class="bottom">
           <view class="bottomLeft">备注</view>
-          <view class="bottomRight">{{item.note}}</view>
+          <view class="bottomRight">{{item.note?item.note: '无'}}</view>
         </view>
       </view>
     </view>

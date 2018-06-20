@@ -20,8 +20,54 @@ Page({
       productId: options.productId,
       storeId: options.storeId
     })
-    getProductDetail.call(this);
-    getProductCommentList.call(this)
+
+    let token = wx.getStorageSync(constant.TOKEN);
+    if (token) {
+      getProductDetail.call(this);
+      getProductCommentList.call(this)
+    } else {
+      wx.login({
+        success: function (result) {
+          wx.getUserInfo({
+            withCredentials: true,
+            success: function (res) {
+              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+              let appId = 'wx3bb038494cd68262';
+              if (result.code) {
+                logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+              } else {
+                console.log('获取用户登录态失败！' + result.errMsg)
+              }
+            }
+          });
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      });
+    }
+  
+  },
+
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+
+    console.log('/pages/product/detail/detail?storeId=' + this.data.storeId + 'productId=' + this.data.productId)
+
+    return {
+      title: wx.getStorageSync('storeName'),
+      path: '/pages/product/detail/detail?storeId=' + this.data.storeId + '&productId=' + this.data.productId,
+      success: function (res) {
+        // 转发成功
+        console.log(res);
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log(res);
+      }
+    }
   },
 
   onScrollTolower: function () {
@@ -79,3 +125,25 @@ function getProductCommentList() {
     complete: () => wx.hideToast()
   })
 } 
+
+function logIn(code, appid, rawData) {
+  let self = this;
+  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
+    next: res => {
+      // 1505274961239211095369
+      let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
+      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
+      wx.setStorage({
+        key: constant.TOKEN,
+        data: res.juniuToken,
+        success: function (res) {
+          getProductDetail.call(this);
+          getProductCommentList.call(this)
+        }
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}

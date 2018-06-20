@@ -14,36 +14,85 @@ Page({
     scene: 0,
     storeInfo: {},
     fromNeighbourhood: false,
-    ticketList: []
+    ticketList: [],
+    optionData: '',
   },
   onLoad: function (option) {
     this.setData({
       storeId: option.storeid,
-      scene: app.globalData.scene
+      scene: app.globalData.scene,
+      optionData: option
     });
     if (this.data.scene === 1026) {
       this.setData({
         fromNeighbourhood: true
       })
     }
-    wx.setStorageSync(constant.STORE_INFO, option.storeid);
-    getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));
-    getTicketInfo.call(this, this.data.storeId);
+
+    let token = wx.getStorageSync(constant.TOKEN);
+    if (token) {
+      wx.setStorageSync(constant.STORE_INFO, option.storeid);
+      getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID) ? wx.getStorageSync(constant.MERCHANTID) : option.merchantId);
+      getTicketInfo.call(this, this.data.storeId);
+    } else {
+      wx.login({
+        success: function (result) {
+          wx.getUserInfo({
+            withCredentials: true,
+            success: function (res) {
+              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+              let appId = 'wx3bb038494cd68262';
+              if (result.code) {
+                logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+              } else {
+                console.log('获取用户登录态失败！' + result.errMsg)
+              }
+            }
+          });
+        },
+        fail: function (res) { },
+        complete: function (res) { },
+      });
+    }
+
+    // wx.setStorageSync(constant.STORE_INFO, option.storeid);
+    // getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID) ? wx.getStorageSync(constant.MERCHANTID) : option.merchantId);
+    // getTicketInfo.call(this, this.data.storeId);
   },
 
-  onShow: function(option) {
-    this.setData({
-      storeId: option.storeid,
-      scene: app.globalData.scene
-    });
-    if (this.data.scene === 1026) {
-      this.setData({
-        fromNeighbourhood: true
-      })
+  // onShow: function() {
+  //   console.log(optionData)
+  //   this.setData({
+  //     storeId: option.storeid,
+  //     scene: app.globalData.scene
+  //   });
+  //   if (this.data.scene === 1026) {
+  //     this.setData({
+  //       fromNeighbourhood: true
+  //     })
+  //   }
+  //   wx.setStorageSync(constant.STORE_INFO, option.storeid);
+  //   getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));
+  //   getTicketInfo.call(this, this.data.storeId);
+  // },
+
+  onShareAppMessage: function(res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
     }
-    wx.setStorageSync(constant.STORE_INFO, option.storeid);
-    getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));
-    getTicketInfo.call(this, this.data.storeId);
+    return {
+      title: wx.getStorageSync('storeName'),
+      path: '/pages/home/home?storeid=' + this.data.storeId + '&merchantId=' + wx.getStorageSync(constant.MERCHANTID),
+      success: function (res) {
+        // 转发成功
+        console.log(res);
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log(res);
+      }
+    }
   },
 
   // 跳转到店铺页面
@@ -228,3 +277,25 @@ function getStoreIndexInfo(storeId, merchantId) {
   })
 }
 
+function logIn(code, appid, rawData) {
+  let self = this;
+  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
+    next: res => {
+      // 1505274961239211095369
+      let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
+      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
+      wx.setStorage({
+        key: constant.TOKEN,
+        data: res.juniuToken,
+        success: function (res) {
+          wx.setStorageSync(constant.STORE_INFO, option.storeid);
+          getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID) ? wx.getStorageSync(constant.MERCHANTID) : option.merchantId);
+          getTicketInfo.call(this, this.data.storeId);
+        }
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}

@@ -5,12 +5,12 @@
         <swiper-item bindtap='showMemberCardNumber' data-barcode="{{item.barCode}}" data-phone='{{item.phone}}'>
           <!-- 如果有多张会员卡， 加类名 cards-bg-box -->
           <view class="card-bg-box" style="{{item.background?'':'background: pink;'}}">
-            <image src="{{item.background}}" width="690" height="360"></image>
+            <image src="https://oss.juniuo.com/juniuo-pic/picture/juniuo/{{item.background}}/resize_69_36/mode_fill" width="690" height="360"></image>
           </view>
           <view class="card-msg-box">
             <text class="card-name">{{item.cardName}}</text>
             <text class="tel fr">{{item.phone}}</text>
-            <text class="member-name">{{item.customerName}}</text>
+            <text class="member-name">{{item.customerName ? item.customerName : '无'}}</text>
             <text class="card-member">卡号：{{item.cardNo}}</text>
             <icon class="jn-icon erweima" />
           </view>
