@@ -1,5 +1,4 @@
 .banner-box {
-  height: 360rpx;
   position: relative;
   color: #fff;
 }
@@ -9,7 +8,6 @@
   height: 360rpx;
   background: #ccc;
   z-index: -1;
-  
 }
 
 .img-box image {
@@ -17,22 +15,39 @@
   height: 360rpx;
 }
 
-.store-btn, .personal-btn {
-  width: 80rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  font-size: 40rpx;
-  position: absolute;
-  border-radius: 50%;
-  top: 30rpx;
-  margin-left: 30rpx;
+.store-btn-box {
+  height: 88rpx;
+  line-height: 88rpx;
+  background-color: #fff;
+  color: #111;
+  font-size: 32rpx;
+  padding: 0 30rpx;
 }
 
-.personal-btn {
-  right: 30rpx;
+.address-and-tel {
+  height: 88rpx;
+  line-height: 88rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  color: #999;
+  padding: 0 30rpx;
+  border-top: 2rpx solid #f3f3f3;
+}
+.icon-address {
+  font-size: 30rpx;
+  padding-right: 6rpx;
+}
+.icon-tel {
+  font-size: 30rpx;
+}
+.tel-box {
+  height: 36rpx;
+  border-left: 2rpx solid #e1e1e1;
+  padding-left: 30rpx;
+  margin-top: 26rpx;
+  line-height: 36rpx;
+  text-align: right;
 }
 
 .new-order-tip-box {
@@ -79,43 +94,60 @@
 
 .sub-title-right {
   color: #999;
+  font-size: 24rpx;
 }
 
 .icon-commodity {
   color: #569cff;
-  font-size: 36rpx;
+  font-size: 32rpx;
 }
 
 .sub-title-text {
   font-family: "PingFangSC-Medium";
-  font-size: 34rpx;
+  font-size: 32rpx;
   color: #222;
   padding-left: 10rpx;
 }
 
-.product-box {
-  height: 190rpx;
-  box-sizing: border-box;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 30rpx 0;
+ .product-list-box {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 20rpx; 
+} 
+
+.product-box {
+  height: 320rpx;
+  width: 330rpx;
+  min-width: 330rpx;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  box-shadow: 0 2rpx 6rpx 0 #D8D8D8;
+  border-radius: 12rpx;
+  margin-top: 20rpx;
 }
 
-.product-box:last-child {
-  border-bottom: none;
+.product-big:first-child {
+  width: 690rpx;
+  min-width: 690rpx;
+  height: 490rpx; 
+  border-radius: 8rpx;
 }
 
-.product-img-box {
-  width: 170rpx;
-  min-width: 170rpx;
-  height: 130rpx;
-  background-color: #ccc;
+.product-img {
+  width: 100%;
+  height: 180rpx;
+  border-radius: 12rpx 12rpx 0 0;
 }
 
-.product-right {
-  padding-left: 20rpx;
-  color: #222;
-  line-height: 70rpx;
+.product-big:first-child .product-img {
+  width: 100%;
+  height: 360rpx;
+  border-radius: 8rpx 8rpx 0 0;
+}
+
+.product-bottom {
+  padding: 0 20rpx;
 }
 
 .product-name {
@@ -131,13 +163,6 @@
   font-size: 32rpx;
 }
 
-.original-price {
-  color: #999;
-  text-decoration: line-through;
-  font-size: 26rpx;
-  padding-left: 18rpx;
-}
-
 .cfaftsman-list {
   background-color: #fff;
   margin-top: 20rpx;
@@ -149,7 +174,7 @@
 
 .icon-goldmedal {
   color: #ffaf48;
-  font-size: 36rpx;
+  font-size: 32rpx;
 }
 
 .cfaftsman-box {

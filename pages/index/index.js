@@ -59,6 +59,8 @@ Page({
       complete: function (res) { },
     });
   },
+
+  // 改变地址所在区域
   bindRegionChange: function (e) {
     let self = this;
     self.setData({
@@ -83,18 +85,21 @@ Page({
       region: e.detail.value
     });
   },
-  /**搜索具体地址 */
+
+  /**点击搜索 搜索具体地址 */
   searchAddr: function (e) {
     this.setData({
       address: e.detail.value
     });
     getStoreListInfo.call(this);
   },
+
   routerToStoreIndex: function (e) {
     wx.redirectTo({
       url: '/pages/home/home?storeid=' + e.currentTarget.dataset.storeid
     });
   }
+  
 })
 
 /**城市转id */
@@ -136,9 +141,9 @@ function getStoreListInfo() {
   let shopQuery = {
     pageNo: self.data.pageNo,
     pageSize: self.data.pageSize,
-    // merchantId: '1500022449722218063731',
+    merchantId: '1500022449722218063731',
   
-    merchantId: wx.getStorageSync(constant.MERCHANTID),
+    // merchantId: wx.getStorageSync(constant.MERCHANTID),
     address: self.data.address,
     provinceId: self.data.provinceId,
     cityId: self.data.cityId,

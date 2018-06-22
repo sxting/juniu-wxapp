@@ -16,10 +16,12 @@ Page({
     fromNeighbourhood: false,
     ticketList: [],
     optionData: '',
+    juniuImg: '',
   },
   onLoad: function (option) {
+// merchantId:1505100477335167136848
     this.setData({
-      storeId: option.storeid,
+      storeId: '1525764108044281329298',
       scene: app.globalData.scene,
       optionData: option
     });
@@ -76,6 +78,7 @@ Page({
   //   getTicketInfo.call(this, this.data.storeId);
   // },
 
+// 转发
   onShareAppMessage: function(res) {
     if (res.from === 'button') {
       // 来自页面内转发按钮
@@ -95,24 +98,10 @@ Page({
     }
   },
 
-  // 跳转到店铺页面
-  goShopPage: function () {
+  //跳转到门店选择页面
+  goStoreIndex() {
     wx.navigateTo({
-      url: '/pages/shop/shop?storeId=' + this.data.storeId
-    })
-  },
-
-  // 跳转到个人中心
-  goPersonalPage: function () {
-    wx.navigateTo({
-      url: '/pages/personal/index/index',
-    })
-  },
-
-  // 跳转到我的预约
-  goMyAppointment: function () {
-    wx.navigateTo({
-      url: '/pages/personal/appointment/appointment',
+      url: '/pages/index/index',
     })
   },
 

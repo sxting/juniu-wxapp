@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 365926 */
-  src: url('//at.alicdn.com/t/font_365926_s2x49n0btzp30udi.eot');
-  src: url('//at.alicdn.com/t/font_365926_s2x49n0btzp30udi.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_365926_s2x49n0btzp30udi.woff') format('woff'),
-  url('//at.alicdn.com/t/font_365926_s2x49n0btzp30udi.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_365926_s2x49n0btzp30udi.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_365926_fwj7big7yf6.eot');
+  src: url('//at.alicdn.com/t/font_365926_fwj7big7yf6.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_365926_fwj7big7yf6.woff') format('woff'),
+  url('//at.alicdn.com/t/font_365926_fwj7big7yf6.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_365926_fwj7big7yf6.svg#iconfont') format('svg');
 }
 .jn-icon {
   display: inline-block;
@@ -138,4 +138,7 @@
 
 .ticket::before {
   content: '\e621'
+}
+.icon-tel::before {
+  content: '\e655'
 }

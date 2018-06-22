@@ -6,12 +6,15 @@
         <image binderror="imgError" src="{{item.picUrl}}"></image>
       </swiper-item>
     </swiper>
-    <view class="store-btn jn-icon icon-Shop" bindtap="goShopPage"></view>
-    <view class="personal-btn jn-icon icon-man" bindtap="goPersonalPage"></view>
-    <view class="new-order-tip-box" bindtap="goMyAppointment">
-      <view class="jn-icon icon-remind"></view>
-      <text>点击查看我的预约</text>
-      <view class="jn-icon icon-rightblue more-right"></view>
+    <view class="store-btn-box" bindtap="goStoreIndex">
+      桔牛测试门店育文街分店
+      <view class="jn-icon icon-rightblue fr"></view>
+    </view>
+    <view class="address-and-tel">
+      <icon class="jn-icon icon-address"></icon>学清路静淑里6号楼底商
+      <view class="fr tel-box">
+        <view class="jn-icon icon-tel"></view>
+      </view>
     </view>
   </view>
 
@@ -28,14 +31,15 @@
       </view>
     </view>
     <!--循环的项目-->
-    <view class="product-box" wx:if="{{storeInfo.productList}}" data-productid="{{item.productId}}" bindtap="goProductDetail" wx:for="{{storeInfo.productList}}">
-      <view class="product-img-box">
-        <image src="{{item.picUrl}}" class="product-img-box"></image>
-      </view>
-      <view class="product-right">
-        <text class="product-name">{{item.productName}}</text>
-        <text class="current-price">{{item.currentPrice / 100}}元</text>
-        <text class="original-price">{{item.originalPrice / 100}}元</text>
+    <view class="product-list-box">
+      <view class="product-box {{storeInfo.productList.length === 1 || storeInfo.productList.length === 3 ? 'product-big' : '' }}" wx:if="{{storeInfo.productList}}" 
+      data-productid="{{item.productId}}" bindtap="goProductDetail" wx:for="{{storeInfo.productList}}">
+        <image src="{{item.picUrl ? item.picUrl : juniuImg}}" class="product-img"></image>
+        <view class="product-bottom">
+          <text class="product-name">{{item.productName}}服务项目</text>
+          <text class="product-item-tab">服务项目</text>
+          <text class="current-price fr">￥{{item.currentPrice / 100}}</text>
+        </view>
       </view>
     </view>
   </view>
@@ -76,9 +80,9 @@
       <!--循环的项目-->
       <view class="div" wx:for="{{ticketList}}">
         <view class="yuan1"></view>
-        <view class='ticket-image' bindtap='goTicketDetail' data-marketingid="{{item.marketingId}}">
+        <!-- <view class='ticket-image' bindtap='goTicketDetail' data-marketingid="{{item.marketingId}}">
           <image src='{{item.picUrl}}' class="product-img-box"></image>
-        </view>
+        </view> -->
         <view class='ticket-content' bindtap='goTicketDetail' data-marketingid="{{item.marketingId}}">
           <view class='ticket-title'>
             {{item.marketingName}}</view>
@@ -125,45 +129,5 @@
         <view class="yuan2"></view>
       </view>
     </view>
-  </view>
-  <!--会员权益-->
-  <view class="member-rights" wx:if="{{storeInfo.cardConfigList}}">
-    <view class="sub-title">
-      <view class="sub-title-left">
-        <view class="jn-icon icon-VIPcard"></view>
-        <view class="sub-title-text">会员权益</view>
-      </view>
-    </view>
-    <view class="card-list" wx:for="{{storeInfo.cardConfigList}}">
-      <!--循环会员卡-->
-      <view class="card" wx:if="{{item.type === 'STORED'}}">
-        <view class="card-label chu-card-bg">储</view>
-        <view class="card-name">{{item.cardConfigName}}</view>
-        <view class="card-rule">充{{item.rules[0].price / 100}}元得{{(item.rules[0].balance - item.rules[0].price)/100}}元</view>
-      </view>
-      <view class="card" wx:elif="{{item.type === 'METERING'}}">
-        <view class="card-label num-card-bg">次</view>
-        <view class="card-name">{{item.cardConfigName}}</view>
-        <view class="card-rule">充{{item.rules[0].price / 100}}元得{{item.rules[0].balance}}次</view>
-      </view>
-      <view class="card" wx:elif="{{item.type === 'TIMES'}}">
-        <view class="card-label date-card-bg">期</view>
-        <view class="card-name">{{item.cardConfigName}}</view>
-        <view class="card-rule">充{{item.rules[0].price / 100}}元用{{item.rules[0].validate}}天</view>
-      </view>
-      <view class="card" wx:else>
-        <view class="card-label zhe-card-bg">折</view>
-        <view class="card-name">{{item.cardConfigName}}</view>
-        <view class="card-rule">充{{item.rules[0].price / 100}}元打{{item.rules[0].rebate}}折</view>
-      </view>
-    </view>
-  </view>
-
-  <!--底部按钮-->
-  <view class="bottom">
-    <view class="comment-btn" bindtap="goCommentPage">顾客评价({{storeInfo.commentCount}})</view>
-    <!-- <view wx:if="{{!fromNeighbourhood}}" class="pay-btn" bindtap="goPayPage">买单</view> -->
-    <!--线上预约  -->
-    <view class="pay-btn" bindtap="goOrderPage">预约</view>
   </view>
 </view>
