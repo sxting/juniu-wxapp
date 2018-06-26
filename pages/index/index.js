@@ -59,6 +59,8 @@ Page({
       complete: function (res) { },
     });
   },
+
+  // 改变地址所在区域
   bindRegionChange: function (e) {
     let self = this;
     self.setData({
@@ -83,18 +85,21 @@ Page({
       region: e.detail.value
     });
   },
-  /**搜索具体地址 */
+
+  /**点击搜索 搜索具体地址 */
   searchAddr: function (e) {
     this.setData({
       address: e.detail.value
     });
     getStoreListInfo.call(this);
   },
+
   routerToStoreIndex: function (e) {
     wx.redirectTo({
       url: '/pages/home/home?storeid=' + e.currentTarget.dataset.storeid
     });
   }
+
 })
 
 /**城市转id */
@@ -136,9 +141,9 @@ function getStoreListInfo() {
   let shopQuery = {
     pageNo: self.data.pageNo,
     pageSize: self.data.pageSize,
-    merchantId: '1500022449722218063731',
-  
-    // merchantId: wx.getStorageSync(constant.MERCHANTID),
+    // merchantId: '1500022449722218063731',
+
+    merchantId: wx.getStorageSync(constant.MERCHANTID),
     address: self.data.address,
     provinceId: self.data.provinceId,
     cityId: self.data.cityId,
@@ -149,7 +154,7 @@ function getStoreListInfo() {
       this.setData({
         storeList: res.content
       })
-      // console.log(res)
+      console.log(res)
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -187,13 +192,12 @@ function tencentLongAndLatiToAddress(latitude, longitude) {
 
 function logIn(code, appid, rawData) {
   let self = this;
-  service.logIn({ code: code, appid: appid, rawData: rawData}).subscribe({
+  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
     next: res => {
       // 1505274961239211095369
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
-      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
-     
+      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg)
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,
