@@ -15,8 +15,8 @@
               <icon class="jn-icon icon-starempty"></icon>
               <icon class="jn-icon icon-starempty"></icon>
             </view>
-            <view class="starts-box" wx:for="{{detail.score}}">
-              <icon class="jn-icon icon-stars"></icon>
+            <view class="starts-box">
+              <icon class="jn-icon icon-stars" wx:for="{{detail.score}}"></icon>
             </view>
           </view>
         </view>
