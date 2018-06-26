@@ -24,12 +24,12 @@ memberCardService.cardList = (data) => {
   return http.get(apiUrl, data);
 }
 memberCardService.getStoreInfo = (data) => {
-  let apiUrl = constant.apiUrl + '/account/appstore/app/storeInfo.json';
+  let apiUrl = constant.apiUrl + '/member/appstore/storeInfo.json';
   return http.get(apiUrl, data);
 }
 // 获取绑定会员卡的验证码
 memberCardService.getVaildCode = (data) => {
-  let apiUrl = constant.apiUrlTwo + '/common/validCode/getValidCode.json';
+  let apiUrl = constant.apiUrl + '/common/validCode/getValidCode.json';
   return http.get(apiUrl, data);
 }
 module.exports = {

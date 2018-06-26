@@ -77,9 +77,9 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {
   
-  },
+  // },
   goTicketDetail: function (e) {
     wx.navigateTo({
       url: '/pages/ticket/detail/detail?marketingId=' + e.currentTarget.dataset.marketingid,

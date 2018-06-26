@@ -136,9 +136,9 @@ function getStoreListInfo() {
   let shopQuery = {
     pageNo: self.data.pageNo,
     pageSize: self.data.pageSize,
-    // merchantId: '1500022449722218063731',
+    merchantId: '1500022449722218063731',
   
-    merchantId: wx.getStorageSync(constant.MERCHANTID),
+    // merchantId: wx.getStorageSync(constant.MERCHANTID),
     address: self.data.address,
     provinceId: self.data.provinceId,
     cityId: self.data.cityId,
@@ -149,7 +149,7 @@ function getStoreListInfo() {
       this.setData({
         storeList: res.content
       })
-      console.log(res)
+      // console.log(res)
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -187,12 +187,13 @@ function tencentLongAndLatiToAddress(latitude, longitude) {
 
 function logIn(code, appid, rawData) {
   let self = this;
-  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
+  service.logIn({ code: code, appid: appid, rawData: rawData, time: new Date().getTime() }).subscribe({
     next: res => {
       // 1505274961239211095369
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
-      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg)
+      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
+     
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,

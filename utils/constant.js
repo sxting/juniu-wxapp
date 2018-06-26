@@ -2,10 +2,12 @@
  * Created by xiejinbin on 2017/2/22.
  */
 
-const constant = {
+var constant = {
+  version2: 2,
   // apiUrl: 'http://b-test.juniuo.com/wxapp',
   // apiUrl: 'https://tiyan.juniuo.com',
-  apiUrl: 'https://biz.juniuo.com/wxapp',
+  apiUrl: 'https://pay.juniuo.com/wxapp',
+  // apiUrl2: 'https://pay.juniuo.com/wxapp' ,
   apiUrlTwo: 'https://biz.juniuo.com/',
   // imgUrl: 'http://ts.diankayi.net/',
   // apiUrl: 'https://biz.juniuo.com/wxapp',
@@ -43,7 +45,8 @@ const constant = {
   CHEAP_CODE: 10170326,
   CONTACT: 18813074982,
   VERSION_NAME: 'version',
-  VERSION_VALUE: '1.09'
+  VERSION_VALUE: '1.09',
+  VER: 'ver',
 }
 module.exports = {
   constant: constant

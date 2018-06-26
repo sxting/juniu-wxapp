@@ -2,11 +2,9 @@ import { constant } from '../../../utils/constant';
 import { http } from '../../../utils/http';
 let personalService = {};
 
-let apiUrl = constant.apiUrl +'/reserve';
-
 // 查询我的预约列表
 personalService.reserveConfig = () => {
-  let url = apiUrl + '/app/myReservations.json';
+  let url = constant.apiUrl + '/reserve/app/myReservations.json';
   return http.get(url)
 }
 

@@ -18,7 +18,7 @@ commentService.making = (data) => {
 }
 
 commentService.getStaffList = (data) => {
-  let url = constant.apiUrl + '/account' + '/list.json';
+  let url = constant.apiUrl + '/member/staff/list.json';
   return http.get(url, data)
 }
 

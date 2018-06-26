@@ -61,3 +61,9 @@
     font-size: 32rpx;
     margin: 100rpx auto;
 }
+
+.version {
+  text-align: center;
+  margin: 80rpx;
+  color: #ccc;
+}

@@ -12,7 +12,7 @@
       <icon class="jn-icon icon-search"></icon>
     </view>
   </view>
-  </view>
+  </view>  
   <!--搜索地址列表-->
   <block wx:if="{{storeList.length > 0}}">
     <scroll-view scroll-y style="height: {{windowHeight}}px;">
@@ -26,7 +26,6 @@
 
   </block>
 
-
   <!--未找到门店-->
   <view class="space-box" wx:else>
     <view class="space-bg">
@@ -35,3 +34,4 @@
     <view class="space-text">未找到门店</view>
   </view>
 </view>
+

@@ -56,7 +56,7 @@
       <!--循环的手艺人-->
       <view class="cfaftsman" bindtap="goStaffDetail" data-staffid="{{item.staffId}}" wx:for="{{storeInfo.staffList}}">
         <image src="{{item.headPortrait}}"></image>
-        <view>{{item.staffName}}</view>
+        <view class="craftsman-name">{{item.staffName}}</view>
       </view>
     </view>
   </view>
