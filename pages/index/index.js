@@ -178,9 +178,9 @@ function getStoreListInfo() {
   let shopQuery = {
     pageNo: self.data.pageNo,
     pageSize: self.data.pageSize,
-    merchantId: '1500022449722218063731',
+    // merchantId: '1500022449722218063731',
 
-    // merchantId: wx.getStorageSync(constant.MERCHANTID),
+    merchantId: wx.getStorageSync(constant.MERCHANTID),
     address: self.data.address,
     provinceId: self.data.provinceId,
     cityId: self.data.cityId,

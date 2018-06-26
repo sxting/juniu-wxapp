@@ -33,7 +33,7 @@ memberCardService.getStoreInfo = (data) => {
 }
 // 获取绑定会员卡的验证码
 memberCardService.getVaildCode = (data) => {
-  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl  
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl3 : constant.apiUrlTwo  
   let apiUrl = api + '/common/validCode/getValidCode.json';
   return http.get(apiUrl, data);
 }
