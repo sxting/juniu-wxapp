@@ -3,12 +3,13 @@ import { http } from '../../../utils/http';
 let homeService = {};
 /**GET /appstore/app/storeIndex.json 门店首页信息 */
 homeService.storeIndex = (data) => {
-  let apiUrl = constant.apiUrl + '/member/appstore/storeIndex.json';
+  let apiUrl = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 + '/member/appstore/storeIndex.json' : constant.apiUrl + '/account/appstore/app/storeIndex.json';
   return http.get(apiUrl, data);
 }
 
 homeService.ticketList = (data) => {
-  let apiUrl = constant.apiUrl + '/member/sp/coupon/couponlist.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let apiUrl = api + '/member/sp/coupon/couponlist.json';
   return http.get(apiUrl, data);
 }
 

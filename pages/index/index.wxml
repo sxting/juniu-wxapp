@@ -33,5 +33,7 @@
     </view>
     <view class="space-text">未找到门店</view>
   </view>
+
+  <!-- <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>   -->
 </view>
 

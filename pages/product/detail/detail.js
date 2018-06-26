@@ -134,6 +134,13 @@ function logIn(code, appid, rawData) {
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
+
+      if (res.ver == '2') {
+        wx.setStorageSync(constant.VER, 2);
+      } else {
+        wx.setStorageSync(constant.VER, 1);
+      }
+
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,
