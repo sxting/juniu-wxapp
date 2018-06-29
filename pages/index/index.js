@@ -233,7 +233,7 @@ function logIn(code, appid, rawData) {
     next: res => {
       // 1505274961239211095369
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
+      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1500022449722218063731');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
 
       if(res.ver == '2') {

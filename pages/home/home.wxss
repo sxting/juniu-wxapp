@@ -370,3 +370,7 @@
 .craftsman-name {
   font-size: 24rpx;
 }
+
+.jn-color {
+  color: #ff6600;
+}
