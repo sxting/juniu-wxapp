@@ -30,7 +30,7 @@
                   <view class="weui-media-box__desc">
                     <view class="weui-media-box__info">
                       <view class="weui-media-box__info__meta current-price">{{item.currentPrice/100}}元</view>
-                      <view class="weui-media-box__info__meta original-price">{{item.originalPrice/100}}元</view>
+                      <view class="weui-media-box__info__meta original-price" wx:if="{{item.originalPrice}}">{{item.originalPrice/100}}元</view>
                     </view>
                   </view>
                 </view>

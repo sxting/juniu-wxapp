@@ -98,8 +98,9 @@ function getAllTicket(storeId) {
   }).subscribe({
     next: res => {
       res.forEach((item) => {
-        item.picUrl =
-        constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_58/mode_fill`;
+        if (item.picUrl) {
+          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_58/mode_fill`;
+        }
       })
       self.setData({
         ticketList: res

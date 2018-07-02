@@ -8,7 +8,8 @@
     <view class="div" wx:for="{{ticketList}}">
       <view class="yuan1"></view>
       <view class='ticket-image' bindtap='goTicketDetail' data-marketingid="{{item.marketingId}}">
-        <image src='{{item.picUrl}}' class="product-img-box"></image>
+        <image wx:if="{{item.picUrl}}" src='{{item.picUrl}}' class="product-img-box"></image>
+        <image wx:else src="/asset/images/coupon-img.png" class="product-img-box"></image>
       </view>
       <view class='ticket-content' bindtap='goTicketDetail' data-marketingid="{{item.marketingId}}">
         <view class='ticket-title'>

@@ -29,14 +29,16 @@
                 </view>
               </view>
               <view class='ticket-btn'>
-                <view style="margin-top: 24rpx;margin-bottom:24rpx;">
+                <view hidden="{{item.couponDefAmount == null}}" style="margin-top: 24rpx;margin-bottom:24rpx;">
                   <text>¥{{item.couponDefAmount / 100}}元</text>
                 </view>
                 <block wx:if="{{ticket.useLimitMoney > 0}}">
-                  <view class='tip'>满{{ticket.useLimitMoney / 100}}元使用</view>
+                  <view  class='tip tip2' wx:if="{{item.couponDefAmount == null}}">满{{ticket.useLimitMoney / 100}}元使用</view>
+                  <view class='tip' wx:else>满{{ticket.useLimitMoney / 100}}元使用</view>
                 </block>
                 <block wx:else>
-                  <view class='tip'>无限制</view>
+                  <view class='tip tip2' wx:if="{{item.couponDefAmount == null}}">无限制</view>                
+                  <view class='tip' wx:else>无限制</view>
                 </block>
               </view>
               <view class='dot-line'></view>

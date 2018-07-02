@@ -31,7 +31,7 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
-  onLoad: function () {
+  onShow: function () {
     let self = this;
     wx.getSystemInfo({
       success: function (res) {

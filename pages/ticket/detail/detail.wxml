@@ -5,7 +5,8 @@
     <view class="div">
       <view class="yuan1"></view>
       <view class='ticket-image'>
-        <image src='{{ticket.picUrl}}' class="product-img-box"></image>
+        <image wx:if="{{ticket.picUrl}}" src='{{ticket.picUrl}}' class="product-img-box"></image>
+        <image wx:else src="/asset/images/coupon-img.png" class="product-img-box"></image>
       </view>
       <view class='ticket-content'>
         <view class='ticket-title'>
@@ -29,7 +30,7 @@
     </view>
   </view>
   <view class="weui-form-preview__bd">
-    <view class="weui-form-preview__item">
+    <view class="weui-form-preview__item" wx:if="{{ticket.validDateStart}}">
       <view class="weui-form-preview__label">使用有效期</view>
       <view class="weui-form-preview__value">{{ticket.validDateStart}}至{{ticket.validDateEnd}}</view>
     </view>
