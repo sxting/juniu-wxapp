@@ -30,31 +30,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "桔牛",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#333",
-    "selectedColor": "#ff6600",
-    "backgroundColor": "#fff",
-    "list": [
-      {
-        "pagePath": "pages/home/home",
-        "text": "首页",
-        "iconPath": "",
-        "selectedIconPath": ""
-      },
-      {
-        "pagePath": "pages/order/order",
-        "text": "预约",
-        "iconPath": "",
-        "selectedIconPath": ""
-      },
-      {
-        "pagePath": "pages/personal/index/index",
-        "text": "个人",
-        "iconPath": "",
-        "selectedIconPath": ""
-      }
-    ]
   }
   
 }

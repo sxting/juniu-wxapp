@@ -21,7 +21,7 @@ Page({
   onLoad: function (option) {
 // merchantId:1505100477335167136848
     this.setData({
-      storeId: '1525764108044281329298',
+      storeId: wx.getStorageSync(constant.STORE_INFO),
       scene: app.globalData.scene,
       optionData: option
     });
@@ -33,7 +33,7 @@ Page({
 
     let token = wx.getStorageSync(constant.TOKEN);
     if (token) {
-      wx.setStorageSync(constant.STORE_INFO, option.storeid);
+      wx.setStorageSync(constant.STORE_INFO, this.data.storeId);
       getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID) ? wx.getStorageSync(constant.MERCHANTID) : option.merchantId);
       getTicketInfo.call(this, this.data.storeId);
     } else {
@@ -69,22 +69,6 @@ Page({
       getTicketInfo.call(self, self.data.storeId);
     }, 100)
   },
-
-  // onShow: function() {
-  //   console.log(optionData)
-  //   this.setData({
-  //     storeId: option.storeid,
-  //     scene: app.globalData.scene
-  //   });
-  //   if (this.data.scene === 1026) {
-  //     this.setData({
-  //       fromNeighbourhood: true
-  //     })
-  //   }
-  //   wx.setStorageSync(constant.STORE_INFO, option.storeid);
-  //   getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));
-  //   getTicketInfo.call(this, this.data.storeId);
-  // },
 
 // 转发
   onShareAppMessage: function(res) {
@@ -212,6 +196,22 @@ Page({
     wx.navigateTo({
       url: '/pages/personal/member-card/band/band?marketingid=' + e.currentTarget.dataset.marketingid,
     })
+  },
+
+  // 优惠券展开
+  onTicketBottomClick(e) {
+    let marketingId = e.currentTarget.dataset.marketingid;
+    console.log(marketingId);
+    this.data.ticketList.forEach((item) => {
+      if (marketingId === item.marketingId) {
+        item.ticketSwitch = 'OPEN';
+      } else {
+        item.ticketSwitch = 'CLOSE';        
+      }
+    });
+    this.setData({
+      ticketList: this.data.ticketList
+    })
   }
 
 })
@@ -223,10 +223,36 @@ function getTicketInfo(storeId) {
     storeId: storeId
   }).subscribe({
     next: res => {
-      res.forEach((item) => {
-        if (item.picUrl) {
-          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_58/mode_fill`;
+      res = [
+        {
+          marketingName: '优惠券名称',
+          couponDefAmount: '20000',
+          couponDefDiscount: '7.5',
+          couponDefType: 'MONEY',
+          isGet: 'get',
+          isBind: 'bind',
+          marketingId: '001',
+          useLimitMoney: '100', //100 -1
+          couponDefProductName: '礼品券赠送商品',
+          count: '20',
+          validDateCount: '30'
+        },
+        {
+          marketingName: '优惠券名称',
+          couponDefAmount: '20000',
+          couponDefDiscount: '7.5',
+          couponDefType: 'GIFT',
+          isGet: 'get',
+          isBind: 'bind',
+          marketingId: '0013',
+          useLimitMoney: '100', //100 -1
+          couponDefProductName: '礼品券赠送商品',
+          count: '20',
+          validDateCount: '30',
         }
+      ]
+      res.forEach((item) => {
+        item.ticketSwitch = 'CLOSE';
       });
       self.setData({
         ticketList: res
@@ -288,7 +314,7 @@ function logIn(code, appid, rawData) {
         key: constant.TOKEN,
         data: res.juniuToken,
         success: function (res) {
-          wx.setStorageSync(constant.STORE_INFO, option.storeid);
+          wx.setStorageSync(constant.STORE_INFO, this.data.storeId);
           getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID) ? wx.getStorageSync(constant.MERCHANTID) : option.merchantId);
           getTicketInfo.call(this, this.data.storeId);
         }
