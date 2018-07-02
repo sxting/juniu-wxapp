@@ -19,7 +19,7 @@
     font-family: "PingFangSC-Medium";
     font-size: 32rpx;
 }
-.price-box>text:last-child {
+.original-price {
     color: #999;
     padding-left: 18rpx;
     text-decoration: line-through;

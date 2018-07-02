@@ -185,8 +185,8 @@ Page({
   },
   staffValueChange: function (event) {
     this.setData({
-      craftsmanId: this.data.staffList[event.detail.value].staffId,
-      selectStaffName: this.data.staffList[event.detail.value].staffName
+      selectStaffName: this.data.staffList[event.detail.value].staffName,
+      staffId: this.data.staffList[event.detail.value].staffId
     });
   }
 })
