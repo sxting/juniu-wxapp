@@ -31,7 +31,7 @@
         <icon class="jn-icon icon-rightblue"></icon>
   </view>
 
-  <view class="version">v-1.63</view> 
+  <view class="version">v-1.64</view> 
   <!--返回首页btn-->
   <!-- <view class="go-back-btn" bindtap="goHome"> 返回店铺首页</view> -->
 </view>
