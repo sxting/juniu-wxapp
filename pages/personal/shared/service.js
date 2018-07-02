@@ -2,21 +2,22 @@ import { constant } from '../../../utils/constant';
 import { http } from '../../../utils/http';
 let personalService = {};
 
-let apiUrl = constant.apiUrl +'/reserve';
-
 // 查询我的预约列表
 personalService.reserveConfig = () => {
-  let url = apiUrl + '/app/myReservations.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/reserve/app/myReservations.json';
   return http.get(url)
 }
 
 personalService.myComment = (data) => {
-  let url = constant.apiUrl + '/member/comment/app/userComment.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/member/comment/app/userComment.json';
   return http.get(url, data);
 }
 
 personalService.myTicket = (data) => {
-  let url = constant.apiUrl + '/member/sp/coupon/userCouponList.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/member/sp/coupon/userCouponList.json';
   return http.get(url, data);
 }
 

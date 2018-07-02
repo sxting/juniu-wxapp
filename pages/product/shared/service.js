@@ -7,37 +7,43 @@ let apiUrl2 = constant.apiUrl + '/member'
 
 // 获取预约手艺人商品
 productService.getStaffProduct = (data) => {
-  let url = apiUrl + '/product/staff.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/product/product/staff.json';
   return http.get(url, data)
 }
 
 // 获取预约商品列表
 productService.getReserveProduct = (data) => {
-  let url = apiUrl + '/app/findProductByIds.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/product/app/findProductByIds.json';
   return http.get(url, data)
 }
 
 // 获取商品列表
 productService.getProductList = (data) => {
-  let url = apiUrl + '/list.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/product/list.json';
   return http.get(url, data)
 }
 
 // 获取商品详情
 productService.getProductDetail = (data) => {
-  let url = apiUrl + '/app/productinfo.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/product/app/productinfo.json';
   return http.get(url, data)
 }
 
 // 获取商品评价列表
 productService.getProductCommentList = (data) => {
-  let url = apiUrl2 + '/comment/app/queryAppCommenProductnList.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/member/comment/app/queryAppCommenProductnList.json';
   return http.get(url, data)
 } 
 
 // GET /app/categoryList.json
 productService.getProdTypeList = (data) => {
-  let url = apiUrl + '/app/categoryList.json';
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/product/app/categoryList.json';
   return http.get(url, data)
 }
 module.exports = {

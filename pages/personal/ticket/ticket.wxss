@@ -92,7 +92,7 @@ color:#FF6600;
 
 .ticket-title {
   font-family: PingFangSC-Regular;
-  font-size: 15px;
+  font-size: 28rpx;
   color: #222;
   margin-top: 24rpx;
   margin-bottom: 24rpx;
@@ -112,6 +112,10 @@ color:#FF6600;
   color: #999;
   letter-spacing: 0;
   line-height: 13px;
+}
+.tip2 {
+  line-height:160rpx;
+  padding-right:20rpx;
 }
 
 .product-img-box {

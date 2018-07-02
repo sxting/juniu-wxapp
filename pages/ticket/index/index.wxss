@@ -76,7 +76,7 @@ white-space: nowrap;
 
 .ticket-title {
   font-family: PingFangSC-Regular;
-  font-size: 15px;
+  font-size: 28rpx;
   color: #222;
   margin-top: 24rpx;
   margin-bottom: 24rpx;

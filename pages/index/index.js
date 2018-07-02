@@ -7,6 +7,7 @@ import { service } from '../../service';
 var app = getApp()
 Page({
   data: {
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     motto: 'Hello World',
     userInfo: {},
     provinceName: '北京市',
@@ -30,7 +31,7 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
-  onLoad: function () {
+  onShow: function () {
     let self = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -40,8 +41,31 @@ Page({
       }
     })
     let token = wx.getStorageSync(constant.TOKEN);
+
     wx.login({
       success: function (result) {
+        // // 查看是否授权
+        // wx.getSetting({
+        //   success: function (res) {
+        //     if (res.authSetting['scope.userInfo']) {
+        //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+        //       wx.getUserInfo({
+        //         withCredentials: true,
+        //         success: function (res) {
+        //           let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+        //           let appId = 'wx3bb038494cd68262';
+        //           if (result.code) {
+        //             logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+        //           } else {
+        //             console.log('获取用户登录态失败！' + result.errMsg)
+        //           }
+        //         }
+        //       })
+        //     }
+        //   }
+        // })
+
+
         wx.getUserInfo({
           withCredentials: true,
           success: function (res) {
@@ -52,12 +76,25 @@ Page({
             } else {
               console.log('获取用户登录态失败！' + result.errMsg)
             }
-          }
+          },
+          fail: function (res) { 
+            console.log(res)
+          },
+          complete: function (res) { 
+            console.log(res)            
+          },
         });
+
       },
       fail: function (res) { },
       complete: function (res) { },
     });
+  },
+
+
+  bindGetUserInfo: function (e) {
+    console.log(222);
+    console.log(e.detail.userInfo)
   },
 
   // 改变地址所在区域
@@ -99,7 +136,6 @@ Page({
       url: '/pages/home/home?storeid=' + e.currentTarget.dataset.storeid
     });
   }
-  
 })
 
 /**城市转id */
@@ -141,9 +177,8 @@ function getStoreListInfo() {
   let shopQuery = {
     pageNo: self.data.pageNo,
     pageSize: self.data.pageSize,
-    merchantId: '1500022449722218063731',
-  
-    // merchantId: wx.getStorageSync(constant.MERCHANTID),
+    // merchantId: '1500022449722218063731',
+    merchantId: wx.getStorageSync(constant.MERCHANTID),
     address: self.data.address,
     provinceId: self.data.provinceId,
     cityId: self.data.cityId,
@@ -196,8 +231,15 @@ function logIn(code, appid, rawData) {
     next: res => {
       // 1505274961239211095369
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
-      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg)
+      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1500022449722218063731');
+      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
+
+      if(res.ver == '2') {
+        wx.setStorageSync(constant.VER, 2 );
+      } else {
+        wx.setStorageSync(constant.VER, 1);
+      }
+
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,

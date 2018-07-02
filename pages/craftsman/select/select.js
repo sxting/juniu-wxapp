@@ -33,6 +33,9 @@ Page({
       craftsmanService.getReserveList(data).subscribe({
         next: res => {
           console.log(res);
+          res.forEach((item) => {
+            item.avatar = constant.OSS_IMAGE_URL + `${item.avatar}/resize_50_50/mode_fill`;
+          });
           this.setData({
             staffNumber: res.length,
             reserveList: res

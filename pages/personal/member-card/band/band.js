@@ -166,7 +166,9 @@ function bindMemberCard(storeId, phone, validCode) {
             url: '/pages/personal/member-card/index/index',
           })
         }
-      } 
+      } else {
+        errDialog('未找到手机号相关的会员卡，请到店里办理')
+      }
       // if (res.showClickBind === 'T') {
       //   errDialog('未找到手机号相关的会员卡，请到店里办理')
       // } else if (self.data.marketingid) {
