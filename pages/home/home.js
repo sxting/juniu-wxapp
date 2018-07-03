@@ -269,15 +269,21 @@ function getStoreIndexInfo(storeId, merchantId) {
           productImages: res.pictureVOS
         })
       }
-      res.productList.forEach((item) => {
-        item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
-      })
-      res.staffList.forEach((item) => {
-        item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
-      })
-      res.staffList.forEach((item) => {
-        item.headPortrait = item.headPortrait.split('.png')[0] + '_58x58.png';
-      });
+
+      if(res.productList && res.productList.length && res.productList.length > 0) {
+        res.productList.forEach((item) => {
+          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+        })
+      }  
+
+      if (res.staffList && res.staffList.length && res.staffList.length > 0) {
+        res.staffList.forEach((item) => {
+          item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
+        })
+        res.staffList.forEach((item) => {
+          item.headPortrait = item.headPortrait.split('.png')[0] + '_58x58.png';
+        });
+      }
       self.setData({
         storeInfo: res,
       });
