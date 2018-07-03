@@ -44,28 +44,6 @@ Page({
 
     wx.login({
       success: function (result) {
-        // // 查看是否授权
-        // wx.getSetting({
-        //   success: function (res) {
-        //     if (res.authSetting['scope.userInfo']) {
-        //       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-        //       wx.getUserInfo({
-        //         withCredentials: true,
-        //         success: function (res) {
-        //           let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-        //           let appId = 'wx3bb038494cd68262';
-        //           if (result.code) {
-        //             logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-        //           } else {
-        //             console.log('获取用户登录态失败！' + result.errMsg)
-        //           }
-        //         }
-        //       })
-        //     }
-        //   }
-        // })
-
-
         wx.getUserInfo({
           withCredentials: true,
           success: function (res) {
@@ -89,12 +67,6 @@ Page({
       fail: function (res) { },
       complete: function (res) { },
     });
-  },
-
-
-  bindGetUserInfo: function (e) {
-    console.log(222);
-    console.log(e.detail.userInfo)
   },
 
   // 改变地址所在区域
@@ -132,9 +104,10 @@ Page({
   },
 
   routerToStoreIndex: function (e) {
-    wx.redirectTo({
-      url: '/pages/home/home?storeid=' + e.currentTarget.dataset.storeid
-    });
+    wx.setStorageSync(constant.STORE_INFO, e.currentTarget.dataset.storeid)
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })
 

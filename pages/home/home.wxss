@@ -79,12 +79,12 @@
 
 .sub-title {
   width: 100vw;
-  margin-left: -30rpx;
   height: 90rpx;
   line-height: 90rpx;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
 }
 
 .sub-title-left, .sub-title-right {
@@ -317,7 +317,7 @@
   padding: 0 20rpx;
   line-height: 90rpx;
 }
-.icon-xia {
+.ticket-bottom .icon-xia {
   float: right;
   font-size: 28rpx;
   color: #AAA;
@@ -327,6 +327,39 @@
   font-size: 28rpx;
   color: #AAA;
   padding-top:20rpx;
+}
+.search-more {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999999;
+  padding: 10rpx 0;
+}
+.search-more .icon-xia {
+   font-size: 24rpx;
+}
+
+.merchant-img-box {
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding-bottom: 20rpx;
+}
+
+.sub-title-left-border {
+  width: 8rpx;
+  height: 28rpx;
+  background-color: #ff6600;
+  border-radius: 6rpx;
+  margin-top: 28rpx;
+}
+.merchant-img-item {
+  padding-top: 20rpx;
+}
+.merchant-img-item image{
+  width: 690rpx;
+  height: 360rpx;
+  margin: 0 auto;
+  display: block;
+  border-radius: 8rpx;
 }
 
 .craftsman-name {
