@@ -12,6 +12,7 @@ Page({
     productImages: [
     ],
     storeId: '',
+    storeName: '',
     scene: 0,
     storeInfo: {},
     fromNeighbourhood: false,
@@ -61,13 +62,13 @@ Page({
   },
 
   onShow() {
-    // let self = this;
-    // if (wx.getStorageSync(constant.TOKEN) && wx.getStorageSync(constant.STORE_INFO)) {
-    //   setTimeout(function () {
-    //     getStoreIndexInfo.call(self, wx.getStorageSync(constant.STORE_INFO), wx.getStorageSync(constant.MERCHANTID));
-    //     getTicketInfo.call(self, wx.getStorageSync(constant.STORE_INFO));
-    //   }, 100)
-    // }
+    let self = this;
+    if (wx.getStorageSync(constant.TOKEN) && wx.getStorageSync(constant.STORE_INFO)) {
+      setTimeout(function () {
+        getStoreIndexInfo.call(self, wx.getStorageSync(constant.STORE_INFO), wx.getStorageSync(constant.MERCHANTID));
+        getTicketInfo.call(self, wx.getStorageSync(constant.STORE_INFO));
+      }, 100)
+    }
   },
 
 // 转发
@@ -139,10 +140,8 @@ Page({
       url: '/pages/ticket/detail/detail?marketingId=' + e.currentTarget.dataset.marketingid,
     })
   },
-  pageEventListener: function () {
-    let self = this;
-    getTicketInfo.call(self, self.data.storeId);
-  },
+  
+  // 领取优惠券
   reciveTicket: function (e) {
     let self = this;
     let marketingId = e.currentTarget.dataset.marketingid;
@@ -167,6 +166,7 @@ Page({
       complete: () => wx.hideToast()
     })
   },
+  // 绑定手机号
   reciveTicketAndBind: function (e) {
     wx.navigateTo({
       url: '/pages/personal/member-card/band/band?marketingid=' + e.currentTarget.dataset.marketingid,
@@ -209,21 +209,6 @@ function getTicketInfo(storeId) {
     storeId: storeId
   }).subscribe({
     next: res => {
-      res = [
-        {
-          marketingName: '优惠券名称',
-          couponDefAmount: '20000',
-          couponDefDiscount: '7.5',
-          couponDefType: 'GIFT',
-          isGet: 'get',
-          isBind: 'bind',
-          marketingId: '0013',
-          useLimitMoney: '100', //100 -1
-          couponDefProductName: '礼品券赠送商品',
-          count: '20',
-          validDateCount: '30',
-        }
-      ]
       res.forEach((item) => {
         item.ticketSwitch = 'CLOSE';
       });
@@ -244,10 +229,12 @@ function getStoreIndexInfo(storeId, merchantId) {
     merchantId: merchantId
   }).subscribe({
     next: res => {
-      res = { "cardConfigList": [], "commentCount": 3, "merchantId": "1506586426621203268759", "pictureVOS": [{ "picUrl": "kKNROPSLGRpJ" }, { "picUrl": "kKNRNsiZOc3v" }, { "picUrl": "kKNRQEzTCPAH" }, { "picUrl": "kKNRS7E1h5R9" }, { "picUrl": "kKNRV8HGrcHf" }], "productCount": 4, "productList": [{ "categoryId": "2c9172e0626f55520163f7d25cbb1544", "categoryName": "体验", "categoryType": "SERVICE", "currentPrice": 7800, "dateCreated": 1528973363000, "idx": 2, "isDeleted": 0, "lastUpdated": 1528973363000, "merchantId": "1506586426621203268759", "originalPrice": 7800, "picId": "kKb4vhywKr7J", "picUrl": "kKb4vhywKr7J", "productId": "2c9172e0626f55520163fdea07761977", "productName": "单人陶艺DIY套餐", "productNamePinYin": "danrentaoyiDIYtaocan", "productNo": "2", "putaway": 1, "storeIds": "1506586430814181944943", "version": 4 }, { "categoryId": "2c9172e0626f55520163f7d25cbb1544", "categoryName": "体验", "categoryType": "SERVICE", "currentPrice": 4800, "dateCreated": 1528871331000, "idx": 1, "isDeleted": 0, "lastUpdated": 1528871331000, "merchantId": "1506586426621203268759", "originalPrice": 4800, "picId": "kKb4W27leG9W", "picUrl": "kKb4W27leG9W", "productId": "2c9172e0626f55520163f7d528251551", "productName": "单人陶艺DIY体验", "productNamePinYin": "danrentaoyiDIYtiyan", "productNo": "1", "putaway": 1, "storeIds": "1506586430814181944943", "version": 3 }, { "categoryId": "2c9172e0626f555201640bcc9dea1e20", "categoryName": "物品", "categoryType": "SERVICE", "currentPrice": 800, "dateCreated": 1529206387000, "idx": 4, "isDeleted": 0, "lastUpdated": 1529206387000, "merchantId": "1506586426621203268759", "originalPrice": 800, "picId": "kKo0p0Myj7sl", "picUrl": "kKo0p0Myj7sl", "productId": "2c9172e0626f555201640bcdb2931e22", "productName": "陶瓷小挂件", "productNamePinYin": "taocixiaoguajian", "productNo": "", "putaway": 1, "storeIds": "1506586430814181944943", "version": 2 }, { "categoryId": "2c9172e0626f55520163f7d25cbb1544", "categoryName": "体验", "categoryType": "SERVICE", "currentPrice": 14600, "dateCreated": 1528973693000, "idx": 3, "isDeleted": 0, "lastUpdated": 1528973693000, "merchantId": "1506586426621203268759", "originalPrice": 14600, "picId": "kKb5I1CAM2T9", "picUrl": "kKb5I1CAM2T9", "productId": "2c9172e0626f55520163fdef12cb197c", "productName": "亲子、情侣双人陶艺DIY套餐", "productNamePinYin": "qinzi、qinglvshuangrentaoyiDIYtaocan", "productNo": "3", "putaway": 1, "storeIds": "1506586430814181944943", "version": 4 }], "reserveCount": 0, "storeId": "1506586430814181944943", "storeName": "泥瓷坊陶艺" }
       wx.setNavigationBarTitle({
         title: res.storeName
       })
+      self.setData({
+        storeName: res.storeName
+      });
       wx.setStorageSync('storeName', res.storeName);
       // {picture_id}/resize_{width}_{height}/mode_fill
       if (res.pictureVOS && res.pictureVOS.length > 0) {
@@ -258,9 +245,12 @@ function getStoreIndexInfo(storeId, merchantId) {
           productImages: res.pictureVOS
         })
       }
-      res.productList.forEach((item) => {
-        item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
-      })
+      if(res.productList && res.productList.length && res.productList.length > 0) {
+        res.productList.forEach((item) => {
+          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+        })
+      }  
+
       if (res.staffList && res.staffList.length && res.staffList.length > 0) {
         res.staffList.forEach((item) => {
           item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
@@ -283,7 +273,7 @@ function logIn(code, appid, rawData) {
   service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
     next: res => {
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1500022449722218063731');
+      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1530602217127209655835');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
 
       if(res.ver == '2') {
@@ -318,34 +308,6 @@ function getAllTicket(storeId) {
     storeId: storeId
   }).subscribe({
     next: res => {
-      res = [
-        {
-          marketingName: '优惠券名称',
-          couponDefAmount: '20000',
-          couponDefDiscount: '7.5',
-          couponDefType: 'MONEY',
-          isGet: 'get',
-          isBind: 'bind',
-          marketingId: '001',
-          useLimitMoney: '100', //100 -1
-          couponDefProductName: '礼品券赠送商品',
-          count: '20',
-          validDateCount: '30'
-        },
-        {
-          marketingName: '优惠券名称',
-          couponDefAmount: '20000',
-          couponDefDiscount: '7.5',
-          couponDefType: 'GIFT',
-          isGet: 'get',
-          isBind: 'bind',
-          marketingId: '0013',
-          useLimitMoney: '100', //100 -1
-          couponDefProductName: '礼品券赠送商品',
-          count: '20',
-          validDateCount: '30',
-        }
-      ]
       res.forEach((item) => {
         item.ticketSwitch = 'CLOSE';
       });

@@ -4,7 +4,7 @@
 .container {
   font-size: 30rpx;
   font-family: "PingFangSC-Regular";
-  background-color: #F5F5F5
+  background-color: #f5f5f5;
 }
 
 .w-inner {
@@ -36,7 +36,7 @@
 }
 
 page {
-  background-color: #f5f5f5;
+  background-color: #fff;
   font-size: 34rpx;
   color: #222;
 
@@ -57,6 +57,10 @@ page {
 .juniu-bottom {
   background: #fff;
   text-align: center;
+  height: 40rpx;
+  position: absolute;
+  bottom: 40rpx;
+  width: 100vw;
 }
 .juniu-bottom image {
   width: 80rpx;
@@ -154,3 +158,123 @@ page {
     padding-top: 20rpx;
 }
 /* 未找到end */
+
+/*优惠券样式 start  */
+.ticket-color {
+  color: #fa6f6f;
+}
+
+.tickte-item {
+  position: relative;
+  width: 690rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+  box-shadow: 0rpx 2rpx 6rpx 0rpx #D8D8D8; 
+}
+
+.ticket-block {
+  padding-left: 30rpx;
+  padding-top: 34rpx;
+  padding-bottom: 20rpx;
+}
+
+.yuan1 {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  background-color: #fff;
+  left: -20rpx;
+  top: 160rpx;
+}
+
+.yuan2 {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  background-color: #fff;
+  right: -20rpx;
+  top: 160rpx;
+}
+
+.ticket-top {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  height: 180rpx;
+}
+
+.ticket-price-box {
+  width: 200rpx;
+  color: #FF3232; 
+  padding-top: 10rpx; 
+}
+
+.ticket-title-box {
+  width: 350rpx;
+  text-align: left;
+}
+
+.ticket-btn {
+  width: 140rpx;
+  padding-top: 10rpx;
+}
+
+.ticket-price text {
+  font-size: 70rpx;
+}
+
+.ticket-type {
+  font-size: 22rpx; 
+}
+.ticket-type-gift {
+  font-size: 36rpx;
+  padding-top: 46rpx;
+}
+
+.ticket-title {
+  font-size: 36rpx;
+  color: #111111;
+  padding: 34rpx 0 16rpx;
+}
+.use-limit-box, .gift-name {
+  font-size: 26rpx;
+  color: #001414;
+}
+.use-limit text {
+  color: #FF3232;
+}
+.get-ticket-count {
+  font-size: 22rpx;
+  color: #666666;
+}
+
+.ticket-bottom {
+  color: #999;
+  font-size: 24rpx;
+  padding: 20rpx;
+  background: #FAFAFA;
+  height: 140rpx;
+  box-sizing: border-box;
+  line-height: 50rpx;
+}
+.ticket-bottom-close {
+  height: 90rpx;
+  padding: 0 20rpx;
+  line-height: 90rpx;
+}
+.ticket-bottom .icon-xia {
+  float: right;
+  font-size: 28rpx;
+  color: #AAA;
+}
+.icon-shang {
+  float: right;
+  font-size: 28rpx;
+  color: #AAA;
+  padding-top:20rpx;
+}
+/*优惠券样式 end  */

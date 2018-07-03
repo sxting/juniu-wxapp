@@ -1,17 +1,18 @@
-.top-bg {
-    width: 100vw;
-    height: 324rpx;
-    color: #fff;
-    position:absolute;
-    top:0;
-    left:0;
-}
-.top-image {
+.top-image, .craftsman-info {
   width: 100vw;
-  height: 324rpx;
+  height: 384rpx;
   position: absolute;
   top: 0;
   left: 0;
+  text-align: center;
+  color: #fff;
+}
+
+.craftsman-headimg {
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 50%;
+  margin-top: 30rpx;
 }
 .craftsman-name {
     font-size: 32rpx;

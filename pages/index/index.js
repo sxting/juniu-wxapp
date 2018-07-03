@@ -25,12 +25,6 @@ Page({
     cityId: '',
     areaId: ''
   },
-  //事件处理函数
-  // bindViewTap: function() {
-  //   wx.navigateTo({
-  //     url: '../logs/logs'
-  //   })
-  // },
   onShow: function () {
     let self = this;
     wx.getSystemInfo({
@@ -40,33 +34,14 @@ Page({
         });
       }
     })
-    let token = wx.getStorageSync(constant.TOKEN);
-
-    wx.login({
-      success: function (result) {
-        wx.getUserInfo({
-          withCredentials: true,
-          success: function (res) {
-            let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-            let appId = 'wx3bb038494cd68262';
-            if (result.code) {
-              logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-            } else {
-              console.log('获取用户登录态失败！' + result.errMsg)
-            }
-          },
-          fail: function (res) { 
-            console.log(res)
-          },
-          complete: function (res) { 
-            console.log(res)            
-          },
-        });
-
-      },
-      fail: function (res) { },
-      complete: function (res) { },
-    });
+    getStoreListInfo.call(self);
+    // 获取当前地理位置
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
+      }
+    })
   },
 
   // 改变地址所在区域
@@ -191,45 +166,6 @@ function tencentLongAndLatiToAddress(latitude, longitude) {
       self.setData({
         region: [res.province, res.city, res.district],
         provinceName: res.province
-      })
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
-}
-
-function logIn(code, appid, rawData) {
-  let self = this;
-  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
-    next: res => {
-      // 1505274961239211095369
-      let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1500022449722218063731');
-      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
-
-      if(res.ver == '2') {
-        wx.setStorageSync(constant.VER, 2 );
-      } else {
-        wx.setStorageSync(constant.VER, 1);
-      }
-
-      wx.setStorage({
-        key: constant.TOKEN,
-        data: res.juniuToken,
-        success: function (res) {
-          getStoreListInfo.call(self);
-          // 获取当前地理位置
-          wx.getLocation({
-            type: 'wgs84',
-            success: function (res) {
-              tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
-              var latitude = res.latitude
-              var longitude = res.longitude
-              var speed = res.speed
-              var accuracy = res.accuracy
-            }
-          })
-        }
       })
     },
     error: err => errDialog(err),

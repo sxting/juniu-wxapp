@@ -7,7 +7,7 @@
       </swiper-item>
     </swiper>
     <view class="store-btn-box" bindtap="goStoreIndex">
-      桔牛测试门店育文街分店
+      {{storeName}}
       <view class="jn-icon icon-rightblue fr"></view>
     </view>
     <view class="address-and-tel">
@@ -90,7 +90,7 @@
               <view class="ticket-type" wx:elif="{{item.couponDefType === 'DISCOUNT'}}">折扣券</view>
               <view class="ticket-type-gift" wx:else="{{item.couponDefType === 'GIFT'}}">礼品券</view>        
           </view>
-          <view class='ticket-title-box'>
+          <view class='ticket-title-box' bindtap='goTicketDetail' data-marketingid="{{item.marketingId}}">
             <view class="ticket-title">{{item.marketingName}}</view>
             <view class="use-limit-box" wx:if="{{item.couponDefType === 'MONEY' || item.couponDefType === 'DISCOUNT'}}">
               <view class="use-limit" wx:if="{{item.useLimitMoney > 0}}">消费满<text>{{item.useLimitMoney/100}}</text>元可使用</view>
@@ -119,7 +119,7 @@
                   领取
                 </button>  
             </view>
-            <view class='tip'>已领{{item.count}}张</view>
+            <view class='get-ticket-count'>已领{{item.count}}张</view>
           </view>
         </view>
 
@@ -152,7 +152,5 @@
     </view>
   </view>
 
-  <view class="juniu-bottom">
-    <image src="/asset/images/logo.png"></image>
-  </view>
+  <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
 </view>

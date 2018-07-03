@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "jn-bottom": "../../shared/component/jn-bottom/jn-bottom"
+  }
+}
