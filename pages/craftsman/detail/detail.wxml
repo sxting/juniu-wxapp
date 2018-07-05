@@ -1,54 +1,68 @@
 <view class="container">
+  <view class="craftsman-top">
     <!--背景图-->
     <image class="top-image" src="/asset/images/personal-bg.png"></image>
+
     <view class="craftsman-info">
       <!--手艺人头像  -->
       <image class="craftsman-headimg" src="{{staffInfo.headPortrait || imgUrl}}"></image>
       <view class="craftsman-name">{{staffInfo.staffName}}</view>
       <view class="craftsman-start-box">
-        <icon wx:for="{{starArr}}" class="jn-icon icon-starempty"></icon>
+        <icon wx:for="{{starArr}}" class="jn-icon icon-starempty-copy"></icon>
       </view>
       <view class="craftsman-start-box">
-        <icon wx:for="{{starArr}}" wx:if="{{staffInfo.score > item}}" class="jn-icon icon-stars"></icon>
+          <icon wx:for="{{starArr}}" wx:if="{{staffInfo.score > item}}" class="jn-icon icon-stars-copy"></icon>  
       </view>
       <view class="carftsman-msg">
         <text>累计服务{{staffInfo.serviceCount}}次</text>
-        <text>本店·排名第{{staffInfo.rank}}</text>
+        <text>预约4次</text>
       </view>
     </view>
+  </view>
+
+  <view class="store-box">
+    <view class="store-name">{{storeName}}</view>
+    <view class="store-address">北京市朝阳区亚运村慧中北路雅园5号楼北京市朝阳区大客户就暗示</view>
+  </view>
     
     <!--顾客评价-->
+  <view class="comment-box" wx:if="{{commentList && commentList.length > 0}}">  
+    <view class="sub-title"><icon class="jn-icon icon-Evaluation"></icon> 评价</view>
+    <scroll-view scroll-y="true" bindscrolltolower="onScrollTolower">
+    <!--循环的评价-->
     <view class="comment-list">
-        <view class="sub-title">
-            <icon class="jn-icon icon-Evaluation"></icon> 顾客评价
-        </view>
-        <scroll-view scroll-y="true" bindscrolltolower="onScrollTolower">
-        <!--循环的评价-->
-        <view wx:for="{{commentList}}" wx:for-item="comment" class="comment-box w-inner">
-            <view class="comment-top">
-                <image src="{{comment.headImageUrl}}"></image>
-                <view class="comment-top-center">
-                    <view>{{comment.nick}}</view>
-                    <!--星级-->
-                    <view class="start-box">
-                        <view class="space-start-box">
-                            <icon wx:for="{{starArr}}" class="jn-icon icon-starempty"></icon>
-                        </view>
-                        <view class="starts-box">
-                            <icon wx:for="{{starArr}}" wx:for-item="star" wx:if="{{comment.score > star}}" class="jn-icon icon-stars"></icon>
-                        </view>
-                    </view>
-                </view>
-                <view class="comment-time-box">
-                    <view>{{comment.date}}</view>
-                    <view>{{comment.time}}</view>
-                </view>
+      <view wx:for="{{commentList}}" wx:for-item="comment" class="comment-item-box w-inner">
+        <view class="comment-top">
+          <image src="{{comment.headImageUrl}}"></image>
+          <view class="comment-top-center">
+            <view>{{comment.nick}}</view>
+            <!--星级-->
+            <view class="start-box">
+              <view class="space-start-box">
+                 <icon wx:for="{{starArr}}" class="jn-icon icon-starempty"></icon>
+              </view>
+              <view class="starts-box">
+                 <icon wx:for="{{starArr}}" wx:for-item="star" wx:if="{{comment.score > star}}" class="jn-icon icon-stars"></icon>
+              </view>
             </view>
-            <view class="comment-content"> {{comment.content}} </view>
-            <view class="comment-images">
-                <image wx:for="{{comment.imagesUrl}}" src="{{item}}"></image>
-            </view>
+          </view>
+          <view class="comment-time-box">
+            <text>{{comment.date}} </text>   
+            <text>{{comment.time}}</text>
+          </view>
         </view>
-        </scroll-view>
+        <view class="comment-content"> {{comment.content}} </view>
+        <view class="comment-images">
+          <image wx:for="{{comment.imagesUrl}}" src="{{item}}"></image>
+        </view>
+      </view>
+
+      <view class="juniu-bottom comment-jn-bottom" wx:if="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>      
     </view>
+    </scroll-view>
+  </view>
+
+  <view class="juniu-bottom" hidden="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>
+  <image class="create-comment" src="/asset/images/edit.png" bindtap="onCreateCommentClick"></image>  
+  <button class="shared-box" open-type="share">推荐给好友</button>
 </view>

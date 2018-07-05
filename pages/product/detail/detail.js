@@ -88,8 +88,7 @@ function getProductDetail() {
   }
   productService.getProductDetail(data).subscribe({
     next: res => {
-      res.url = 
-        constant.OSS_IMAGE_URL + `${res.url}/resize_375_180/mode_fill`;
+      res.url = constant.OSS_IMAGE_URL + `${res.url}/resize_375_180/mode_fill`;
       this.setData({
         productInfo: res
       })
@@ -113,6 +112,12 @@ function getProductCommentList() {
         let dateArray = item.juniuoModel.dateCreated.split(' ');
         item.date = dateArray[0];
         item.time = dateArray[1];
+        
+        if (item.imagesUrl) {
+          item.imagesUrl.forEach((img, index) => {
+            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_80_80/mode_fill`;
+          });
+        }
       });
 
       this.setData({

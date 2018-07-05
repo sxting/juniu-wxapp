@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 365926 */
-  src: url('//at.alicdn.com/t/font_365926_cvbdenaskao.eot');
-  src: url('//at.alicdn.com/t/font_365926_cvbdenaskao.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_365926_cvbdenaskao.woff') format('woff'),
-  url('//at.alicdn.com/t/font_365926_cvbdenaskao.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_365926_cvbdenaskao.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_365926_024y1dy17xwt.eot');
+  src: url('//at.alicdn.com/t/font_365926_024y1dy17xwt.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_365926_024y1dy17xwt.woff') format('woff'),
+  url('//at.alicdn.com/t/font_365926_024y1dy17xwt.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_365926_024y1dy17xwt.svg#iconfont') format('svg');
 }
 .jn-icon {
   display: inline-block;
@@ -147,4 +147,10 @@
 }
 .icon-shang::before {
   content: '\e61f'
+}
+.icon-stars-copy::before {
+  content: '\e7cf'
+}
+.icon-starempty-copy::before {
+  content: '\e7ce'
 }

@@ -13,12 +13,14 @@ Page({
     pageSize: 10,
     countPage: 1,
     storeId: '',
+    storeName: '',
   },
   
   onLoad: function (options) {
     this.setData({
       staffId: options.staffId,
-      storeId: options.storeId
+      storeId: options.storeId,
+      storeName: wx.getStorageSync('storeName')
     })
 
     let token = wx.getStorageSync(constant.TOKEN);
@@ -44,17 +46,22 @@ Page({
         fail: function (res) { },
         complete: function (res) { },
       });
-    }
-
-    
+    }    
   },
 
+  onShow: function() {
+    if (this.data.storeId && this.data.staffId) {
+      getStaffDetail.call(this);
+      getComments.call(this);
+    }
+  },
+
+  //分享 
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
     }
-
     // staffId = 1507865304614994341106 & storeId=1500534105280134281527
     return {
       title: wx.getStorageSync('storeName'),
@@ -70,6 +77,7 @@ Page({
     }
   },
 
+  //上拉触底 
   onScrollTolower: function () {
     if (this.data.pageIndex == this.data.countPage) {
       return;
@@ -78,6 +86,13 @@ Page({
       pageIndex: this.data.pageIndex + 1
     })
     getComments.call(this)
+  },
+
+  // 添加评论
+  onCreateCommentClick() {
+    wx.navigateTo({
+      url: '/pages/comment/making/making?staffId=' + this.data.staffId,
+    })
   }
 })
 

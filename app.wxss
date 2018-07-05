@@ -69,10 +69,27 @@ page {
 
 /*评论的样式start*/
 .comment-box {
-    padding-bottom:10rpx;
-    border-bottom: 1px solid #e5e5e5;
+    margin-top:20rpx;
+    background-color: #fff;
+    padding-bottom:100rpx;
 }
-.comment-box:last-child {
+.comment-box .sub-title {
+    height: 90rpx;
+    line-height: 90rpx;
+    padding-left: 30rpx;
+    border-bottom: 1px solid #f8f8f8;
+}
+.comment-list {
+  box-shadow: 0 2rpx 6rpx 0 rgba(216,216,216,0.50);
+  border-radius: 8rpx; 
+  margin: 20rpx;
+   position: relative;
+}
+.comment-item-box {
+    padding-bottom:10rpx;
+    border-bottom: 1px solid #F3F3F3;
+}
+.comment-item-box:last-child {
     border-bottom: none;
 }
 .comment-top {
@@ -89,20 +106,20 @@ page {
 .comment-top-center {
     width: 100%;
     padding-top: 40rpx;
-    padding-left: 22rpx;
+    padding-left: 16rpx;
 }
 .icon-starempty, .icon-stars  {
     font-size: 24rpx;
     color: #FF6600;
-    padding-right:  8rpx;
+    padding-right: 8rpx;
 }
 .comment-time-box {
     font-family: "PingFangSC-Regular";
-    font-size: 26rpx;
+    font-size: 22rpx;
     color: #999999;
     text-align: right;
     padding-top: 44rpx;
-    min-width: 156rpx;
+    min-width: 222rpx;
 }
 .comment-content {
     font-size: 28rpx;
@@ -127,13 +144,19 @@ page {
     z-index: 10;
 }
 .comment-images image {
-    width: 122rpx;
-    height: 122rpx;
+    width: 140rpx;
+    height: 140rpx;
     margin-right: 20rpx;
+    border-radius: 8rpx;
 }
 .comment-images image:last-child {
     margin-right: 0;
 }
+.comment-jn-bottom {
+  left:-20rpx;
+  bottom:-50rpx;
+}
+
 /*评论的样式end*/
 
 /* 未找到start */

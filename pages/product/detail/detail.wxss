@@ -24,16 +24,7 @@
     padding-left: 18rpx;
     text-decoration: line-through;
 }
-.comment-list {
-    margin-top: 20rpx;
-    background-color: #fff;
-}
-.sub-title {
-    height: 90rpx;
-    line-height: 90rpx;
-    padding-left: 30rpx;
-    border-bottom: 1px solid #e5e5e5;
-}
+
 .icon-Evaluation {
     font-size: 32rpx;
     color: #e5e5e5;
