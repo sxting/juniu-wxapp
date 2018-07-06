@@ -18,7 +18,7 @@ Page({
     fromNeighbourhood: false,
     ticketList: [],
     optionData: '',
-    juniuImg: '',
+    juniuImg: '/asset/images/product.png',
     showSearchMoreTicket: true,
   },
   onLoad: function (option) {
@@ -64,6 +64,9 @@ Page({
   onShow() {
     let self = this;
     if (wx.getStorageSync(constant.TOKEN) && wx.getStorageSync(constant.STORE_INFO)) {
+      self.setData({
+        storeId: wx.getStorageSync(constant.STORE_INFO)
+      })
       setTimeout(function () {
         getStoreIndexInfo.call(self, wx.getStorageSync(constant.STORE_INFO), wx.getStorageSync(constant.MERCHANTID));
         getTicketInfo.call(self, wx.getStorageSync(constant.STORE_INFO));
@@ -239,7 +242,9 @@ function getStoreIndexInfo(storeId, merchantId) {
       // {picture_id}/resize_{width}_{height}/mode_fill
       if (res.pictureVOS && res.pictureVOS.length > 0) {
         res.pictureVOS.forEach((item) => {
-          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_375_180/mode_fill`;
+          if (item.picUrl) {
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_375_180/mode_fill`;
+          }
         });
         self.setData({
           productImages: res.pictureVOS
@@ -247,16 +252,22 @@ function getStoreIndexInfo(storeId, merchantId) {
       }
       if(res.productList && res.productList.length && res.productList.length > 0) {
         res.productList.forEach((item) => {
-          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+          if (item.picUrl) {
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+          }
         })
       }  
 
       if (res.staffList && res.staffList.length && res.staffList.length > 0) {
         res.staffList.forEach((item) => {
-          item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
+          if (item.headPortrait) {
+            item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
+          }
         })
         res.staffList.forEach((item) => {
-          item.headPortrait = item.headPortrait.split('.png')[0] + '_58x58.png';
+          if (item.headPortrait) {
+            item.headPortrait = item.headPortrait.split('.png')[0] + '_58x58.png';
+          }
         });
       }
       self.setData({
@@ -282,7 +293,7 @@ function logIn(code, appid, rawData) {
         wx.setStorageSync(constant.VER, 1);
       }
 
-      wx.setStorageSync(constant.STORE_INFO, '1525764108044281329298');
+      wx.setStorageSync(constant.STORE_INFO, '1530602323164136822988');
       self.setData({
         storeId: wx.getStorageSync(constant.STORE_INFO)
       })

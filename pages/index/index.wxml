@@ -16,7 +16,8 @@
   <!--搜索地址列表-->
   <block wx:if="{{storeList.length > 0}}">
     <scroll-view scroll-y style="height: {{windowHeight}}px;">
-      <view class="address-list" wx:for="{{storeList}}" data-storeid="{{item.storeId}}" bindtap="routerToStoreIndex">
+      <view class="address-list" wx:for="{{storeList}}"
+       data-storeid="{{item.storeId}}" data-storename="{{item.storeName}}" bindtap="routerToStoreIndex">
         <view class="address-box" hover-class="address-box-active">
           <view>{{item.storeName}}</view>
           <view class="address-detail">{{item.address}}</view>

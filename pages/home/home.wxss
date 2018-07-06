@@ -81,7 +81,6 @@ page {
 .product-list {
   margin-top: 20rpx;
   background-color: #fff;
-  padding: 0 30rpx;
 }
 
 .sub-title {
@@ -121,7 +120,7 @@ page {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-bottom: 20rpx; 
+  padding: 0 30rpx 20rpx
 } 
 
 .product-box {

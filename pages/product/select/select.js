@@ -6,6 +6,7 @@ import { constant } from '../../../utils/constant';
 Page({
   data: {
     icon20: 'http://i.zeze.com/attachment/forum/201610/30/150453u3oo7n3c702j7f08.jpg',
+    juniuImg: '/asset/images/product.png',
     storeId: '',
     productList: [],
     craftsmanId: '',
@@ -35,6 +36,11 @@ Page({
         }
         productService.getStaffProduct(data).subscribe({
           next: res => {
+            res.forEach((item) => {
+              if (item.picUrl) {
+                item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+              }
+            });
             this.setData({
               productList: res
             })
@@ -101,6 +107,11 @@ Page({
 function getReserveProductList(data) {
   productService.getReserveProduct(data).subscribe({
     next: res => {
+      res.forEach((item) => {
+        if (item.picUrl) {
+          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+        }
+      });
       this.setData({
         productList: res
       })
@@ -124,7 +135,9 @@ function getProductList() {
     next: res => {
       //         constant.OSS_IMAGE_URL + `${res.url}/resize_375_180/mode_fill`;
       res.content.forEach((item) => {
-        item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+        if (item.picUrl) {
+          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+        }
       });
       this.setData({
         productList: this.data.productList.concat(res.content),

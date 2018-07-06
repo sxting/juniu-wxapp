@@ -79,7 +79,9 @@ Page({
   },
 
   routerToStoreIndex: function (e) {
-    wx.setStorageSync(constant.STORE_INFO, e.currentTarget.dataset.storeid)
+    wx.setStorageSync(constant.STORE_INFO, e.currentTarget.dataset.storeid);
+    wx.setStorageSync('storeName', e.currentTarget.dataset.storename)
+    
     wx.navigateBack({
       delta: 1
     })

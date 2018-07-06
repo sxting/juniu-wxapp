@@ -1,11 +1,100 @@
-<view class="bigBox">
-  <view class="main">
-    <view class="mainBottom">
-      <view class="bottomTop">订单金额(元)</view>
-      <view class="bottomMiddle">
-        <input type="digit" bindinput="focus" bindblur="save" value="{{value}}" />
-      </view>
+<view class="product">
+  <image src="/asset/images/product.png"></image>
+  <view class="product-right">
+    <view class="product-name">发型总监设计发型总监设计</view>
+    <view class="product-price">￥<text>58</text></view>
+  </view>
+</view>
+
+<view class="jn-bg"></view>
+
+<view class="item price-box">
+  <view class="price"><text>售价</text><text class="fr">199元</text></view>
+  <view class="count-box">
+    <text>数量</text>
+    <view class="fr count-btn">
+      <text bindtap="onCountLeftClick">-</text> 
+      <text class="count">{{count}}</text> 
+      <text bindtap="onCountRightClick">+</text>
     </view>
   </view>
-  <button>确认支付</button>
+  <view class="total-price"><text>小计</text><text class="fr">189元</text></view>
+</view>
+
+<view class="item rights">
+  <view class="coupon" bindtap="goMyCoupon">
+    <text>优惠券</text>
+    <view class="fr">一张优惠券可用 ></view>
+  </view>
+  <view class="member-right">
+    <text>会员权益</text>
+    <view class="fr">VIP储值卡 -199 ></view>
+  </view>
+</view>
+
+<view class="item usermgs">
+  <view class="note">
+    <text>备注</text> <input placeholder="请填写备注信息（选填）" placeholder-class="placeholder" />
+  </view>
+</view>
+
+<view class="pay-btn" wx:if="">立即支付</view>
+
+<view class="bottom-btn" wx:else>
+  <view class="moreyh" bindtap="onMoreRightsClick">更多优惠</view>
+  <view class="pay">直接付款</view>
+</view>
+
+<view class="juniu-bottom pay-ju-bottom"><image src="/asset/images/logo.png"></image></view>  
+
+<view class="member-rights-alert-bg" wx:if="{{showCardBuy}}">
+  <view class="member-rights-alert" wx:if="{{!showPaySuccess}}">
+    <view class="rights-title">会员权益</view>
+    <view class="jn-icon icon-close" bindtap="onCloseCardClick"></view>        
+    <view class="card-list">
+      <view class="card">
+        <image src="/asset/images/card-bg.png"></image>
+        <view class="cardprice">
+          <view class="">售价30元</view>
+          <view class="chuzhi">储值<text>50</text>元</view>
+        </view>
+        <view class="card-selected jn-icon icon-select"></view>
+      </view>
+      <view class="card">
+        <image src="/asset/images/card-bg.png"></image>
+        <view class="cardprice">
+          <view class="">售价30元</view>
+          <view class="chuzhi">储值<text>50</text>元</view>
+        </view>
+      </view>
+      <view class="card">
+        <image src="/asset/images/card-bg.png"></image>
+        <view class="cardprice">
+          <view class="">售价30元</view>
+          <view class="chuzhi">储值<text>50</text>元</view>
+        </view>
+      </view>
+      <view class="card">
+        <image src="/asset/images/card-bg.png"></image>
+        <view class="cardprice">
+          <view class="">售价30元</view>
+          <view class="chuzhi">储值<text>50</text>元</view>
+        </view>
+      </view>
+      <view class="card">
+        <image src="/asset/images/card-bg.png"></image>
+        <view class="cardprice">
+          <view class="">售价30元</view>
+          <view class="chuzhi">储值<text>50</text>元</view>
+        </view>
+      </view>
+    </view>
+    <view class="opencrad" bindtap="onPayBtnClick">开通并付款</view>
+  </view>
+
+  <view class="card-success alert-box" wx:else>
+    <view class="alert-title">会员卡开通成功</view>
+    <view class="alert-tip">可在个人中心-我的会员卡中查看</view>
+    <view class="alert-btn" bindtap="onSuccessSureClick">确定</view>    
+  </view>
 </view>

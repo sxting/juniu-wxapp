@@ -23,7 +23,7 @@
             <scroll-view scroll-y="true" bindscrolltolower="scrolltolower">
               <view wx:for="{{productList}}" bindtap="onItemClick" data-product-id="{{item.productId}}" data-product-name="{{item.productName}}" data-price="{{item.currentPrice}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
-                  <image src="{{item.picUrl}}" class="head-img" />
+                  <image src="{{item.picUrl ? item.picUrl : juniuImg}}" class="head-img" />
                 </view>
                 <view class="weui-cell__bd weui-cell_primary">
                   <view>{{item.productName}}</view>

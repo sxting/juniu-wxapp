@@ -1,11 +1,29 @@
 <view class="container">
-  <image class="product-image" src="{{productInfo.url}}"></image>
+  <image class="product-image" src="{{productInfo.url ? productInfo.url : juniuImg}}"></image>
   <view class="product-box">
-        <view class="product-name">{{productInfo.productName}}</view>
-        <view class="price-box">
-            <text> <text class="current">{{productInfo.currentPrice / 100}}</text>元 </text> 
-            <text class="original-price" wx:if="{{productInfo.originalPrice}}"> <text>{{productInfo.originalPrice / 100}}</text>元 </text>
+    <view class="product-name">
+      {{productInfo.productName}}
+      <button class="share-btn" open-type="share"><text class="jn-icon icon-share"></text></button>
+    </view>
+    <view class="price-box">
+      <text>￥<text class="current">{{productInfo.currentPrice / 100}}</text> </text> 
+    </view>
+  </view>
+
+  <!--适用门店  -->
+  <view class="store-box">
+    <view class="sub-title" bindtap="onStoreClick">
+      适用门店 <text class="jn-icon icon-rightblue fr"></text>
+    </view>
+    <view class="store">
+      <view class="store-name">{{storeName}}</view>
+      <view class="address-and-tel">
+        <icon class="jn-icon icon-address"></icon>学清路静淑里6号楼底商
+        <view class="fr tel-box">
+          <view class="jn-icon icon-tel"></view>
         </view>
+      </view>
+    </view>
   </view>
 
     <!--顾客评价-->
@@ -40,8 +58,11 @@
         </view>
       </view>
 
-      <view class="juniu-bottom comment-jn-bottom" wx:if="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>      
+      <!-- <view class="juniu-bottom comment-jn-bottom" wx:if="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>       -->
     </view>
     </scroll-view>
   </view>
+
+  <view class="juniu-bottom" hidden="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>
+  <view class="go-pay" bindtap="onBuyClick">立即购买</view>
 </view>

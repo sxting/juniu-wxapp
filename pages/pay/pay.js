@@ -1,66 +1,74 @@
-// pages/pay/pay.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    count: 1,
+    showCardBuy: false,
+    showPaySuccess: false,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
   
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  onCountLeftClick() {
+    if(this.data.count == 1) {
+      return
+    };
+    --this.data.count;
+    this.setData({
+      count: this.data.count
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  onCountRightClick() {
+    ++this.data.count;
+    this.setData({
+      count: this.data.count
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  // 跳转到我的优惠券
+  goMyCoupon() {
+    wx.navigateTo({
+      url: '/pages/personal/ticket/ticket',
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  // 跳转到我的会员卡列表
+  goMyCardS() {
+    wx.navigateTo({
+      url: '/',
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
+  // 点击更多优惠
+  onMoreRightsClick() {
+    this.setData({
+      showCardBuy: true
+    })
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  // 点击关闭按钮
+  onCloseCardClick() {
+    this.setData({
+      showCardBuy: false
+    })
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  // 开通并付款
+  onPayBtnClick() {
+    this.setData({
+      showPaySuccess: true
+    })
+  },
+
+  // 确定
+  onSuccessSureClick() {
+    this.setData({
+      showPaySuccess: false,
+      showCardBuy: false
+    })
   }
+
+
+
 })

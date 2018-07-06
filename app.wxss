@@ -7,6 +7,12 @@
   background-color: #f5f5f5;
 }
 
+.jn-bg {
+  height: 20rpx;
+  background: #F8F8F8;
+  width: 100vw;
+}
+
 .w-inner {
   width: 690rpx;
   margin: 0 auto;
@@ -51,6 +57,35 @@ page {
 .icon-rightblue {
     font-size: 26rpx;
     color: #c7c7c7;
+}
+
+/*弹框  */
+.alert-box {
+  width: 600rpx;
+  height: 292rpx;
+  background-color: #fff;
+  position: fixed;
+  top: 300rpx;
+  left: 50%;
+  margin-left: -300rpx;
+  border-radius: 28rpx;
+  text-align: center;
+}
+.alert-title {
+  font-size: 36rpx;
+  padding: 50rpx 0 30rpx;
+}
+.alert-tip {
+  font-size: 28rpx;
+  color: #999999;
+  padding-bottom: 20rpx;
+}
+.alert-btn {
+  font-size: 36rpx;
+  color: #FF6600;
+  height: 92rpx;
+  line-height: 92rpx;
+  border-top: 2rpx solid #F3F3F3;
 }
 
 /*底部桔牛logo样式  */

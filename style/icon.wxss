@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 365926 */
-  src: url('//at.alicdn.com/t/font_365926_024y1dy17xwt.eot');
-  src: url('//at.alicdn.com/t/font_365926_024y1dy17xwt.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_365926_024y1dy17xwt.woff') format('woff'),
-  url('//at.alicdn.com/t/font_365926_024y1dy17xwt.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_365926_024y1dy17xwt.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.eot');
+  src: url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.woff') format('woff'),
+  url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.svg#iconfont') format('svg');
 }
 .jn-icon {
   display: inline-block;
@@ -153,4 +153,13 @@
 }
 .icon-starempty-copy::before {
   content: '\e7ce'
+}
+.icon-share::before {
+  content: '\e62a'
+}
+.icon-close::before {
+  content: '\e62b'
+}
+.icon-select::before {
+  content: '\e656'
 }

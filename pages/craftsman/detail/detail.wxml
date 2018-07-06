@@ -56,8 +56,6 @@
           <image wx:for="{{comment.imagesUrl}}" src="{{item}}"></image>
         </view>
       </view>
-
-      <view class="juniu-bottom comment-jn-bottom" wx:if="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>      
     </view>
     </scroll-view>
   </view>
