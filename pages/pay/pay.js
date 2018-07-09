@@ -67,8 +67,12 @@ Page({
       showPaySuccess: false,
       showCardBuy: false
     })
-  }
+  },
 
+  // 直接付款/立即支付
+  onOrderPayClick() {
+    
+  }
 
 
 })

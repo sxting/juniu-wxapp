@@ -1,5 +1,6 @@
 import { orderService} from 'shared/service.js'
 import { errDialog } from '../../utils/util';
+import { constant } from '../../utils/constant';
 //获取应用实例
 var app = getApp()
 Page({
@@ -26,6 +27,7 @@ Page({
     note: '',  //备注
     peopleNumber: '1', //预约人数
     isToday: true, 
+    today: {year: '2018', month: '2月'}
   },
   onLoad: function (options) {
     let today = changeDate.call(this,new Date());
@@ -33,11 +35,12 @@ Page({
     for(let i=0; i<7; i++) {
       dateArr.push(getAfterSomeDay.call(this, today, i))
     }
-    dateArr[0].week = '今天';
-    dateArr[1].week = '明天';
+    
+    dateArr[0].week = '今';
+    dateArr[1].week = '明';
     
     this.setData({
-      storeId: options.storeId,
+      storeId: wx.getStorageSync(constant.STORE_INFO),
       dateList: dateArr,
       date: dateArr[0].dateData,
       craftsmanId: options.craftsmanId ? options.craftsmanId : this.data.craftsmanId,
@@ -333,6 +336,7 @@ function getAfterSomeDay(date, num) {
     return {
       date: '0' + (odate.getMonth() + 1) + '.' + dateNum,
       year: odate.getFullYear(),
+      day: dateNum,
       week: changeDayToChinese.call(this,odate.getDay()),
       dateData: odate.getFullYear() + '-' + '0' + (odate.getMonth() + 1) + '-' + dateNum
     };
@@ -352,24 +356,24 @@ function changeDayToChinese(num) {
   let result = '';
   switch (num) {
     case 0:
-      result = '周日';
+      result = '日';
       break;
     case 1:
-      result = '周一';
+      result = '一';
       break;
     case 2:
-      result = '周二';
+      result = '二';
       break;
     case 3:
-      result = '周三';
+      result = '三';
       break;
     case 4:
-      return '周四';
+      return '四';
     case 5:
-      result = '周五';
+      result = '五';
       break;
     case 6:
-      result = '周六';
+      result = '六';
       break;
   }
   return result;
