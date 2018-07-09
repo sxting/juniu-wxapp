@@ -4,6 +4,7 @@ import { homeService } from 'shared/home.service';
 import { errDialog, loading } from '../../utils/util'
 import { constant } from '../../utils/constant';
 import { ticketService } from '../ticket/shared/ticket.service';
+import { service } from '../../service';
 // MONEY，DISCOUNT，GIFT
 var app = getApp()
 Page({
@@ -29,13 +30,8 @@ Page({
       })
     }
 
-    let token = wx.getStorageSync(constant.TOKEN);
-    if (token) {
-      wx.setStorageSync(constant.STORE_INFO, option.storeid);
-      getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID) ? wx.getStorageSync(constant.MERCHANTID) : option.merchantId);
-      getTicketInfo.call(this, this.data.storeId);
-    } else {
-      wx.login({
+    let self = this;
+    wx.login({
         success: function (result) {
           wx.getUserInfo({
             withCredentials: true,
@@ -52,8 +48,33 @@ Page({
         },
         fail: function (res) { },
         complete: function (res) { },
-      });
-    }
+    });
+
+    // let token = wx.getStorageSync(constant.TOKEN);
+    // if (token) {
+    //   wx.setStorageSync(constant.STORE_INFO, option.storeid);
+    //   getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID) ? wx.getStorageSync(constant.MERCHANTID) : option.merchantId);
+    //   getTicketInfo.call(this, this.data.storeId);
+    // } else {
+    //   wx.login({
+    //     success: function (result) {
+    //       wx.getUserInfo({
+    //         withCredentials: true,
+    //         success: function (res) {
+    //           let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+    //           let appId = 'wx3bb038494cd68262';
+    //           if (result.code) {
+    //             logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+    //           } else {
+    //             console.log('获取用户登录态失败！' + result.errMsg)
+    //           }
+    //         }
+    //       });
+    //     },
+    //     fail: function (res) { },
+    //     complete: function (res) { },
+    //   });
+    // }
 
     // wx.setStorageSync(constant.STORE_INFO, option.storeid);
     // getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID) ? wx.getStorageSync(constant.MERCHANTID) : option.merchantId);
@@ -295,7 +316,7 @@ function getStoreIndexInfo(storeId, merchantId) {
 
 function logIn(code, appid, rawData) {
   let self = this;
-  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
+  service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
       // 1505274961239211095369
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
@@ -305,9 +326,10 @@ function logIn(code, appid, rawData) {
         key: constant.TOKEN,
         data: res.juniuToken,
         success: function (res) {
-          wx.setStorageSync(constant.STORE_INFO, option.storeid);
-          getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID) ? wx.getStorageSync(constant.MERCHANTID) : option.merchantId);
-          getTicketInfo.call(this, this.data.storeId);
+          console.log(self);
+          wx.setStorageSync(constant.STORE_INFO, self.data.storeId);
+          getStoreIndexInfo.call(self, self.data.storeId, wx.getStorageSync(constant.MERCHANTID));
+          getTicketInfo.call(self, self.data.storeId);
         }
       })
     },

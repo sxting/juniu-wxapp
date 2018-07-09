@@ -1,6 +1,7 @@
 import { craftsmanService } from '../shared/service.js'
 import { errDialog } from '../../../utils/util'; 
 import { constant } from '../../../utils/constant';
+import { service } from '../../../service';
 var app = getApp()
 Page({
   data: {
@@ -22,6 +23,7 @@ Page({
     })
 
     let token = wx.getStorageSync(constant.TOKEN);
+    let self = this;
     if (token) {
       getStaffDetail.call(this);
       getComments.call(this)
@@ -130,7 +132,7 @@ function getComments() {
 
 function logIn(code, appid, rawData) {
   let self = this;
-  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
+  service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
       // 1505274961239211095369
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
@@ -147,8 +149,8 @@ function logIn(code, appid, rawData) {
         key: constant.TOKEN,
         data: res.juniuToken,
         success: function (res) {
-          getStaffDetail.call(this);
-          getComments.call(this)
+          getStaffDetail.call(self);
+          getComments.call(self)
         }
       })
     },

@@ -1,6 +1,7 @@
 import { productService } from '../shared/service.js'
 import { errDialog, changeDate } from '../../../utils/util';
 import { constant } from '../../../utils/constant';
+import { service } from '../../../service';
 //获取应用实例
 var app = getApp()
 Page({
@@ -22,6 +23,7 @@ Page({
     })
 
     let token = wx.getStorageSync(constant.TOKEN);
+    let self = this;
     if (token) {
       getProductDetail.call(this);
       getProductCommentList.call(this)
@@ -128,7 +130,7 @@ function getProductCommentList() {
 
 function logIn(code, appid, rawData) {
   let self = this;
-  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
+  service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
       // 1505274961239211095369
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
@@ -145,8 +147,8 @@ function logIn(code, appid, rawData) {
         key: constant.TOKEN,
         data: res.juniuToken,
         success: function (res) {
-          getProductDetail.call(this);
-          getProductCommentList.call(this)
+          getProductDetail.call(self);
+          getProductCommentList.call(self)
         }
       })
     },
