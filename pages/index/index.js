@@ -78,7 +78,7 @@ Page({
             }
           },
           fail: function (res) { 
-            console.log(res)
+            console.log('用户信息失败：' + res)
           },
           complete: function (res) { 
             console.log(res)            
@@ -86,8 +86,12 @@ Page({
         });
 
       },
-      fail: function (res) { },
-      complete: function (res) { },
+      fail: function (res) { 
+        console.log('微信登录失败：' + res)
+      },
+      complete: function (res) {
+        console.log('微信登录完成：' + res)        
+       },
     });
   },
 
@@ -232,6 +236,11 @@ function logIn(code, appid, rawData) {
   service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
       // 1505274961239211095369
+
+      console.log('登陆成功');
+      console.log(res);
+      console.log(res.merchantId);
+
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1500022449722218063731');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);

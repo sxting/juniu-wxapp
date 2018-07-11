@@ -3,7 +3,7 @@
  */
 
 var constant = {
-  TPLID: '1.66',
+  TPLID: '1.67',
   version2: 2,
   // apiUrl: 'http://b-test.juniuo.com/wxapp',
   // apiUrl: 'https://tiyan.juniuo.com',
