@@ -14,6 +14,13 @@ Page({
     })
   },
 
+  // 跳转到我的订单
+  goMyOrderForm() {
+    wx.navigateTo({
+      url: '/pages/personal/order-form/order-form',
+    })
+  },
+
   //跳转到我的预约页面 
   goMyAppointment: function() {
     wx.navigateTo({
@@ -28,12 +35,6 @@ Page({
     })
   },
 
-  // 返回首页
-  goHome: function() {
-    wx.redirectTo({
-      url: '/pages/home/home',
-    })
-  },
   goMyMemberCard: function() {
     wx.navigateTo({
       url: '/pages/personal/member-card/index/index',

@@ -1,0 +1,34 @@
+<view class="page">
+  <view class="tab">
+    <view wx:for="{{tabList}}" wx:key="index" bindtap="onTabClick" data-index="{{index}}"
+    class="tab-item {{index == tabIndex ? 'active' : ''}}">{{item}}</view>
+  </view>
+  
+  <view class="order-form-list">
+    <view class="order-form-item" wx:for="1ds23">
+      <view class="order-form-subtitle">
+        <text class="fl">服务项目</text>
+        <view class="fr">
+          <text class="color1" wx:if="">待付款</text>
+          <text class="color2" wx:elif="">待消费</text>
+          <text class="color3" wx:elif="">已消费</text>
+          <text class="color3" wx:elif="">支付超时</text>
+          <text class="color4" wx:else>已退款</text>
+        </view>
+      </view>
+      <view class="order-form-msg" bindtap="onItemClick" data-order-id="{{item}}">
+        <image src="/asset/images/product.png"></image>
+        <view class="order-msg-right">
+          <view class="product-name">{{item}}</view>
+          <view class="order-time">下单时间：2017.09.21  18:36:09</view>
+          <view class="order-price">￥<text>180</text></view>
+        </view>
+      </view>
+      <view class="comment" wx:if="">
+        <view class="comment-btn" bindtap="onCommentClick" data-product-id="{{item}}">立即评价</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view>
+</view>

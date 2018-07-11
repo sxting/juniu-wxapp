@@ -1,6 +1,12 @@
 @import 'style/weui.wxss';
 @import 'style/common.wxss';
 
+page {
+  background-color: #fff;
+  font-size: 34rpx;
+  color: #222;
+}
+
 .container {
   font-size: 30rpx;
   font-family: "PingFangSC-Regular";
@@ -26,6 +32,11 @@
   float: right;
 }
 
+.bd {
+  box-shadow: 0 2rpx 6rpx 0 #D8D8D8;
+  border-radius: 8rpx;
+}
+
 .save {
   margin-top: 60rpx;
   background-color: #f60;
@@ -41,13 +52,6 @@
   border: 1px solid #f60;
 }
 
-page {
-  background-color: #fff;
-  font-size: 34rpx;
-  color: #222;
-
-}
-
 .placeholder {
   font-family: "PingFangSC-Regular";
   font-size: 28rpx;
@@ -59,7 +63,30 @@ page {
     color: #c7c7c7;
 }
 
+.tel-btn {
+  background: #FFFFFF;
+  box-shadow: 0 0 4rpx 0 rgba(131,131,131,0.50);
+  border-radius: 96rpx;
+  width: 140rpx;
+  height: 48rpx;
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 20rpx;
+  color: #BCBCBC;
+  padding: 0;
+}
+
+
 /*弹框  */
+.alert-bg {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
 .alert-box {
   width: 600rpx;
   height: 292rpx;
@@ -86,6 +113,16 @@ page {
   height: 92rpx;
   line-height: 92rpx;
   border-top: 2rpx solid #F3F3F3;
+}
+.alert-btnl, .alert-btnr {
+  width: 50%;
+  box-sizing: border-box;
+  float: left;
+}
+.alert-btnr {
+  color: #666666;
+  border-left: 2rpx solid #F3F3F3; 
+  height: 90rpx;
 }
 
 /*底部桔牛logo样式  */

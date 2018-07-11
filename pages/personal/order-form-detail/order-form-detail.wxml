@@ -1,0 +1,82 @@
+<view class="page {{status == 1 || status == 2 ? 'page2' : ''}}">
+  <view class="status {{status == 4 ? 'status4' : ''}}"
+  wx:if="{{status == 1 || status == 4}}">
+    <text class="jn-icon icon-shijian"></text>
+    <view class="status-right">
+      <view class="status-text">
+        <text wx:if="{{status == 1}}">待支付</text>
+        <text wx:elif="{{status == 4}}">已关闭</text>
+      </view>
+      <view class="status-note">
+        <text wx:if="{{status == 1}}">请在下单后5分钟内付款，超时订单将自动关闭</text>
+        <text wx:elif="{{status == 4}}">超时未支付</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-form-item">
+      <view class="order-form-subtitle">服务项目</view>
+      <view class="order-form-msg">
+        <image src="/asset/images/product.png"></image>
+        <view class="order-msg-right">
+          <view class="product-name">发型总监设计造型发发型总监设计造型发</view>
+          <view class="order-price">￥<text>180</text></view>
+        </view>
+      </view>
+  </view>
+
+  <view class="price-box">
+    <view class="price-item">
+      <text>发型总监设计</text>
+      <text class="fr">+199</text>
+    </view>
+    <view class="price-item">
+      <text>优惠券</text>
+      <text class="fr">-10</text>
+    </view>
+    <view class="price-item">
+      <text>会员卡开卡</text>
+      <text class="fr">+199</text>
+    </view>
+    <view class="price-total">
+      <text>实付款</text>
+      <text class="fr">899元</text>
+    </view>
+  </view>
+
+  <view class="address-box bd" wx:if="{{status == 1 || status == 4}}">
+    <view class="store-btn-box">{{storeName}}</view>
+    <view class="address-and-tel">
+      <icon class="jn-icon icon-address"></icon>学清路静淑里6号楼底商
+      <view class="fr tel-box">
+        <view class="jn-icon icon-tel"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bd w-inner code-box" wx:else>
+    <view class="product-name">发型总监设计造型发发型总监设计造型发</view>
+    <view class="code-status">
+      <view>
+        <text wx:if="{{status == 3}}">已使用</text>
+        <text wx:elif="{{status == 2}}">未使用</text>
+        <text wx:elif="{{status == 5}}">已退款</text>
+      </view>
+      <view class="code-order-time">下单时间：2018-02-27  17:28:33</view>
+    </view>
+    <view class="code">
+      <image src="/asset/images/product.png"></image>
+      <view class="code-num">券码 4385 4754 5457</view>
+    </view>
+  </view>
+
+  <view class="order-box w-inner bd">
+    <view class="">订单编号：21667439824673289497</view>
+    <view class="">下单时间：2018.03.02  23:34:56</view>
+  </view>
+
+  <view class="pay-btn" wx:if="{{status == 1}}">立即付款</view>
+  <view class="pay-btn" wx:elif="{{status == 2}}" bindtap="goRefund">申请退款</view>  
+
+  <view class="juniu-bottom {{status == 1 || status == 2 ? 'juniu-bottom2' : ''}}"><image src="/asset/images/logo.png"></image></view> 
+</view>

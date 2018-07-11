@@ -51,8 +51,13 @@ Page({
 
   onItemClick: function(e) {
     if(this.data.label == 'order') {
-      wx.redirectTo({
-        url: `/pages/order/order?storeId=${this.data.storeId}&craftsmanId=${e.currentTarget.dataset.staffId}&craftsmanName=${e.currentTarget.dataset.staffName}`,
+      wx.setStorageSync("staffId", e.currentTarget.dataset.staffId)
+      wx.setStorageSync("staffName", e.currentTarget.dataset.staffName)
+      wx.switchTab({
+        url: `/pages/order/order?aa=1`,
+        success: function(res) {
+          console.log(res);
+        }
       })
     } else if (this.data.label == 'comment') {
       wx.redirectTo({

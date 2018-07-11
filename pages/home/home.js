@@ -33,32 +33,24 @@ Page({
       })
     }
     let self = this;
-    if (wx.getStorageSync(constant.TOKEN) && wx.getStorageSync(constant.STORE_INFO)) {
-      this.setData({
-        storeId: wx.getStorageSync(constant.STORE_INFO)
-      })
-      getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));
-      getTicketInfo.call(this, this.data.storeId);
-    } else {
-      wx.login({
-        success: function (result) {
-          wx.getUserInfo({
-            withCredentials: true,
-            success: function (res) {
-              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-              let appId = 'wx3bb038494cd68262';
-              if (result.code) {
-                logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-              } else {
-                console.log('获取用户登录态失败！' + result.errMsg)
-              }
+    wx.login({
+      success: function (result) {
+        wx.getUserInfo({
+          withCredentials: true,
+          success: function (res) {
+            let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+            let appId = 'wx3bb038494cd68262';
+            if (result.code) {
+              logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+            } else {
+              console.log('获取用户登录态失败！' + result.errMsg)
             }
-          });
-        },
-        fail: function (res) { },
-        complete: function (res) { },
-      });
-    }
+          }
+        });
+      },
+      fail: function (res) { },
+      complete: function (res) { },
+    });
   },
 
   onShow() {

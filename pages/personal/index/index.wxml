@@ -1,37 +1,48 @@
-<view class="container">
+<view class="">
   <!--背景图-->
   <view class="top-bg">
     <image src="/asset/images/personal-bg.png"></image>
+    <view class="personal">
+      <image class="personal-image fl" src="{{userInfo.avatarUrl}}"></image>
+      <view class="personal-message fl">
+        <view class="nickname">{{userInfo.nickName}}</view>
+        <view class="tel" wx:if="">19229299229</view>
+        <view class="tel" wx:else>点击绑定手机号</view>
+      </view>
+    </view>
   </view>
-  <!--个人信息-->
-  <view class="personal-message">
-    <text class="nickname">{{userInfo.nickName}}</text>
+
+  <view class="jn-bg"></view>
+
+  <!--我的订单  -->
+  <view class="my-order" bindtap="goMyOrderForm">
+    <image src="/asset/images/my-order.png"></image>
+    <text>我的订单</text>
+    <icon class="jn-icon icon-rightblue"></icon>
   </view>
-  <image class="personal-image" src="{{userInfo.avatarUrl}}"></image>
   <!--我的预约-->
-  <view class="my-order" bindtap="goMyAppointment">
-    <icon class="jn-icon icon-opentime"></icon>
+  <view class="my-appoint" bindtap="goMyAppointment">
+    <image src="/asset/images/my-appoint.png"></image>
     <text>我的预约</text>
     <icon class="jn-icon icon-rightblue"></icon>
   </view>
-  <!--我的评价-->
-  <view class="my-comment" bindtap="goMyComment">
-    <icon class="jn-icon icon-Evaluation"></icon>
-    <text>我的评价</text>
-    <icon class="jn-icon icon-rightblue"></icon>
-  </view>
   <view class='my-comment' bindtap='goMyMemberCard'>
-    <view class='jn-icon icon-member-card' style='color: #e5e5e5;padding-right: 10rpx'></view>
+    <image src="/asset/images/my-card.png"></image>
     <text>我的会员卡</text>
         <icon class="jn-icon icon-rightblue"></icon>
   </view>
    <view class='my-comment' bindtap='goMyTicket'>
-    <view class='jn-icon ticket' style='color: #e5e5e5;padding-right: 10rpx'></view>
+    <image src="/asset/images/my-coupon.png"></image>
     <text>我的优惠券</text>
         <icon class="jn-icon icon-rightblue"></icon>
   </view>
+  <!--我的评价-->
+  <view class="my-comment" bindtap="goMyComment">
+    <image src="/asset/images/my-comment.png"></image>
+    <text>我的评价</text>
+    <icon class="jn-icon icon-rightblue"></icon>
+  </view>
 
+  <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
   <view class="version">v-1.64</view> 
-  <!--返回首页btn-->
-  <!-- <view class="go-back-btn" bindtap="goHome"> 返回店铺首页</view> -->
 </view>

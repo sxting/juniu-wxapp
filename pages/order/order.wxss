@@ -1,20 +1,30 @@
-.select-box, .user-msg-box {
+.page {
+  border-top: 2rpx solid #F3F3F3;
+}
+.select-box {
     margin-bottom: 20rpx;
     background: #fff;
-    border-top: 1px solid #e5e5e5;
     padding: 0 30rpx;
+    width: 690rpx;
+    margin: 30rpx auto 10rpx;
+    box-shadow: 0 2rpx 6rpx 0 #D8D8D8;
+    border-radius: 8rpx;
+    box-sizing: border-box;
+    font-size: 32rpx;
+    color: #333333;
 }
 .craftsman-select, .product-select {
     height: 90rpx;
     line-height: 90rpx;
 }
 .craftsman-select {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid #F3F3F3;
 }
 .craftsman-name, .product-name {
     color: #999;
     float: right;
     padding-right: 10rpx;
+    font-size: 26rpx;
 }
 .icon-rightblue {
     float: right;
@@ -30,7 +40,6 @@
     height: 80rpx;
     line-height: 80rpx;
     font-family: "PingFangSC-Medium";
-    border-top: 2rpx solid #F3F3F3;
     font-size: 32rpx;
     color: #111111;
 }
@@ -127,40 +136,59 @@
   width: 100vw;
   text-align: center;
   top: 50%;
+  color: #ff6600;
+  font-size: 30rpx;
 }
 
 .user-msg-box {
-    border: none;
+  width: 690rpx;
+  margin: 20rpx auto;
+  box-shadow: 0 2rpx 6rpx 0 #D8D8D8;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  color: #333333;
+  padding: 0 20rpx;
+  box-sizing: border-box;
 }
 .tel-box, .note {
-     height: 90rpx;
-     line-height: 90rpx;
-     border-bottom: 1px solid #e5e5e5;
-     position: relative;
+  height: 88rpx;
+  line-height: 88rpx;
+  position: relative;
 }
 .note {
-    border: none;
+  border-top: 2rpx solid #F3F3F3;
 }
 .tel-box input, .note input {
-    /* float: right; */
-    height: 90rpx;
-    line-height: 90rpx;
-    text-align: right;
+    height: 88rpx;
+    line-height: 88rpx;
     position: absolute;
-    right: 0;
+    left: 110rpx;
     top: 0;
 }
 .placeholder {
-    font-size: 30rpx;
+    font-size: 26rpx;
+    color: #999999;
 }
 .sure-btn {
-    height: 90rpx;
-    line-height: 90rpx;
+    height: 80rpx;
+    line-height: 80rpx;
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    background: #ff6600;
+    background: #FE6700;
+    border-radius: 52rpx;
     color: #fff;
-    width: 100vw;
-    font-size: 34rpx;
+    width: 690rpx;
+    font-size: 36rpx;
+    margin: 30rpx auto;
+}
+
+.juniu-bottom {
+  position: relative;
+  bottom: 0;
+  margin-bottom: 30rpx;
+}
+
+.tel-btn {
+  position: absolute;
+  right: 0;
+  top: 20rpx;
 }

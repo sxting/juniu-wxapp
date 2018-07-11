@@ -27,7 +27,8 @@ Page({
     note: '',  //备注
     peopleNumber: '1', //预约人数
     isToday: true, 
-    today: {year: '2018', month: '2月'}
+    today: {year: '2018', month: '2月'},
+    success: false,
   },
   onLoad: function (options) {
     let today = changeDate.call(this,new Date());
@@ -40,17 +41,23 @@ Page({
     dateArr[1].week = '明';
     
     this.setData({
-      storeId: wx.getStorageSync(constant.STORE_INFO),
       dateList: dateArr,
       date: dateArr[0].dateData,
-      craftsmanId: options.craftsmanId ? options.craftsmanId : this.data.craftsmanId,
+      craftsmanId: wx.getStorageSync('staffId') ? wx.getStorageSync('staffId') : this.data.craftsmanId,
       productId: options.productId,
-      craftsmanName: options.craftsmanName ? options.craftsmanName : this.data.craftsmanName,
+      craftsmanName: wx.getStorageSync('staffName') ? wx.getStorageSync('staffName') : this.data.craftsmanName,
       productName: options.productName,
       price: options.price
     })
 
-    reserveConfig.call(this)
+    wx.removeStorageSync('staffId');
+    wx.removeStorageSync('staffName');
+  },
+  onShow: function() {
+    this.setData({
+      storeId: wx.getStorageSync(constant.STORE_INFO)
+    });
+    reserveConfig.call(this);
   },
 
   // 选择手艺人
@@ -146,7 +153,22 @@ Page({
     }
 
     saveReserve.call(this)
+  },
+
+  successYBtnClick() {
+    this.setData({
+      success: false,
+    })
+    wx.navigateTo({
+      url: '/pages/personal/appointment/appointment',
+    })
+  },
+  successNBtnClick() {
+    this.setData({
+      success: false,
+    })
   }
+
 })
 
 // 查询店铺预约配置
@@ -295,20 +317,12 @@ function saveReserve() {
     delete data.productId;
     delete data.productName;
   }
+  let self = this;
   orderService.saveReserve(data).subscribe({
     next: res => {
       if(res) {
-        wx.showModal({
-          title: '提示',
-          content: '预约成功',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              wx.navigateBack({
-                delta: 1
-              })
-            }
-          }
+        self.setData({
+          success: true
         })
       }
     },

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 365926 */
-  src: url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.eot');
-  src: url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.woff') format('woff'),
-  url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_365926_gra4ez5r9yh.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.eot');
+  src: url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.woff') format('woff'),
+  url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.svg#iconfont') format('svg');
 }
 .jn-icon {
   display: inline-block;
@@ -162,4 +162,7 @@
 }
 .icon-select::before {
   content: '\e656'
+}
+.icon-shijian::before {
+  content: '\e60f'
 }
