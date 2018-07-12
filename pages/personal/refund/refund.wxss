@@ -50,3 +50,7 @@
   border-bottom: 2rpx solid #f3f3f3;
   padding-left: 30rpx;
 }
+
+.juniu-bottom {
+  bottom: 120rpx;
+}

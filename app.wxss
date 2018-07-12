@@ -19,9 +19,18 @@ page {
   width: 100vw;
 }
 
-/* .jn-btn {
-
-} */
+ .jn-btn {
+  background: #FF6600;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+} 
 
 .w-inner {
   width: 690rpx;

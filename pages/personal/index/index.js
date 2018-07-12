@@ -6,6 +6,10 @@ Page({
   },
  
   onLoad: function () {
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#FF6400',
+    })
     this.setData({
       userInfo: app.globalData.userInfo
     });
@@ -37,7 +41,7 @@ Page({
 
   goMyMemberCard: function() {
     wx.navigateTo({
-      url: '/pages/personal/member-card/index/index',
+      url: '/pages/personal/member-card/list/list',
     })
   },
   goMyTicket: function() {

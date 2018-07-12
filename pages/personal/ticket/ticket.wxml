@@ -1,7 +1,8 @@
 <view class="page">
   <view class="page__bd">
     <view class="weui-tab">
-      <view class="weui-navbar" style='background-color: white'>
+    
+      <view class="weui-navbar">
         <block wx:for="{{tabs}}" wx:key="*this">
           <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
             <view class="weui-navbar__title">{{item}}</view>
@@ -9,6 +10,7 @@
         </block>
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);background-color:#FF6600;"></view>
       </view>
+
       <view class="weui-tab__panel">
         <view class="weui-tab__content" style='padding-top:20rpx !important;' hidden="{{activeIndex != 0}}">
           <view class='ticket-block'>
@@ -115,6 +117,7 @@
           </view>
         </view>
       </view>
+
     </view>
   </view>
 </view>

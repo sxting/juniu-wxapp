@@ -7,5 +7,9 @@ Page({
   onLoad: function (options) {
   
   },
+
+  onRefundClick() {
+    wx.navigateBack()
+  }
   
 })

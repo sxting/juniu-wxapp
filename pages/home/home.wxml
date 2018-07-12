@@ -96,7 +96,7 @@
               <view class="use-limit" wx:if="{{item.useLimitMoney > 0}}">消费满<text>{{item.useLimitMoney/100}}</text>元可使用</view>
               <view class="use-limit" wx:else>无使用门槛</view>
             </view>
-            <view class="gift-name" wx:else>{{item.couponDefProductName}}</view>
+            <view class="gift-name" wx:else>{{item.couponDefProductName}}</view>           
           </view>
           <view class='ticket-btn'>
             <view style='margin-bottom: 14rpx;'>

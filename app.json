@@ -26,7 +26,8 @@
     "pages/personal/ticket/ticket",
     "pages/personal/order-form/order-form",
     "pages/personal/order-form-detail/order-form-detail",
-    "pages/personal/refund/refund"
+    "pages/personal/refund/refund",
+    "pages/personal/member-card/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",

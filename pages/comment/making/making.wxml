@@ -11,7 +11,8 @@
   </view>
   <!--描述服务-->
   <view class="textarea-box">
-    <textarea value="{{commentContent}}" bindinput="commentContentChange" placeholder-class="placeholder" placeholder="描述一下商家的服务" />
+    <textarea value="{{commentContent}}" bindinput="commentContentChange" 
+    placeholder-class="placeholder" placeholder="该服务您是否满意，您的意见对我们很重要！" />
   </view>
   <!--添加图片-->
   <view class="pictures-box">
@@ -26,6 +27,6 @@
     </view>
   </view>
 
-  <!--提交按钮-->
-  <view class="submit-btn w-inner" bindtap="commit">提交评价</view>
+  <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
+  <view class="jn-btn" bindtap="commit">确认发布</view>
 </view>

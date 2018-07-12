@@ -1,0 +1,32 @@
+<view class="page" wx:if="{{showClickBind == 'F'}}">
+  <view class="card-item" wx:for="{{cards}}" bindtap="onCardItemClick" data-cardid="{{item.cardId}}">
+    <image src="/asset/images/card-bg.png"></image>
+    <view class="card">
+      <view class="fl">
+        <view class="card-name">{{item.cardName}}</view>
+      </view>
+      <view class="fr">
+        <view class="tel">{{item.phone}}</view>
+        <view class="person-name">{{item.customerName ? item.customerName : '无'}}</view>
+        <view class="jn-icon erweima"></view>
+      </view>
+      <view class="date">有效期：{{item.validate}}</view>        
+    </view>
+  </view>
+</view>
+<view class="space-box" wx:if="{{showClickBind === 'F' && cards.length === 0}}">
+  <view class="space-bg">
+    <image src="/asset/images/nofind.png"></image>
+  </view>
+  <view class="space-text">尚未办理会员卡，请到店内办理</view>
+</view>
+<view class="space-box" wx:if="{{showClickBind === 'T' && cards.length === 0}}">
+  <view class="space-bg">
+    <image src="/asset/images/nofind.png"></image>
+  </view>
+  <view class="space-text">暂无会员卡信息</view>
+  <view>
+    <button class='btn-open-card' bindtap='bindMemberCard'>去绑定会员卡</button>
+  </view>
+</view>
+<view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
