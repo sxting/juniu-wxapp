@@ -3,14 +3,14 @@
  */
 
 var constant = {
-  TPLID: '1.67',
+  TPLID: '1.68',
   version2: 2,
   // apiUrl: 'http://b-test.juniuo.com/wxapp',
   // apiUrl: 'https://tiyan.juniuo.com',
   apiUrl: 'https://biz.juniuo.com/wxapp',
-  apiUrl2: 'https://pay.juniuo.com/wxapp',
+  apiUrl2: 'https://biz.juniuo.com/wxapp',
   apiUrlTwo: 'https://biz.juniuo.com/',
-  apiUrl3: 'https://pay.juniuo.com/',
+  apiUrl3: 'https://biz.juniuo.com/',
   // imgUrl: 'http://ts.diankayi.net/',
   // apiUrl: 'https://biz.juniuo.com/wxapp',
   OSS_IMAGE_URL: 'https://oss.juniuo.com/juniuo-pic/picture/juniuo/',
