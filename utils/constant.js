@@ -3,6 +3,7 @@
  */
 
 var constant = {
+  TPLID: 'test-2.0',
   address: '',
   sessionKey: 'sessionKey',
   version2: 2,
