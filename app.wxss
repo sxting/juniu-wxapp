@@ -193,6 +193,9 @@ page {
     padding-top: 40rpx;
     padding-left: 16rpx;
 }
+.comment-top-center {
+  font-size: 30rpx;
+}
 .icon-starempty, .icon-stars  {
     font-size: 24rpx;
     color: #FF6600;
@@ -326,9 +329,24 @@ page {
   text-align: left;
 }
 
-.ticket-btn {
+.ticket-btn-box {
   width: 140rpx;
-  padding-top: 10rpx;
+  text-align: center;
+}
+.ticket-btn {
+  font-size: 13px;
+  color: #FFFFFF;
+  background-color: #FF6600;
+  border-radius: 30rpx;
+  height: 48rpx;
+  width: 112rpx;
+  text-align: center;
+  line-height: 48rpx;
+  margin-top: 40rpx;
+}
+.ticket-btn2 {
+  color: #999;
+  background-color: #f3f3f3;
 }
 
 .ticket-price text {

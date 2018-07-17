@@ -3,12 +3,10 @@ import { memberCardService } from '../shared/service';
 import { errDialog, checkMobile } from '../../../../utils/util';
 import { constant } from '../../../../utils/constant';
 import { ticketService } from '../../../ticket/shared/ticket.service';
+// import { WXBizDataCrypt } from '../../../../utils/WXBizDataCrypt';
+
 let wait = 60;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     sendMegLabel: '获取验证码',
     isDisabled: false,
@@ -16,15 +14,13 @@ Page({
     remark: '',
     validCode: '',
     storeId: '',
-    marketingid: ''
+    marketingid: '',
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '绑定会员卡',
+      title: '绑定手机号',
     });
     this.setData(
       {
@@ -34,54 +30,22 @@ Page({
     )
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  getUserPhoneNumber: function (e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.iv)
+    console.log(e.detail.encryptedData)
+    console.log(encodeURIComponent(e.detail.encryptedData))
 
+    let appId = wx.getExtConfigSync.theAppid ? wx.getExtConfigSync.theAppid : 'wx3bb038494cd68262';
+    let sessionKey = wx.getStorageSync(constant.sessionKey);
+    let encryptedData = encodeURIComponent(e.detail.encryptedData);
+    let iv = e.detail.iv;
+
+    // var pc = new WXBizDataCrypt(appId, sessionKey)
+    // var data = pc.decryptData(encryptedData, iv)
+    // console.log(data);
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   getMsgCode: function () {
     let phone = this.data.phoneNumber;
     let self = this;

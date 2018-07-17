@@ -5,6 +5,8 @@ import { errDialog, loading } from '../../utils/util'
 import { constant } from '../../utils/constant';
 import { ticketService } from '../ticket/shared/ticket.service';
 import { service } from '../../service';
+import { indexService } from '../index/shared/index.service';
+
 // MONEY，DISCOUNT，GIFT
 var app = getApp()
 Page({
@@ -17,21 +19,25 @@ Page({
     storeInfo: {},
     fromNeighbourhood: false,
     ticketList: [],
-    optionData: '',
     juniuImg: '/asset/images/product.png',
     showSearchMoreTicket: true,
+    address: '',
+    tel: '',
   },
   onLoad: function (option) {
     this.setData({
       storeId: option.storeid ? option.storeid : wx.getStorageSync(constant.STORE_INFO),
-      scene: app.globalData.scene,
-      optionData: option
+      scene: app.globalData.scene
     });
     if (this.data.scene === 1026) {
       this.setData({
         fromNeighbourhood: true
       })
     }
+    
+  },
+
+  onShow() {
     let self = this;
     wx.login({
       success: function (result) {
@@ -53,20 +59,7 @@ Page({
     });
   },
 
-  onShow() {
-    let self = this;
-    if (wx.getStorageSync(constant.TOKEN) && wx.getStorageSync(constant.STORE_INFO)) {
-      self.setData({
-        storeId: wx.getStorageSync(constant.STORE_INFO)
-      })
-      setTimeout(function () {
-        getStoreIndexInfo.call(self, wx.getStorageSync(constant.STORE_INFO), wx.getStorageSync(constant.MERCHANTID));
-        getTicketInfo.call(self, wx.getStorageSync(constant.STORE_INFO));
-      }, 100)
-    }
-  },
-
-// 转发
+  // 转发
   onShareAppMessage: function(res) {
     return {
       title: wx.getStorageSync('storeName'),
@@ -89,6 +82,34 @@ Page({
     })
   },
 
+  // 唤起地图
+  onAddressClick: function () {
+    let self = this;
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (result) {
+        var latitude = self.data.latitude
+        var longitude = self.data.longitude
+        wx.openLocation({
+          latitude: latitude,
+          longitude: longitude,
+          name: wx.getStorageSync('storeName'),
+          address: self.data.address,
+          scale: 14
+        })
+
+      }
+    })
+  },
+
+  // 拨打电话
+  onTelClick() {
+    let self = this;
+    wx.makePhoneCall({
+      phoneNumber: self.data.tel 
+    })
+  },
+
   // 跳转到服务项目列表
   goProductPage: function () {
     wx.navigateTo({
@@ -103,11 +124,13 @@ Page({
     })
   },
 
+  // 跳转到手艺人详情
   goStaffDetail: function (e) {
     wx.navigateTo({
       url: '/pages/craftsman/detail/detail?staffId=' + e.currentTarget.dataset.staffid + '&storeId=' + this.data.storeId,
     })
   },
+  // 跳转到服务项目详情
   goProductDetail: function (e) {
     wx.navigateTo({
       url: '/pages/product/detail/detail?productId=' + e.currentTarget.dataset.productid + '&storeId=' + this.data.storeId,
@@ -125,11 +148,13 @@ Page({
       productImages: this.data.productImages
     })
   },
+  // 跳转到优惠券列表
   goAllTicket: function () {
     wx.navigateTo({
       url: '/pages/ticket/index/index',
     })
   },
+  // 跳转到优惠券详情
   goTicketDetail: function (e) {
     wx.navigateTo({
       url: '/pages/ticket/detail/detail?marketingId=' + e.currentTarget.dataset.marketingid,
@@ -161,7 +186,7 @@ Page({
       complete: () => wx.hideToast()
     })
   },
-  // 绑定手机号
+  // 跳转到绑定手机号
   reciveTicketAndBind: function (e) {
     wx.navigateTo({
       url: '/pages/personal/member-card/band/band?marketingid=' + e.currentTarget.dataset.marketingid,
@@ -275,9 +300,22 @@ function logIn(code, appid, rawData) {
   let self = this; 
   service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
     next: res => {
+      wx.getLocation({
+        success: function(result) {
+          console.log(result);
+        },
+        fail: function (result) {
+          wx.navigateTo({
+            url: '/pages/index/index',
+          })
+        }
+      })
+
+      // 1530602217127209655835
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1530602217127209655835');
+      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '153179997107784038184');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
+      wx.setStorageSync(constant.sessionKey, res.sessionKey)
 
       if(res.ver == '2') {
         wx.setStorageSync(constant.VER, 2 );
@@ -296,6 +334,7 @@ function logIn(code, appid, rawData) {
         success: function (res) {
           getStoreIndexInfo.call(self, self.data.storeId, wx.getStorageSync(constant.MERCHANTID));
           getTicketInfo.call(self, self.data.storeId);
+          getStoreInfo.call(self, wx.getStorageSync(constant.STORE_INFO))
         }
       })
     },
@@ -321,4 +360,55 @@ function getAllTicket(storeId) {
     error: err => errDialog(err),
     complete: () => wx.hideToast()
   })
+}
+
+//获取门店信息
+function getStoreInfo(storId) {
+  let self = this;
+  homeService.storeInfoDetail({ storeId: storId }).subscribe({
+    next: res => {
+      self.setData({
+        address: res.address,
+        tel: res.mobie,
+        latitude: res.latitude,
+        longitude: res.longitude,
+      });
+      wx.setStorageSync(constant.address, res.address)
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+/**获取门店列表 */
+function getStoreListInfo() {
+  let self = this;
+  let shopQuery = {
+    merchantId: wx.getStorageSync(constant.MERCHANTID)
+  };
+  indexService.getStoreList(shopQuery).subscribe({
+    next: res => {
+      this.setData({
+        storeList: res.content
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  });
+}
+
+// 计算两点间距离
+function getDistance(lat1, lng1, lat2, lng2) {
+  lat1 = lat1 || 0;
+  lng1 = lng1 || 0;
+  lat2 = lat2 || 0;
+  lng2 = lng2 || 0;
+
+  var rad1 = lat1 * Math.PI / 180.0;
+  var rad2 = lat2 * Math.PI / 180.0;
+  var a = rad1 - rad2;
+  var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+
+  var r = 6378137;
+  return r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)))
 }

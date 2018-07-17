@@ -25,6 +25,12 @@ Page({
     })
   },
 
+  goMyBand() {
+    wx.navigateTo({
+      url: '/pages/personal/member-card/band/band',
+    })
+  },
+
   //跳转到我的预约页面 
   goMyAppointment: function() {
     wx.navigateTo({

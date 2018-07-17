@@ -1,23 +1,22 @@
-<view class="container" wx:if="{{cards.length > 0}}">
+<view class="page" wx:if="{{cards.length > 0}}">
   <view class="card-box">
-    <swiper indicator-dots="{{indicatorDots}}" bindchange='swiperChange' style='height: 524rpx'>
-      <block wx:for="{{cards}}">
-        <swiper-item bindtap='showMemberCardNumber' data-barcode="{{item.barCode}}" data-phone='{{item.phone}}'>
-          <!-- 如果有多张会员卡， 加类名 cards-bg-box -->
-          <view class="card-bg-box" style="{{item.background?'':'background: pink;'}}">
-            <image src="https://oss.juniuo.com/juniuo-pic/picture/juniuo/{{item.background}}/resize_69_36/mode_fill" width="690" height="360"></image>
-          </view>
-          <view class="card-msg-box">
-            <text class="card-name">{{item.cardName}}</text>
-            <text class="tel fr">{{item.phone}}</text>
-            <text class="member-name">{{item.customerName ? item.customerName : '无'}}</text>
-            <text class="card-member">卡号：{{item.cardNo}}</text>
-            <icon class="jn-icon erweima" />
-          </view>
-        </swiper-item>
-      </block>
-    </swiper>
+    <view class="card-item" wx:for="{{cards}}" wx:if="{{item.cardId == cardId}}" 
+    bindtap="showMemberCardNumber" data-phone="{{item.phone}}" data-barcode="{{item.barCode}}">
+      <image src="/asset/images/card-bg.png"></image>
+      <view class="card">
+        <view class="fl">
+          <view class="card-name">{{item.cardName}}</view>
+        </view>
+        <view class="fr">
+          <view class="tel">{{item.phone}}</view>
+          <view class="person-name">{{item.customerName ? item.customerName : '无'}}</view>
+          <view class="jn-icon erweima"></view>
+        </view>
+        <view class="date">有效期：{{item.validate}}</view>        
+      </view>
+    </view>
   </view>
+
   <view class="record-box" wx:if="{{showRecord}}" bindtap='goConsume'>
     <view>
       <text>消费记录</text>
@@ -25,7 +24,7 @@
     </view>
   </view>
 
-  <view class="card-detail" bindtap='goDetail'>
+  <view class="card-detail" wx:if="" bindtap='goDetail'>
     <view>
       <text>会员卡详情</text>
       <icon class="jn-icon icon-rightblue" />

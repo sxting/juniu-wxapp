@@ -10,9 +10,9 @@
       {{storeName}}
       <view class="jn-icon icon-rightblue fr"></view>
     </view>
-    <view class="address-and-tel">
-      <icon class="jn-icon icon-address"></icon>学清路静淑里6号楼底商
-      <view class="fr tel-box">
+    <view class="address-and-tel" bindtap="onAddressClick">
+      <icon class="jn-icon icon-address"></icon>{{address}}
+      <view class="fr tel-box" catchtap="onTelClick">
         <view class="jn-icon icon-tel"></view>
       </view>
     </view>
@@ -98,38 +98,35 @@
             </view>
             <view class="gift-name" wx:else>{{item.couponDefProductName}}</view>           
           </view>
-          <view class='ticket-btn'>
+          <view class='ticket-btn-box'>
             <view style='margin-bottom: 14rpx;'>
-                <button wx:if="{{item.isGet === 'get' && item.isBind === 'bind'}}"
-                  style='margin-top: 24rpx;background-color: #FF6600 !important;' class="weui-btn mini-btn"
-                  type="primary" size="mini"
+                <view wx:if="{{item.isGet === 'get' && item.isBind === 'bind'}}"
+                  class="ticket-btn"
                   bindtap='reciveTicket'  data-marketingid="{{item.marketingId}}">
                   领取
-                </button>
-                <button
+                </view>
+                <view
                   wx:elif="{{item.isGet !== 'get'}}"
-                  style='margin-top: 24rpx;background-color: #999999 !important;'
-                  class="weui-btn mini-btn" type="primary" size="mini">
+                  class="ticket-btn ticket-btn2">
                   已领取
-                </button>
-                <button wx:else
-                  style='margin-top: 24rpx;background-color: #FF6600 !important;'
-                  class="weui-btn mini-btn" type="primary" size="mini"
+                </view>
+                <view wx:else class="ticket-btn"
                   bindtap='reciveTicketAndBind' data-marketingid="{{item.marketingId}}">
                   领取
-                </button>  
+                </view>  
             </view>
             <view class='get-ticket-count'>已领{{item.count}}张</view>
           </view>
         </view>
 
         <view class="ticket-bottom {{item.ticketSwitch === 'CLOSE' ? 'ticket-bottom-close' : ''}}"
-        bindtap="onTicketBottomClick" data-marketingid="{{item.marketingId}}">
+          bindtap="onTicketBottomClick" data-marketingid="{{item.marketingId}}">
           <view class="open-btn jn-icon icon-xia" wx:if="{{item.ticketSwitch === 'CLOSE'}}"></view>
           <view class="close-btn jn-icon icon-shang" wx:else></view>
           <view>有效期：领取后{{item.validDateCount}}内有效</view>
           <view wx:if="{{item.ticketSwitch === 'OPEN'}}">不可用时间：周一至周六（13:00-16:00）</view>
         </view>
+        
       </view>
 
       <view class="search-more" bindtap="onSearchMoreTicketClick" wx:if="{{showSearchMoreTicket}}">

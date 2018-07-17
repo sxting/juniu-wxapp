@@ -2,16 +2,16 @@
   <!--搜索框-->
   <view class="search-box-bg">
     <view class="search-box w-inner">
-    <picker mode="region" value="{{region}}" range="" bindchange="bindRegionChange">
-      <view class="city-name">{{provinceName}}</view>
-      <icon class="jn-icon icon-xl"></icon>
-    </picker>
-    <view class="vertical-line"></view>
-    <view class="input-box">
-      <input bindinput="searchAddr" placeholder="输入搜索地址" placeholder-class="placeholder" />
-      <icon class="jn-icon icon-search"></icon>
+      <picker mode="region" value="{{region}}" range="" bindchange="bindRegionChange">
+        <view class="city-name">{{provinceName}}</view>
+        <icon class="jn-icon icon-xl"></icon>
+      </picker>
+      <view class="vertical-line"></view>
+      <view class="input-box">
+        <input bindinput="searchAddr" placeholder="输入搜索地址" placeholder-class="placeholder" />
+        <icon class="jn-icon icon-search"></icon>
+      </view>
     </view>
-  </view>
   </view>  
   <!--搜索地址列表-->
   <block wx:if="{{storeList.length > 0}}">
@@ -24,7 +24,6 @@
         </view>
       </view>
     </scroll-view>
-
   </block>
 
   <!--未找到门店-->

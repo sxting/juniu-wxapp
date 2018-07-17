@@ -30,7 +30,7 @@ Page({
     today: {year: '2018', month: '2月'},
     success: false,
   },
-  onLoad: function (options) {
+  onShow: function (options) {
     let today = changeDate.call(this,new Date());
     let dateArr = [];
     for(let i=0; i<7; i++) {
@@ -41,28 +41,30 @@ Page({
     dateArr[1].week = '明';
     
     this.setData({
+      storeId: wx.getStorageSync(constant.STORE_INFO),
       dateList: dateArr,
       date: dateArr[0].dateData,
       craftsmanId: wx.getStorageSync('staffId') ? wx.getStorageSync('staffId') : this.data.craftsmanId,
-      productId: options.productId,
+      productId: wx.getStorageSync('productId'),
       craftsmanName: wx.getStorageSync('staffName') ? wx.getStorageSync('staffName') : this.data.craftsmanName,
-      productName: options.productName,
-      price: options.price
+      productName: wx.getStorageSync('productName'),
+      price: wx.getStorageSync('reservePrice')
     })
 
     wx.removeStorageSync('staffId');
     wx.removeStorageSync('staffName');
-  },
-  onShow: function() {
-    this.setData({
-      storeId: wx.getStorageSync(constant.STORE_INFO)
-    });
+    wx.removeStorageSync('productId');
+    wx.removeStorageSync('productName');
+    wx.removeStorageSync('reservePrice');
+
     reserveConfig.call(this);
+
   },
+
 
   // 选择手艺人
   onCraftsmanClick: function() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/craftsman/select/select?label=order&storeId=' + this.data.storeId,
     })
   },
@@ -74,11 +76,11 @@ Page({
       return;
     }
     if (this.data.reserveType === 'MAN') {
-      wx.redirectTo({
+      wx.navigateTo({
         url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&storeId=${this.data.storeId}&from=order`,
       })
     } else if (this.data.reserveType === 'PRODUCT') {
-      wx.redirectTo({
+      wx.navigateTo({
         url: `/pages/product/select/select?productIds=${this.data.productIds}&storeId=${this.data.storeId}&from=order`,
       })
     }
@@ -114,8 +116,9 @@ Page({
   // 选择时间
   onTimeClick: function(e) {
     if (this.data.showPreventBox) {return;}
-    let index = e.currentTarget.dataset.index
-    if (this.data.timeList.time[index] < this.data.nowTime && this.data.isToday) {
+    let index = e.currentTarget.dataset.index;
+    let reserve = e.currentTarget.dataset.reserve;
+    if (this.data.timeList.time[index] < this.data.nowTime && this.data.isToday || reserve) {
       this.setData({
         time: ''
       });
@@ -252,7 +255,7 @@ function getStaffReserve() {
         let workTimeList = res.timeList;
         let reserveTimeArr = [];
         for (let i = 0; i < res.reservations.length; i++) {
-          reserveTimeArr.push(res.reservations[i].time)
+          reserveTimeArr.push(res.reservations[i].time.substring(0,5))
         }
         for (let i = 0; i < res.timeList.length; i++) {
           workTimeList[i] = {

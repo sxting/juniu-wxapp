@@ -23,7 +23,15 @@ Page({
     address: '',
     provinceId: '',
     cityId: '',
-    areaId: ''
+    areaId: '',
+    productId: ''
+  },
+  onLoad: function (options) {
+    if (options.productId) {
+      this.setData({
+        productId: options.productId
+      })
+    }
   },
   onShow: function () {
     let self = this;
@@ -79,6 +87,9 @@ Page({
   },
 
   routerToStoreIndex: function (e) {
+    if (this.data.productId) {
+      return;
+    }
     wx.setStorageSync(constant.STORE_INFO, e.currentTarget.dataset.storeid);
     wx.setStorageSync('storeName', e.currentTarget.dataset.storename)
     

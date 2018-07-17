@@ -43,7 +43,26 @@ Page({
         getMyTicket.call(this, this.data.storeId, 'OVERDUE');
         break;
     }
-  }
+  },
+
+  // 优惠券展开
+  onTicketBottomClick(e) {
+    let marketingId = e.currentTarget.dataset.marketingid;
+    this.data.ticketList.forEach((item) => {
+      if (marketingId === item.marketingId) {
+        if (item.ticketSwitch === 'OPEN') {
+          item.ticketSwitch = 'CLOSE';
+        } else {
+          item.ticketSwitch = 'OPEN';
+        }
+      } else {
+        item.ticketSwitch = 'CLOSE';
+      }
+    });
+    this.setData({
+      ticketList: this.data.ticketList
+    })
+  },
 });
 // 获取我的优惠券
 function getMyTicket(storeId, couponStatus) {
@@ -53,6 +72,9 @@ function getMyTicket(storeId, couponStatus) {
     couponStatus: couponStatus
   }).subscribe({
     next: res => {
+      res.forEach((item) => {
+        item.ticketSwitch = 'CLOSE';
+      });
       self.setData({
         ticketList: res
       });

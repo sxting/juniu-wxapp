@@ -29,6 +29,12 @@ function getMyComment(pageNo, pageSize) {
         let dateArray = item.juniuoModel.dateCreated.split(' ');
         item.date = dateArray[0];
         item.time = dateArray[1];
+        item.imagesUrlArr = [];
+        if (item.imagesUrl) {
+          item.imagesUrl.forEach(function(imgid) {
+            item.imagesUrlArr.push(constant.OSS_IMAGE_URL + `${imgid}/resize_72_72/mode_fill`)
+          })
+        }
       });
       self.setData({
         userInfo: res.comments

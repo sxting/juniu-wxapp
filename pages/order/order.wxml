@@ -36,7 +36,7 @@
           <view class="time-box">
             <!--当前点击的时间 加time-active类名, 当前时间不可点 加prevent-click类名-->
             <view wx:for="{{timeList.timeShow}}" wx:for-index="i" 
-            bindtap="onTimeClick" data-index="{{i}}" data-time="{{item.time}}"
+            bindtap="onTimeClick" data-index="{{i}}" data-time="{{item.time}}" data-reserve="{{item.reserve}}"
             class="time {{time == item.time ? 'time-active' : ''}} {{(showPreventBox || item.reserve || (timeList.time[i] < nowTime && isToday)) ? 'prevent-click' : ''}}"> 
             {{item.time}} </view>
             <view class="no-work" wx:if="{{timeList.timeShow.length == 0}}">请选择其他日期</view>

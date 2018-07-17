@@ -5,8 +5,9 @@
     padding-bottom: 0;
 }
 .weui-tab__content{
-    padding-top: 60px;
-    text-align: center;
+    padding-top: 20px;
+    width: 690rpx;
+    margin: auto;
 }
 .weui-navbar {
   background-color: #fff;
@@ -16,125 +17,19 @@
 .weui-navbar__item.weui-bar__item_on {
 color:#FF6600;
 }
-
-/* pages/ticket/index/index.wxss */
-.ticket-color {
-  color: #fa6f6f;
+.disabled-img {
+  padding: 30rpx 20rpx 0;
 }
-
-.div {
-  position: relative;
-  width: 90%;
-  height: 160rpx;
-  background: #FFFFFF 100%;
-  border: 1rpx solid #FFFFFF;
-  margin-bottom: 20rpx;
-  padding: 20rpx;
+.disabled-img image {
+  width: 120rpx;
+  height: 120rpx;
 }
-
-.ticket-block {
-  padding-left: 30rpx;
-  padding-bottom: 20rpx;
+.disabled {
+  background: #fafafa;
 }
-
-.yuan1 {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  background-color: #F5F5F5;
-  right: 160rpx;
-  top: -10px;
+.disabled .ticket-bottom {
+  background: #f0f0f0;
 }
-
-.yuan2 {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 20px;
-  background-color: #F5F5F5;
-  right: 160rpx;
-  bottom: -10px;
-}
-
-.dot-line {
-  position: absolute;
-  top: 20rpx;
-  right: 180rpx;
-  width: 0;
-  height: 162rpx;
-  border: 1rpx dashed #ffd1b2;
-}
-
-.ticket-image {
-  position: absolute;
-  width: 40px;
-  height: 20px;
-  left: 50rpx;
-  top: 50rpx;
-  margin-left: -20px;
-  margin-top: -10px;
-}
-
-.ticket-content {
-  position: absolute;
-  top: 20rpx;
-  left: 20rpx;
-  width: 264rpx;
-  overflow: hidden;
-}
-
-.ticket-btn {
-  position: absolute;
-  top: 20rpx;
-  right: 20rpx;
-}
-
-.ticket-title {
-  font-family: PingFangSC-Regular;
-  font-size: 28rpx;
-  color: #222;
-  margin-top: 24rpx;
-  margin-bottom: 24rpx;
-}
-
-.font-color {
-  font-family: '.PingFangSC-Medium';
-  font-size: 15px;
-  color: #f60;
-  letter-spacing: 0;
-  line-height: 15px;
-}
-
-.tip {
-  font-family: PingFangSC-Regular;
-  font-size: 13px;
-  color: #999;
-  letter-spacing: 0;
-  line-height: 13px;
-}
-.tip2 {
-  line-height:160rpx;
-  padding-right:20rpx;
-}
-
-.product-img-box {
-  width: 170rpx;
-  min-width: 170rpx;
-  height: 130rpx;
-  background-color: #ccc;
-}
-
-.con{
-  background-color: white;
-  height: 100%;
-
-}
-
-.bar{
-  padding-top: 15rpx;
-  padding-bottom: 15rpx;
-  border-bottom: 1rpx solid #E5E5E5;
-  margin-left: 30rpx;
-  margin-right: 30rpx ;
+.disabled .ticket-price-box {
+  color: #666;
 }

@@ -25,6 +25,7 @@ Page({
       storeId: options.storeId,
       from: options.from
     })
+    console.log(options.from === 'order')
     if (options.from === 'order') {
       if (options.craftsmanId) {
         this.setData({
@@ -76,8 +77,11 @@ Page({
   //点击商品 
   onItemClick: function (e) {
     if (this.data.from === 'order') {
-      wx.redirectTo({
-        url: `/pages/order/order?storeId=${this.data.storeId}&craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&productId=${e.currentTarget.dataset.productId}&productName=${e.currentTarget.dataset.productName}&price=${e.currentTarget.dataset.price}`,
+      wx.setStorageSync("productId", e.currentTarget.dataset.productId)
+      wx.setStorageSync("productName", e.currentTarget.dataset.productName)
+      wx.setStorageSync("reservePrice", e.currentTarget.dataset.price)
+      wx.switchTab({
+        url: `/pages/order/order`,
       })
     } else if (this.data.from === 'making') {
       wx.redirectTo({
@@ -133,7 +137,6 @@ function getProductList() {
   }
   productService.getProductList(data).subscribe({
     next: res => {
-      //         constant.OSS_IMAGE_URL + `${res.url}/resize_375_180/mode_fill`;
       res.content.forEach((item) => {
         if (item.picUrl) {
           item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
