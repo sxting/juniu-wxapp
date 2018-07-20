@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" wx:if="{{home}}">
   <!--轮播图部分-->
   <view class="banner-box">
     <swiper class="img-box" autoplay="true" interval="3000" duration="500">
@@ -11,7 +11,7 @@
       <view class="jn-icon icon-rightblue fr"></view>
     </view>
     <view class="address-and-tel" bindtap="onAddressClick">
-      <icon class="jn-icon icon-address"></icon>{{address}}
+      <icon class="jn-icon icon-address"></icon>{{storeAddress}}
       <view class="fr tel-box" catchtap="onTelClick">
         <view class="jn-icon icon-tel"></view>
       </view>
@@ -62,7 +62,7 @@
       <!--循环的手艺人-->
       <view class="cfaftsman" bindtap="goStaffDetail" data-staffid="{{item.staffId}}" 
       wx:for="{{storeInfo.staffList}}" wx:for-index="index" wx:if="{{index < 3}}">
-        <image src="{{item.headPortrait}}"></image>
+        <image src="{{item.headPortrait ? item.headPortrait : juniuImg}}"></image>
         <view class="craftsman-name">{{item.staffName}}</view>
       </view>
     </view>
@@ -124,7 +124,10 @@
           <view class="open-btn jn-icon icon-xia" wx:if="{{item.ticketSwitch === 'CLOSE'}}"></view>
           <view class="close-btn jn-icon icon-shang" wx:else></view>
           <view>有效期：领取后{{item.validDateCount}}内有效</view>
-          <view wx:if="{{item.ticketSwitch === 'OPEN'}}">不可用时间：周一至周六（13:00-16:00）</view>
+          <view wx:if="{{item.ticketSwitch === 'OPEN'}}">
+            <text wx:if="{{item.disabledWeekDate}}">不可用时间：{{item.selectedWeek1}}至{{item.selectedWeek2}}（{{item.unUseStartTime}}-{{item.unUseEndTime}}）</text>
+            <text wx:else>不可用时间：无限制</text>
+          </view>
         </view>
         
       </view>
@@ -150,4 +153,41 @@
   </view>
 
   <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
+</view>
+
+<view class="container2" wx:else>
+  <!--搜索框-->
+  <view class="search-box-bg">
+    <view class="search-box w-inner">
+      <picker mode="region" value="{{region}}" range="" bindchange="bindRegionChange">
+        <view class="city-name">{{provinceName}}</view>
+        <icon class="jn-icon icon-xl"></icon>
+      </picker>
+      <view class="vertical-line"></view>
+      <view class="input-box">
+        <input bindinput="searchAddr" placeholder="输入搜索地址" placeholder-class="placeholder" />
+        <icon class="jn-icon icon-search"></icon>
+      </view>
+    </view>
+  </view>  
+  <!--搜索地址列表-->
+  <block wx:if="{{storeList.length > 0}}">
+    <scroll-view scroll-y style="height: {{windowHeight}}px;">
+      <view class="address-list" wx:for="{{storeList}}"
+       data-storeid="{{item.storeId}}" data-storename="{{item.storeName}}" bindtap="routerToStoreIndex">
+        <view class="address-box" hover-class="address-box-active">
+          <view>{{item.storeName}}</view>
+          <view class="address-detail">{{item.address}}</view>
+        </view>
+      </view>
+    </scroll-view>
+  </block>
+
+  <!--未找到门店-->
+  <view class="space-box" wx:else>
+    <view class="space-bg">
+      <image src="/asset/images/nofind.png"></image>
+    </view>
+    <view class="space-text">未找到门店</view>
+  </view>
 </view>

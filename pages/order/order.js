@@ -1,6 +1,8 @@
 import { orderService} from 'shared/service.js'
 import { errDialog } from '../../utils/util';
 import { constant } from '../../utils/constant';
+import { memberCardService } from '../personal/member-card/shared/service';
+
 //获取应用实例
 var app = getApp()
 Page({
@@ -27,8 +29,9 @@ Page({
     note: '',  //备注
     peopleNumber: '1', //预约人数
     isToday: true, 
-    today: {year: '2018', month: '2月'},
     success: false,
+    month: new Date().getMonth() + 1,
+    year: new Date().getFullYear()
   },
   onShow: function (options) {
     let today = changeDate.call(this,new Date());
@@ -61,6 +64,25 @@ Page({
 
   },
 
+  //授权手机号 
+  getUserPhoneNumber: function (e) {
+    let encryptedData = e.detail.encryptedData;
+    let iv = e.detail.iv;
+    let data = {
+      encryptData: encryptedData,
+      iv: iv
+    }
+    memberCardService.decodeUserPhone(data).subscribe({
+      next: res => {
+        this.setData({
+          tel: res.phoneNumber
+        })
+        wx.setStorageSync(constant.phoneNumber, res.phoneNumber)
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
+  },
 
   // 选择手艺人
   onCraftsmanClick: function() {

@@ -18,6 +18,13 @@ homeService.storeInfoDetail = (data) => {
   return http.get(url, data)
 }
 
+// 获取最近门店   /appstore/closestStore.json
+homeService.closestStore = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let apiUrl = api + '/member/appstore/closestStore.json';
+  return http.get(apiUrl, data);
+}
+
 module.exports = {
   homeService: homeService
 }

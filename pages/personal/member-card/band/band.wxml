@@ -1,7 +1,7 @@
 <view class="page">
   <view class="input-card bd w-inner">
     <view class="input-box">
-      <input placeholder="请输入手机号" placeholder-class="placeholder"  maxlength='11' type="number" bindinput='getPhoneNumber' />
+      <input value="{{phoneNumber}}" placeholder="请输入手机号" placeholder-class="placeholder"  maxlength='11' type="number" bindinput='getPhoneNumber' />
       <view class="fr">
         <button open-type="getPhoneNumber" bindgetphonenumber="getUserPhoneNumber">授权手机号</button>
       </view>

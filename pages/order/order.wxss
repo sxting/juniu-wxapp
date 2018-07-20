@@ -102,8 +102,8 @@
 .time {
   font-size: 28rpx;
   color: #333333;
-  width: 16.67%;
-  min-width: 16.67%;
+  width: 16.66%;
+  min-width: 16.66%;
   height: 80rpx;
   line-height: 80rpx;
   text-align: center;
@@ -113,6 +113,8 @@
 }
 .time:nth-child(6n) {
   border-right: none;
+  width: 16.7%;
+  min-width: 16.7%;
 }
 .no-work {
   height: 90rpx;

@@ -15,7 +15,8 @@
         <view class="weui-tab__content" style='padding-top:20rpx !important;'>
           
             <!--循环的项目-->
-          <view class="tickte-item {{item.couponStatus == 'OVERDUE' ? 'disabled' : ''}}" wx:for="{{ticketList}}">
+          <view class="tickte-item {{item.couponStatus == 'OVERDUE' || (item.productNoUse && productId) ? 'disabled' : ''}}" 
+          wx:for="{{ticketList}}" bindtap="onTicketItemClick" data-couponid="{{item.couponDefId}}" data-canuse="{{!item.productNoUse}}" >
             <view class="yuan1"></view>
             <view class="yuan2"></view>
 
@@ -35,7 +36,7 @@
                 </view>
                 <view class="gift-name" wx:else>{{item.couponDefProductName}}</view>
               </view>
-              <view class="disabled-img" wx:if="{{item.couponStatus == 'OVERDUE'}}">
+              <view class="disabled-img" wx:if="{{item.couponStatus == 'OVERDUE' || (item.productNoUse && productId)}}">
                 <image wx:if="{{item.couponStatus == 'OVERDUE'}}" src="/asset/images/coupon-dateunuse.png"></image>
                 <image wx:else src="/asset/images/coupon-unuse.png"></image>
               </view>
@@ -46,7 +47,10 @@
               <view class="open-btn jn-icon icon-xia" wx:if="{{item.ticketSwitch === 'CLOSE'}}"></view>
               <view class="close-btn jn-icon icon-shang" wx:else></view>
               <view>有效期：{{item.validDateStart}}至{{item.validDateEnd}}</view>
-              <view wx:if="{{item.ticketSwitch === 'OPEN'}}">不可用时间：周一至周六（13:00-16:00）</view>
+              <view wx:if="{{item.ticketSwitch === 'OPEN'}}">
+                <text wx:if="{{item.disabledWeekDate}}">不可用时间：{{item.selectedWeek1}}至{{item.selectedWeek2}}（{{item.unUseStartTime}}-{{item.unUseEndTime}}）</text>
+                <text wx:else>不可用时间：无限制</text>
+              </view>
             </view>
           </view>
                     

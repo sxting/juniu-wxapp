@@ -1,11 +1,11 @@
-<view class="page">
+<view class="page" wx:if="{{orderList.length > 0}}">
   <view class="tab">
     <view wx:for="{{tabList}}" wx:key="index" bindtap="onTabClick" data-index="{{index}}"
     class="tab-item {{index == tabIndex ? 'active' : ''}}">{{item}}</view>
   </view>
   
   <view class="order-form-list">
-    <view class="order-form-item" wx:for="1ds23">
+    <view class="order-form-item" wx:for="{{orderList}}" wx:for-item="item">
       <view class="order-form-subtitle">
         <text class="fl">服务项目</text>
         <view class="fr">
@@ -16,19 +16,24 @@
           <text class="color4" wx:else>已退款</text>
         </view>
       </view>
-      <view class="order-form-msg" bindtap="onItemClick" data-order-id="{{item}}">
+      <view class="order-form-msg" data-orderid="{{item.orderId}}" catchtap="onItemClick">
         <image src="/asset/images/product.png"></image>
         <view class="order-msg-right">
-          <view class="product-name">{{item}}</view>
+          <view class="product-name">{{item.callBack.productName}}</view>
           <view class="order-time">下单时间：2017.09.21  18:36:09</view>
-          <view class="order-price">￥<text>180</text></view>
+          <view class="order-price">￥<text>{{item.paidMoney ? item.paidMoney/100 : ''}}</text></view>
         </view>
       </view>
       <view class="comment" wx:if="">
-        <view class="comment-btn" bindtap="onCommentClick" data-product-id="{{item}}">立即评价</view>
+        <view class="comment-btn" bindtap="onCommentClick" data-productid="{{item.callBack.productId}}">立即评价</view>
       </view>
     </view>
   </view>
 
   <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view>
+</view>
+
+<view class="space-box" wx:else>
+  <view class="space-bg"><image src="/asset/images/nofind.png"></image></view>
+  <view class="space-text">暂无订单</view>
 </view>

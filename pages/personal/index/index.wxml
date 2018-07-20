@@ -6,8 +6,8 @@
       <image class="personal-image fl" src="{{userInfo.avatarUrl}}"></image>
       <view class="personal-message fl">
         <view class="nickname">{{userInfo.nickName}}</view>
-        <view class="tel" wx:if="">19229299229</view>
-        <view class="tel" wx:else>点击绑定手机号</view>
+        <view class="tel" wx:if="{{userIsBind}}">{{phone}}</view>
+        <view class="tel" wx:else bindtap="onBandPhoneClick">点击绑定手机号</view>
       </view>
     </view>
   </view>
@@ -43,13 +43,6 @@
     <icon class="jn-icon icon-rightblue"></icon>
   </view>
 
-   <!--我的评价-->
-  <view class="my-comment" bindtap="goMyBand">
-    <image src="/asset/images/my-comment.png"></image>
-    <text>绑定手机号</text>
-    <icon class="jn-icon icon-rightblue"></icon>
-  </view>
-
   <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
-  <view class="version">v-1.64</view> 
+  <view class="version">{{TPLID}}</view> 
 </view>

@@ -4,7 +4,10 @@
 
 var constant = {
   TPLID: 'test-2.0',
-  address: '',
+  address: 'address',
+  phoneNumber: 'phoneNumber',
+  couponId: 'couponId',
+  cardId: 'cardId',
   sessionKey: 'sessionKey',
   version2: 2,
   apiUrl: 'http://b-test.juniuo.com/wxapp',

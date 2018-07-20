@@ -15,7 +15,6 @@ Page({
     validCode: '',
     storeId: '',
     marketingid: '',
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
   onLoad: function (options) {
@@ -25,25 +24,29 @@ Page({
     this.setData(
       {
         storeId: wx.getStorageSync(constant.STORE_INFO),
-        marketingid: options.marketingid ? options.marketingid: ''
+        marketingid: options.marketingid ? options.marketingid: '',
+        form: options.from
       }
     )
   },
 
   getUserPhoneNumber: function (e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.iv)
-    console.log(e.detail.encryptedData)
-    console.log(encodeURIComponent(e.detail.encryptedData))
-
-    let appId = wx.getExtConfigSync.theAppid ? wx.getExtConfigSync.theAppid : 'wx3bb038494cd68262';
-    let sessionKey = wx.getStorageSync(constant.sessionKey);
-    let encryptedData = encodeURIComponent(e.detail.encryptedData);
+    let encryptedData = e.detail.encryptedData;
     let iv = e.detail.iv;
-
-    // var pc = new WXBizDataCrypt(appId, sessionKey)
-    // var data = pc.decryptData(encryptedData, iv)
-    // console.log(data);
+    let data = {
+      encryptData: encryptedData,
+      iv: iv
+    }
+    memberCardService.decodeUserPhone(data).subscribe({
+      next: res => {
+        this.setData({
+          phoneNumber: res.phoneNumber
+        })
+        wx.setStorageSync(constant.phoneNumber, res.phoneNumber)
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
   },
 
   getMsgCode: function () {
@@ -125,6 +128,10 @@ function bindMemberCard(storeId, phone, validCode) {
       if (res.showClickBind === 'F') {
         if (self.data.marketingid) {
           reciveTicket.call(self)
+        } else if(self.data.from == 'product') {
+          wx.navigateBack({
+            delta: 1
+          })
         } else {
           wx.redirectTo({
             url: '/pages/personal/member-card/index/index',

@@ -1,6 +1,7 @@
 import { productService } from '../shared/service.js'
 import { errDialog, changeDate } from '../../../utils/util';
 import { constant } from '../../../utils/constant';
+import { homeService } from '../../home/shared/home.service';
 //获取应用实例
 var app = getApp()
 Page({
@@ -15,6 +16,8 @@ Page({
     storeId: '',
     storeName: '',
     juniuImg: '/asset/images/product.png',
+    address: '',
+    tel: ''
   },
 
   onLoad: function (options) {
@@ -66,6 +69,7 @@ Page({
         }
       }
     }, 200)
+    getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
   },
 
   onShareAppMessage: function (res) {
@@ -86,6 +90,13 @@ Page({
         console.log(res);
       }
     }
+  },
+
+  onTelClick() {
+    let self = this;
+    wx.makePhoneCall({
+      phoneNumber: self.data.tel
+    })
   },
 
   onScrollTolower: function () {
@@ -188,6 +199,22 @@ function logIn(code, appid, rawData) {
           getProductCommentList.call(this)
         }
       })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+//获取门店信息
+function getStoreInfo(storId) {
+  let self = this;
+  homeService.storeInfoDetail({ storeId: storId }).subscribe({
+    next: res => {
+      self.setData({
+        address: res.address,
+        tel: res.mobie,
+      });
+      wx.setStorageSync(constant.address, res.address)
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

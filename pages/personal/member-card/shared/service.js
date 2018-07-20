@@ -1,6 +1,14 @@
 import { constant } from '../../../../utils/constant';
 import { http } from '../../../../utils/http';
 let memberCardService = {};
+
+// 用户手机号解密  /app/decodeUserPhone
+memberCardService.decodeUserPhone = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let apiUrl = api + '/order/app/decodeUserPhone.json';
+  return http.get(apiUrl, data);
+}
+
 // 会员卡绑定
 memberCardService.bindCard = (data) => {
   let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
@@ -27,6 +35,13 @@ memberCardService.cardList = (data) => {
   let apiUrl = api + '/member/sp/member/card/list.json';
   return http.get(apiUrl, data);
 }
+//适用于某商品的会员卡列表 /card/productCard.json
+memberCardService.productCard = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let apiUrl = api + '/card/productCard.json';
+  return http.get(apiUrl, data);
+}
+
 memberCardService.getStoreInfo = (data) => {
   let apiUrl = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 + '/member/appstore/storeInfo.json' : constant.apiUrl + '/account/appstore/app/storeInfo.json';
   return http.get(apiUrl, data);

@@ -21,9 +21,41 @@ Page({
     ticketList: [],
     juniuImg: '/asset/images/product.png',
     showSearchMoreTicket: true,
-    address: '',
+    storeAddress: '',
     tel: '',
+    latitude: '',
+    longitude: '',
+    home: true,
+    isOnLoad: false,
   },
+  onShow() {
+    if (this.data.isOnLoad) {
+      let self = this;
+      homeService.ticketList({
+        storeId: wx.getStorageSync(constant.STORE_INFO)
+      }).subscribe({
+        next: res => {
+          res.forEach((item) => {
+            item.ticketSwitch = 'CLOSE';
+            if (item.disabledWeekDate) {
+              let disabledWeekDateArr = item.disabledWeekDate.split(',');
+              item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);
+              item.selectedWeek2 = weekText.call(self, disabledWeekDateArr[disabledWeekDateArr.length - 1]);
+              item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
+                (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
+              item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +
+                (new Date(item.disabledTimeEnd).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getMinutes()) : new Date(item.disabledTimeEnd).getMinutes());
+            }
+          });
+          self.setData({
+            ticketList: res
+          })
+        },
+        complete: () => wx.hideToast()
+      })
+    }
+  },
+
   onLoad: function (option) {
     this.setData({
       storeId: option.storeid ? option.storeid : wx.getStorageSync(constant.STORE_INFO),
@@ -34,10 +66,6 @@ Page({
         fromNeighbourhood: true
       })
     }
-    
-  },
-
-  onShow() {
     let self = this;
     wx.login({
       success: function (result) {
@@ -59,6 +87,12 @@ Page({
     });
   },
 
+  onHide() {
+    this.setData({
+      home: true
+    })
+  },
+
   // 转发
   onShareAppMessage: function(res) {
     return {
@@ -77,9 +111,65 @@ Page({
 
   //跳转到门店选择页面
   goStoreIndex() {
-    wx.navigateTo({
-      url: '/pages/index/index',
+    let self = this;
+    this.setData({
+      home: false
     })
+    getStoreListInfo.call(self);
+    // 获取当前地理位置
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
+      }
+    })
+  },
+
+  // 改变地址所在区域
+  bindRegionChange: function (e) {
+    let self = this;
+    self.setData({
+      provinceId: '',
+      cityId: '',
+      areaId: ''
+    });
+    if (e.detail.value) {
+      changeaddrToId.call(self, e.detail.value[0]);
+      setTimeout(() => {
+        changeaddrToId.call(self, e.detail.value[1]);
+      }, 300);
+      setTimeout(() => {
+        changeaddrToId.call(self, e.detail.value[2], 'areaId');
+      }, 650);
+      setTimeout(() => {
+        getStoreListInfo.call(self);
+      }, 900);
+    }
+    this.setData({
+      provinceName: e.detail.value[0],
+      region: e.detail.value
+    });
+  },
+
+  /**点击搜索 搜索具体地址 */
+  searchAddr: function (e) {
+    this.setData({
+      address: e.detail.value
+    });
+    getStoreListInfo.call(this);
+  },
+
+  routerToStoreIndex: function (e) {
+    let self = this;
+    let storeId = e.currentTarget.dataset.storeid;
+    wx.setStorageSync(constant.STORE_INFO, storeId);
+    wx.setStorageSync('storeName', e.currentTarget.dataset.storename);
+    self.setData({
+      home: true
+    });
+    getStoreIndexInfo.call(self, storeId, wx.getStorageSync(constant.MERCHANTID) );
+    getTicketInfo.call(self, storeId);
+    getStoreInfo.call(self, storeId);
   },
 
   // 唤起地图
@@ -146,18 +236,6 @@ Page({
     });
     this.setData({
       productImages: this.data.productImages
-    })
-  },
-  // 跳转到优惠券列表
-  goAllTicket: function () {
-    wx.navigateTo({
-      url: '/pages/ticket/index/index',
-    })
-  },
-  // 跳转到优惠券详情
-  goTicketDetail: function (e) {
-    wx.navigateTo({
-      url: '/pages/ticket/detail/detail?marketingId=' + e.currentTarget.dataset.marketingid,
     })
   },
   
@@ -231,10 +309,79 @@ function getTicketInfo(storeId) {
     next: res => {
       res.forEach((item) => {
         item.ticketSwitch = 'CLOSE';
+        if (item.disabledWeekDate) {
+          let disabledWeekDateArr = item.disabledWeekDate.split(',');
+          item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);
+          item.selectedWeek2 = weekText.call(self, disabledWeekDateArr[disabledWeekDateArr.length - 1]);
+          item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
+            (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
+          item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +
+            (new Date(item.disabledTimeEnd).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getMinutes()) : new Date(item.disabledTimeEnd).getMinutes());
+        }
       });
       self.setData({
         ticketList: res
       })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+// 最近的门店
+function closestStore () {
+  let data = {
+    latitude: this.data.latitude,
+    longitude: this.data.longitude
+  }
+  let self = this;
+  homeService.closestStore(data).subscribe({
+    next: res => {
+      console.log(res);
+      wx.setStorageSync(constant.STORE_INFO, res.storeId);
+      self.setData({
+        storeId: res.storeId,
+        isOnLoad: true
+      })
+      
+      wx.setNavigationBarTitle({
+        title: res.storeName
+      })
+      self.setData({
+        storeName: res.storeName
+      });
+      wx.setStorageSync('storeName', res.storeName);
+      // {picture_id}/resize_{width}_{height}/mode_fill
+      if (res.pictureVOS && res.pictureVOS.length > 0) {
+        res.pictureVOS.forEach((item) => {
+          if (item.picUrl) {
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_375_180/mode_fill`;
+          }
+        });
+        self.setData({
+          productImages: res.pictureVOS
+        })
+      }
+      if (res.productList && res.productList.length && res.productList.length > 0) {
+        res.productList.forEach((item) => {
+          if (item.picUrl) {
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+          }
+        })
+      }
+
+      if (res.staffList && res.staffList.length && res.staffList.length > 0) {
+        res.staffList.forEach((item) => {
+          if (item.headPortrait) {
+            item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
+          }
+        })
+      }
+      self.setData({
+        storeInfo: res,
+      });
+      getTicketInfo.call(self, res.storeId);
+      getStoreInfo.call(self, res.storeId)
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -281,11 +428,6 @@ function getStoreIndexInfo(storeId, merchantId) {
             item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
           }
         })
-        res.staffList.forEach((item) => {
-          if (item.headPortrait) {
-            item.headPortrait = item.headPortrait.split('.png')[0] + '_58x58.png';
-          }
-        });
       }
       self.setData({
         storeInfo: res,
@@ -298,19 +440,8 @@ function getStoreIndexInfo(storeId, merchantId) {
 
 function logIn(code, appid, rawData) {
   let self = this; 
-  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
+  service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
-      wx.getLocation({
-        success: function(result) {
-          console.log(result);
-        },
-        fail: function (result) {
-          wx.navigateTo({
-            url: '/pages/index/index',
-          })
-        }
-      })
-
       // 1530602217127209655835
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '153179997107784038184');
@@ -323,18 +454,24 @@ function logIn(code, appid, rawData) {
         wx.setStorageSync(constant.VER, 1);
       }
 
-      wx.setStorageSync(constant.STORE_INFO, '1530602323164136822988');
-      self.setData({
-        storeId: wx.getStorageSync(constant.STORE_INFO)
-      })
-
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,
         success: function (res) {
-          getStoreIndexInfo.call(self, self.data.storeId, wx.getStorageSync(constant.MERCHANTID));
-          getTicketInfo.call(self, self.data.storeId);
-          getStoreInfo.call(self, wx.getStorageSync(constant.STORE_INFO))
+          wx.getLocation({
+            success: function (result) {
+              self.setData({
+                latitude: result.latitude,
+                longitude: result.longitude
+              })
+              closestStore.call(self)
+            },
+            fail: function (result) {
+              wx.navigateTo({
+                url: '/pages/index/index',
+              })
+            }
+          })
         }
       })
     },
@@ -352,6 +489,15 @@ function getAllTicket(storeId) {
     next: res => {
       res.forEach((item) => {
         item.ticketSwitch = 'CLOSE';
+        if (item.disabledWeekDate) {
+          let disabledWeekDateArr = item.disabledWeekDate.split(',');
+          item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);
+          item.selectedWeek2 = weekText.call(self, disabledWeekDateArr[disabledWeekDateArr.length - 1]);
+          item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
+            (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
+          item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +
+            (new Date(item.disabledTimeEnd).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getMinutes()) : new Date(item.disabledTimeEnd).getMinutes());
+        }
       });
       self.setData({
         ticketList: res
@@ -368,7 +514,7 @@ function getStoreInfo(storId) {
   homeService.storeInfoDetail({ storeId: storId }).subscribe({
     next: res => {
       self.setData({
-        address: res.address,
+        storeAddress: res.address,
         tel: res.mobie,
         latitude: res.latitude,
         longitude: res.longitude,
@@ -380,35 +526,118 @@ function getStoreInfo(storId) {
   })
 }
 
+/* ==== ===*/ 
+
+/**城市转id */
+function changeaddrToId(address, areaId) {
+  let self = this;
+  indexService.nameToId({ address: address }).subscribe({
+    next: res => {
+      res.forEach((item) => {
+        if (item.level === '1') {
+          self.setData({
+            provinceId: item.id
+          });
+        } else if (item.level === '2') {
+          if (areaId === 'areaId') {
+            self.setData({
+              areaId: item.id
+            });
+          } else {
+            self.setData({
+              cityId: item.id
+            });
+          }
+        } else if (item.level === '3') {
+          self.setData({
+            areaId: item.id
+          });
+        }
+      });
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  });
+
+}
+
 /**获取门店列表 */
 function getStoreListInfo() {
   let self = this;
   let shopQuery = {
-    merchantId: wx.getStorageSync(constant.MERCHANTID)
+    pageNo: self.data.pageNo,
+    pageSize: self.data.pageSize,
+    merchantId: wx.getStorageSync(constant.MERCHANTID),
+    address: self.data.address,
+    provinceId: self.data.provinceId,
+    cityId: self.data.cityId,
+    areaId: self.data.areaId
   };
   indexService.getStoreList(shopQuery).subscribe({
     next: res => {
       this.setData({
         storeList: res.content
       })
+      console.log(res)
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
   });
 }
 
-// 计算两点间距离
-function getDistance(lat1, lng1, lat2, lng2) {
-  lat1 = lat1 || 0;
-  lng1 = lng1 || 0;
-  lat2 = lat2 || 0;
-  lng2 = lng2 || 0;
+/**获取城市id */
+function getDistrictInfo(key, loc) {
+  indexService.getDistrict().subscribe({
+    next: res => {
+      console.log(res);
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
 
-  var rad1 = lat1 * Math.PI / 180.0;
-  var rad2 = lat2 * Math.PI / 180.0;
-  var a = rad1 - rad2;
-  var b = lng1 * Math.PI / 180.0 - lng2 * Math.PI / 180.0;
+/**经纬度转地址 */
+function tencentLongAndLatiToAddress(latitude, longitude) {
+  let self = this;
+  indexService.TencentLongAndLatiToAddress({
+    longitude: longitude,
+    latitude: latitude
+  }).subscribe({
+    next: res => {
+      self.setData({
+        region: [res.province, res.city, res.district],
+        provinceName: res.province
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
 
-  var r = 6378137;
-  return r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(rad1) * Math.cos(rad2) * Math.pow(Math.sin(b / 2), 2)))
+function weekText(str) {
+  let name = '';
+  switch (str) {
+    case '1':
+      name = '周一';
+      break;
+    case '2':
+      name = '周二';
+      break;
+    case '3':
+      name = '周三';
+      break;
+    case '4':
+      name = '周四';
+      break;
+    case '5':
+      name = '周五';
+      break;
+    case '6':
+      name = '周六';
+      break;
+    case '7':
+      name = '周日';
+      break;
+  }
+  return name;
 }

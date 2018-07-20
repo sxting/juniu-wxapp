@@ -10,9 +10,16 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
     storeId: '',
-    ticketList: []
+    ticketList: [],
+    productId: '',
+    ticketId: ''
   },
-  onLoad: function () {
+  onLoad: function (options) {
+    if (options.productId) {
+      this.setData({
+        productId: options.productId
+      })
+    }
     var that = this;
     this.setData({
       storeId: wx.getStorageSync(constant.STORE_INFO)
@@ -45,6 +52,16 @@ Page({
     }
   },
 
+  //选择优惠券 
+  onTicketItemClick(e) {
+    if (this.data.productId && e.currentTarget.dataset.canuse) {
+      wx.setStorageSync(constant.couponId, e.currentTarget.dataset.couponid)
+      wx.navigateBack({
+        delta: 1
+      })
+    }
+  },
+
   // 优惠券展开
   onTicketBottomClick(e) {
     let marketingId = e.currentTarget.dataset.marketingid;
@@ -74,6 +91,17 @@ function getMyTicket(storeId, couponStatus) {
     next: res => {
       res.forEach((item) => {
         item.ticketSwitch = 'CLOSE';
+        item.consumeLimitProductIdsArr = item.consumeLimitProductIds.split(',');
+        item.productNoUse = item.consumeLimitProductIdsArr.indexOf(self.data.productId) < 0
+        if (item.disabledWeekDate) {
+          let disabledWeekDateArr = item.disabledWeekDate.split(',');
+          item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);
+          item.selectedWeek2 = weekText.call(self, disabledWeekDateArr[disabledWeekDateArr.length - 1]);
+          item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
+            (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
+          item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +
+            (new Date(item.disabledTimeEnd).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getMinutes()) : new Date(item.disabledTimeEnd).getMinutes());
+        }
       });
       self.setData({
         ticketList: res
@@ -82,4 +110,32 @@ function getMyTicket(storeId, couponStatus) {
     error: err => errDialog(err),
     complete: () => wx.hideToast()
   });
+}
+
+function weekText(str) {
+  let name = '';
+  switch (str) {
+    case '1':
+      name = '周一';
+      break;
+    case '2':
+      name = '周二';
+      break;
+    case '3':
+      name = '周三';
+      break;
+    case '4':
+      name = '周四';
+      break;
+    case '5':
+      name = '周五';
+      break;
+    case '6':
+      name = '周六';
+      break;
+    case '7':
+      name = '周日';
+      break;
+  }
+  return name;
 }

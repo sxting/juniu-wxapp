@@ -1,8 +1,15 @@
+import { service } from '../../../service';
+import { errDialog, loading } from '../../../utils/util';
+import { constant } from '../../../utils/constant';
+
 var app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {}
+    userInfo: {},
+    userIsBind: false,
+    TPLID: constant.TPLID,
+    phone: ''
   },
  
   onLoad: function () {
@@ -15,6 +22,26 @@ Page({
     });
     wx.setNavigationBarTitle({
       title: wx.getStorageSync('storeName'),
+    })
+  },
+
+  onShow() {
+    service.userIsBind().subscribe({
+      next: res => {
+        this.setData({
+          userIsBind: res.isBind,
+          phone: res.phone
+        })
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
+  },
+
+  // 点击绑定手机号
+  onBandPhoneClick() {
+    wx.navigateTo({
+      url: '/pages/personal/member-card/band/band',
     })
   },
 

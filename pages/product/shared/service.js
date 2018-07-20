@@ -3,7 +3,7 @@ import { http } from '../../../utils/http';
 let productService = {};
 
 let apiUrl = constant.apiUrl + '/product';
-let apiUrl2 = constant.apiUrl + '/member'
+let apiUrl2 = constant.apiUrl + '/member';
 
 // 获取预约手艺人商品
 productService.getStaffProduct = (data) => {

@@ -1,15 +1,15 @@
 <view class="product">
-  <image src="/asset/images/product.png"></image>
+  <image src="{{productInfo.url ? productInfo.url : juniuImg}}"></image>
   <view class="product-right">
-    <view class="product-name">发型总监设计发型总监设计</view>
-    <view class="product-price">￥<text>58</text></view>
+    <view class="product-name">{{productInfo.productName}}</view>
+    <view class="product-price">￥<text>{{productInfo.currentPrice ? productInfo.currentPrice / 100 : ''}}</text></view>
   </view>
 </view>
 
 <view class="jn-bg"></view>
 
 <view class="item price-box">
-  <view class="price"><text>售价</text><text class="fr">199元</text></view>
+  <view class="price"><text>售价</text><text class="fr">{{productInfo.currentPrice ? productInfo.currentPrice / 100 : ''}}元</text></view>
   <view class="count-box">
     <text>数量</text>
     <view class="fr count-btn">
@@ -18,31 +18,36 @@
       <text bindtap="onCountRightClick">+</text>
     </view>
   </view>
-  <view class="total-price"><text>小计</text><text class="fr">189元</text></view>
+  <view class="total-price"><text>小计</text><text class="fr">{{productInfo.currentPrice ? productInfo.currentPrice * count / 100 : ''}}元</text></view>
 </view>
 
 <view class="item rights">
   <view class="coupon" bindtap="goMyCoupon">
     <text>优惠券</text>
-    <view class="fr">一张优惠券可用 ></view>
+    <view class="fr" wx:if="{{productCouponLength > 0}}">
+      <text wx:if="{{couponId}}">已选一张优惠券 ></text>
+      <text wx:else>{{productCouponLength}}张优惠券可用 ></text>
+    </view>
+    <view class="fr" wx:else>暂无可用优惠券</view>
   </view>
-  <view class="member-right">
+  <view class="member-right" wx:if="{{productCardLength > 0}}" bindtap="goMyCard">
     <text>会员权益</text>
-    <view class="fr">VIP储值卡 -199 ></view>
+    <view class="fr"> > </view>
   </view>
 </view>
 
 <view class="item usermgs">
   <view class="note">
-    <text>备注</text> <input placeholder="请填写备注信息（选填）" placeholder-class="placeholder" />
+    <text>备注</text> 
+    <input value="{{memo}}" bindinput='getMemo' placeholder="请填写备注信息（选填）" placeholder-class="placeholder" />
   </view>
 </view>
 
-<view class="pay-btn" wx:if="" bindtap="onOrderPayClick">立即支付</view>
+<view class="pay-btn" wx:if="{{productCardLength > 0}}" bindtap="onOrderPayClick">立即支付</view>
 
 <view class="bottom-btn" wx:else>
   <view class="moreyh" bindtap="onMoreRightsClick">更多优惠</view>
-  <view class="pay" bindtap="onOrderPayClick">直接付款</view>
+  <view class="pay" bindtap="onZhijieOrderPay">直接付款</view>
 </view>
 
 <view class="juniu-bottom pay-ju-bottom"><image src="/asset/images/logo.png"></image></view>  
@@ -52,41 +57,17 @@
     <view class="rights-title">会员权益</view>
     <view class="jn-icon icon-close" bindtap="onCloseCardClick"></view>        
     <view class="card-list">
-      <view class="card">
+      <view class="card" wx:for="{{productCardConfigList}}" wx:key="item" 
+      bindtap="onCardConfigItemClick" data-ruleid="{{item.rules[0].ruleId}}" data-cardid="{{item.cardConfigId}}">
         <image src="/asset/images/card-bg.png"></image>
         <view class="cardprice">
-          <view class="">售价30元</view>
-          <view class="chuzhi">储值<text>50</text>元</view>
+          <view>售价{{item.rules[0].price?item.rules[0].price/100: ''}}元</view>
+          <view class="chuzhi" wx:if="{{item.type == 'STORED'}}">储值<text>{{item.rules[0].balance ? item.rules[0].balance/100 : ''}}</text>元</view>
+          <view class="chuzhi" wx:elif="{{item.type == 'REBATE'}}">打<text>{{item.rules[0].rebate}}</text>折</view>          
+          <view class="chuzhi" wx:elif="{{item.type == 'METERING'}}">使用<text>{{item.rules[0].balance}}</text>次</view>
+          <view class="chuzhi" wx:elif="{{item.type == 'TIMES'}}">可用<text>{{item.rules[0].validate}}</text>天</view>
         </view>
-        <view class="card-selected jn-icon icon-select"></view>
-      </view>
-      <view class="card">
-        <image src="/asset/images/card-bg.png"></image>
-        <view class="cardprice">
-          <view class="">售价30元</view>
-          <view class="chuzhi">储值<text>50</text>元</view>
-        </view>
-      </view>
-      <view class="card">
-        <image src="/asset/images/card-bg.png"></image>
-        <view class="cardprice">
-          <view class="">售价30元</view>
-          <view class="chuzhi">储值<text>50</text>元</view>
-        </view>
-      </view>
-      <view class="card">
-        <image src="/asset/images/card-bg.png"></image>
-        <view class="cardprice">
-          <view class="">售价30元</view>
-          <view class="chuzhi">储值<text>50</text>元</view>
-        </view>
-      </view>
-      <view class="card">
-        <image src="/asset/images/card-bg.png"></image>
-        <view class="cardprice">
-          <view class="">售价30元</view>
-          <view class="chuzhi">储值<text>50</text>元</view>
-        </view>
+        <view class="card-selected jn-icon icon-select" wx:if="{{ruleId == item.rules[0].ruleId}}"></view>
       </view>
     </view>
     <view class="opencrad" bindtap="onPayBtnClick">开通并付款</view>
