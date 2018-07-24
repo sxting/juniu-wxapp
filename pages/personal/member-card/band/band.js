@@ -103,12 +103,9 @@ function reciveTicket() {
         content: '请到个中心我的优惠券中查看',
         showCancel: false,
         success: function (res) {
-          if (res.confirm) {
-            // 
-            wx.navigateBack({
-              delta: 1
-            })
-          }
+          wx.navigateBack({
+            delta: 1
+          })
         }
       })
     },

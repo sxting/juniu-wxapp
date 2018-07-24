@@ -135,11 +135,17 @@
 
 .prevent-click-tip {
   position: absolute;
-  width: 100vw;
+  /* width: 100vw; */
   text-align: center;
-  top: 50%;
-  color: #ff6600;
+   top: 50%; 
+  /* color: #ff6600; */
   font-size: 30rpx;
+  width: 400rpx;
+  left: 175rpx;
+  padding: 10rpx 0;
+  border-radius: 16rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
 }
 
 .user-msg-box {

@@ -124,7 +124,7 @@ function getComments() {
     pageIndex: this.data.pageIndex,
     pageSize: this.data.pageSize,
     storeId: this.data.storeId,
-    ctraftsmanId: this.data.staffId
+    craftsmanId: this.data.staffId
   }
   craftsmanService.getStaffCommentList(data).subscribe({
     next: res => {

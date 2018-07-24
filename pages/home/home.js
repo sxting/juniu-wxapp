@@ -396,7 +396,7 @@ function closestStore () {
       if (res.pictureVOS && res.pictureVOS.length > 0) {
         res.pictureVOS.forEach((item) => {
           if (item.picUrl) {
-            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_375_180/mode_fill`;
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_750_360/mode_fill`;
           }
         });
         self.setData({
@@ -404,17 +404,24 @@ function closestStore () {
         })
       }
       if (res.productList && res.productList.length && res.productList.length > 0) {
-        res.productList.forEach((item) => {
-          if (item.picUrl) {
-            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+        res.productList.forEach((item, index) => {
+          if (item.picUrl && index > 0) {
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_330_190/mode_fill`;
           }
         })
+        if (res.productList.length == 1 || res.productList.length == 3) {
+          if (res.productList[0].picUrl) {
+            res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_690_360/mode_fill`;            
+          }
+        } else {
+          res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_330_190/mode_fill`;                      
+        }
       }
 
       if (res.staffList && res.staffList.length && res.staffList.length > 0) {
         res.staffList.forEach((item) => {
           if (item.headPortrait) {
-            item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
+            item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_220_180/mode_fill`;
           }
         })
       }
@@ -448,7 +455,7 @@ function getStoreIndexInfo(storeId, merchantId) {
       if (res.pictureVOS && res.pictureVOS.length > 0) {
         res.pictureVOS.forEach((item) => {
           if (item.picUrl) {
-            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_375_180/mode_fill`;
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_750_360/mode_fill`;
           }
         });
         self.setData({
@@ -458,7 +465,10 @@ function getStoreIndexInfo(storeId, merchantId) {
       if(res.productList && res.productList.length && res.productList.length > 0) {
         res.productList.forEach((item) => {
           if (item.picUrl) {
-            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_330_190/mode_fill`;
+          }
+          if (res.productList.length == 1 || res.productList.length == 3) {
+            res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_690_360/mode_fill`;
           }
         })
       }  
@@ -466,7 +476,7 @@ function getStoreIndexInfo(storeId, merchantId) {
       if (res.staffList && res.staffList.length && res.staffList.length > 0) {
         res.staffList.forEach((item) => {
           if (item.headPortrait) {
-            item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
+            item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_220_180/mode_fill`;
           }
         })
       }
