@@ -2,6 +2,13 @@ import { constant } from '../../../utils/constant';
 import { http } from '../../../utils/http';
 let payService = {};
 
+// 判断卡余额是否充足   /app/online/verifyBalance.json
+payService.verifyBalance = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let apiUrl = api + '/order/app/online/verifyBalance.json';
+  return http.post(apiUrl, data);
+}
+
 //持有的适用于某商品的会员卡列表 /card/productCard.json
 payService.productCard = (data) => {
   let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl

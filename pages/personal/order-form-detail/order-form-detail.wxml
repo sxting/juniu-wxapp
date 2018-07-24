@@ -17,18 +17,18 @@
   <view class="order-form-item">
       <view class="order-form-subtitle">服务项目</view>
       <view class="order-form-msg">
-        <image src="/asset/images/product.png"></image>
+        <image src="{{orderDetail.orderItem[0].picId ? orderDetail.orderItem[0].picId : jnImg}}"></image>
         <view class="order-msg-right">
-          <view class="product-name">发型总监设计造型发发型总监设计造型发</view>
-          <view class="order-price">￥<text>180</text></view>
+          <view class="product-name">{{orderDetail.productInfo}}</view>
+          <view class="order-price">￥<text>{{orderDetail.money ? orderDetail.money/100 : ''}}</text></view>
         </view>
       </view>
   </view>
 
-  <view class="price-box">
+  <view class="price-box" wx:if="">
     <view class="price-item">
-      <text>发型总监设计</text>
-      <text class="fr">+199</text>
+      <text>{{orderDetail.productInfo}}</text>
+      <text class="fr">+{{orderDetail.money ? orderDetail.money*orderDetail.orderItem[0].num/100 : ''}}</text>
     </view>
     <view class="price-item">
       <text>优惠券</text>
@@ -47,32 +47,32 @@
   <view class="address-box bd" wx:if="{{status == 1 || status == 4}}">
     <view class="store-btn-box">{{storeName}}</view>
     <view class="address-and-tel">
-      <icon class="jn-icon icon-address"></icon>学清路静淑里6号楼底商
-      <view class="fr tel-box">
+      <icon class="jn-icon icon-address"></icon>{{storeAddress}}
+      <view class="fr tel-box" catchtap="onTelClick">
         <view class="jn-icon icon-tel"></view>
       </view>
     </view>
   </view>
 
   <view class="bd w-inner code-box" wx:else>
-    <view class="product-name">发型总监设计造型发发型总监设计造型发</view>
+    <view class="product-name">{{orderDetail.productInfo}}</view>
     <view class="code-status">
       <view>
         <text wx:if="{{status == 3}}">已使用</text>
         <text wx:elif="{{status == 2}}">未使用</text>
         <text wx:elif="{{status == 5}}">已退款</text>
       </view>
-      <view class="code-order-time">下单时间：2018-02-27  17:28:33</view>
+      <view class="code-order-time">下单时间：{{orderDetail.payDate}}</view>
     </view>
-    <view class="code">
-      <image src="/asset/images/product.png"></image>
-      <view class="code-num">券码 4385 4754 5457</view>
+    <view class="code" wx:for="{{orderDetail.vouchers}}" wx:for-index="index">
+      <canvas canvas-id="{{'barcode'+index}}" />
+      <view class="code-num">券码 {{item.voucherCode}}</view>
     </view>
   </view>
 
   <view class="order-box w-inner bd">
-    <view class="">订单编号：21667439824673289497</view>
-    <view class="">下单时间：2018.03.02  23:34:56</view>
+    <view class="">订单编号：{{orderId}}</view>
+    <view class="">下单时间：{{orderDetail.payDate}}</view>
   </view>
 
   <view class="pay-btn" wx:if="{{status == 1}}">立即付款</view>

@@ -34,6 +34,9 @@ Page({
     year: new Date().getFullYear()
   },
   onShow: function (options) {
+    wx.setNavigationBarTitle({
+      title: wx.getStorageSync('storeName'),
+    })
     let today = changeDate.call(this,new Date());
     let dateArr = [];
     for(let i=0; i<7; i++) {

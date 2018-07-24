@@ -15,6 +15,9 @@ Page({
     ticketId: ''
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '我的优惠券',
+    })
     if (options.productId) {
       this.setData({
         productId: options.productId

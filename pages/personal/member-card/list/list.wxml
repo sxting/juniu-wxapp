@@ -1,5 +1,5 @@
 <view class="page" wx:if="{{showClickBind == 'F'}}">
-  <view class="card-item" wx:for="{{cards}}" bindtap="onCardItemClick" data-cardid="{{item.cardId}}">
+  <view class="card-item" wx:for="{{cards}}" bindtap="onCardItemClick" data-cardname="{{item.cardName}}" data-cardid="{{item.cardId}}">
     <image src="/asset/images/card-bg.png"></image>
     <view class="card">
       <view class="fl">
@@ -29,4 +29,4 @@
     <button class='btn-open-card' bindtap='bindMemberCard'>去绑定会员卡</button>
   </view>
 </view>
-<view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
+<!-- <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view>  -->

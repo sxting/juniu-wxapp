@@ -62,3 +62,12 @@
   width: 200rpx;
   height: 200rpx;
 }
+
+.barcode canvas {
+  width: 390rpx;
+  height: 150rpx;
+}
+.barnum {
+  width: 390rpx;
+  text-align: center;
+}

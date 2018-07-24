@@ -32,21 +32,21 @@
   </view>
   <view class="member-right" wx:if="{{productCardLength > 0}}" bindtap="goMyCard">
     <text>会员权益</text>
-    <view class="fr"> > </view>
+    <view class="fr" wx:if="{{cardName}}"> {{cardName}} > </view>
   </view>
 </view>
 
 <view class="item usermgs">
   <view class="note">
-    <text>备注</text> 
-    <input value="{{memo}}" bindinput='getMemo' placeholder="请填写备注信息（选填）" placeholder-class="placeholder" />
+    <text class="">备注</text> 
+    <input class="" value="{{memo}}" bindinput='getMemo' placeholder="请填写备注信息（选填）" placeholder-class="placeholder" />
   </view>
 </view>
 
 <view class="pay-btn" wx:if="{{productCardLength > 0}}" bindtap="onOrderPayClick">立即支付</view>
 
 <view class="bottom-btn" wx:else>
-  <view class="moreyh" bindtap="onMoreRightsClick">更多优惠</view>
+  <view class="moreyh {{noCardConfig ?  'disabled' : ''}}" bindtap="onMoreRightsClick">更多优惠</view>
   <view class="pay" bindtap="onZhijieOrderPay">直接付款</view>
 </view>
 

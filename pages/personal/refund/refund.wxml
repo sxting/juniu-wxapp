@@ -1,9 +1,9 @@
 <view class="refund-title">一笔订单可退款</view>
 <view class="order-form-msg">
-  <image src="/asset/images/product.png"></image>
+  <image src="{{orderDetail.orderItem[0].picId ? orderDetail.orderItem[0].picId : jnImg}}"></image>
   <view class="order-msg-right">
-    <view class="product-name">发型总监设计造型发发型总监设计造型发</view>
-    <view class="order-price">￥<text>180</text></view>
+    <view class="product-name">{{orderDetail.productInfo}}</view>
+    <view class="order-price">￥<text>{{orderDetail.money ? orderDetail.money/100 : ''}}</text></view>
   </view>
 </view>
 <view class="jn-bg"></view>

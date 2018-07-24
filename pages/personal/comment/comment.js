@@ -12,6 +12,9 @@ Page({
     pageSize: 100,
   },
   onLoad: function () {
+    wx.setNavigationBarTitle({
+      title: '我的评价',
+    })
     getMyComment.call(this, this.data.pageNo, this.data.pageSize)
   }
 })

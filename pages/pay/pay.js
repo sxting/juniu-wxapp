@@ -18,20 +18,26 @@ Page({
     ruleId: '',
     cardConfigId: '',
     cardId: '',
+    cardName: '',
     couponId: '',
     showUserBind: false,
     phone: '',
     type: '',
     memo: '',
+    noCardConfig: true
   },
 
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '提交订单',
+    })
     this.setData({
       productId: options.productId,
       storeId: wx.getStorageSync(constant.STORE_INFO)
     })
     getProductDetail.call(this);
     productCoupon.call(this);
+    productCardConfig.call(this);
   },
 
   onShow() {
@@ -45,9 +51,11 @@ Page({
     }
     if (wx.getStorageSync(constant.cardId)) {
       this.setData({
-        cardId: wx.getStorageSync(constant.cardId)
+        cardId: wx.getStorageSync(constant.cardId),
+        cardName: wx.getStorageSync(constant.cardName)
       })
-      wx.removeStorageSync(constant.cardId)    
+      wx.removeStorageSync(constant.cardId);
+      wx.removeStorageSync(constant.cardName);          
     }
     service.userIsBind().subscribe({
       next: res => {
@@ -104,10 +112,12 @@ Page({
 
   // 点击更多优惠
   onMoreRightsClick() {
+    if (this.data.noCardConfig) {
+      return;
+    }
     this.setData({
       showCardBuy: true
     })
-    productCardConfig.call(this);
   },
 
   // 点击卡规则 
@@ -138,7 +148,7 @@ Page({
       showCardBuy: false
     })
     wx.navigateTo({
-      url: '/pages/personal/order-form-detail/order-form-detail',
+      url: '/pages/personal/order-form-detail/order-form-detail?orderId=' + this.data.orderId,
     })
   },
 
@@ -232,7 +242,8 @@ function productCardConfig() {
       this.setData({
         productCardConfigList: res,
         ruleId: res[0].rules[0].ruleId,
-        cardConfigId: res[0].cardConfigId
+        cardConfigId: res[0].cardConfigId,
+        noCardConfig: res.length == 0 ? true : false
       })
     },
     error: err => errDialog(err),
@@ -277,25 +288,19 @@ function userIsBind() {
 function onlineBuy() {
   let self = this;
   let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-
-  console.log(extConfig)
-
   let appId = extConfig.theAppid ? extConfig.theAppid : 'wx3bb038494cd68262';
   // type不能为空 在线购卡付款:OPENCARD, 在线付款:PAY, 扣减会员卡:DEDUCTION
   let data = {
     appid: appId,
     buyProductRequest: {
       couponId: this.data.couponId,
-      money: this.data.productInfo.currentPrice, //单价
+      money: this.data.productInfo.currentPrice * this.data.count, //总价
       num: this.data.count,
       phone: this.data.phone,
-      price: this.data.productInfo.currentPrice * this.data.count,
+      price: this.data.productInfo.currentPrice ,
       productId: this.data.productInfo.productId,
       productName: this.data.productInfo.productName,
       storeId: this.data.storeId
-    },
-    openCardRquest: {
-      ruleId: this.data.ruleId, //开卡的时候传
     },
     settleCardRequest: {
       cardId: this.data.cardId
@@ -305,35 +310,33 @@ function onlineBuy() {
     storeId: this.data.storeId,
     type: this.data.type
   }
+  let verifyBalance;
   if (this.data.type == 'OPENCARD') {
     let orderId = new Date().getFullYear() + "" + new Date().getMonth() + new Date().getDate() + new Date().getHours() + new Date().getMinutes() + MathRand.call(this, 10)
     data.buyProductRequest.orderId = orderId.substring(0, 18);
-  }
-  payService.onlineBuy(data).subscribe({
-    next: res => {
-      console.log(res);
-      this.setData({
-        showPaySuccess: true
-      })
-      let nonceStr = MathRand.call(self, 30), timeStamp = new Date().getTime() / 1000, prepay_id = '', key = '';
-      let stringSignTemp = `MD5(appId=${appId}&nonceStr=${nonceStr}&package=prepay_id=${prepay_id}&signType=MD5&timeStamp=${timeStamp}&key=${key})`;
-      let sign = MD5(stringSignTemp).toUpperCase();
-      wx.requestPayment({
-        timeStamp: timeStamp ,
-        nonceStr: nonceStr,
-        package: 'prepay_id=' + prepay_id ,
-        signType: 'MD5',
-        paySign: `${stringSignTemp} = ${sign}`,
-        success: function (res) {
-
-        },
-        fail: function (res) { },
-        complete: function (res) { }
-      })
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
+    data.openCardRquest = {
+      ruleId: this.data.ruleId, //开卡的时候传
+    }
+    onlineBuyFun.call(self, data)
+  } else if (this.data.type == 'DEDUCTION') {    
+    payService.verifyBalance(data).subscribe({
+      next: res => {
+        verifyBalance = res;
+        if (!res) {
+          delete data.settleCardRequest;  //余额不足 不传卡id
+          self.setData({
+            type: 'PAY'
+          })
+          data.type = 'PAY';
+        }
+        onlineBuyFun.call(self, data)                  
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
+  } else {
+    onlineBuyFun.call(self, data)                      
+  } 
 }
 
 function MathRand(num) {
@@ -342,4 +345,47 @@ function MathRand(num) {
     Num += Math.floor(Math.random() * 10);
   }
   return Num
+}
+
+function onlineBuyFun(data) {
+  payService.onlineBuy(data).subscribe({
+    next: res => {
+      console.log(res);
+      this.setData({
+        orderId: res.orderId
+      })
+      if (this.data.type == 'DEDUCTION') {
+        wx.navigateTo({
+          url: '/pages/personal/order-form-detail/order-form-detail?orderId=' + this.data.orderId,
+        })
+      } else {
+        wx.requestPayment({
+          timeStamp: res.payInfo.timeStamp,
+          nonceStr: res.payInfo.nonceStr,
+          package: res.payInfo.package,
+          signType: res.payInfo.signType,
+          paySign: res.payInfo.paySign,
+          success: function (res) {
+            if (this.data.type == 'OPENCARD') {
+              self.setData({
+                showPaySuccess: true
+              })
+            } else {
+              wx.navigateTo({
+                url: '/pages/personal/order-form-detail/order-form-detail?orderId=' + this.data.orderId,
+              })
+            }
+          },
+          fail: function (result) {
+            console.log(result);
+          },
+          complete: function (result) {
+            console.log(result);
+          }
+        })
+      }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
 } 

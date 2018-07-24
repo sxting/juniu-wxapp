@@ -16,7 +16,7 @@
           
             <!--循环的项目-->
           <view class="tickte-item {{item.couponStatus == 'OVERDUE' || (item.productNoUse && productId) ? 'disabled' : ''}}" 
-          wx:for="{{ticketList}}" bindtap="onTicketItemClick" data-couponid="{{item.couponDefId}}" data-canuse="{{!item.productNoUse}}" >
+          wx:for="{{ticketList}}" bindtap="onTicketItemClick" data-couponid="{{item.couponId}}" data-canuse="{{!item.productNoUse}}" >
             <view class="yuan1"></view>
             <view class="yuan2"></view>
 

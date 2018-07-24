@@ -19,8 +19,8 @@ personalService.getOrderList = (data) => {
 // 申请退款  /app/refund.json
 personalService.refund = (data) => {
   let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
-  let url = api + '/order/app/refund.json';
-  return http.post(url, data)
+  let url = api + '/order/app/refund.json?orderId=' + data.orderId;
+  return http.post2(url)
 }
 
 // 查询我的预约列表

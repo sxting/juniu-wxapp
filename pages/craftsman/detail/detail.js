@@ -17,6 +17,9 @@ Page({
   },
   
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '手艺人详情',
+    })
     this.setData({
       staffId: options.staffId,
       storeId: options.storeId,

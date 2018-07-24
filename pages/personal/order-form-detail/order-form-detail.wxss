@@ -99,7 +99,7 @@
   font-size: 13px;
   color: #666666;
   width: 690rpx;
-  margin: 20rpx auto;
+  margin: 20rpx auto 0;
 }
 .price-item {
   height: 72rpx;
@@ -122,7 +122,7 @@
 
 .address-box {
   width: 690rpx;
-  margin: 0 auto;
+  margin: 20rpx auto 0;
 }
 .store-btn-box {
   height: 88rpx;
@@ -163,6 +163,7 @@
   margin-bottom: 20rpx;
   font-size: 30rpx;
   color: #333;
+  margin-top: 20rpx;
 }
 .code-box .product-name {
   height: 88rpx;
@@ -178,7 +179,7 @@
 .code-order-time {
   color: #919191;
 }
-.code-box image {
+.code-box canvas {
   width: 520rpx;
   height: 186rpx;
   display: block;

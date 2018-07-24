@@ -73,11 +73,17 @@
   width: 80rpx;
   display: inline-block;
 }
+.usermgs {
+  position: relative;
+}
 .usermgs input {
   display: inline-block;
+  position: absolute;
   height: 60rpx;
   line-height: 60rpx;
   vertical-align: middle;
+  top: 16rpx;
+  left: 100rpx;
 }
 .placeholder {
   font-size: 13px;
@@ -113,6 +119,10 @@
 }
 .moreyh {
   background: #23252B;
+}
+
+.bottom-btn .disabled {
+  background-color: #D8D8D8;
 }
 
 .pay-ju-bottom {

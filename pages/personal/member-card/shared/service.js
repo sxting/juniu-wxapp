@@ -38,7 +38,7 @@ memberCardService.cardList = (data) => {
 //适用于某商品的会员卡列表 /card/productCard.json
 memberCardService.productCard = (data) => {
   let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
-  let apiUrl = api + '/card/productCard.json';
+  let apiUrl = api + '/member/card/productCard.json';
   return http.get(apiUrl, data);
 }
 

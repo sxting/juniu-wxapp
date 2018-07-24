@@ -27,6 +27,7 @@ Page({
     longitude: '',
     home: true,
     isOnLoad: false,
+    getUserInfo: true,
   },
   onShow() {
     if (this.data.isOnLoad) {
@@ -72,19 +73,59 @@ Page({
         wx.getUserInfo({
           withCredentials: true,
           success: function (res) {
+            self.setData({
+              getUserInfo: true
+            })
             let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
             let appId = 'wx3bb038494cd68262';
+            console.log(result.code);
             if (result.code) {
               logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
             } else {
               console.log('获取用户登录态失败！' + result.errMsg)
             }
+          },
+          fail: function() {
+            self.setData({
+              getUserInfo: false
+            })
           }
         });
       },
-      fail: function (res) { },
+      fail: function (res) {
+        self.setData({
+          getUserInfo: false
+        })
+       },
       complete: function (res) { },
     });
+  },
+
+  bindgetuserinfo(e) {
+    let self = this;
+    if (e.detail.errMsg == 'getUserInfo:ok') {
+      wx.login({
+        success: function (result) {
+          self.setData({
+            getUserInfo: true
+          })
+          let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+          let appId = 'wx3bb038494cd68262';
+          console.log(result.code);
+          if (result.code) {
+            logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, e.detail.rawData);
+          } else {
+            console.log('获取用户登录态失败！' + result.errMsg)
+          }
+        },
+        fail: function (res) {
+          self.setData({
+            getUserInfo: false
+          })
+        },
+        complete: function (res) { },
+      });
+    }
   },
 
   onHide() {
@@ -440,6 +481,7 @@ function getStoreIndexInfo(storeId, merchantId) {
 
 function logIn(code, appid, rawData) {
   let self = this; 
+  console.log(rawData)
   service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
       // 1530602217127209655835

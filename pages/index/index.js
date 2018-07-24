@@ -27,6 +27,9 @@ Page({
     productId: ''
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '选择门店',
+    })
     if (options.productId) {
       this.setData({
         productId: options.productId

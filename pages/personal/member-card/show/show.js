@@ -1,5 +1,7 @@
 // pages/personal/member-card/show/show.js
 import { constant } from '../../../../utils/constant';
+var wxbarcode = require('../../../../utils/index.js');
+
 Page({
 
   /**
@@ -25,6 +27,9 @@ Page({
     wx.setNavigationBarTitle({
       title: '条形码',
     });
+
+    wxbarcode.barcode('barcode', options.barCode, 390, 150);
+
     var res = wx.getSystemInfoSync();
     this.setData({
       height: res.windowHeight,
@@ -33,7 +38,7 @@ Page({
       appLogo: wx.getStorageSync(constant.CARD_LOGO),
       barcode: `https://oss.juniuo.com/juniuo-pic/picture/juniuo/${options.barCode}/resize_187_100/mode_fill`   
     })
-    console.log(this.data.barcode);
+    // console.log(this.data.barcode);
     if (res.windowWidth > 320) {
       this.setData({
         barWidth: res.windowWidth /4

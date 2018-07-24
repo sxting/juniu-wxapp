@@ -21,8 +21,11 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '选择商品',
+    })
     this.setData({
-      storeId: options.storeId,
+      storeId: wx.getStorageSync(constant.STORE_INFO),
       from: options.from
     })
     console.log(options.from === 'order')

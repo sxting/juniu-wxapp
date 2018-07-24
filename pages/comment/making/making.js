@@ -22,6 +22,9 @@ Page({
     selectStaffName: ''
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '发布评论',
+    })
     this.setData({
       storeId: wx.getStorageSync(constant.STORE_INFO),
       merchantId: wx.getStorageSync(constant.MERCHANTID),

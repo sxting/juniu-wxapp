@@ -21,6 +21,9 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '商品详情',
+    })
     this.setData({
       productId: options.productId,
       storeId: wx.getStorageSync(constant.STORE_INFO),

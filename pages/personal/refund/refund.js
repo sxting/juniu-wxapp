@@ -3,7 +3,9 @@ import { errDialog } from '../../../utils/util';
 
 Page({
   data: {
-    orderId: ''
+    orderId: '',
+    orderDetail: '',
+    jnImg: '/asset/images/product.png'
   },
 
   onLoad: function (options) {
@@ -26,7 +28,9 @@ function refund() {
   }
   personalService.refund(data).subscribe({
     next: res => {
-      wx.navigateBack()
+      wx.navigateBack({
+        delta: 2
+      })
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -40,7 +44,12 @@ function getOrderDetail() {
   }
   personalService.getOrderDetail(data).subscribe({
     next: res => {
-
+      if (res.orderItem[0] && res.orderItem[0].picId) {
+        res.orderItem[0].picId = constant.OSS_IMAGE_URL + `${res.orderItem[0].picId}/resize_80_60/mode_fill`;
+      }
+      this.setData({
+        orderDetail: res
+      })
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

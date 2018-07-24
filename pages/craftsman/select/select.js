@@ -17,6 +17,9 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '选择手艺人',
+    })
     this.setData({
       storeId: options.storeId,
       from: options.from
