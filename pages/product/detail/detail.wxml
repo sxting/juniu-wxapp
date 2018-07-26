@@ -3,7 +3,7 @@
   <view class="product-box">
     <view class="product-name">
       {{productInfo.productName}}
-      <button class="share-btn" open-type="share"><text class="jn-icon icon-share"></text></button>
+      <button class="share-btn" open-type="share"><text class="jn-icon icon-fenxiang"></text></button>
     </view>
     <view class="price-box">
       <text>￥<text class="current">{{productInfo.currentPrice ? productInfo.currentPrice / 100 : ''}}</text> </text> 

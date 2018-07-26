@@ -374,7 +374,7 @@ function onlineBuyFun(data) {
               })
             } else {
               wx.navigateTo({
-                url: '/pages/personal/order-form-detail/order-form-detail?orderId=' + this.data.orderId,
+                url: '/pages/personal/order-form-detail/order-form-detail?orderId=' + self.data.orderId,
               })
             }
           },

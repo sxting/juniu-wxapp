@@ -33,3 +33,7 @@ color:#FF6600;
 .disabled .ticket-price-box {
   color: #666;
 }
+
+.weui-navbar__slider {
+  height: 4rpx
+}

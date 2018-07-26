@@ -21,13 +21,14 @@
     border-bottom: 1px solid #F3F3F3;
 }
 .craftsman-name, .product-name {
-    color: #999;
+    color: #ff6600;
     float: right;
     padding-right: 10rpx;
     font-size: 26rpx;
 }
 .icon-rightblue {
     float: right;
+    color: #ff6600;    
 }
 /*选择到店时间*/
 .select-time-box {
@@ -125,7 +126,8 @@
 
 /*当前选中时间样式*/
 .time-active {
-  color: #ff6600;
+  color: #fff;
+  background-color: #ff6600;
 }
 /*禁止点击*/
 .prevent-click {
@@ -140,8 +142,8 @@
    top: 50%; 
   /* color: #ff6600; */
   font-size: 30rpx;
-  width: 400rpx;
-  left: 175rpx;
+  width: 450rpx;
+  left: 150rpx;
   padding: 10rpx 0;
   border-radius: 16rpx;
   background-color: rgba(0, 0, 0, 0.5);
@@ -150,7 +152,7 @@
 
 .user-msg-box {
   width: 690rpx;
-  margin: 20rpx auto;
+  margin: 30rpx auto;
   box-shadow: 0 2rpx 6rpx 0 #D8D8D8;
   border-radius: 8rpx;
   font-size: 30rpx;

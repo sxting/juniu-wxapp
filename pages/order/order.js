@@ -54,7 +54,8 @@ Page({
       productId: wx.getStorageSync('productId'),
       craftsmanName: wx.getStorageSync('staffName') ? wx.getStorageSync('staffName') : this.data.craftsmanName,
       productName: wx.getStorageSync('productName'),
-      price: wx.getStorageSync('reservePrice')
+      price: wx.getStorageSync('reservePrice'),
+      nowTime: new Date().getTime()
     })
 
     wx.removeStorageSync('staffId');
@@ -195,6 +196,7 @@ Page({
     this.setData({
       success: false,
     })
+    reserveConfig.call(this);
   }
 
 })

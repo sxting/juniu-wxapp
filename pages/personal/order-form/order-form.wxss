@@ -96,6 +96,7 @@
 
 .active {
   border-bottom: 4rpx solid #FF6700;
+  color: #FF6700;
 }
 .color1 {
   color: #F0BF28;

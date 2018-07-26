@@ -13,7 +13,8 @@
           <view class="weui-cell__bd weui-cell_primary">
             <view>{{selectName}}</view>
           </view>
-          <view class="weui-cell__ft weui-cell__ft_in-access drown"></view>
+          <!-- <view class="weui-cell__ft weui-cell__ft_in-access drown"></view> -->
+          <view class="jn-icon icon-xia"></view>
         </view>
       </picker>
 
@@ -29,7 +30,8 @@
                   <view>{{item.productName}}</view>
                   <view class="weui-media-box__info__meta current-price">{{item.currentPrice/100}}元</view>
                 </view>
-                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                <view class="jn-icon icon-rightblue"></view>
+                <!-- <view class="weui-cell__ft weui-cell__ft_in-access"></view> -->
               </view>
             </scroll-view>
           </view>

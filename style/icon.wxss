@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'iconfont';  /* project id 365926 */
-  src: url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.eot');
-  src: url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.woff') format('woff'),
-  url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_365926_ddoje7mz1ev.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_365926_vgnsdma67er.eot');
+  src: url('//at.alicdn.com/t/font_365926_vgnsdma67er.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_365926_vgnsdma67er.woff') format('woff'),
+  url('//at.alicdn.com/t/font_365926_vgnsdma67er.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_365926_vgnsdma67er.svg#iconfont') format('svg');
 }
 .jn-icon {
   display: inline-block;
@@ -165,4 +165,10 @@
 }
 .icon-shijian::before {
   content: '\e60f'
+}
+.icon-fenxiang::before {
+  content: '\e66c'
+}
+.icon-morentupianccccccpx::before {
+  content: '\e612'
 }

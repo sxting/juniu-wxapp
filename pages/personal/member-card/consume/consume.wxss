@@ -1,5 +1,6 @@
 .toolbar {
   position: relative;
+   height: 129px;
 }
 
 .img {
@@ -52,4 +53,14 @@
   letter-spacing: 0;
   line-height: 13px;
   margin-top: 6px;
+}
+
+.weui-form-preview__hd::after {
+  border-bottom: 2rpx solid #f3f3f3;
+}
+.weui-form-preview::after {
+  border-bottom: none;
+}
+.weui-form-preview::before {
+  border-top: 2rpx solid #f3f3f3;
 }

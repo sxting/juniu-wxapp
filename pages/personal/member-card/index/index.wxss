@@ -51,10 +51,12 @@
 
 .record-box, .card-detail {
   height: 90rpx;
-  padding: 0 30rpx;
   margin: 0 auto;
   line-height: 90rpx;
   background: #fff;
+}
+.record-box>view {
+  padding: 0 30rpx;
 }
 
 .record-box>view, .card-detail>view {

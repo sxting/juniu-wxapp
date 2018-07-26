@@ -138,10 +138,11 @@
     </view>
   </view>
 
-  <view class="merchant-img-box" wx:if="{{storeInfo}}"> 
+  <view class="merchant-img-box" wx:if="{{storeInfo}}">
     <view class="sub-title">
       <view class="sub-title-left">
-        <view class="sub-title-left-border"></view>
+        <view class="jn-icon icon-morentupianccccccpx"></view>
+        <!-- <view class="sub-title-left-border"></view> -->
         <view class="sub-title-text">商户图片</view>
       </view>
     </view>
