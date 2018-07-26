@@ -48,7 +48,7 @@
 .image-item {
     width: 120rpx;
     height: 120rpx;
-    margin-right: 30rpx;
+    margin-right: 20rpx;
     margin-bottom: 30rpx;
     /* border: 1px solid #e5e5e5; */
 }
@@ -105,4 +105,8 @@
 
 .juniu-bottom {
   bottom: 120rpx;
+}
+
+.camera-box {
+  text-align: center;
 }

@@ -3,7 +3,7 @@
  */
 
 var constant = {
-  TPLID: 'test2.6',
+  TPLID: 'test2.12',
   address: 'address',
   phoneNumber: 'phoneNumber',
   couponId: 'couponId',
@@ -23,7 +23,8 @@ var constant = {
   // imgUrl: 'http://ts.diankayi.net/',
   // apiUrl: 'https://biz.juniuo.com/wxapp',
   // OSS_IMAGE_URL: 'https://oss.juniuo.com/juniuo-pic/picture/juniuo/',
-  imgUrl: 'https://biz.juniuo.com/',
+  // imgUrl: 'https://biz.juniuo.com/',
+  imgUrl: 'https://b-test.juniuo.com/',
   OSS_IMAGE_URL: 'https://fdfs.juniuo.com/juniuo-pic/picture/juniuo/',
   CARD_LOGO: 'card-log',
   APP_ID: 'wxedcf0f0c4cc429c8',

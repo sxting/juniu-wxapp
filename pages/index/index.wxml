@@ -1,6 +1,6 @@
 <view class="container">
   <!--搜索框-->
-  <view class="search-box-bg">
+  <view class="search-box-bg" wx:if="">
     <view class="search-box w-inner">
       <picker mode="region" value="{{region}}" range="" bindchange="bindRegionChange">
         <view class="city-name">{{provinceName}}</view>

@@ -200,13 +200,15 @@ Page({
     getStoreListInfo.call(this);
   },
 
+  // 切换门店
   routerToStoreIndex: function (e) {
     let self = this;
     let storeId = e.currentTarget.dataset.storeid;
     wx.setStorageSync(constant.STORE_INFO, storeId);
     wx.setStorageSync('storeName', e.currentTarget.dataset.storename);
     self.setData({
-      home: true
+      home: true,
+      storeId: storeId
     });
     getStoreIndexInfo.call(self, storeId, wx.getStorageSync(constant.MERCHANTID) );
     getTicketInfo.call(self, storeId);
@@ -354,6 +356,8 @@ function getTicketInfo(storeId) {
           let disabledWeekDateArr = item.disabledWeekDate.split(',');
           item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);
           item.selectedWeek2 = weekText.call(self, disabledWeekDateArr[disabledWeekDateArr.length - 1]);
+          item.disabledTimeStart = item.disabledTimeStart.replace(/-/g, '/');
+          item.disabledTimeEnd = item.disabledTimeEnd.replace(/-/g, '/');
           item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
             (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
           item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +
@@ -462,15 +466,19 @@ function getStoreIndexInfo(storeId, merchantId) {
           productImages: res.pictureVOS
         })
       }
-      if(res.productList && res.productList.length && res.productList.length > 0) {
-        res.productList.forEach((item) => {
-          if (item.picUrl) {
+      if (res.productList && res.productList.length && res.productList.length > 0) {
+        res.productList.forEach((item, index) => {
+          if (item.picUrl && index > 0) {
             item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_330_190/mode_fill`;
           }
-          if (res.productList.length == 1 || res.productList.length == 3) {
-            res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_690_360/mode_fill`;
-          }
         })
+        if (res.productList.length == 1 || res.productList.length == 3) {
+          if (res.productList[0].picUrl) {
+            res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_690_360/mode_fill`;
+          }
+        } else {
+          res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_330_190/mode_fill`;
+        }
       }  
 
       if (res.staffList && res.staffList.length && res.staffList.length > 0) {
@@ -534,6 +542,7 @@ function logIn(code, appid, rawData) {
 
 // 获取全部的优惠券
 function getAllTicket(storeId) {
+  console.log(storeId);
   let self = this;
   ticketService.allCouponlist({
     storeId: storeId
@@ -545,6 +554,8 @@ function getAllTicket(storeId) {
           let disabledWeekDateArr = item.disabledWeekDate.split(',');
           item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);
           item.selectedWeek2 = weekText.call(self, disabledWeekDateArr[disabledWeekDateArr.length - 1]);
+          item.disabledTimeStart = item.disabledTimeStart.replace(/-/g, '/');
+          item.disabledTimeEnd = item.disabledTimeEnd.replace(/-/g, '/');
           item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
             (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
           item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +
@@ -623,7 +634,9 @@ function getStoreListInfo() {
     address: self.data.address,
     provinceId: self.data.provinceId,
     cityId: self.data.cityId,
-    areaId: self.data.areaId
+    areaId: self.data.areaId,
+    latitude: self.data.latitude,
+    longitude: self.data.longitude
   };
   indexService.getStoreList(shopQuery).subscribe({
     next: res => {

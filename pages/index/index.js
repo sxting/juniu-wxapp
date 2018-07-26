@@ -24,11 +24,13 @@ Page({
     provinceId: '',
     cityId: '',
     areaId: '',
-    productId: ''
+    productId: '',
+    latitude: '',
+    longitude: ''
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '选择门店',
+      title: '适用门店',
     })
     if (options.productId) {
       this.setData({
@@ -45,11 +47,15 @@ Page({
         });
       }
     })
-    getStoreListInfo.call(self);
     // 获取当前地理位置
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
+        self.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+        getStoreListInfo.call(self);        
         tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
       }
     })
@@ -146,7 +152,9 @@ function getStoreListInfo() {
     address: self.data.address,
     provinceId: self.data.provinceId,
     cityId: self.data.cityId,
-    areaId: self.data.areaId
+    areaId: self.data.areaId,
+    latitude: self.data.latitude,
+    longitude: self.data.longitude
   };
   indexService.getStoreList(shopQuery).subscribe({
     next: res => {

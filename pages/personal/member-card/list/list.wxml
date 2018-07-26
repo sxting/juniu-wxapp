@@ -1,6 +1,10 @@
 <view class="page" wx:if="{{showClickBind == 'F'}}">
-  <view class="card-item" wx:for="{{cards}}" bindtap="onCardItemClick" data-cardname="{{item.cardName}}" data-cardid="{{item.cardId}}">
-    <image src="/asset/images/card-bg.png"></image>
+  <view class="card-item" wx:for="{{cards}}" bindtap="onCardItemClick" 
+  data-cardname="{{item.cardName}}" data-cardid="{{item.cardId}}" data-type="{{item.type}}" data-balance="{{item.balance}}">
+    <view wx:if="{{productId && (item.type == 'STORED' || item.type == 'REBATE') && item.balance < price }}" class="prevent">
+      余额不足
+    </view>
+    <image src="{{item.background ? item.background : jnImg}}"></image>
     <view class="card">
       <view class="fl">
         <view class="card-name">{{item.cardName}}</view>
@@ -10,7 +14,7 @@
         <view class="person-name">{{item.customerName ? item.customerName : '无'}}</view>
         <view class="jn-icon erweima"></view>
       </view>
-      <view class="date">有效期：{{item.validate}}</view>        
+      <view class="date">有效期：{{item.validate || item.validity}}</view>        
     </view>
   </view>
 </view>

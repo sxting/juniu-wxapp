@@ -74,7 +74,7 @@ function getOrderDetail() {
         res.orderItem[0].picId = constant.OSS_IMAGE_URL + `${res.orderItem[0].picId}/resize_80_60/mode_fill`;
       }
       let date = new Date(res.payDate)
-      res.payDate = date.getFullYear() + '-' + date.getMonth()+1 + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+      res.payDate = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
       this.setData({
         status: status,
         orderDetail: res,

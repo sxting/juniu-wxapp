@@ -39,6 +39,7 @@
     "color": "#333",
     "selectedColor": "#ff6600",
     "backgroundColor": "#fff",
+    "height": "160",
     "list": [
       {
         "pagePath": "pages/home/home",

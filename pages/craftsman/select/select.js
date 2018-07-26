@@ -20,36 +20,34 @@ Page({
     wx.setNavigationBarTitle({
       title: '选择手艺人',
     })
-    // this.setData({
-    //   storeId: options.storeId,
-    //   from: options.from
-    // })
-    // if (options.label == 'order') {
-    //   this.setData({
-    //     label: options.label
-    //   })
-    //   let todayDate = new Date();
-    //   let data = {
-    //     storeId: this.data.storeId,
-    //     date: changeDate(todayDate)
-    //   }
-    //   craftsmanService.getReserveList(data).subscribe({
-    //     next: res => {
-    //       console.log(res);
-    //       res.forEach((item) => {
-    //         item.avatar = constant.OSS_IMAGE_URL + `${item.avatar}/resize_50_50/mode_fill`;
-    //       });
-    //       this.setData({
-    //         staffNumber: res.length,
-    //         reserveList: res
-    //       })
-    //     },
-    //     error: err => errDialog(err),
-    //     complete: () => wx.hideToast()
-    //   })
-    // } else {
-    //   getStaffList.call(this)
-    // }
+    this.setData({
+      storeId: wx.getStorageSync(constant.STORE_INFO),
+      from: options.from ? options.from : '',
+      label: options.label ? options.label : ''     
+    })
+    if (options.label == 'order') {
+      let todayDate = new Date();
+      let data = {
+        storeId: this.data.storeId,
+        date: changeDate(todayDate)
+      }
+      craftsmanService.getReserveList(data).subscribe({
+        next: res => {
+          console.log(res);
+          res.forEach((item) => {
+            item.avatar = constant.OSS_IMAGE_URL + `${item.avatar}/resize_50_50/mode_fill`;
+          });
+          this.setData({
+            staffNumber: res.length,
+            reserveList: res
+          })
+        },
+        error: err => errDialog(err),
+        complete: () => wx.hideToast()
+      })
+    } else {
+      getStaffList.call(this)
+    }
   },
 
   onItemClick: function(e) {

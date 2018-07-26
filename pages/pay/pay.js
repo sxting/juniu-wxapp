@@ -106,7 +106,7 @@ Page({
   // 跳转到我的会员卡列表
   goMyCard() {
     wx.navigateTo({
-      url: '/pages/personal/member-card/list/list?productId=' + this.data.productId,
+      url: '/pages/personal/member-card/list/list?productId=' + this.data.productId + '&price=' + this.data.productInfo.currentPrice,
     })
   },
 
@@ -328,6 +328,7 @@ function onlineBuy() {
             type: 'PAY'
           })
           data.type = 'PAY';
+          errDialog('会员卡余额不足');
         }
         onlineBuyFun.call(self, data)                  
       },
@@ -348,13 +349,14 @@ function MathRand(num) {
 }
 
 function onlineBuyFun(data) {
+  let self = this;
   payService.onlineBuy(data).subscribe({
     next: res => {
       console.log(res);
       this.setData({
         orderId: res.orderId
       })
-      if (this.data.type == 'DEDUCTION') {
+      if (self.data.type == 'DEDUCTION') {
         wx.navigateTo({
           url: '/pages/personal/order-form-detail/order-form-detail?orderId=' + this.data.orderId,
         })
@@ -366,7 +368,7 @@ function onlineBuyFun(data) {
           signType: res.payInfo.signType,
           paySign: res.payInfo.paySign,
           success: function (res) {
-            if (this.data.type == 'OPENCARD') {
+            if (self.data.type == 'OPENCARD') {
               self.setData({
                 showPaySuccess: true
               })

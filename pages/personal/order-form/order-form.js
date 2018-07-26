@@ -68,7 +68,7 @@ function getOrderList() {
           item.orderItem[0].picId = constant.OSS_IMAGE_URL + `${item.orderItem[0].picId}/resize_80_60/mode_fill`;
         }
         let date = new Date(item.payDate)
-        item.payDate = date.getFullYear() + '-' + date.getMonth() + 1 + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+        item.payDate = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
       })
       
       this.setData({

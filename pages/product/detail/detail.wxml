@@ -54,7 +54,7 @@
         </view>
         <view class="comment-content"> {{comment.content}} </view>
         <view class="comment-images">
-          <image wx:for="{{comment.imagesUrl}}" src="{{item}}"></image>
+          <image wx:for="{{comment.imagesUrl}}" src="{{item}}" bindtap="onImgItemClick" data-url="{{item}}"></image>
         </view>
       </view>
 
@@ -66,3 +66,7 @@
   <view class="juniu-bottom" hidden="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>
   <view class="go-pay" bindtap="onBuyClick">立即购买</view>
 </view>
+
+<view class="big-img" wx:if="{{showBigImg}}" bindtap="onBigImgClick">
+  <image src="{{bigImg}}"></image>
+</view> 

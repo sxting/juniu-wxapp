@@ -100,6 +100,8 @@ function getMyTicket(storeId, couponStatus) {
           let disabledWeekDateArr = item.disabledWeekDate.split(',');
           item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);
           item.selectedWeek2 = weekText.call(self, disabledWeekDateArr[disabledWeekDateArr.length - 1]);
+          item.disabledTimeStart = item.disabledTimeStart.replace(/-/g, '/');
+          item.disabledTimeEnd = item.disabledTimeEnd.replace(/-/g, '/');
           item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
             (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
           item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +

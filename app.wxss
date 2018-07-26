@@ -248,7 +248,7 @@ page {
 
 /* 未找到start */
 .space-box {
-    border-top: 1px solid #E5E5E5;
+    /* border-top: 1px solid #E5E5E5; */
     text-align: center;
      padding-top: 320rpx; 
 
@@ -375,6 +375,7 @@ page {
 .get-ticket-count {
   font-size: 22rpx;
   color: #666666;
+  width:112rpx;
 }
 
 .ticket-bottom {

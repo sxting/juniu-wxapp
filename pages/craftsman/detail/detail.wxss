@@ -25,6 +25,7 @@
     padding-left: 30rpx;
     font-size: 22rpx;
     color: #FF6600;
+    padding-top:15rpx;
 }
 .carftsman-msg text {
     margin-right: 30rpx;
@@ -100,4 +101,22 @@
 scroll-view {
   height: 100%;
   max-height:100%;
+}
+
+.big-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+.big-img image {
+  height: 860rpx;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -430rpx;
 }

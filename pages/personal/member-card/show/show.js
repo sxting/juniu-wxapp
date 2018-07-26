@@ -28,7 +28,7 @@ Page({
       title: '条形码',
     });
 
-    wxbarcode.barcode('barcode', options.barCode, 390, 150);
+    wxbarcode.barcode('barcode', options.phone, 390, 150);
 
     var res = wx.getSystemInfoSync();
     this.setData({

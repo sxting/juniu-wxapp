@@ -89,7 +89,7 @@ page {
   line-height: 90rpx;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1rpx solid #f3f3f3; 
   background-color: #fff;
 }
 
@@ -198,14 +198,16 @@ page {
 
 .cfaftsman-box {
   height: 288rpx;
-  padding: 30rpx 0;
+  padding: 30rpx 20rpx;
   box-sizing: border-box;
   display: flex;
+  justify-content: space-around;
 }
 
 .cfaftsman-box image {
-  width: 220rpx;
+   width: 220rpx; 
   height: 180rpx;
+  /* width: 180rpx; */
   border-radius: 8rpx;
   /* border: 1px solid #e5e5e5; */
 }
@@ -282,7 +284,7 @@ page {
     line-height: 60rpx;
     margin: 0 auto 20rpx;
     background-color: #F2F2F2;
-    border: 0 solid #E5E5E5;
+    border: 0 solid #f3f3f3;
     border-radius: 200rpx;
     display: flex;
     box-sizing: border-box;
@@ -311,11 +313,15 @@ page {
     height:60rpx;
     line-height: 60rpx;
 }
+.icon-xl::before, .icon-search::before{
+    vertical-align: middle;
+}
+
 .vertical-line {
     width: 1px;
     height: 40rpx;
     margin: 10rpx 20rpx;
-    background-color: #E5E5E5;
+    background-color: #f3f3f3;
 }
 .search-box input {
     text-align: left;
@@ -346,7 +352,7 @@ scroll-view {
 }
 .address-box {
     padding: 12rpx 0;
-    border-bottom: 1px solid #E5E5E5;
+    border-bottom: 1px solid #f3f3f3;
     line-height: 40rpx;
 }
 .address-box-active {
@@ -357,7 +363,7 @@ scroll-view {
    color: #999999;
 }
 .space-box {
-    border-top: 1px solid #E5E5E5;
+    border-top: 1px solid #f3f3f3;
     text-align: center;
     padding-top: 320rpx;
 }

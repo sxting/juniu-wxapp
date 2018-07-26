@@ -32,7 +32,7 @@
   </view>
   <view class="member-right" wx:if="{{productCardLength > 0}}" bindtap="goMyCard">
     <text>会员权益</text>
-    <view class="fr" wx:if="{{cardName}}"> {{cardName}} > </view>
+    <view class="fr"> <text wx:if="{{cardName}}">{{cardName}}</text> > </view>
   </view>
 </view>
 

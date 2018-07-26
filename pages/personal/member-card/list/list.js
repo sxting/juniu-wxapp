@@ -7,7 +7,9 @@ Page({
   data: {
     cards: '',
     showClickBind: 'F',
-    productId: ''
+    productId: '',
+    jnImg: '/asset/images/card-bg.png',
+    price: ''
   },
 
   onLoad: function (options) {
@@ -17,7 +19,8 @@ Page({
     let storeId = wx.getStorageSync(constant.STORE_INFO)
     if (options.productId) {
       this.setData({
-        productId: options.productId
+        productId: options.productId,
+        price: options.price
       })
       productCardList.call(this)
     } else {
@@ -27,6 +30,9 @@ Page({
 
   onCardItemClick(e) {
     if (this.data.productId) {
+      if ((e.currentTarget.dataset.type == 'STORED' || e.currentTarget.dataset.type == 'REBATE') && e.currentTarget.dataset.balance < this.data.price ) {
+        return;
+      }
       wx.setStorageSync(constant.cardId, e.currentTarget.dataset.cardid)
       wx.setStorageSync(constant.cardName, e.currentTarget.dataset.cardname)
       wx.navigateBack({ 
@@ -53,6 +59,11 @@ function getCardList(storeId) {
   let self = this;
   memberCardService.cardList({ storeId: storeId }).subscribe({
     next: res => {
+      res.cards.forEach((item) => {
+        if (item.background) {
+          item.background = constant.OSS_IMAGE_URL + `${item.background}/resize_345_120/mode_fill`;
+        }
+      });
       self.setData({
         cards: res.cards,
         showClickBind: res.showClickBind
@@ -72,6 +83,11 @@ function productCardList() {
   };
   memberCardService.productCard(data).subscribe({
     next: res => {
+      res.forEach((item) => {
+        if (item.background) {
+          item.background = constant.OSS_IMAGE_URL + `${item.background}/resize_345_120/mode_fill`;
+        }
+      });
       self.setData({
         cards: res
       });

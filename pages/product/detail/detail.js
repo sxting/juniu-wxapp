@@ -17,7 +17,9 @@ Page({
     storeName: '',
     juniuImg: '/asset/images/product.png',
     address: '',
-    tel: ''
+    tel: '',
+    showBigImg: false,
+    bigImg: ''
   },
 
   onLoad: function (options) {
@@ -95,6 +97,22 @@ Page({
     }
   },
 
+  onImgItemClick(e) {
+    let url = e.currentTarget.dataset.url;
+    let img1 = url.replace(/71/, '375');
+    this.setData({
+      showBigImg: true,
+      bigImg: img1.replace(/72/, '430')
+    })
+  },
+
+  onBigImgClick() {
+    this.setData({
+      showBigImg: false,
+      bigImg: ''
+    })
+  },
+
   onTelClick() {
     let self = this;
     wx.makePhoneCall({
@@ -163,7 +181,7 @@ function getProductCommentList() {
         
         if (item.imagesUrl) {
           item.imagesUrl.forEach((img, index) => {
-            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_80_80/mode_fill`;
+            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_71_72/mode_fill`;
           });
         }
       });

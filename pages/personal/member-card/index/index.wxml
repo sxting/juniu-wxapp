@@ -2,7 +2,7 @@
   <view class="card-box">
     <view class="card-item" wx:for="{{cards}}" wx:if="{{item.cardId == cardId}}" 
     bindtap="showMemberCardNumber" data-phone="{{item.phone}}" data-barcode="{{item.barCode}}">
-      <image src="/asset/images/card-bg.png"></image>
+      <image src="{{item.background ? item.background : jnImg}}"></image>
       <view class="card">
         <view class="fl">
           <view class="card-name">{{item.cardName}}</view>

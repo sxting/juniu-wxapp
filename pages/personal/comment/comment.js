@@ -10,12 +10,30 @@ Page({
     userInfo: [],
     pageNo: 1,
     pageSize: 100,
+    showBigImg: false,
+    bigImg: ''
   },
   onLoad: function () {
     wx.setNavigationBarTitle({
       title: '我的评价',
     })
     getMyComment.call(this, this.data.pageNo, this.data.pageSize)
+  },
+  
+  onImgItemClick(e) {
+    let url = e.currentTarget.dataset.url;
+    let img1 = url.replace(/71/, '375');
+    this.setData({
+      showBigImg: true,
+      bigImg: img1.replace(/72/, '430')
+    })
+  },
+
+  onBigImgClick() {
+    this.setData({
+      showBigImg: false,
+      bigImg: ''
+    })
   }
 })
 
@@ -35,7 +53,7 @@ function getMyComment(pageNo, pageSize) {
         item.imagesUrlArr = [];
         if (item.imagesUrl) {
           item.imagesUrl.forEach(function(imgid) {
-            item.imagesUrlArr.push(constant.OSS_IMAGE_URL + `${imgid}/resize_72_72/mode_fill`)
+            item.imagesUrlArr.push(constant.OSS_IMAGE_URL + `${imgid}/resize_71_72/mode_fill`)
           })
         }
       });

@@ -14,9 +14,15 @@ Page({
     countPage: 1,
     storeId: '',
     storeName: '',
+    showBigImg: false,
+    bigImg: ''
   },
   
   onLoad: function (options) {
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#FF6400',
+    })
     wx.setNavigationBarTitle({
       title: '手艺人详情',
     })
@@ -96,6 +102,22 @@ Page({
     wx.navigateTo({
       url: '/pages/comment/making/making?staffId=' + this.data.staffId,
     })
+  },
+
+  onImgItemClick(e) {
+    let url = e.currentTarget.dataset.url;
+    let img1 = url.replace(/71/, '375');
+    this.setData({
+      showBigImg: true,
+      bigImg: img1.replace(/72/, '430')
+    })
+  },
+
+  onBigImgClick() {
+    this.setData({
+      showBigImg: false,
+      bigImg: ''
+    })
   }
 })
 
@@ -134,7 +156,7 @@ function getComments() {
         item.time = dateArray[1];
         if (item.imagesUrl) {
           item.imagesUrl.forEach((img, index) => {
-            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_80_80/mode_fill`;
+            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_71_72/mode_fill`;
           });
         }
       });
