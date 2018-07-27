@@ -272,8 +272,8 @@ Page({
   imgError: function (event) {
     this.data.productImages.forEach((item) => {
       if (event.detail.errMsg.indexOf(item.picUrl) > 0) {
-        if (item.picUrl.indexOf('_375x360') > 0) {
-          item.picUrl = item.picUrl.split('_375x360')[0] + '.' + 'png';
+        if (item.picUrl.indexOf('_750x360') > 0) {
+          item.picUrl = item.picUrl.split('_750x360')[0] + '.' + 'png';
         }
       }
     });
@@ -504,7 +504,7 @@ function logIn(code, appid, rawData) {
     next: res => {
       // 1530602217127209655835
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '153179997107784038184');
+      wx.setStorageSync(constant.MERCHANTID, res.merchantId ? res.merchantId : '153179997107784038184');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
       wx.setStorageSync(constant.sessionKey, res.sessionKey)
 
