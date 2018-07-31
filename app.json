@@ -27,7 +27,9 @@
     "pages/personal/order-form/order-form",
     "pages/personal/order-form-detail/order-form-detail",
     "pages/personal/refund/refund",
-    "pages/personal/member-card/list/list"
+    "pages/personal/member-card/list/list",
+    "pages/collage/product-detail/product-detail",
+    "pages/personal/collage-order/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
