@@ -7,6 +7,7 @@ import { service } from '../../service';
 Page({
   data: {
     count: 1,
+    juniuImg: '/asset/images/product.png',
     showCardBuy: false,
     showPaySuccess: false,
     productId: '',
@@ -288,6 +289,7 @@ function userIsBind() {
 function onlineBuy() {
   let self = this;
   let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+  //    wx3bb038494cd68262
   let appId = extConfig.theAppid ? extConfig.theAppid : 'wx3bb038494cd68262';
   // type不能为空 在线购卡付款:OPENCARD, 在线付款:PAY, 扣减会员卡:DEDUCTION
   let data = {

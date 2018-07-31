@@ -215,3 +215,8 @@
 .juniu-bottom2 {
   bottom: 100rpx;
 }
+
+.disabled {
+  background:#f0f0f0;
+  color:#999;
+}

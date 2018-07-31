@@ -23,7 +23,7 @@
         <view class="order-msg-right">
           <view class="product-name">{{item.productInfo}}</view>
           <!-- <view class="order-time">下单时间：2017.09.21  18:36:09</view> -->
-          <view class="order-time">下单时间：{{item.payDate}}</view>
+          <view class="order-time">下单时间：{{item.juniuoModel.dateCreated}}</view>
           <view class="order-price">￥<text>{{item.money ? item.money/100 : ''}}</text></view>
         </view>
       </view>

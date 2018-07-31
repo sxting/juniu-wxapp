@@ -10,7 +10,8 @@ Page({
     status: 2, //待付款1，待消费2，已完成（已消费3，支付超时、已取消4，已退款5）
     orderId: '',
     jnImg: '/asset/images/product.png',
-    recordType: ''
+    recordType: '',
+    preOrderJson: ''
   },
 
   onLoad: function (options) {
@@ -21,10 +22,31 @@ Page({
     getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
   },
 
+  // 立即付款
+  onPayClick() {
+    let self = this;
+    wx.requestPayment({
+      timeStamp: self.data.preOrderJson.timeStamp,
+      nonceStr: self.data.preOrderJson.nonceStr,
+      package: self.data.preOrderJson.package,
+      signType: self.data.preOrderJson.signType,
+      paySign: self.data.preOrderJson.paySign,
+      success: function (res) {
+        getOrderDetail.call(self)
+      },
+      fail: function (result) {
+        console.log(result);
+      },
+      complete: function (result) {
+        console.log(result);
+      }
+    })
+  },
+
   // 申请退款 
   goRefund() {
-    if (this.data.recordType == 'BUCKLECARD') {
-      errDialog('该订单为会员卡扣卡，不可退款')
+    if (this.data.biztype == 'OPENCARD' && this.data.source == 'WXAPP') {
+      // errDialog('该订单为会员卡扣卡，不可退款')
       return;
     }
     wx.navigateTo({
@@ -73,12 +95,13 @@ function getOrderDetail() {
       if (res.orderItem[0] && res.orderItem[0].picId) {
         res.orderItem[0].picId = constant.OSS_IMAGE_URL + `${res.orderItem[0].picId}/resize_80_60/mode_fill`;
       }
-      let date = new Date(res.payDate)
-      res.payDate = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+      // let date = new Date(res.payDate)
+      // res.payDate = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
       this.setData({
         status: status,
         orderDetail: res,
-        recordType: res.recordType
+        recordType: res.recordType,
+        preOrderJson: JSON.parse(res.preOrderJson)
       })
 
       let self = this;

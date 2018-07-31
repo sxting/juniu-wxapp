@@ -8,7 +8,7 @@ Page({
     cards: '',
     showClickBind: 'F',
     productId: '',
-    jnImg: '/asset/images/card-bg.png',
+    jnImg: '/asset/images/card-bg1.png',
     price: ''
   },
 

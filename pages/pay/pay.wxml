@@ -65,7 +65,10 @@
           <view class="chuzhi" wx:if="{{item.type == 'STORED'}}">储值<text>{{item.rules[0].balance ? item.rules[0].balance/100 : ''}}</text>元</view>
           <view class="chuzhi" wx:elif="{{item.type == 'REBATE'}}">打<text>{{item.rules[0].rebate}}</text>折</view>          
           <view class="chuzhi" wx:elif="{{item.type == 'METERING'}}">使用<text>{{item.rules[0].balance}}</text>次</view>
-          <view class="chuzhi" wx:elif="{{item.type == 'TIMES'}}">可用<text>{{item.rules[0].validate}}</text>天</view>
+          <view class="chuzhi" wx:elif="{{item.type == 'TIMES'}}"> 
+            <view wx:if="{{item.rules[0].validateType == 'FOREVER'}}">永久有效</view>
+            <view wx:else>可用<text>{{item.rules[0].validate}}</text>天</view>
+          </view>
         </view>
         <view class="card-selected jn-icon icon-select" wx:if="{{ruleId == item.rules[0].ruleId}}"></view>
       </view>

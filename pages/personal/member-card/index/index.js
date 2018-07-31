@@ -11,7 +11,8 @@ Page({
     indicatorDots: true,
     selectCardIndex: 0,
     showRecord: true,
-    cardId: ''
+    cardId: '',
+    jnImg: '/asset/images/card-bg2.png',
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({

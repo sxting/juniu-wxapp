@@ -356,12 +356,14 @@ function getTicketInfo(storeId) {
           let disabledWeekDateArr = item.disabledWeekDate.split(',');
           item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);
           item.selectedWeek2 = weekText.call(self, disabledWeekDateArr[disabledWeekDateArr.length - 1]);
-          item.disabledTimeStart = item.disabledTimeStart.replace(/-/g, '/');
+          if (item.disabledTimeStart && item.disabledTimeEnd) {
+            item.disabledTimeStart = item.disabledTimeStart.replace(/-/g, '/');
           item.disabledTimeEnd = item.disabledTimeEnd.replace(/-/g, '/');
           item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
             (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
           item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +
             (new Date(item.disabledTimeEnd).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getMinutes()) : new Date(item.disabledTimeEnd).getMinutes());
+          }
         }
       });
       self.setData({
@@ -433,7 +435,7 @@ function closestStore () {
         storeInfo: res,
       });
       getTicketInfo.call(self, res.storeId);
-      getStoreInfo.call(self, res.storeId)
+      getStoreInfo.call(self, res.storeId);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -554,12 +556,14 @@ function getAllTicket(storeId) {
           let disabledWeekDateArr = item.disabledWeekDate.split(',');
           item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);
           item.selectedWeek2 = weekText.call(self, disabledWeekDateArr[disabledWeekDateArr.length - 1]);
-          item.disabledTimeStart = item.disabledTimeStart.replace(/-/g, '/');
-          item.disabledTimeEnd = item.disabledTimeEnd.replace(/-/g, '/');
-          item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
-            (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
-          item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +
-            (new Date(item.disabledTimeEnd).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getMinutes()) : new Date(item.disabledTimeEnd).getMinutes());
+          if (item.disabledTimeStart && item.disabledTimeEnd) {
+            item.disabledTimeStart = item.disabledTimeStart.replace(/-/g, '/');
+            item.disabledTimeEnd = item.disabledTimeEnd.replace(/-/g, '/');
+            item.unUseStartTime = (new Date(item.disabledTimeStart).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getHours()) : new Date(item.disabledTimeStart).getHours()) + ':' +
+              (new Date(item.disabledTimeStart).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeStart).getMinutes()) : new Date(item.disabledTimeStart).getMinutes());
+            item.unUseEndTime = (new Date(item.disabledTimeEnd).getHours().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getHours()) : new Date(item.disabledTimeEnd).getHours()) + ':' +
+              (new Date(item.disabledTimeEnd).getMinutes().toString().length < 2 ? ('0' + new Date(item.disabledTimeEnd).getMinutes()) : new Date(item.disabledTimeEnd).getMinutes());
+          }
         }
       });
       self.setData({
