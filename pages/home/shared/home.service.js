@@ -13,6 +13,18 @@ homeService.ticketList = (data) => {
   return http.get(apiUrl, data);
 }
 
+homeService.storeInfoDetail = (data) => {
+  let url = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 + '/member/appstore/storeInfo.json' : constant.apiUrl + '/account/appstore/app/storeInfo.json';
+  return http.get(url, data)
+}
+
+// 获取最近门店   /appstore/closestStore.json
+homeService.closestStore = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let apiUrl = api + '/member/appstore/closestStore.json';
+  return http.get(apiUrl, data);
+}
+
 module.exports = {
   homeService: homeService
 }

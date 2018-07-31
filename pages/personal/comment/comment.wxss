@@ -1,6 +1,22 @@
 page {
     background-color: #fff;
+    border-top: 2rpx solid #f3f3f3;  
 }
-.comment-list {
-    border-top: 1px solid #e5e5e5;
+
+.big-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+.big-img image {
+  height: 860rpx;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -430rpx;
 }

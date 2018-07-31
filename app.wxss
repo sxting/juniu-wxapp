@@ -1,11 +1,36 @@
 @import 'style/weui.wxss';
 @import 'style/common.wxss';
 
+page {
+  background-color: #fff;
+  font-size: 34rpx;
+  color: #222;
+}
+
 .container {
   font-size: 30rpx;
   font-family: "PingFangSC-Regular";
-  background-color: #F5F5F5
+  background-color: #f5f5f5;
 }
+
+.jn-bg {
+  height: 20rpx;
+  background: #F8F8F8;
+  width: 100vw;
+}
+
+ .jn-btn {
+  background: #FF6600;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+} 
 
 .w-inner {
   width: 690rpx;
@@ -18,6 +43,11 @@
 
 .fr {
   float: right;
+}
+
+.bd {
+  box-shadow: 0 2rpx 6rpx 0 #D8D8D8;
+  border-radius: 8rpx;
 }
 
 .save {
@@ -35,13 +65,6 @@
   border: 1px solid #f60;
 }
 
-page {
-  background-color: #f5f5f5;
-  font-size: 34rpx;
-  color: #222;
-
-}
-
 .placeholder {
   font-family: "PingFangSC-Regular";
   font-size: 28rpx;
@@ -53,12 +76,104 @@ page {
     color: #c7c7c7;
 }
 
+.tel-btn {
+  background: #FFFFFF;
+  border-radius:8rpx; 
+  width: 140rpx;
+  height: 48rpx;
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 20rpx;
+  color: #BCBCBC;
+  padding: 0;
+}
+
+
+/*弹框  */
+.alert-bg {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.alert-box {
+  width: 600rpx;
+  height: 292rpx;
+  background-color: #fff;
+  position: fixed;
+  top: 300rpx;
+  left: 50%;
+  margin-left: -300rpx;
+  border-radius: 28rpx;
+  text-align: center;
+}
+.alert-title {
+  font-size: 36rpx;
+  padding: 50rpx 0 30rpx;
+}
+.alert-tip {
+  font-size: 28rpx;
+  color: #999999;
+  padding-bottom: 20rpx;
+}
+.alert-btn {
+  font-size: 36rpx;
+  color: #FF6600;
+  height: 92rpx;
+  line-height: 92rpx;
+  border-top: 2rpx solid #F3F3F3;
+}
+.alert-btnl, .alert-btnr {
+  width: 50%;
+  box-sizing: border-box;
+  float: left;
+}
+.alert-btnr {
+  color: #666666;
+  border-left: 2rpx solid #F3F3F3; 
+  height: 90rpx;
+}
+
+/*底部桔牛logo样式  */
+.juniu-bottom {
+  background: #fff;
+  text-align: center;
+  height: 40rpx;
+  position: absolute;
+  bottom: 40rpx;
+  width: 100vw;
+}
+.juniu-bottom image {
+  width: 80rpx;
+  height: 40rpx;
+}
+
 /*评论的样式start*/
 .comment-box {
-    padding-bottom:10rpx;
-    border-bottom: 1px solid #e5e5e5;
+    margin-top:20rpx;
+    background-color: #fff;
+    padding-bottom:100rpx;
 }
-.comment-box:last-child {
+.comment-box .sub-title {
+    height: 90rpx;
+    line-height: 90rpx;
+    padding-left: 30rpx;
+    border-bottom: 1px solid #f8f8f8;
+}
+.comment-list {
+  box-shadow: 0 2rpx 6rpx 0 rgba(216,216,216,0.50);
+  border-radius: 8rpx; 
+  margin: 20rpx;
+   position: relative;
+}
+.comment-item-box {
+    padding-bottom:10rpx;
+    border-bottom: 1px solid #F3F3F3;
+}
+.comment-item-box:last-child {
     border-bottom: none;
 }
 .comment-top {
@@ -75,20 +190,23 @@ page {
 .comment-top-center {
     width: 100%;
     padding-top: 40rpx;
-    padding-left: 22rpx;
+    padding-left: 16rpx;
+}
+.comment-top-center {
+  font-size: 30rpx;
 }
 .icon-starempty, .icon-stars  {
     font-size: 24rpx;
     color: #FF6600;
-    padding-right:  8rpx;
+    padding-right: 8rpx;
 }
 .comment-time-box {
     font-family: "PingFangSC-Regular";
-    font-size: 26rpx;
+    font-size: 22rpx;
     color: #999999;
     text-align: right;
     padding-top: 44rpx;
-    min-width: 156rpx;
+    min-width: 222rpx;
 }
 .comment-content {
     font-size: 28rpx;
@@ -113,18 +231,24 @@ page {
     z-index: 10;
 }
 .comment-images image {
-    width: 122rpx;
-    height: 122rpx;
+    width: 140rpx;
+    height: 140rpx;
     margin-right: 20rpx;
+    border-radius: 8rpx;
 }
 .comment-images image:last-child {
     margin-right: 0;
 }
+.comment-jn-bottom {
+  left:-20rpx;
+  bottom:-50rpx;
+}
+
 /*评论的样式end*/
 
 /* 未找到start */
 .space-box {
-    border-top: 1px solid #E5E5E5;
+    /* border-top: 1px solid #E5E5E5; */
     text-align: center;
      padding-top: 320rpx; 
 
@@ -144,3 +268,139 @@ page {
     padding-top: 20rpx;
 }
 /* 未找到end */
+
+/*优惠券样式 start  */
+.ticket-color {
+  color: #fa6f6f;
+}
+
+.tickte-item {
+  position: relative;
+  width: 690rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+  box-shadow: 0rpx 2rpx 6rpx 0rpx #D8D8D8; 
+}
+
+.ticket-block {
+  padding-left: 30rpx;
+  padding-top: 34rpx;
+  padding-bottom: 20rpx;
+}
+
+.yuan1 {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  background-color: #fff;
+  left: -20rpx;
+  top: 160rpx;
+}
+
+.yuan2 {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  background-color: #fff;
+  right: -20rpx;
+  top: 160rpx;
+}
+
+.ticket-top {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  height: 180rpx;
+}
+
+.ticket-price-box {
+  width: 200rpx;
+  color: #FF3232; 
+  padding-top: 10rpx; 
+}
+
+.ticket-title-box {
+  width: 350rpx;
+  text-align: left;
+}
+
+.ticket-btn-box {
+  width: 140rpx;
+  text-align: center;
+}
+.ticket-btn {
+  font-size: 13px;
+  color: #FFFFFF;
+  background-color: #FF6600;
+  border-radius: 30rpx;
+  height: 48rpx;
+  width: 112rpx;
+  text-align: center;
+  line-height: 48rpx;
+  margin-top: 40rpx;
+}
+.ticket-btn2 {
+  color: #999;
+  background-color: #f3f3f3;
+}
+
+.ticket-price text {
+  font-size: 70rpx;
+}
+
+.ticket-type {
+  font-size: 22rpx; 
+}
+.ticket-type-gift {
+  font-size: 36rpx;
+  padding-top: 46rpx;
+}
+
+.ticket-title {
+  font-size: 36rpx;
+  color: #111111;
+  padding: 34rpx 0 16rpx;
+}
+.use-limit-box, .gift-name {
+  font-size: 26rpx;
+  color: #001414;
+}
+.use-limit text {
+  color: #FF3232;
+}
+.get-ticket-count {
+  font-size: 22rpx;
+  color: #666666;
+  width:112rpx;
+}
+
+.ticket-bottom {
+  color: #999;
+  font-size: 24rpx;
+  padding: 20rpx;
+  background: #FAFAFA;
+  height: 140rpx;
+  box-sizing: border-box;
+  line-height: 50rpx;
+}
+.ticket-bottom-close {
+  height: 90rpx;
+  padding: 0 20rpx;
+  line-height: 90rpx;
+}
+.ticket-bottom .icon-xia {
+  float: right;
+  font-size: 28rpx;
+  color: #AAA;
+}
+.icon-shang {
+  float: right;
+  font-size: 28rpx;
+  color: #AAA;
+  padding-top:20rpx;
+}
+/*优惠券样式 end  */

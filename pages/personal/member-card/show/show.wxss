@@ -2,65 +2,72 @@
 
 .bd {
   background: #efc849;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
   overflow: hidden;
 }
 
 .card-block {
   background: white;
-  border-radius: 8px;
-  height: 278px;
-  margin-top: 164px;
+  border-radius: 16rpx;
+  height: 656rpx;
+  margin-top: 328rpx;
   position: relative;
   
 }
 
 .head {
-  width: 80px;
-  height: 80px;
+  width: 160rpx;
+  height: 160rpx;
   left: 0;
   right: 0;
   margin: auto;
   background: white;
-  top: -40px;
+  top: -80rpx;
   position: absolute;
-  border-radius: 40px;
+  border-radius: 80rpx;
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
+  width: 160rpx;
+  height: 160rpx;
   left: 0;
   right: 0;
   margin: auto;
-  border-radius: 40px;
+  border-radius: 80rpx;
 }
 
 .bar-code {
-  padding-left: 20px;
-  padding-right: 20px;
   position: absolute;
-  top: 100px;
+  top: 200rpx;
   left: 50%;
 }
 
 .phone-number {
   position: absolute;
-  top: 170px;
+  top: 340rpx;
   left: 0;
   right: 0;
   margin: auto;
-  width: 80px;
-  height: 80px;
+  width: 160rpx;
+  height: 160rpx;
 }
 
 .footer {
   position: absolute;
-  top: 248px;
+  top: 496rpx;
   left: 0;
   right: 0;
   margin: auto;
-  width: 100px;
-  height: 100px;
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.barcode canvas {
+  width: 390rpx;
+  height: 150rpx;
+}
+.barnum {
+  width: 390rpx;
+  text-align: center;
 }

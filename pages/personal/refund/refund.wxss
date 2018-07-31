@@ -1,0 +1,56 @@
+.refund-title {
+  background: #F8F8F8;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 20rpx;
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.order-form-msg {
+  display: flex;
+  height: 200rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.order-form-msg image {
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: 8rpx;
+  margin-right: 30rpx;
+}
+.order-msg-right {
+  display: inline-block;
+  width: 480rpx;
+}
+.product-name {
+  font-size: 32rpx;
+  color: #111111;
+  height: 80rpx;
+  line-height: 80rpx;
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
+}
+.order-price {
+  color: #ff6600;
+  font-size: 30rpx;
+}
+.order-price text {
+  font-size: 40rpx;
+}
+
+.refund-note {
+  font-size: 24rpx;
+  color: #FF6600;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 2rpx solid #f3f3f3;
+  padding-left: 30rpx;
+}
+
+.juniu-bottom {
+  bottom: 120rpx;
+}

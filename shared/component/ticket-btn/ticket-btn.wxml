@@ -21,3 +21,4 @@
   bindtap='reciveTicketAndBind' data-marketingid="{{ticketItem.marketingId}}">
   领取
   </button>
+

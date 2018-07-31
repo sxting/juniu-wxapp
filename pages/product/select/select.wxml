@@ -13,7 +13,8 @@
           <view class="weui-cell__bd weui-cell_primary">
             <view>{{selectName}}</view>
           </view>
-          <view class="weui-cell__ft weui-cell__ft_in-access drown"></view>
+          <!-- <view class="weui-cell__ft weui-cell__ft_in-access drown"></view> -->
+          <view class="jn-icon icon-xia"></view>
         </view>
       </picker>
 
@@ -23,18 +24,14 @@
             <scroll-view scroll-y="true" bindscrolltolower="scrolltolower">
               <view wx:for="{{productList}}" bindtap="onItemClick" data-product-id="{{item.productId}}" data-product-name="{{item.productName}}" data-price="{{item.currentPrice}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
-                  <image src="{{item.picUrl}}" class="head-img" />
+                  <image src="{{item.picUrl ? item.picUrl : juniuImg}}" class="head-img" />
                 </view>
                 <view class="weui-cell__bd weui-cell_primary">
                   <view>{{item.productName}}</view>
-                  <view class="weui-media-box__desc">
-                    <view class="weui-media-box__info">
-                      <view class="weui-media-box__info__meta current-price">{{item.currentPrice/100}}元</view>
-                      <view class="weui-media-box__info__meta original-price" wx:if="{{item.originalPrice}}">{{item.originalPrice/100}}元</view>
-                    </view>
-                  </view>
+                  <view class="weui-media-box__info__meta current-price">{{item.currentPrice/100}}元</view>
                 </view>
-                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                <view class="jn-icon icon-rightblue"></view>
+                <!-- <view class="weui-cell__ft weui-cell__ft_in-access"></view> -->
               </view>
             </scroll-view>
           </view>

@@ -3,12 +3,10 @@ import { memberCardService } from '../shared/service';
 import { errDialog, checkMobile } from '../../../../utils/util';
 import { constant } from '../../../../utils/constant';
 import { ticketService } from '../../../ticket/shared/ticket.service';
+// import { WXBizDataCrypt } from '../../../../utils/WXBizDataCrypt';
+
 let wait = 60;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     sendMegLabel: '获取验证码',
     isDisabled: false,
@@ -16,72 +14,41 @@ Page({
     remark: '',
     validCode: '',
     storeId: '',
-    marketingid: ''
+    marketingid: '',
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '绑定会员卡',
+      title: '绑定手机号',
     });
     this.setData(
       {
         storeId: wx.getStorageSync(constant.STORE_INFO),
-        marketingid: options.marketingid ? options.marketingid: ''
+        marketingid: options.marketingid ? options.marketingid: '',
+        form: options.from
       }
     )
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getUserPhoneNumber: function (e) {
+    let encryptedData = e.detail.encryptedData;
+    let iv = e.detail.iv;
+    let data = {
+      encryptData: encryptedData,
+      iv: iv
+    }
+    memberCardService.decodeUserPhone(data).subscribe({
+      next: res => {
+        this.setData({
+          phoneNumber: res.phoneNumber
+        })
+        wx.setStorageSync(constant.phoneNumber, res.phoneNumber)
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   getMsgCode: function () {
     let phone = this.data.phoneNumber;
     let self = this;
@@ -136,12 +103,9 @@ function reciveTicket() {
         content: '请到个中心我的优惠券中查看',
         showCancel: false,
         success: function (res) {
-          if (res.confirm) {
-            // 
-            wx.navigateBack({
-              delta: 1
-            })
-          }
+          wx.navigateBack({
+            delta: 1
+          })
         }
       })
     },
@@ -161,6 +125,10 @@ function bindMemberCard(storeId, phone, validCode) {
       if (res.showClickBind === 'F') {
         if (self.data.marketingid) {
           reciveTicket.call(self)
+        } else if(self.data.from == 'product') {
+          wx.navigateBack({
+            delta: 1
+          })
         } else {
           wx.redirectTo({
             url: '/pages/personal/member-card/index/index',

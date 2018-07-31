@@ -1,19 +1,32 @@
 /* pages/craftsman/select/select.wxss */
-
 .title {
-  font-family: PingFangSC-Regular;
-  font-size: 15px;
-  color: #222;
-  letter-spacing: 0;
-  padding:20rpx 30rpx;
-  line-height: 56rpx;
+  padding:0 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #F8F8F8;
+  font-size: 26rpx;
+  color: #999999;
+  border-bottom: 1px solid #F3F3F3;
 }
 
 .head-img {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  border-radius: 25px;
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 20rpx;
+  border-radius: 8rpx;
+}
+
+.staffname {
+  font-size: 30rpx;
+  line-height: 44rpx;
+  vertical-align: middle;
+}
+
+.staffname image {
+  width: 26rpx;
+  height: 32rpx;
+  margin: 0 10rpx;
+  vertical-align: text-top;
 }
 
 .name-label {

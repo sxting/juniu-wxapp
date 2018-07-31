@@ -14,12 +14,23 @@ Page({
     pageSize: 10,
     countPage: 1,
     storeId: '',
+    storeName: '',
+    showBigImg: false,
+    bigImg: ''
   },
   
   onLoad: function (options) {
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#FF6400',
+    })
+    wx.setNavigationBarTitle({
+      title: '手艺人详情',
+    })
     this.setData({
       staffId: options.staffId,
-      storeId: options.storeId
+      storeId: options.storeId,
+      storeName: wx.getStorageSync('storeName')
     })
 
     let token = wx.getStorageSync(constant.TOKEN);
@@ -46,17 +57,22 @@ Page({
         fail: function (res) { },
         complete: function (res) { },
       });
-    }
-
-    
+    }    
   },
 
+  onShow: function() {
+    if (this.data.storeId && this.data.staffId) {
+      getStaffDetail.call(this);
+      getComments.call(this);
+    }
+  },
+
+  //分享 
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
       // 来自页面内转发按钮
       console.log(res.target)
     }
-
     // staffId = 1507865304614994341106 & storeId=1500534105280134281527
     return {
       title: wx.getStorageSync('storeName'),
@@ -72,6 +88,7 @@ Page({
     }
   },
 
+  //上拉触底 
   onScrollTolower: function () {
     if (this.data.pageIndex == this.data.countPage) {
       return;
@@ -80,6 +97,29 @@ Page({
       pageIndex: this.data.pageIndex + 1
     })
     getComments.call(this)
+  },
+
+  // 添加评论
+  onCreateCommentClick() {
+    wx.navigateTo({
+      url: '/pages/comment/making/making?staffId=' + this.data.staffId,
+    })
+  },
+
+  onImgItemClick(e) {
+    let url = e.currentTarget.dataset.url;
+    let img1 = url.replace(/71/, '375');
+    this.setData({
+      showBigImg: true,
+      bigImg: img1.replace(/72/, '430')
+    })
+  },
+
+  onBigImgClick() {
+    this.setData({
+      showBigImg: false,
+      bigImg: ''
+    })
   }
 })
 
@@ -90,7 +130,9 @@ function getStaffDetail() {
   }
   craftsmanService.getStaffDetail(data).subscribe({
     next: res => {
-      res.headPortrait = constant.OSS_IMAGE_URL + `${res.headPortrait}/resize_80_80/mode_fill`;
+      if (res.headPortrait) {
+        res.headPortrait = constant.OSS_IMAGE_URL + `${res.headPortrait}/resize_80_80/mode_fill`;
+      }
       this.setData({
         staffInfo: res
       })
@@ -106,7 +148,7 @@ function getComments() {
     pageIndex: this.data.pageIndex,
     pageSize: this.data.pageSize,
     storeId: this.data.storeId,
-    ctraftsmanId: this.data.staffId
+    craftsmanId: this.data.staffId
   }
   craftsmanService.getStaffCommentList(data).subscribe({
     next: res => {
@@ -116,7 +158,7 @@ function getComments() {
         item.time = dateArray[1];
         if (item.imagesUrl) {
           item.imagesUrl.forEach((img, index) => {
-            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_80_80/mode_fill`;
+            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_71_72/mode_fill`;
           });
         }
       });

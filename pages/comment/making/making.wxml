@@ -11,39 +11,22 @@
   </view>
   <!--描述服务-->
   <view class="textarea-box">
-    <textarea value="{{commentContent}}" bindinput="commentContentChange" placeholder-class="placeholder" placeholder="描述一下商家的服务" />
+    <textarea value="{{commentContent}}" bindinput="commentContentChange" 
+    placeholder-class="placeholder" placeholder="该服务您是否满意，您的意见对我们很重要！" />
   </view>
   <!--添加图片-->
   <view class="pictures-box">
     <!--上传的图片view  -->
     <image class="image-item" wx:for="{{imageArr}}" src="{{item}}"></image>
-    <view class="add-picture-btn" bindtap="addImage">
-      <view wx:if="{{imageArr.length === 0}}">
+    <view class="add-picture-btn" bindtap="addImage" wx:if="{{imageArr.length >= 0 && imageArr.length < 5}}">
+      <view wx:if="{{imageArr.length === 0}}" class="camera-box">
         <view class="jn-icon icon-camera"></view>
         <view class="text">添加图片</view>
       </view>
       <view wx:else class="jn-icon icon-add"></view>
     </view>
   </view>
-  <!--选择项目-->
-  <picker range-key="productName" range="{{productList}}" bindchange="productValueChange">
-    <view class="select-product">
-      <text>选择项目</text>
-      <icon class="jn-icon icon-rightblue"></icon>
-      {{selectProductName}}
-      
-    </view>
-  </picker>
 
-  <!--选择手艺人-->
-  <picker range-key="staffName" range="{{staffList}}" bindchange="staffValueChange">
-    <view class="select-craftsman">
-      <text>选择手艺人</text>
-      {{selectStaffName}}
-      <icon class="jn-icon icon-rightblue"></icon>
-    </view>
-  </picker>
-
-  <!--提交按钮-->
-  <view class="submit-btn w-inner" bindtap="commit">提交评价</view>
+  <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
+  <view class="jn-btn" bindtap="commit">确认发布</view>
 </view>

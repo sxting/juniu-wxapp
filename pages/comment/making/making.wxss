@@ -32,7 +32,8 @@
     box-sizing: border-box;
 }
 .placeholder {
-    font-size: 30rpx;
+    font-size: 26rpx;
+    color: #DBDBDB;
 }
 .pictures-box {
     /* height: 180rpx; */
@@ -47,14 +48,15 @@
 .image-item {
     width: 120rpx;
     height: 120rpx;
-    margin-right: 30rpx;
+    margin-right: 20rpx;
     margin-bottom: 30rpx;
     /* border: 1px solid #e5e5e5; */
 }
 .add-picture-btn {
     width: 120rpx;
     height: 120rpx;
-    border: 1px solid #e5e5e5;
+    border: 2rpx dashed #e5e5e5;
+    border-radius: 8rpx;
     box-sizing: border-box;
     text-align: center;
     margin-bottom: 30rpx;
@@ -99,4 +101,12 @@
     text-align: center;
     line-height: 80rpx;
     font-size: 32rpx;
+}
+
+.juniu-bottom {
+  bottom: 120rpx;
+}
+
+.camera-box {
+  text-align: center;
 }

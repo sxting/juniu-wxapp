@@ -1,16 +1,22 @@
-<view class="page">
+ <view class="page">
   <view class="page__bd">
     <view class="weui-panel">
-      <view class="weui-panel__hd title">全部手艺人({{staffNumber}})</view>
+      <view class="title">共{{staffNumber}}位手艺人</view>
+      
       <view class="weui-panel__bd" wx:if="{{label === 'order'}}">
         <view class="weui-media-box weui-media-box_small-appmsg">
+
           <view wx:if="{{reserveList.length > 0}}" class="weui-cells weui-cells_in-small-appmsg">
-            <view wx:for="{{reserveList}}" bindtap="onItemClick" data-staff-id="{{item.staffId}}" data-staff-name="{{item.staffName}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-              <view class="weui-cell__hd">
-                <image src="{{item.avatar}}" class="head-img" /> 
-              </view>
+            <view wx:for="{{reserveList}}" 
+            bindtap="onItemClick" data-staff-id="{{item.staffId}}" data-staff-name="{{item.staffName}}" 
+            class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <image src="{{item.avatar}}" class="head-img" /> 
               <view class="weui-cell__bd weui-cell_primary">
-                <view>{{item.staffName}} <text wx:if="{{item.rank}}" class="label">本店·排名第{{item.rank}}</text></view>
+                <view class="staffname">{{item.staffName}}
+                  <image src="/asset/images/jinpai.png" wx:if="index === 0"></image>
+                  <image src="/asset/images/yinpai.png" wx:elif="index === 1"></image>
+                  <image src="/asset/images/tongpai.png" wx:elif="index === 2"></image>
+                </view>
                 <view class="weui-media-box__desc">累计服务{{item.serviceCount}}次</view>
               </view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -30,12 +36,16 @@
         <view class="weui-media-box weui-media-box_small-appmsg">
           <view wx:if="{{staffList.length > 0}}" class="weui-cells weui-cells_in-small-appmsg">
           <scroll-view scroll-y="true" bindscrolltolower="onScrollTolower">
-            <view wx:for="{{staffList}}" bindtap="onItemClick" data-staff-id="{{item.staffId}}" data-staff-name="{{item.staffName}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-              <view class="weui-cell__hd">
-                <image src="{{item.headPortrait}}" class="head-img" /> 
-              </view>
+            <view wx:for="{{staffList}}" wx:for-index="index"
+            bindtap="onItemClick" data-staff-id="{{item.staffId}}" data-staff-name="{{item.staffName}}" 
+            class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <image src="{{item.headPortrait}}" class="head-img" /> 
               <view class="weui-cell__bd weui-cell_primary ">
-                <view style="position: relative;">{{item.staffName}} <text wx:if="{{item.rank}}" class="label">本店·排名第{{item.rank}}</text></view>
+                <view class="staffname">{{item.staffName}}
+                  <image src="/asset/images/jinpai.png" wx:if="index === 0"></image>
+                  <image src="/asset/images/yinpai.png" wx:elif="index === 1"></image>
+                  <image src="/asset/images/tongpai.png" wx:elif="index === 2"></image>
+                </view>
                 <view class="weui-media-box__desc">累计服务{{item.serviceCount}}次</view>
               </view>
               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -49,9 +59,11 @@
             </view>
             <view class="space-text">未找到手艺人</view>
           </view>
-
         </view>
       </view>
     </view>
   </view>
-</view>
+
+  <!-- <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view>  -->
+  
+ </view>  

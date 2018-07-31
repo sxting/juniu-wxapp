@@ -1,16 +1,60 @@
+import { service } from '../../../service';
+import { errDialog, loading } from '../../../utils/util';
+import { constant } from '../../../utils/constant';
+
 var app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {}
+    userInfo: {},
+    userIsBind: false,
+    TPLID: constant.TPLID,
+    phone: ''
   },
  
   onLoad: function () {
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#FF6400',
+    })
     this.setData({
       userInfo: app.globalData.userInfo
     });
     wx.setNavigationBarTitle({
       title: wx.getStorageSync('storeName'),
+    })
+  },
+
+  onShow() {
+    service.userIsBind().subscribe({
+      next: res => {
+        this.setData({
+          userIsBind: res.isBind,
+          phone: res.phone
+        })
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
+  },
+
+  // 点击绑定手机号
+  onBandPhoneClick() {
+    wx.navigateTo({
+      url: '/pages/personal/member-card/band/band',
+    })
+  },
+
+  // 跳转到我的订单
+  goMyOrderForm() {
+    wx.navigateTo({
+      url: '/pages/personal/order-form/order-form',
+    })
+  },
+
+  goMyBand() {
+    wx.navigateTo({
+      url: '/pages/personal/member-card/band/band',
     })
   },
 
@@ -28,15 +72,9 @@ Page({
     })
   },
 
-  // 返回首页
-  goHome: function() {
-    wx.redirectTo({
-      url: '/pages/home/home',
-    })
-  },
   goMyMemberCard: function() {
     wx.navigateTo({
-      url: '/pages/personal/member-card/index/index',
+      url: '/pages/personal/member-card/list/list',
     })
   },
   goMyTicket: function() {

@@ -1,7 +1,7 @@
 .container {
     background-color: #fff;
     min-height: 100vh;
-    padding-top: 20rpx;
+    border-top: 2rpx solid #f3f3f3;
 }
 .search-box-bg {
   background: #fff;
@@ -68,9 +68,6 @@
     top:-4rpx;
     width:70rpx;
     text-align:center;
-}
-scroll-view {
-  margin-top: 80rpx;
 }
 .address-list {
     padding: 0 30rpx;

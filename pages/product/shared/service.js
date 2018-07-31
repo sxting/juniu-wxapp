@@ -3,7 +3,7 @@ import { http } from '../../../utils/http';
 let productService = {};
 
 let apiUrl = constant.apiUrl + '/product';
-let apiUrl2 = constant.apiUrl + '/member'
+let apiUrl2 = constant.apiUrl + '/member';
 
 // 获取预约手艺人商品
 productService.getStaffProduct = (data) => {
@@ -40,7 +40,7 @@ productService.getProductCommentList = (data) => {
   return http.get(url, data)
 } 
 
-// GET /app/categoryList.json
+// GET /app/categoryList.json 获取商品分类列表
 productService.getProdTypeList = (data) => {
   let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
   let url = api + '/product/app/categoryList.json';

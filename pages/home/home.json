@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "ticket-btn": "../../shared/component/ticket-btn/ticket-btn"
+    "ticket-btn": "../../shared/component/ticket-btn/ticket-btn",
+    "jn-bottom": "../../shared/component/jn-bottom/jn-bottom"
   }
 }

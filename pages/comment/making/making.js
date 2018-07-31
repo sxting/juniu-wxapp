@@ -22,14 +22,15 @@ Page({
     selectStaffName: ''
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '发布评论',
+    })
     this.setData({
       storeId: wx.getStorageSync(constant.STORE_INFO),
       merchantId: wx.getStorageSync(constant.MERCHANTID),
       productId: options.productId,
       staffId: options.staffId
     })
-    getStaffList.call(this);
-    getProductList.call(this);
   },
 
   // 整体评价
@@ -94,7 +95,7 @@ Page({
             let errorCode = datajson.errorCode
             that.setData({
               pictureId: that.data.pictureId 
-              ? data.pictureId + ',' + datajson.data.pictureId 
+              ? that.data.pictureId + ',' + datajson.data.pictureId 
               : datajson.data.pictureId,
             })
             if (errorCode != '10000') {
@@ -149,7 +150,6 @@ Page({
 
     commentService.making(data).subscribe({
       next: res => {
-        console.log(res)
         wx.navigateBack({
           delta: 1
         })
@@ -159,69 +159,5 @@ Page({
     })
 
 
-  },
-  selectProduct: function () {
-    wx.redirectTo({
-      url: '/pages/product/select/select?from=making&storeId=' + this.data.storeId,
-    })
-  },
-  selectStaff: function () {
-    wx.redirectTo({
-      url: '/pages/craftsman/select/select?from=making&storeId=' + this.data.storeId,
-    })
-  },
-  productValueChange: function (event) {
-    if (this.data.productList.length > 0) {
-      this.setData({
-        productId: this.data.productList[event.detail.value].productId,
-        selectProductName: this.data.productList[event.detail.value].productName
-      });
-    } else {
-      wx.showModal({
-        title: '暂无服务可选',
-        content: '',
-      })
-    }
-  },
-  staffValueChange: function (event) {
-    this.setData({
-      selectStaffName: this.data.staffList[event.detail.value].staffName,
-      staffId: this.data.staffList[event.detail.value].staffId
-    });
   }
 })
-
-function getStaffList() {
-  let self = this;
-  let data = {
-    storeId: self.data.storeId,
-    pageNo: self.data.pageNo,
-    pageSize: self.data.pageSize
-  }
-  commentService.getStaffList(data).subscribe({
-    next: res => {
-      this.setData({
-        staffList: res.staffAppVOS
-      })
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
-}
-
-function getProductList() {
-  let data = {
-    storeId: this.data.storeId,
-    pageNo: this.data.pageNo,
-    pageSize: this.data.pageSize
-  }
-  commentService.getProductList(data).subscribe({
-    next: res => {
-      this.setData({
-        productList: res.content
-      })
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
-}

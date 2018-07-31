@@ -54,6 +54,28 @@ http.post = (url, data = {}, header = { 'content-type': 'application/json' }) =>
   return http_request(url, REQ_METHOD.POST, data, header)
 }
 
+http.post2 = (url, data = {}, header = { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' }) => {
+  try {
+    let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
+      ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
+      : wx.getStorageSync(constant.TOKEN);
+    if (value) {
+      header = {
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+        'token': value
+      }
+    }
+  } catch (e) {
+    // Do something when catch error
+  }
+  for (let objName in data) {
+    if (data[objName] === undefined || data[objName] === 'undefined') {
+      data[objName] = '';
+    }
+  }
+  return http_request2(url, REQ_METHOD.POST, data, header)
+}
+
 http.put = (url, data = {}, header = { 'content-type': 'application/json' }) => {
   try {
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
@@ -93,6 +115,35 @@ function http_request(
   method = REQ_METHOD.GET,
   data = {},
   header = { 'content-type': 'application/json' }) {
+  const producer = {
+    start: listener => {
+      loading();
+      wx.request({
+        url: url,
+        data: data,
+        header: header,
+        method: method,
+        success: res => {
+          if (res.data.errorCode === '10000') {
+            return listener.next(res.data.data);
+          } else {
+            return listener.error(res.data.errorInfo);
+          }
+        },
+        fail: res => listener.error(res.data.errorInfo),
+        complete: () => listener.complete()
+      })
+    },
+    stop: () => { }
+  }
+  return xs.create(producer)
+}
+
+function http_request2(
+  url,
+  method = REQ_METHOD.GET,
+  data = {},
+  header = { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' }) {
   const producer = {
     start: listener => {
       loading();

@@ -1,78 +1,67 @@
-.card-box {
-  border-top: 1px solid #e5e5e5;
-  position: relative;
-  margin: 0 auto;
-  background-color: #fff;
-  height: 514rpx;
+.page {
+  border-top: 2rpx solid #f3f3f3;
 }
-
-.cards-bg-box {
-  height: 554rpx;
-  background: #fff;
-}
-
-.card-bg-box, .card-msg-box {
-  position: absolute;
+.card-item {
   width: 690rpx;
-  height: 414rpx;
-  top: 40rpx;
-  left: 30rpx;
-  
-  border-radius: 4px;
-  box-sizing: border-box;
-  box-shadow: 0 1px 2px;
+  height: 400rpx;
+  margin: 30rpx auto;
+  position: relative;
 }
-
-.card-bg-box image {
+.card-item>image {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+.card {
   position: absolute;
   top: 0;
   left: 0;
   width: 690rpx;
-  height: 414rpx;
-}
-
-.card-msg-box {
-  font-family: '.PingFangSC-Regular';
-  font-size: 32rpx;
+  height: 400rpx;
   color: #fff;
-  padding: 20rpx 30rpx;
+  font-size: 36rpx;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12rpx;
+  
 }
-
 .card-name {
+  font-family: "PingFangSC-Semibold";
   font-size: 40rpx;
-  font-family: '.PingFangSC-Medium';
+  padding-top: 20rpx;
+  padding-left: 30rpx;
 }
-
-.member-name {
+.date {
+  font-size: 32rpx;
   position: absolute;
-  right: 30rpx;
-  top: 80rpx;
-}
-
-.card-member {
-  position: absolute;
+  left: 20rpx;
   bottom: 20rpx;
-  left: 30rpx;
 }
-
+.card .fr {
+  text-align: right;
+  padding-right: 30rpx;
+}
+.tel {
+  padding-top: 20rpx;
+}
 .erweima {
-  font-size: 48rpx;
-  color: #fff;
-  position: absolute;
-  bottom: 20rpx;
-  right: 30rpx;
+  font-size: 50rpx;
+  padding-top:172rpx;
 }
+
 
 .record-box, .card-detail {
   height: 90rpx;
-  padding: 0 30rpx;
   margin: 0 auto;
   line-height: 90rpx;
   background: #fff;
 }
+.record-box>view {
+  padding: 0 30rpx;
+}
 
 .record-box>view, .card-detail>view {
-  border-top: 1rpx solid #e5e5e5;
+  border-top: 1rpx solid #f3f3f3;
+  border-bottom: 1rpx solid #f3f3f3;
 }
 
 .icon-rightblue {
