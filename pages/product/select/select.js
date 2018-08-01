@@ -161,7 +161,10 @@ function getProductList() {
 function getProductTyeList() {
   // getProdTypeList
   let self = this;
-  productService.getProdTypeList().subscribe({
+  let data = {
+    storeId: this.data.storeId,
+  }
+  productService.getProdTypeList(data).subscribe({
     next: res => {
       res.unshift({categoryId: '', categoryName: '所有分类'});
       self.setData({
