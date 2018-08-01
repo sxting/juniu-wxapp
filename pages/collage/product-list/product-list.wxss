@@ -1,0 +1,120 @@
+/* pages/collage/product-list/product-list.wxss */
+.jn-main {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  background-color: #FFF;
+}
+.jn-main .total-items {
+  padding: 0 30rpx;
+  background-color: #F5F5F5;
+}
+.jn-main .total-items span {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #999999;
+  letter-spacing: 0;
+  display: block;
+}
+.jn-main .title-box .title-home span {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #000000;
+  -webkit-font-smoothing: auto;
+  -webkit-text-stroke-width: .1px;
+}
+.jn-main .content-list {
+  padding: 0 30rpx;
+}
+.jn-main .content-list .collage-list {
+  width: 100%;
+  padding-bottom: 28rpx;
+  border-bottom: 1px solid #DDDDDD;
+}
+.jn-main .content-list .collage-list li {
+  padding-top: 28rpx;
+  position: relative;
+}
+.jn-main .content-list .collage-list li .left-img {
+  width: 150rpx;
+  height: 120rpx;
+}
+.jn-main .content-list .collage-list li .left-img img {
+  width: 100%;
+  height: 100%;
+}
+.jn-main .content-list .collage-list li .right-cont {
+  margin-left: 24rpx;
+  font-size: 0;
+  word-spacing: 0;
+}
+.jn-main .content-list .collage-list li .right-cont .list-name {
+  font-family: PingFangSC-Medium;
+  font-size: 28rpx;
+  color: #333333;
+}
+.jn-main .content-list .collage-list li .right-cont .list-name .btn-collage {
+  font-size: 26rpx;
+  display: inline-block;
+  width: 132rpx;
+  height: 56rpx;
+  background: #FB6165;
+  border-radius: 28rpx;
+  line-height: 56rpx;
+  text-align: center;
+  color: #FFF;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: .1px;
+  position: absolute;
+  top: 0.37333333rem;
+  right: 0;
+}
+.jn-main .content-list .collage-list li .right-cont .list-name span:first-of-type {
+  line-height: 0.74666667rem;
+}
+.jn-main .content-list .collage-list li .right-cont .price-items {
+  font-family: PingFangSC-Regular;
+  font-size: 0.34666667rem;
+  color: #FB6165;
+  line-height: 0.74666667rem;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: .1px;
+}
+.jn-main .content-list .collage-list li .right-cont .price-items .absolute {
+  position: absolute;
+  bottom: 0;
+}
+.jn-main .content-list .collage-list li .right-cont .price-items .price-details {
+  left: 2.32rem;
+  word-spacing: 0;
+  font-size: 0;
+  height: 0.74666667rem;
+}
+.jn-main .content-list .collage-list li .right-cont .price-items .price-details span {
+  font-size: 0.34666667rem;
+  line-height: 0.74666667rem;
+}
+.jn-main .content-list .collage-list li .right-cont .price-items .price-details .present-price {
+  font-family: SFNSDisplay;
+  font-size: 0.58666667rem;
+  color: #FB6165;
+  letter-spacing: 0;
+}
+.jn-main .content-list .collage-list li .right-cont .price-items .price-details .original-price {
+  font-family: AppleSystemUIFont;
+  font-size: 26rpx;
+  color: #888888;
+  letter-spacing: 0;
+  text-decoration: line-through;
+  margin-left: 12rpx;
+}
+.jn-main .content-list .collage-list li .right-cont .price-items .collage-details {
+  right: 0;
+}
+.jn-main .content-list .collage-list li .right-cont .price-items .collage-details .had-collage {
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #000000;
+  letter-spacing: 0;
+}
