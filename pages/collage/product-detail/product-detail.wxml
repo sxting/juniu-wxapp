@@ -1,0 +1,31 @@
+<view class="page">
+  <image class="product-img" src="{{jnImg}}"></image>
+  <view class="product-box">
+    <view class="product-name">
+      发型总监设计拼团活动周年庆
+      <button class="share-btn" open-type="share"><text class="jn-icon icon-fenxiang"></text></button>
+    </view>
+    <view class="price-box">
+      <text>￥<text class="current">58</text> </text> 
+      <text>88元</text> 
+    </view>
+  </view>
+
+  <view class="jn-bg"></view>
+
+  <!--适用门店  -->
+  <view class="store-box">
+    <view class="sub-title" bindtap="onStoreClick">
+      适用门店 <text class="jn-icon icon-rightblue fr"></text>
+    </view>
+    <view class="store">
+      <view class="store-name">{{storeName}}</view>
+      <view class="address-and-tel">
+        <icon class="jn-icon icon-address"></icon>{{address}}
+        <view class="fr tel-box" catchtap="onTelClick">
+          <view class="jn-icon icon-tel"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
