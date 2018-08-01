@@ -22,7 +22,7 @@
 
   <view class="store-box">
     <view class="store-name">{{storeName}}</view>
-    <view class="store-address">北京市朝阳区亚运村慧中北路雅园5号楼北京市朝阳区大客户就暗示</view>
+    <view class="store-address">{{address}}</view>
   </view>
     
     <!--顾客评价-->

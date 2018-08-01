@@ -201,7 +201,7 @@ page {
   padding: 30rpx 20rpx;
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .cfaftsman-box image {

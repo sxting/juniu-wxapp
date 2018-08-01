@@ -2,6 +2,8 @@ import { craftsmanService } from '../shared/service.js'
 import { errDialog } from '../../../utils/util'; 
 import { constant } from '../../../utils/constant';
 import { service } from '../../../service';
+import { homeService } from '../../home/shared/home.service';
+
 var app = getApp()
 Page({
   data: {
@@ -16,7 +18,8 @@ Page({
     storeId: '',
     storeName: '',
     showBigImg: false,
-    bigImg: ''
+    bigImg: '',
+    address: '',
   },
   
   onLoad: function (options) {
@@ -64,6 +67,7 @@ Page({
     if (this.data.storeId && this.data.staffId) {
       getStaffDetail.call(this);
       getComments.call(this);
+      getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
     }
   },
 
@@ -195,6 +199,22 @@ function logIn(code, appid, rawData) {
           getComments.call(self)
         }
       })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+//获取门店信息
+function getStoreInfo(storId) {
+  let self = this;
+  homeService.storeInfoDetail({ storeId: storId }).subscribe({
+    next: res => {
+      self.setData({
+        address: res.address,
+        tel: res.mobie,
+      });
+      wx.setStorageSync(constant.address, res.address)
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
