@@ -1041,3 +1041,9 @@ icon {
   width : 360rpx !important;
   background-color : #FF6600 100% !important;
 }
+.fl{
+  float: left
+}
+.fr{
+  float: right
+}

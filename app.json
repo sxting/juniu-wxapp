@@ -29,7 +29,8 @@
     "pages/personal/refund/refund",
     "pages/personal/member-card/list/list",
     "pages/collage/product-detail/product-detail",
-    "pages/personal/collage-order/detail/detail"
+    "pages/personal/collage-order/detail/detail",
+    "pages/collage/product-list/product-list"
   ],
   "window": {
     "backgroundTextStyle": "light",
