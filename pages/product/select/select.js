@@ -103,7 +103,8 @@ Page({
     this.setData({
       categoryId: this.data.categoryList[event.detail.value].categoryId,
       productList: [],
-      selectName: this.data.categoryList[event.detail.value].categoryName
+      selectName: this.data.categoryList[event.detail.value].categoryName,
+      pageNo: 1,
     });
     getProductList.call(this);
   }
