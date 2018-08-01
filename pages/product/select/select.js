@@ -103,7 +103,8 @@ Page({
     this.setData({
       categoryId: this.data.categoryList[event.detail.value].categoryId,
       productList: [],
-      selectName: this.data.categoryList[event.detail.value].categoryName
+      selectName: this.data.categoryList[event.detail.value].categoryName,
+      pageNo: 1,
     });
     getProductList.call(this);
   }
@@ -160,7 +161,10 @@ function getProductList() {
 function getProductTyeList() {
   // getProdTypeList
   let self = this;
-  productService.getProdTypeList().subscribe({
+  let data = {
+    storeId: this.data.storeId,
+  }
+  productService.getProdTypeList(data).subscribe({
     next: res => {
       res.unshift({categoryId: '', categoryName: '所有分类'});
       self.setData({
