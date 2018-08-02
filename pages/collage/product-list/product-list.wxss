@@ -6,60 +6,44 @@
   position: relative;
   background-color: #FFF;
 }
-.jn-main .total-items {
-  padding: 0 30rpx;
-  background-color: #F5F5F5;
-}
-.jn-main .total-items span {
-  font-family: PingFangSC-Regular;
-  font-size: 28rpx;
-  color: #999999;
-  letter-spacing: 0;
-  display: block;
-}
-.jn-main .title-box .title-home span {
-  font-family: PingFangSC-Regular;
-  font-size: 28rpx;
-  color: #000000;
-  -webkit-font-smoothing: auto;
-  -webkit-text-stroke-width: .1px;
-}
 .jn-main .content-list {
-  padding: 0 30rpx;
+  padding: 0 15rpx;
 }
 .jn-main .content-list .collage-list {
   width: 100%;
-  padding-bottom: 28rpx;
-  border-bottom: 1px solid #DDDDDD;
-}
-.jn-main .content-list .collage-list li {
   padding-top: 28rpx;
-  position: relative;
 }
-.jn-main .content-list .collage-list li .left-img {
+.jn-main .content-list .collage-list .list{
+  height: 120rpx;
+  position: relative;
+  margin-bottom: 28rpx
+}
+.jn-main .content-list .collage-list .left-img {
   width: 150rpx;
   height: 120rpx;
+  margin-right: 24rpx
 }
-.jn-main .content-list .collage-list li .left-img img {
+.jn-main .content-list .collage-list .left-img image {
   width: 100%;
   height: 100%;
 }
-.jn-main .content-list .collage-list li .right-cont {
-  margin-left: 24rpx;
+.jn-main .content-list .collage-list .right-cont {
   font-size: 0;
   word-spacing: 0;
+  height: 120rpx
 }
-.jn-main .content-list .collage-list li .right-cont .list-name {
+.jn-main .content-list .collage-list .right-cont .list-name {
   font-family: PingFangSC-Medium;
   font-size: 28rpx;
   color: #333333;
+  margin-top: 10rpx
 }
-.jn-main .content-list .collage-list li .right-cont .list-name .btn-collage {
+.jn-main .content-list .collage-list .right-cont .list-name .btn-collage {
   font-size: 26rpx;
   display: inline-block;
   width: 132rpx;
   height: 56rpx;
-  background: #FB6165;
+  background: #FF6600;
   border-radius: 28rpx;
   line-height: 56rpx;
   text-align: center;
@@ -67,41 +51,43 @@
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: .1px;
   position: absolute;
-  top: 0.37333333rem;
+  top: 0;
   right: 0;
 }
-.jn-main .content-list .collage-list li .right-cont .list-name span:first-of-type {
-  line-height: 0.74666667rem;
+.jn-main .content-list .collage-list .right-cont .list-name span:first-of-type {
+  line-height: 56rpx;
 }
-.jn-main .content-list .collage-list li .right-cont .price-items {
+.jn-main .content-list .collage-list .right-cont .price-items {
   font-family: PingFangSC-Regular;
-  font-size: 0.34666667rem;
-  color: #FB6165;
-  line-height: 0.74666667rem;
+  font-size: 26rpx;
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: .1px;
+  color: #FF9D5B;
+  letter-spacing: 0;
+  line-height: 30rpx;
+  height: 56rpx
 }
-.jn-main .content-list .collage-list li .right-cont .price-items .absolute {
+.jn-main .content-list .collage-list .right-cont .price-items .absolute {
   position: absolute;
   bottom: 0;
 }
-.jn-main .content-list .collage-list li .right-cont .price-items .price-details {
-  left: 2.32rem;
+.jn-main .content-list .collage-list .right-cont .price-items .price-details {
+  left: 176rpx;
   word-spacing: 0;
   font-size: 0;
-  height: 0.74666667rem;
+  height: 56rpx;
 }
-.jn-main .content-list .collage-list li .right-cont .price-items .price-details span {
-  font-size: 0.34666667rem;
-  line-height: 0.74666667rem;
+.jn-main .content-list .collage-list .right-cont .price-items .price-details text {
+  font-size: 26rpx;
+  line-height: 56rpx
 }
-.jn-main .content-list .collage-list li .right-cont .price-items .price-details .present-price {
+.jn-main .content-list .collage-list .right-cont .price-items .price-details .present-price {
   font-family: SFNSDisplay;
-  font-size: 0.58666667rem;
-  color: #FB6165;
+  font-size: 44rpx;
+  color: #FF6600;
   letter-spacing: 0;
 }
-.jn-main .content-list .collage-list li .right-cont .price-items .price-details .original-price {
+.jn-main .content-list .collage-list .right-cont .price-items .price-details .original-price {
   font-family: AppleSystemUIFont;
   font-size: 26rpx;
   color: #888888;
@@ -109,12 +95,20 @@
   text-decoration: line-through;
   margin-left: 12rpx;
 }
-.jn-main .content-list .collage-list li .right-cont .price-items .collage-details {
+.jn-main .content-list .collage-list .right-cont .price-items .collage-details {
   right: 0;
+  line-height: 56rpx
 }
-.jn-main .content-list .collage-list li .right-cont .price-items .collage-details .had-collage {
+.jn-main .content-list .collage-list .right-cont .price-items .collage-details .had-collage {
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
   color: #000000;
   letter-spacing: 0;
+}
+.juniu-bottom {
+  text-align:center;
+  height:40rpx;
+  position:fixed;
+  bottom:40rpx;
+  width:100vw;
 }

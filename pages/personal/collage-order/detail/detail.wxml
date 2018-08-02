@@ -1,0 +1,166 @@
+<view class='jn-content'>
+  <!--未支付的时候  提示的小tip-->
+  <view class='head-tips clearfix'>
+    <icon class='fl'></icon>
+    <view class="fl text-tips">
+      <text>待支付</text>
+      <text>请在下单后3分钟内付款，超时订单将自动关闭</text>
+    </view>
+  </view>
+  <!--已超时的时候  提示的小tip-->
+  <view class="head-tips out-time clearfix">
+    <icon class="fl iconfont icon-clock"></icon>
+    <view class="fl text-tips">
+      <text>已关闭</text>
+      <text>超时未支付</text>
+    </view>
+  </view>
+   <!--头部-->
+  <view class="head-collage">
+    <view class="title-collage-detail-box">
+      <view class="title-collage-detail clearfix">
+        <view class="left-box fl">
+          <image src="{{pictureUrl}}"></image>
+        </view>
+        <view class="right-box fl">
+          <view class="top-items-name">
+            <text class="items-name">发型总监设计拼团…</text>
+            <text class="price">88元</text>
+          </view>
+          <view>
+            <text class="collage-number">6人团·</text>
+            <text>已成888件</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="real-payment clearfix">
+    <text class="fl">实付款</text>
+    <view class="fr detail-pay-for">58<text class="unit">元</text></view>
+  </view>
+  <!-- 中间部分 -->
+  <view class='center-content'>
+    <!--多人拼团的时候  头部-->
+    <view class="collage-person clearfix">
+      <view class="fl">
+        <text>5人拼团</text>
+        <text class="notes">(已有2人参团,还差3人)</text>
+      </view>
+      <view class="fr check-all">
+        <text>查看全部</text>
+        <view class="jn-icon icon-rightblue"></view>
+      </view>
+    </view>
+    <!--四人及四人以下拼团的时候  头部-->
+    <view class="collage-person clearfix">
+      <view class="fl">
+        <text>3人拼团</text>
+        <text class="notes">(已有2人参团,还差1人)</text>
+      </view>
+    </view>
+    <!--拼团失败的时候 头部-->
+    <view class="collage-person clearfix">
+      <view class="fl">
+        <text>2人拼团</text>
+      </view>
+    </view>
+    <!--拼团活动行进中-->
+    <view class="images-box">
+      <view class="details-img">
+        <view >
+          <view class="title-images">距结束时间仅剩</view>
+          <view class="times">
+            <text>16</text>:<text>16</text>:<text>20</text>
+          </view>
+        </view>
+        <!--大于四人拼团-->
+        <view class="images-boxes-collages clearfix">
+          <view>
+            <image src=''></image>
+            <text class="head">团长</text>
+          </view>
+          <view class="special-symbol">
+            <text class="iconfont icon-qm"></text>
+          </view>
+          <view class="special-symbol">
+            <view class="iconfont icon-diandian"></view>
+          </view>
+        </view>
+        <!--四人拼团-->
+        <!-- <view class="images-boxes-collages clearfix">
+          <view>
+            <image src=""></image>
+            <text class="head">团长</text>
+          </view>
+          <view class="special-symbol>
+            <view class="iconfont icon-diandian"></view>
+          </view>
+        </view> -->
+        <!--三人拼团-->
+        <view class="images-boxes-collages three-people clearfix">
+          <view>
+            <image src=''></image>
+            <text class="head">团长</text>
+          </view>
+          <view class="special-symbol">
+            <view class="iconfont icon-diandian"></view>
+          </view>
+        </view>
+        <!--两人拼团-->
+        <view class="images-boxes-collages two-people clearfix">
+          <view>
+            <image src=''></image>
+            <text class="head">团长</text>
+          </view>
+          <view class="special-symbol">
+            <view class="iconfont icon-diandian"></view>
+          </view>
+        </view>
+        <!--拼团中-->
+        <view class="btns_add">
+          <text class="invite-btns">邀请好友参团</text>
+        </view>
+
+        <!--拼团失败-->
+        <view>
+          <text class="failed-collage-text">拼团失败，支付款项将原路返回</text>
+        </view>
+      </view>
+    </view>
+
+  
+  </view>
+  <!-- 公用底部 -->
+   <view class="footer">
+    <view class="store-detail">
+      <view class="clearfix store-list-btn">
+        <text class="fl">适用门店</text>
+        <view class="jn-icon icon-rightblue fr"></view>
+      </view>
+      <view class="store-name-box">
+        <view class="store-name">
+          <text>丽韵尚度美发沙龙</text>
+          <view class="popularity">人气好店
+            <!-- <view class="jn-icon icon-rightblue fr"></view> -->
+          </view>
+        </view>
+      </view>
+      <view class="address-and-tel" bindtap="onAddressClick">
+        <icon class="jn-icon icon-address"></icon>学清路静淑里6号楼底商
+        <view class="fr tel-box" catchtap="onTelClick">
+          <view class="jn-icon icon-tel"></view>
+        </view>
+      </view>
+    </view>
+    <view class="order-detail">
+      <view>交易号：21667439824673289497</view>
+      <view>团单编号：21667439824673289497</view>
+      <view>订单编号：21667439824673289497</view>
+      <view>下单时间：2018-08-11  12:00:00</view>
+    </view>
+    <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
+  </view>
+</view>
+
+

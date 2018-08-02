@@ -45,6 +45,17 @@ page {
   float: right;
 }
 
+.clearfix:after {
+  content: '\20';
+  display: block;
+  height: 0;
+  clear: both;
+}
+.clearfix {
+  zoom: 1;
+}
+
+
 .bd {
   box-shadow: 0 2rpx 6rpx 0 #D8D8D8;
   border-radius: 8rpx;
