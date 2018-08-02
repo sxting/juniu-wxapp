@@ -1,11 +1,20 @@
+page {
+  font-family: PingFangSC-Regular;  
+}
+.icon-rightblue {
+  color: #999;
+  font-size: 30rpx;
+}
 .product-img {
   width: 100vw;
   height: 328rpx;
+  display:block;
 }
 .product-box {
     background-color: #fff;
-    padding: 20rpx 20rpx 0;
+    padding: 20rpx 30rpx;
     box-sizing: border-box;
+    height: 220rpx
 }
 .product-name {
   font-size: 32rpx;
@@ -21,6 +30,7 @@
   line-height: 40rpx;
   padding: 0;
   margin: 0;
+  margin-top: 70rpx;
 }
 .share-btn::after {
   border: none;
@@ -32,34 +42,115 @@
 .price-box{
     font-size: 36rpx;
     color: #ff6600;
+    line-height: 80rpx;
+    height: 90rpx;
 }
 .price-box .current {
-    font-size: 60rpx;
+    font-size: 76rpx;
 }
+.price-box .yuanjia {
+  font-size: 28rpx;
+  color: #888888;
+  padding-left: 8rpx;
+  text-decoration: line-through;
+}
+.collage-num {
+  font-size: 26rpx;
+  color: #888888;
+}
+
+.collage-list {
+  padding: 30rpx;
+  background-color: #fff;
+}
+.collage-list .bd {
+  padding-bottom: 16rpx;
+}
+.collage-list .sub-title {
+  border-bottom: 2rpx solid #f3f3f3;
+  font-size: 28rpx;
+  height: 88rpx; 
+  line-height: 88rpx;
+  color: #111111;
+  padding: 0 20rpx;
+}
+.collage-list .li {
+  height: 120rpx;
+  overflow: hidden;
+  padding-left: 20rpx;
+  padding-bottom: 2rpx;
+}
+.collage-list .li image {
+  float: left;
+  width: 100rpx; 
+  height:100rpx;
+  margin-top: 16rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+.collage-list .li .collage-product {
+  float: left;
+  margin-top: 24rpx;
+}
+.collage-product-name {
+  line-height: 28rpx;
+  font-size: 28rpx;
+  color: #333333;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 380rpx;
+  font-weight: bold;
+}
+.collage-product-num {
+  font-size: 26rpx;
+  color: #888;
+  line-height: 20rpx;
+}
+.collage-btn {
+  float: right;
+  margin-right: 20rpx;
+  width: 132rpx; 
+  height: 56rpx; 
+  line-height: 56rpx;
+  text-align: center;
+  background: #ff6600;
+  color: #FFFFFF;
+  border-radius: 200rpx; 
+  margin-top: 30rpx;
+  font-size: 26rpx;
+}
+
+
+
+
+
 
 .store-box {
   background-color: #fff;
-  margin-top: 20rpx;
 }
 .store-box .sub-title {
-  padding: 0 20rpx;
+  padding: 0 30rpx;
   border-bottom: 1px solid #f3f3f3;
   height: 88rpx;
   line-height: 88rpx;
-}
-.store {
-  height: 144rpx;
-  padding: 0 20rpx;
+  color: #111111;
 }
 .store-name {
-  padding: 20rpx 0 10rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   font-size: 30rpx;
+  border-bottom: 1px solid #f3f3f3;  
+  color: #000;
+  padding: 0 30rpx;  
 }
 .address-and-tel {
   font-size: 26rpx;
   color: #333;
-  height: 50rpx;
-  line-height: 50rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding: 0 30rpx;  
 }
 .icon-address {
   font-size: 30rpx;
@@ -78,5 +169,39 @@
   padding-left: 30rpx;
   line-height: 36rpx;
   text-align: right;
+  margin-top: 26rpx;
 }
 
+.product-detail, .activity-notice {
+  padding: 0 30rpx;
+}
+.product-detail-text, .activity-notice-text {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  color: #111111;
+}
+.product-detail image {
+  width: 690rpx;
+  height: 300rpx;
+  display: block;
+  margin-bottom: 20rpx;
+  border-radius: 8rpx;
+}
+
+.activity-notice {
+  margin-bottom: 130rpx;
+}
+.notice-item {
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.shared-one text:first-child, .shared-two text:first-child, .shared-three text:first-child {
+  width: 40%;
+  background: #353A41;
+  display: inline-block;
+}
+.shared-one text:last-child, .shared-two text:last-child, .shared-three text:last-child {
+  display: inline-block;
+}
