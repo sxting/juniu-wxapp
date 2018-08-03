@@ -1,0 +1,232 @@
+page{
+  background-color: #f5f5f5;
+}
+.jn-content{
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative
+}
+.head-tips{
+  background-color: #FF8E42;
+  padding: 26rpx 30rpx;
+  margin-bottom: 20rpx
+}
+.out-time{
+  background-color: #C5C5C5;
+}
+.head-tips .text-tips{
+   font-family: PingFangSC-Regular;
+   font-size: 26rpx;
+   color: #F5F5F9;
+   margin-left: 16rpx;
+}
+.head-tips .text-tips text{
+  display: block
+}
+.head-tips .text-tips text:first-of-type{
+  font-size: 30rpx
+}
+.head-collage{
+  padding: 0 30rpx;
+  background-color: #FFF;
+  position: relative;
+}
+.head-collage .title-collage-detail-box {
+  padding: 30rpx 0;
+  border-bottom:2rpx solid #f5f5f5;
+}
+.jn-content .head-collage .title-collage-detail-box .title-collage-detail {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.jn-content .head-collage .title-collage-detail-box .title-collage-detail .left-box {
+  width: 188rpx;
+  height: 140rpx;
+  position: relative;
+  margin-right: 30rpx;
+}
+.jn-content .head-collage .title-collage-detail-box .title-collage-detail .left-box image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+.jn-content .head-collage .title-collage-detail-box .title-collage-detail .right-box{
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #000000;
+  letter-spacing: 0;
+}
+.jn-content .head-collage .title-collage-detail-box .title-collage-detail .right-box .collage-number {
+  font-family: PingFangSC-Regular;
+  color: #FF9D5B;
+}
+.jn-content .head-collage .title-collage-detail-box .title-collage-detail .right-box .top-items-name text {
+  line-height: 72rpx;
+}
+.jn-content .head-collage .title-collage-detail-box .title-collage-detail .right-box .top-items-name .items-name {
+  font-size: 32rpx;
+  color: #333333;
+  font-weight: 600;
+}
+.jn-content .head-collage .title-collage-detail-box .title-collage-detail .right-box .top-items-name .price {
+  color: #333333;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 28rpx
+}
+.jn-content .real-payment {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #000000;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding: 0 30rpx;
+  background-color: #FFF;
+  margin-bottom: 20rpx
+}
+.jn-content .real-payment .detail-pay-for {
+  font-family: PingFangSC-Medium;
+  font-size: 52rpx;
+  color: #FB6165;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+.jn-content .real-payment .detail-pay-for .unit {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #FB6165;
+}
+/* 中间共用部分 */
+.center-content {
+  padding: 0 30rpx;
+  background-color: #FFF;
+}
+.center-content .collage-person {
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #000000;
+  letter-spacing: 0;
+  line-height: 88rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+}
+.center-content .collage-person .notes{
+  font-size: 24rpx;
+  color: #888;
+  display: inline-block;
+  margin-left: 12rpx
+}
+.center-content .collage-person .check-all {
+  color: #999999;
+  font-size: 28rpx;
+}
+.center-content .collage-person .check-all .icon-rightblue {
+  font-size: 32rpx;
+  margin-left: 10rpx
+}
+
+
+
+
+
+
+/* 底部 */
+.jn-content .footer{
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.jn-content .footer .store-detail {
+  padding: 0 30rpx;
+  background-color: #FFF;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #000000;
+  letter-spacing: 0;
+  margin-bottom: 20rpx;
+}
+.jn-content .footer .store-detail .store-list-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+.jn-content .footer .store-detail .store-name-box {
+  padding: 26rpx 0;
+  position: relative;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+.jn-content .footer .store-detail .store-name-box .store-name .popularity {
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #FF6600;
+  letter-spacing: 0;
+}
+.jn-content .footer .store-detail .store-name-box .store-name .popularity .icon-fire {
+  color: #FF4D27;
+  font-size: 0.37333333rem;
+}
+.jn-content .footer .store-detail .store-name-box .icon-rightblue {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -16rpx;
+}
+.jn-content .footer .store-detail .icon-rightblue {
+  font-size: 32rpx;
+  color: #999999;
+}
+.footer .address-and-tel {
+  height: 88rpx;
+  line-height: 88rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+  font-size: 26rpx;
+  color: #333333;
+}
+.footer .icon-address {
+  font-size: 36rpx;
+  padding-right: 6rpx;
+  color: #3B3B3B;
+}
+.footer .icon-tel {
+  font-size: 36rpx;
+}
+.footer .tel-box {
+  height: 36rpx;
+  border-left: 2rpx solid #e1e1e1;
+  padding-left: 30rpx;
+  margin-top: 26rpx;
+  line-height: 36rpx;
+  text-align: right;
+  color: #999
+}
+.footer .order-detail {
+  padding: 30rpx;
+  background-color: #FFF;
+  font-size: 26rpx;
+}
+.footer .order-detail view {
+  display: inline-block;
+  margin-bottom: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color: #999;
+  letter-spacing: 0;
+}
+.footer .order-detail view:last-of-type {
+  margin-bottom: 0;
+}
+.jn-bottom {
+  background: #fff;
+  text-align: center;
+  height: 50rpx;
+  width: 100vw;
+  padding-bottom: 20rpx
+}
+.jn-bottom image {
+  width: 80rpx;
+  height: 40rpx;
+}
