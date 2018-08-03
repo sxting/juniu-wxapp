@@ -2,6 +2,8 @@
 import { collageService } from '../shared/collage.service';
 import { errDialog, loading } from '../../../utils/util';
 import { constant } from '../../../utils/constant';
+import { homeService } from '../../home/shared/home.service';
+
 Page({
   data: {
     jnImg: '/asset/images/product.png',
@@ -53,9 +55,16 @@ Page({
   },
 
   onShow: function () {
+    getStoreInfo.call(this)
+  },
 
-
-  }
+  // 拨打电话
+  onTelClick() {
+    let self = this;
+    wx.makePhoneCall({
+      phoneNumber: self.data.tel
+    })
+  },
 })
 
 function getProductDetail() {
@@ -199,6 +208,25 @@ function getProductDetail() {
           }, 1000)
         }
       }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+//获取门店信息
+function getStoreInfo() {
+  let self = this;
+  let data = {
+    storeId: wx.getStorageSync(constant.STORE_INFO)
+  }
+  homeService.storeInfoDetail(data).subscribe({
+    next: res => {
+      self.setData({
+        address: res.address,
+        tel: res.mobie
+      });
+      wx.setStorageSync(constant.address, res.address)
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
