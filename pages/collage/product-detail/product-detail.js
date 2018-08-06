@@ -11,7 +11,7 @@ Page({
     address: '学清路静淑里6号楼底商',
     merchantPid: wx.getStorageSync(constant.MERCHANTID),
     pinTuanId: '',
-    groupId: 'q', //通过分享的链接点进来 带的参数； 通过 来判断高级插件区点进来的还是分享的链接点进来的
+    groupId: '1', //通过分享的链接点进来 带的参数； 通过 来判断高级插件区点进来的还是分享的链接点进来的
     joinNumber: 0,
     qmArr: [],
     sharedHours: '',
