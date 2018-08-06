@@ -60,4 +60,3 @@ src/client/app/shared/config/env.config.js.map
 ts-node-*
 package-lock.json
 yarn.lock
-project.config.json
