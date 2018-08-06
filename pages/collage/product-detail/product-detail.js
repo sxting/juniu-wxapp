@@ -2,6 +2,8 @@
 import { collageService } from '../shared/collage.service';
 import { errDialog, loading } from '../../../utils/util';
 import { constant } from '../../../utils/constant';
+import { homeService } from '../../home/shared/home.service';
+
 Page({
   data: {
     jnImg: '/asset/images/product.png',
@@ -9,7 +11,7 @@ Page({
     address: '学清路静淑里6号楼底商',
     merchantPid: wx.getStorageSync(constant.MERCHANTID),
     pinTuanId: '',
-    groupId: '', //通过分享的链接点进来 带的参数； 通过 来判断高级插件区点进来的还是分享的链接点进来的
+    groupId: 'q', //通过分享的链接点进来 带的参数； 通过 来判断高级插件区点进来的还是分享的链接点进来的
     joinNumber: 0,
     qmArr: [],
     sharedHours: '',
@@ -18,7 +20,7 @@ Page({
     sharedTime: '',
     data: '',
     tel: '',
-    length: 1,
+    length: 0,
     presentPrice: '',//现价
     originalPrice: '',//原价
     showAlert: false,
@@ -37,6 +39,8 @@ Page({
       title: '项目详情',
     })
 
+    console.log(options);
+
     this.setData({
       storeName: wx.getStorageSync('storeName'),
       pinTuanId: options.pinTuanId,
@@ -53,9 +57,16 @@ Page({
   },
 
   onShow: function () {
+    getStoreInfo.call(this)
+  },
 
-
-  }
+  // 拨打电话
+  onTelClick() {
+    let self = this;
+    wx.makePhoneCall({
+      phoneNumber: self.data.tel
+    })
+  },
 })
 
 function getProductDetail() {
@@ -199,6 +210,25 @@ function getProductDetail() {
           }, 1000)
         }
       }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+//获取门店信息
+function getStoreInfo() {
+  let self = this;
+  let data = {
+    storeId: wx.getStorageSync(constant.STORE_INFO)
+  }
+  homeService.storeInfoDetail(data).subscribe({
+    next: res => {
+      self.setData({
+        address: res.address,
+        tel: res.mobie
+      });
+      wx.setStorageSync(constant.address, res.address)
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

@@ -14,31 +14,12 @@
 
   <view class="jn-bg"></view>
 
+<!--从店铺页点进来显示拼团项目详情-->
   <view class="collage-list" wx:if="{{(!groupId) && length > 0}}">
-    <view class="bd">
-      <view class="sub-title">
-        <text>小伙伴正在开团，可直接参与</text>
-        <icon class="jn-icon icon-rightblue fr" />
-      </view>
-      <view>
-        <view class="li" wx:for="123">
-          <image src="/asset/images/product.png"></image>
-          <view class="collage-product">
-            <view class="collage-product-name">担任总监设计dada剪发巴拉巴拉</view>
-            <view class="collage-product-num">还差2人拼团成功 剩余10:33:22</view>
-          </view>
-          <view class="collage-btn" wx:if="{{item.totalPeopleNumber > item.groupPeopleNumber}}" bindtap="onGoJoinCollageClick" data-item="{{item}}">去参团</view>
-          <view class="collage-btn" wx:if="{{item.totalPeopleNumber === item.groupPeopleNumber}}">已成功</view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <view class="collage-list" wx:if="">
     <view class="sub-title">小伙伴正在开团，可直接参与</view>
     <view>
       <view wx:for="{{data.groups}}">
-        <image src="{{item.picUrl}}"></image>
+        <image src="{{item.picUrl ? item.picUrl : jnImg}}"></image>
         <view class="collage-product">
           <view class="collage-product-name">{{item.captain}}</view>
           <view class="collage-product-num">还差{{(item.totalPeopleNumber - item.groupPeopleNumber) ? (item.totalPeopleNumber - item.groupPeopleNumber) : 0}}人拼团成功 剩余{{item.time}}</view>
@@ -49,7 +30,89 @@
     </view>
   </view>
 
-  <view class="center-contnt" wx:elif="{{groupId}}"></view>
+<!--通过别人的分享点进来 可以参团-->
+  <view class="center-content" wx:elif="{{groupId}}">
+    <view class="collage-person clearfix">
+      <view class="fl">
+        <text>{{data.peopleNumber}}人拼团</text>
+        <text class="notes">(已有{{joinNumber}}人参团,还差{{(data.peopleNumber - joinNumber) ? (data.peopleNumber - joinNumber) : 0}}人)</text>
+      </view>
+      <!--如果拼团人数大于四人才显示-->
+      <view class="fr check-all" bindtap='onShowMoreClick' wx:if="{{data.peopleNumber > 4}}">
+        <text>查看全部</text>
+        <text class="iconfont icon-jiantou"></text>
+      </view>
+    </view>
+
+    <!--倒计时拼团人-->
+    <view class="images-box">
+      <view class="details-img">
+        <view wx:if="{{data.currentGroup.status === 'JOINING'}}">
+          <view class="title-images">距结束时间仅剩</view>
+          <view class="times">
+            <text>{{sharedHours}}</text>:<text>{{sharedMinites}}</text>:<text>{{sharedSeconds}}</text>
+          </view>
+        </view>
+        <!--大于四人拼团-->
+        <view class="images-boxes-collages clearfix" wx:if="{{data.peopleNumber > 4}}">
+
+          <view wx:for="{{data.currentGroup.picUrls.slice(0,3)}}" wx:for-index="i">
+            <image src='{{item ? item : jnImg}}'></image>
+            <text class="head" wx:if="{{i === 0}}">团长</text>
+          </view>
+          <view class="special-symbol" wx:for="{{qmArr}}"
+              style="{{data.currentGroup.picUrls.length > 2 ? 'display: none' : ''}}">
+            <text class="iconfont icon-qm"></text>
+          </view>
+
+          <view class="special-symbol" bindtap='onShowMoreClick'>
+            <text class="iconfont icon-diandian"></text>
+          </view>
+        </view>
+        <!--四人拼团-->
+        <view class="images-boxes-collages clearfix" wx:if="{{data.peopleNumber == 4}}">
+          <view wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
+            <image src='{{item ? item : jnImg}}'></image>
+            <text class="head" wx:if="{{i === 0}}">团长</text>
+          </view>
+          <view class="special-symbol" wx:for="{{qmArr}}">
+            <text class="iconfont icon-qm"></text>
+          </view>
+        </view>
+        <!--三人拼团-->
+        <view class="images-boxes-collages three-people clearfix" wx:if="{{data.peopleNumber == 3}}">
+          <view wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
+            <image src='{{item ? item : jnImg}}'></image>
+            <text class="head" wx:if="{{i === 0}}">团长</text>
+          </view>
+          <view class="special-symbol" wx:for="{{qmArr}}">
+            <text class="iconfont icon-qm"></text>
+          </view>
+        </view>
+        <!--两人拼团-->
+        <view class="images-boxes-collages two-people clearfix" wx:if="{{data.peopleNumber == 2}}">
+          <view wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
+            <image src='{{item ? item : jnImg}}'></image>
+            <text class="head" wx:if="{{i === 0}}">团长</text>
+          </view>
+          <view class="special-symbol" wx:for="{{qmArr}}">
+            <text class="iconfont icon-qm"></text>
+          </view>
+        </view>
+
+        <view class="collage-successed-tip">
+          <!--正在拼团-->
+          <text wx:if="{{data.currentGroup.status === 'JOINING'}}">还差<text class="jn-color">{{data.peopleNumber - joinNumber}}</text>人拼团成功</text>
+          <!--拼团成功-->
+          <text wx:if="{{data.currentGroup.status === 'FINISH'}}">该团已成功，可选择开团或参与其它团</text>
+          <!--拼团失败-->
+          <text wx:if="{{data.currentGroup.status === 'CLOSE'}}">该团已失败，款项已原路返回</text>
+        </view>
+
+      </view>
+    </view>
+
+  </view>
 
   <view class="jn-bg"></view>
 

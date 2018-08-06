@@ -1,0 +1,42 @@
+ <view class="">
+  <view class="order-detail">
+    <view class="img-box">
+      <image src="{{jnImg}}"></image>
+    </view>
+    <view class="detail-content">
+      <view class="collage-name">
+        <!-- <text class="product-name">{{data.productName}}</text>  -->
+        <text class="product-name">发型总监设计拼发型总监设计拼团</text> 
+        <text>{{data.price ? data.price/100 : 0}}元</text>
+      </view>
+      <view class='collage-num'>
+        <text class='jn-color'>{{data.peopleNumber}}人团·</text>已团{{data.dealGroupNumber}}件
+      </view>
+    </view>
+  </view>
+
+  <view class='jn-bg'></view>
+  
+  <view>
+  </view>
+
+  <view class="price-box bd">
+    <view class='li'>
+      <text>数量</text>
+      <text class="fr">1份</text>
+    </view>
+    <view class='li'>
+      <text>原价</text>
+      <text class="fr">{{data.price ? data.price/100 : 0}}元</text>
+    </view>
+    <view class='li'>
+      <text class="price-text">拼团价</text>
+      <text class="fr"><text class='price'>{{data.price ? data.price/100 : 0}}</text>元</text>
+    </view>
+  </view>
+
+  <view class="order-submit" >确认支付</view>
+</view> 
+
+<view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
+

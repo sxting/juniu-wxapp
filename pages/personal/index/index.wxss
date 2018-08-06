@@ -1,26 +1,36 @@
 .top-bg {
     width: 100vw;
-    height: 240rpx;
+    height: 144rpx;
 }
-.top-bg>image, .personal {
+.top-bg>image {
   width: 100vw;
-  height: 240rpx;
+  height: 144rpx;
   position: absolute;
   top: 0;
   left: 0;
 }
+.personal {
+  width: 700rpx;
+  height: 188rpx;
+  position: absolute;
+  top: 26rpx;
+  left: 25rpx;
+  z-index: 100;
+  background: #FFFFFF;
+  box-shadow: 0 1px 3px 0 #D8D8D8;
+  border-radius: 8px;
+}
 .personal-image {
-    width: 160rpx;
-    height: 160rpx;
+    width: 130rpx;
+    height: 130rpx;
     margin-left: 30rpx;
     border-radius: 50%;
-    z-index: 100;
-    margin-top: 40rpx; 
+    margin-top: 26rpx; 
 }
 .personal-message {
     display: inline-block;
-    color: #FFFFFF;
-    margin-top: 70rpx;
+    color: #111111;    
+    margin-top: 40rpx;
     margin-left: 20rpx; 
 }
 .nickname {
@@ -31,21 +41,53 @@
   font-size: 28rpx;
 }
 
-.my-order, .my-comment, .my-appoint {
-    height: 110rpx;
-    line-height: 110rpx;
+.my-order {
+  height: 260rpx;
+  width: 700rpx;
+  margin: 100rpx auto 30rpx;
+}
+.my-order image {
+  width: 56rpx;
+  height: 56rpx;
+}
+.subtitle {
+  height: 88rpx;
+  line-height: 88rpx;
+  padding-left: 30rpx;
+  font-size: 30rpx;
+  color: #111111;
+  border-bottom: 2rpx solid #F3F3F3;
+}
+.order-list {
+  display: flex;
+}
+.order-item {
+  width: 20%;
+  font-size: 26rpx;
+  color: #666666;
+  text-align: center;
+  padding-top: 34rpx;
+}
+
+.list-box {
+  width: 690rpx;
+  margin: 0 auto;
+}
+.my-comment, .my-appoint {
+    height: 96rpx;
+    line-height: 96rpx;
     background-color: #fff;
     padding-right: 30rpx;
     padding-left: 130rpx;
     border-bottom: 2rpx solid #F3F3F3;
     box-sizing: border-box;
-    font-size: 28rpx;
+    font-size: 26rpx;
     color: #111111;
     position: relative;
 }
-.my-order image, .my-comment image, .my-appoint image {
-  width: 80rpx;
-  height: 80rpx;
+.my-comment image, .my-appoint image {
+  width: 60rpx;
+  height: 60rpx;
   position: absolute;
   top: 16rpx;
   left: 30rpx;
@@ -79,7 +121,7 @@
 
 .version {
   text-align: center;
-  margin: 80rpx;
+  margin: 30rpx;
   color: #ccc;
   background-color: #fff;
 }

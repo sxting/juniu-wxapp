@@ -17,12 +17,15 @@ Page({
       frontColor: '#ffffff',
       backgroundColor: '#FF6400',
     })
-    this.setData({
-      userInfo: app.globalData.userInfo
-    });
     wx.setNavigationBarTitle({
       title: wx.getStorageSync('storeName'),
     })
+    let self = this;
+    setTimeout(function() {
+      self.setData({
+        userInfo: app.globalData.userInfo
+      });
+    }, 200)
   },
 
   onShow() {
@@ -42,6 +45,12 @@ Page({
   onBandPhoneClick() {
     wx.navigateTo({
       url: '/pages/personal/member-card/band/band',
+    })
+  },
+
+  goMyCollageOrder() {
+    wx.navigateTo({
+      url: '/pages/personal/order-form/order-form',
     })
   },
 
