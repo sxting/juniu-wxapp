@@ -1,7 +1,7 @@
 <view class='jn-content'>
   <!--未支付的时候  提示的小tip-->
   <view class='head-tips clearfix'>
-    <icon class='fl'></icon>
+    <text class='fl jn-icon icon-clock'></text>
     <view class="fl text-tips">
       <text>待支付</text>
       <text>请在下单后3分钟内付款，超时订单将自动关闭</text>
@@ -9,7 +9,7 @@
   </view>
   <!--已超时的时候  提示的小tip-->
   <view class="head-tips out-time clearfix">
-    <icon class="fl iconfont icon-clock"></icon>
+    <text class="fl jn-icon icon-clock"></text>
     <view class="fl text-tips">
       <text>已关闭</text>
       <text>超时未支付</text>
@@ -76,45 +76,60 @@
         </view>
         <!--大于四人拼团-->
         <view class="images-boxes-collages clearfix">
-          <view>
-            <image src=''></image>
+          <view class='images-detail fl'>
+            <image src="{{pictureUrl}}"></image>
             <text class="head">团长</text>
           </view>
-          <view class="special-symbol">
-            <text class="iconfont icon-qm"></text>
+          <view class='images-detail fl'>
+            <image src="{{pictureUrl}}"></image>
+            <text class="head">团长</text>
           </view>
-          <view class="special-symbol">
-            <view class="iconfont icon-diandian"></view>
+          <view class="special-symbol fl">
+            <view class="jn-icon icon-qm"></view>
+          </view>
+          <view class="special-symbol fl">
+            <view class="jn-icon icon-diandian"></view>
           </view>
         </view>
         <!--四人拼团-->
-        <!-- <view class="images-boxes-collages clearfix">
-          <view>
-            <image src=""></image>
+        <view class="images-boxes-collages clearfix">
+          <view class='images-detail fl'>
+            <image src="{{pictureUrl}}"></image>
             <text class="head">团长</text>
           </view>
-          <view class="special-symbol>
-            <view class="iconfont icon-diandian"></view>
+          <view class='images-detail fl'>
+            <image src="{{pictureUrl}}"></image>
+            <text class="head">团长</text>
           </view>
-        </view> -->
+          <view class='images-detail fl'>
+            <image src="{{pictureUrl}}"></image>
+            <text class="head">团长</text>
+          </view>
+          <view class="special-symbol fl">
+            <view class="jn-icon icon-qm"></view>
+          </view>
+        </view>
         <!--三人拼团-->
         <view class="images-boxes-collages three-people clearfix">
-          <view>
-            <image src=''></image>
+          <view class='images-detail three'>
+            <image src="{{pictureUrl}}"></image>
             <text class="head">团长</text>
           </view>
-          <view class="special-symbol">
-            <view class="iconfont icon-diandian"></view>
+          <view class="special-symbol three">
+            <view class="jn-icon icon-qm"></view>
+          </view>
+           <view class="special-symbol three">
+            <view class="jn-icon icon-qm"></view>
           </view>
         </view>
         <!--两人拼团-->
         <view class="images-boxes-collages two-people clearfix">
-          <view>
-            <image src=''></image>
+          <view class='images-detail fl two mr100'>
+            <image src="{{pictureUrl}}"></image>
             <text class="head">团长</text>
           </view>
-          <view class="special-symbol">
-            <view class="iconfont icon-diandian"></view>
+          <view class="special-symbol two">
+            <view class="jn-icon icon-qm"></view>
           </view>
         </view>
         <!--拼团中-->
@@ -123,8 +138,35 @@
         </view>
 
         <!--拼团失败-->
-        <view>
+        <view class='failed-collage'>
           <text class="failed-collage-text">拼团失败，支付款项将原路返回</text>
+        </view>
+        
+        <!--中间部分拼团成功-->
+        <view>
+          <view class="collage-success-box">
+            <view class="collage-success">
+              <view class='title-name'>发型总监设计拼团活动周年庆</view>
+              <view class="detail-infor">
+                <view>已付款</view>
+                <view>下单时间：2018-02-27 17:28:33</view>
+              </view>
+              <view class="qrcode-box">
+                <view class="qrcode">
+                  <image class="jn-qrcode" id="barcode" src=''></image>
+                  <view class="coupon-code">
+                    <text class="coupon">券码</text>
+                    <text class="code-number">4385 4754 5457</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!--拼团成功的申请退款按钮-->
+          <view class="application-refund-text">
+            <text class="jn-icon icon-error"></text>
+            如需退款,请自主联系商家申请
+          </view>
         </view>
       </view>
     </view>
@@ -141,26 +183,51 @@
       <view class="store-name-box">
         <view class="store-name">
           <text>丽韵尚度美发沙龙</text>
-          <view class="popularity">人气好店
-            <!-- <view class="jn-icon icon-rightblue fr"></view> -->
-          </view>
+          <view class="popularity">人气好店</view>
         </view>
       </view>
       <view class="address-and-tel" bindtap="onAddressClick">
-        <icon class="jn-icon icon-address"></icon>学清路静淑里6号楼底商
+        <view class="jn-icon icon-dingwei"></view>学清路静淑里6号楼底商
         <view class="fr tel-box" catchtap="onTelClick">
           <view class="jn-icon icon-tel"></view>
         </view>
       </view>
     </view>
-    <view class="order-detail">
-      <view>交易号：21667439824673289497</view>
-      <view>团单编号：21667439824673289497</view>
-      <view>订单编号：21667439824673289497</view>
-      <view>下单时间：2018-08-11  12:00:00</view>
+    <view class='order-detail-box'>
+      <view class="order-detail">
+        <view><text>交易号：</text>21667439824673289497</view>
+        <view><text>团单编号：</text>21667439824673289497</view>
+        <view><text>订单编号：</text>21667439824673289497</view>
+        <view><text>下单时间：</text>2018-08-11  12:00:00</view>
+      </view>
     </view>
     <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
   </view>
 </view>
 
-
+<!-- 拼团人图像 -->
+<!--拼团人像弹框-->
+<view class="alert-collage-bg" wx:if="">
+  <view class="alert-collage-box">
+    <view class="collage-title-alert">
+      <text class="hotting-collage">正在拼团</text>
+      <text class="jn-icon icon-sc"></text>
+    </view>
+    <view class="detail-person-content">
+      <view class="detail-person-images">
+        <view class='img-url'>
+          <image src='{{pictureUrl}}'></image>
+        </view>
+         <view class='img-url'>
+          <image src='{{pictureUrl}}'></image>
+        </view>
+        <view class='img-url'>
+          <image src='{{pictureUrl}}'></image>
+        </view>
+        <view class="special-symbol">
+          <text class="jn-icon icon-qm"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

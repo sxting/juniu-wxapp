@@ -31,7 +31,8 @@
     "pages/collage/product-detail/product-detail",
     "pages/collage/collage-submit/collage-submit",
     "pages/personal/collage-order/detail/detail",
-    "pages/collage/product-list/product-list"
+    "pages/collage/product-list/product-list",
+    "pages/personal/collage-order/order/order-list"
   ],
   "window": {
     "backgroundTextStyle": "light",

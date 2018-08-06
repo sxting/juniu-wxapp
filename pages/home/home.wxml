@@ -17,7 +17,38 @@
       </view>
     </view>
   </view>
-
+  <!-- 拼团 -->
+  <view class='collage-box'>
+    <view class='title-collage'>
+      <view class="sub-title-left">
+        <view class="jn-icon icon-commodity"></view>
+        <view class="sub-title-text">拼团</view>
+      </view>
+      <view class="sub-title-right" bindtap="goCollagePage">
+        <view>查看更多</view>
+        <view class="jn-icon icon-rightblue"></view>
+      </view>
+    </view>
+    <view class='collage-content-box'>
+      <view class='collage-content'>
+        <view class='list-collage'>
+          <view class='left-img fl'>
+            <image src='/asset/images/card-bg1.png'></image>
+          </view>
+          <view class='right-infor fl'>
+            <view class='name-collage'>发型总监设计</view>
+            <view class='price-box'>
+              <text>¥</text>
+              <text class='price-precent'>180</text>
+              <text class='price-origin'>88元</text>
+            </view>
+            <view><text>3人团·</text>已团323件</view>
+          </view>
+          <view class='go-btn'>去开团</view>
+        </view>
+      </view>
+    </view>
+  </view>
   <!--服务项目-->
    <view class="product-list" wx:if="{{storeInfo.productList}}"> 
     <view class="sub-title">
