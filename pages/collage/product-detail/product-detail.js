@@ -39,6 +39,8 @@ Page({
       title: '项目详情',
     })
 
+    console.log(options);
+
     this.setData({
       storeName: wx.getStorageSync('storeName'),
       pinTuanId: options.pinTuanId,
