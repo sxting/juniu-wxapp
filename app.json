@@ -30,7 +30,8 @@
     "pages/personal/member-card/list/list",
     "pages/collage/product-detail/product-detail",
     "pages/personal/collage-order/detail/detail",
-    "pages/collage/product-list/product-list"
+    "pages/collage/product-list/product-list",
+    "pages/personal/collage-order/order/order-list"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,47 @@
+<!--pages/personal/collage-order/order/order-list.wxml-->
+<view class="page">
+  <view class="tab">
+    <view wx:for="{{tabList}}" wx:key="index" bindtap="onTabClick" data-index="{{index}}"
+    class="tab-item {{index == tabIndex ? 'active' : ''}}">{{item}}</view>
+  </view>
+  <!-- 列表内容 -->
+  <view class='list-content-box'>
+    <view class='list-content'>
+      <view class='list-infor'>
+        <view class='list-title clearfix'>
+          <text class='fl'>拼团</text>
+          <text class='fr'>待付款</text>
+        </view>
+        <view class='detail-infor clearfix'>
+          <view class='img-box fl'>
+            <image src='{{productImg}}'></image>
+          </view>
+          <view class='right-infor fl'>
+            <view>染烫护理三合一套餐</view>
+            <view>下单时间：2017.09.21  18:36:09</view>
+            <view>¥<text>399</text></view>
+          </view>
+        </view>
+      </view>
+      <view class='remaining-time'>剩余时间:
+        <text>00:00:04</text>
+      </view>
+      <view class='remaining-time'>实付款
+        <text>299元</text>
+      </view>
+      <!-- 按钮盒子 -->
+      <view class='btn-box'>
+        <text class='cancel-btn'>取  消</text>
+        <text>立即支付</text>
+      </view>
+      <view class='btn-box'>
+        <text>邀请好友拼团</text>
+      </view>
+      <view class='btn-box'>
+        <text>立即评价</text>
+      </view>
+    </view>
+  </view>
+  <!-- logo底部 -->
+  <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
+</view>
