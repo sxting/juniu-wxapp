@@ -11,7 +11,7 @@ Page({
     address: '学清路静淑里6号楼底商',
     merchantPid: wx.getStorageSync(constant.MERCHANTID),
     pinTuanId: '',
-    groupId: '1', //通过分享的链接点进来 带的参数； 通过 来判断高级插件区点进来的还是分享的链接点进来的
+    groupId: '', //通过分享的链接点进来 带的参数； 通过 来判断高级插件区点进来的还是分享的链接点进来的
     joinNumber: 0,
     qmArr: [],
     sharedHours: '',
@@ -39,8 +39,6 @@ Page({
       title: '项目详情',
     })
 
-    console.log(options);
-
     this.setData({
       storeName: wx.getStorageSync('storeName'),
       pinTuanId: options.pinTuanId,
@@ -57,7 +55,15 @@ Page({
   },
 
   onShow: function () {
-    getStoreInfo.call(this)
+    if (wx.getStorageSync(constant.STORE_INFO)) {
+      getStoreInfo.call(this)
+    }
+  },
+
+  onStoreClick() {
+    wx.navigateTo({
+      url: '/pages/index/index?productId=' + this.data.pinTuanId,
+    })
   },
 
   // 拨打电话
@@ -66,6 +72,16 @@ Page({
     wx.makePhoneCall({
       phoneNumber: self.data.tel
     })
+  },
+
+  // 开团 
+  onOpenGroupBtnClick() {
+
+  },
+
+  //参团
+  onGoJoinCollageClick() {
+
   },
 })
 
