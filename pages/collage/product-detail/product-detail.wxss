@@ -129,9 +129,6 @@ page {
   font-size: 24rpx;
 }
 
-
-
-
 .store-box {
   background-color: #fff;
 }
