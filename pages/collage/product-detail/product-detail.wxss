@@ -122,6 +122,13 @@ page {
   font-size: 26rpx;
 }
 
+.collage-successed-tip {
+  text-align: center;
+  color: #888;
+  padding-top: 30rpx;
+  font-size: 24rpx;
+}
+
 .store-box {
   background-color: #fff;
 }

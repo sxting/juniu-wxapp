@@ -29,10 +29,6 @@
   margin-top: 10rpx;
 }
 
-scroll-view {
-  height: 1100rpx;
-}
-
 .space-box {
      padding-bottom:552rpx;
 }

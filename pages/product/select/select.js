@@ -26,7 +26,7 @@ Page({
     })
     this.setData({
       storeId: wx.getStorageSync(constant.STORE_INFO),
-      from: options.from
+      from: options.from ? options.from : ''
     })
     console.log(options.from === 'order')
     if (options.from === 'order') {

@@ -30,7 +30,7 @@
     </view>
   </view>
 
-<!--通过别人的分享点进来 可以参团-->
+  <!--通过别人的分享点进来 可以参团-->
   <view class="center-content" wx:elif="{{groupId}}">
     <view class="collage-person clearfix">
       <view class="fl">
@@ -147,21 +147,21 @@
     <view class="notice-item">发型总监设计拼团活动周年庆</view>
   </view>  
 
-  <view wx:if="">
-    <view class="jn-btn" wx:if="">一键开团 99元</view>
+  <view wx:if="{{!groupId}}">
+    <view class="jn-btn" wx:if="{{data.inventory > 0}}">一键开团 99元</view>
     <view class="jn-btn" wx:else>库存不足，可选择参团</view>
   </view>
   <!--通过分享进来的按钮  -->
   <view wx:else class="jn-btn">
-    <view class="shared-one" wx:if="">
+    <view class="shared-one" wx:if="{{data.currentGroup.status === 'JOINING'}}">
       <text class="fl">我要开团</text>
       <text>一键参团 200元</text>
     </view>
-    <view class="shared-two" wx:elif="">
+    <view class="shared-two" wx:elif="{{data.currentGroup.status === 'FINISH'}}">
       <text class="fl">该拼团已成功</text>
       <text>我来开这个团</text>
     </view>
-    <view class="shared-three" wx:else>
+    <view class="shared-three" wx:elif="{{data.currentGroup.status === 'CLOSE'}}">
       <text class="fl">该拼团已失败</text>
       <text>我来开这个团</text>
     </view>
