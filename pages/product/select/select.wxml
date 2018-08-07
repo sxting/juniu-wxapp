@@ -21,7 +21,7 @@
       <view class="weui-panel__bd" wx:if="{{productList.length > 0}}">
         <view class="weui-media-box weui-media-box_small-appmsg">
           <view class="weui-cells weui-cells_in-small-appmsg">
-            <scroll-view scroll-y bindscrolltolower="scrolltolower">
+            <scroll-view scroll-y style='height: 1000rpx' bindscrolltolower="scrolltolower">
               <view wx:for="{{productList}}" bindtap="onItemClick" data-product-id="{{item.productId}}" data-product-name="{{item.productName}}" data-price="{{item.currentPrice}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__hd">
                   <image src="{{item.picUrl ? item.picUrl : juniuImg}}" class="head-img" />
