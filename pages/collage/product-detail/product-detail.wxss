@@ -178,7 +178,10 @@ page {
 }
 
 .product-detail, .activity-notice {
-  padding: 0 30rpx;
+  padding: 0 30rpx 20rpx;
+  box-sizing: border-box;  
+  width: 700rpx;
+  margin: 30rpx auto;
 }
 .product-detail-text, .activity-notice-text {
   height: 80rpx;
@@ -187,7 +190,7 @@ page {
   color: #111111;
 }
 .product-detail image {
-  width: 690rpx;
+  width: 650rpx;
   height: 300rpx;
   display: block;
   margin-bottom: 20rpx;
@@ -195,7 +198,7 @@ page {
 }
 
 .activity-notice {
-  margin-bottom: 130rpx;
+  margin: 0 auto 130rpx;
 }
 .notice-item {
   font-size: 26rpx;
