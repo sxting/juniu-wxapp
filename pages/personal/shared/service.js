@@ -6,6 +6,7 @@ let personalService = {};
 personalService.getOrderDetail = (data) => {
   let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
   let url = api + '/order/app/order/detail.json';
+  data.timestamp = new Date().getTime();
   return http.get(url, data)
 }
 
