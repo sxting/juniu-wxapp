@@ -1,60 +1,27 @@
 <!--pages/collage/product-list/product-list.wxml-->
 <view class="jn-main">
-  <view class="content-list">
+  <view class="content-list collage-box">
     <!-- 拼团列表 -->
-    <view class="collage-list ">
-      <view class="list clearfix">
-       <!-- 左边 -->
-        <view class="left-img fl">
-          <image src="{{imgUrl}}"></image>
-        </view>
-        <!-- 右边 -->
-        <view class="right-cont fl">
-          <view class="list-name">
-            <text>拼多多</text>
-            <text class="btn-collage">去开团</text>
+     <view class='collage-content-box'>
+      <view class='collage-content' wx:for="{{collageProductList}}">
+        <view class='list-collage'>
+          <view class='left-img fl'>
+            <image src='/asset/images/product.png'></image>
           </view>
-          <view class="price-items">
-            <view class="price-details absolute">
-              <text class="">拼团价</text>
-              <text class="present-price">100</text>
-              <text>元</text>
-              <text class="original-price">66.66元</text>
+          <view class='right-infor fl'>
+            <view class='name-collage'>发型总监设计</view>
+            <view class='price-box'>
+              <text>¥</text>
+              <text class='price-precent'>180</text>
+              <text class='price-origin'>88元</text>
             </view>
-            <view class="collage-details absolute">
-              <text>3人团·</text>
-              <text class="had-collage">已成500团</text>
-            </view>
+            <view class='detail-num'><text>3人团·</text>已团323件</view>
           </view>
-        </view>
-      </view>
-      <view class="list clearfix">
-       <!-- 左边 -->
-        <view class="left-img fl">
-          <image src="{{imgUrl}}"></image>
-        </view>
-        <!-- 右边 -->
-        <view class="right-cont fl">
-          <view class="list-name">
-            <text>拼多多</text>
-            <text class="btn-collage">去开团</text>
-          </view>
-          <view class="price-items">
-            <view class="price-details absolute">
-              <text class="">拼团价</text>
-              <text class="present-price">100</text>
-              <text>元</text>
-              <text class="original-price">66.66元</text>
-            </view>
-            <view class="collage-details absolute">
-              <text>3人团·</text>
-              <text class="had-collage">已成500团</text>
-            </view>
-          </view>
+          <view class='go-btn'>去开团</view>
         </view>
       </view>
     </view>
   </view> 
   <!-- 底部logo -->
-  <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
+  <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
 </view>

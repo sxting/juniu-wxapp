@@ -5,8 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrl: '/asset/images/personal-bg.png',
-    jnImgUrl: '/asset/images/logo.png',
+    imgUrl: '/asset/images/product.png',
+    jnImgUrl: '/asset/images/product.png',
+    collageProductList: [' ', ' ', ' ']
   },
 
   /**
