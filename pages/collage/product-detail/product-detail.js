@@ -184,15 +184,15 @@ function getProductDetail() {
       self.setData({
         loading: false
       })
-      if (res.data) {
+      if (res) {
         self.setData({
-          data: res.data
+          data: res
         })
 
-        if (res.data.groups && res.data.groups.length) {
-          this.length = res.data.groups.length;
+        if (res.groups && res.groups.length) {
+          this.length = res.groups.length;
           self.setData({
-            length: res.data.groups.length
+            length: res.groups.length
           })
         }
 
@@ -202,14 +202,14 @@ function getProductDetail() {
           let data2 = self.data.data;
           data2.currentGroup.expireTime = data2.currentGroup.expireTime.replace(/-/g, '/');
           self.setData({
-            data: data2,
-            length: data2.currentGroup.picUrls.length
+            data: data2
           })
+          length = data2.currentGroup.picUrls.length
         }
 
         self.setData({
-          presentPrice: res.data.presentPrice / 100,
-          originalPrice: res.data.originalPrice / 100,
+          presentPrice: res.presentPrice / 100,
+          originalPrice: res.originalPrice / 100,
           joinNumber: length,
           tel: self.data.data.storePhones[0]
         })
