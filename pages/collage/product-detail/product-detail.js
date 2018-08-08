@@ -3,6 +3,7 @@ import { collageService } from '../shared/collage.service';
 import { errDialog, loading } from '../../../utils/util';
 import { constant } from '../../../utils/constant';
 import { homeService } from '../../home/shared/home.service';
+import { service } from '../../../service';
 
 Page({
   data: {
@@ -32,6 +33,7 @@ Page({
     token: wx.getStorageSync(constant.TOKEN),
     loading: false,
     shopId: '',
+    getUserInfo: true
   },
 
   onLoad: function (options) {
@@ -49,7 +51,38 @@ Page({
     if (wx.getStorageSync(constant.TOKEN)) {
       // getProductDetail.call(this);
     } else {
-      
+      let self = this;
+      wx.login({
+        success: function (result) {
+          wx.getUserInfo({
+            withCredentials: true,
+            success: function (res) {
+              self.setData({
+                getUserInfo: true
+              })
+              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+              let appId = 'wx3bb038494cd68262';
+              console.log(result.code);
+              if (result.code) {
+                logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+              } else {
+                console.log('获取用户登录态失败！' + result.errMsg)
+              }
+            },
+            fail: function () {
+              self.setData({
+                getUserInfo: false
+              })
+            }
+          });
+        },
+        fail: function (res) {
+          self.setData({
+            getUserInfo: false
+          })
+        },
+        complete: function (res) { },
+      });
     }
    
   },
@@ -72,6 +105,52 @@ Page({
     wx.makePhoneCall({
       phoneNumber: self.data.tel
     })
+  },
+
+  bindgetuserinfo(e) {
+    let self = this;
+    if (e.detail.errMsg == 'getUserInfo:ok') {
+      wx.login({
+        success: function (result) {
+          self.setData({
+            getUserInfo: true
+          })
+          let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+          let appId = 'wx3bb038494cd68262';
+          if (result.code) {
+            logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, e.detail.rawData);
+          } else {
+            console.log('获取用户登录态失败！' + result.errMsg)
+          }
+        },
+        fail: function (res) {
+          self.setData({
+            getUserInfo: false
+          })
+        },
+        complete: function (res) { },
+      });
+    }
+  },
+
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+
+    return {
+      title: wx.getStorageSync('storeName'),
+      path: '/pages/collage/product-detail/product-detail?storeId=' + this.data.storeId + '&productId=' + this.data.productId,
+      success: function (res) {
+        // 转发成功
+        console.log(res);
+      },
+      fail: function (res) {
+        // 转发失败
+        console.log(res);
+      }
+    }
   },
 
   // 开团 
@@ -245,6 +324,32 @@ function getStoreInfo() {
         tel: res.mobie
       });
       wx.setStorageSync(constant.address, res.address)
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+function logIn(code, appid, rawData) {
+  let self = this;
+  service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
+    next: res => {
+      let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+      wx.setStorageSync(constant.MERCHANTID, res.merchantId ? res.merchantId : '153179997107784038184');
+      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
+      wx.setStorageSync(constant.sessionKey, res.sessionKey)
+
+      if (res.ver == '2') {
+        wx.setStorageSync(constant.VER, 2);
+      } else {
+        wx.setStorageSync(constant.VER, 1);
+      }
+
+      wx.setStorage({
+        key: constant.TOKEN,
+        data: res.juniuToken,
+        success: function (res) {}
+      })
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
