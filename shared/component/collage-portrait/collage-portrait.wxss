@@ -1,4 +1,14 @@
-/* shared/component/collage-portrait/collage-portrait.wxss */
+@import '../../../style/weui.wxss';
+@import '../../../style/common.wxss';
+
+.check-all {
+  color: #999999;
+  font-size: 28rpx;
+}
+.check-all .icon-rightblue {
+  font-size: 32rpx;
+  margin-left: 10rpx
+}
 /* 弹框 */
 .alert-collage-bg {
   background-color: rgba(0, 0, 0, 0.6);
@@ -48,16 +58,21 @@
 }
 .alert-collage-bg .alert-collage-box .detail-person-content .detail-person-images {
   width: 100%;
-  height: 6.56rem;
+  height: 500rpx;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 .alert-collage-bg .alert-collage-box .detail-person-content .detail-person-images .img-url {
   width: 92rpx;
   height: 92rpx;
-  border-radius: 50%;
+}
+.alert-collage-bg .alert-collage-box .detail-person-content .detail-person-images .portrait{
   margin-right: 56rpx;
   margin-bottom: 42rpx;
+  border-radius: 50%;
+}
+.alert-collage-bg .alert-collage-box .detail-person-content .detail-person-images .portrait:nth-of-type(4n) {
+  margin-right: 0rem;
 }
 .alert-collage-bg .alert-collage-box .detail-person-content .detail-person-images view{
   float: left
@@ -67,9 +82,6 @@
   height: 100%;
   border-radius: 50%;
 }
-.alert-collage-bg .alert-collage-box .detail-person-content .detail-person-images view:nth-of-type(4n) {
-  margin-right: 0rem;
-}
 .alert-collage-bg .alert-collage-box .detail-person-content .detail-person-images .special-symbol {
   border:  4rpx dashed rgba(136,136,136,0.50);
   text-align: center;
@@ -78,8 +90,23 @@
   color: #C3C3C3;
   width: 84rpx;
   height: 84rpx;
-  border-radius: 50%
+  border-radius: 50%;
+  float: left
 }
 .alert-collage-bg .alert-collage-box .detail-person-content .detail-person-images .special-symbol .icon-qm {
   font-size: 50rpx;
+}
+.diandian {
+  border: 2rpx dashed rgba(136, 136, 136, 0.5);
+  text-align: center;
+  line-height: 140rpx;
+  font-size: 0;
+  color: #C3C3C3;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  margin-left: 26rpx
+}
+.diandian .icon-diandian {
+  font-size: 60rpx;
 }

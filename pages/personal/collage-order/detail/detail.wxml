@@ -47,10 +47,7 @@
         <text>{{ collageNumber }}人拼团</text>
         <text class="notes">(已有2人参团,还差3人)</text>
       </view>
-      <view class="fr check-all">
-        <text>查看全部</text>
-        <view class="jn-icon icon-rightblue"></view>
-      </view>
+      <collage-portrait class="fr" fleg='more' collageNumber="{{ collageNumber }}"> </collage-portrait> 
     </view>
     <!--四人及四人以下拼团的时候  头部-->
     <view class="collage-person clearfix" wx:if="{{collageNumber <= 4 && collageStatus === 'JOINING'}}">
@@ -83,9 +80,11 @@
           <view class="special-symbol fl">
             <view class="jn-icon icon-qm"></view>
           </view>
-          <view class="special-symbol fl">
+          <collage-portrait class="fl" fleg='' collageNumber="{{ collageNumber }}"> </collage-portrait> 
+
+          <!-- <view class="special-symbol fl">
             <view class="jn-icon icon-diandian"></view>
-          </view>
+          </view> -->
         </view>
         <!--四人拼团-->
         <view class="images-boxes-collages clearfix" wx:if="{{collageNumber === 4 && collageStatus !== 'FINISH'}}">
@@ -196,7 +195,3 @@
     <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
   </view>
 </view>
-
-<!-- 拼团人图像 -->
-
-<!--拼团人像弹框-->
