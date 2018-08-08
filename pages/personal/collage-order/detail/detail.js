@@ -4,7 +4,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pictureUrl: '/asset/images/head-portrait.png',
+    pictureUrl: '/asset/images/product.png',
+    collageStatus: 'JOINING',
+    pinTuanName: '发型总监设计拼团活动周年庆',
+    presentPrice: 880,
+    collageNumber: 6,
+    dealGroupNumber: 888,
+    transNo: '21667439824673289497',
+    groupNo: '21667439824673289497',
+    orderNo: '21667439824673289497',
+    orderTime: '2018-08-11 12:00:00',
+    arrCollageImageShow: [ '' , ''],
+
   },
 
   /**

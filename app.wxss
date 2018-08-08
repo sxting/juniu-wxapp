@@ -524,6 +524,9 @@ page {
   text-align: center;
   -webkit-font-smoothing: antialiased;
 }
+.center-content .images-box .details-img .images-boxes-collages .images-detail .bg{
+  background-color: #ccc!important;
+}
 .center-content .images-box .details-img .images-boxes-collages .special-symbol:last-of-type {
   margin-right: 0;
 }
