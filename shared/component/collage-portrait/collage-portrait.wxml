@@ -1,0 +1,26 @@
+<!--shared/component/collage-portrait/collage-portrait.wxml-->
+
+<view class="alert-collage-bg" wx:if="">
+  <view class="alert-collage-box">
+    <view class="collage-title-alert">
+      <text class="hotting-collage">正在拼团</text>
+      <text class="jn-icon icon-sc"></text>
+    </view>
+    <view class="detail-person-content">
+      <view class="detail-person-images">
+        <view class='img-url'>
+          <image src='{{pictureUrl}}'></image>
+        </view>
+         <view class='img-url'>
+          <image src='{{pictureUrl}}'></image>
+        </view>
+        <view class='img-url'>
+          <image src='{{pictureUrl}}'></image>
+        </view>
+        <view class="special-symbol">
+          <text class="jn-icon icon-qm"></text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

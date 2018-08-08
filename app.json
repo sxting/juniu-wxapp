@@ -32,7 +32,8 @@
     "pages/collage/collage-submit/collage-submit",
     "pages/personal/collage-order/detail/detail",
     "pages/collage/product-list/product-list",
-    "pages/personal/collage-order/order/order-list"
+    "pages/personal/collage-order/order/order-list",
+    "shared/component/collage-portrait/collage-portrait"
   ],
   "window": {
     "backgroundTextStyle": "light",
