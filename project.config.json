@@ -42,12 +42,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/personal/collage-order/detail/detail",
+					"pathName": "pages/collage/product-detail/product-detail",
 					"query": ""
 				}
 			]
