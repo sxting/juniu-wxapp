@@ -48,8 +48,10 @@ Page({
       shopId: wx.getStorageSync(constant.STORE_INFO)
     })
 
+    geList.call(this)
+
     if (wx.getStorageSync(constant.TOKEN)) {
-      // getProductDetail.call(this);
+      getProductDetail.call(this);
     } else {
       let self = this;
       wx.login({
@@ -166,8 +168,8 @@ Page({
 
 function getProductDetail() {
   let data = {
-    pinTuanId: this.data.pinTuanId,
-    token: this.data.token
+    activityId: this.data.pinTuanId,
+    storeId: wx.getStorageSync(constant.STORE_INFO)
   };
   if (this.data.groupId) {
     data.groupId = this.data.groupId
