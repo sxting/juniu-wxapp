@@ -139,7 +139,7 @@ Page({
 
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/collage/product-detail/product-detail?storeId=' + this.data.storeId + '&productId=' + this.data.productId,
+      path: '/pages/collage/product-detail/product-detail?storeId=' + this.data.storeId + '&activityId=' + this.data.pinTuanId,
       success: function (res) {
         // 转发成功
         console.log(res);
@@ -175,8 +175,7 @@ Page({
 
 function getProductDetail() {
   let data = {
-    // activityId: this.data.pinTuanId,
-    activityId: '153380357486958907387',
+    activityId: this.data.pinTuanId,
     storeId: wx.getStorageSync(constant.STORE_INFO),
     belongTo: wx.getStorageSync(constant.MERCHANTID),
     buyerId: wx.getStorageSync(constant.USER_ID)
