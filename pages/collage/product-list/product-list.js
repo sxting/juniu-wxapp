@@ -13,7 +13,6 @@ Page({
     jnImgUrl: '/asset/images/product.png',
     collageProductList: [' ', ' ', ' '],
     storeId: '',
-
   },
 
   /**
@@ -27,10 +26,10 @@ Page({
     let self = this;
     let data = {
       storeId: this.data.storeId,
-      belongTo: '',
-      buyerId: '',
+      belongTo: this.data.belongTo,
+      buyerId: this.data.buyerId,
       pageSize: 10,
-      platform: ''
+      platform: 'WECHAT_SP'
     }
     collageService.getProductList(data).subscribe({
       next: res => {
@@ -41,14 +40,13 @@ Page({
       error: err => errDialog(err),
       complete: () => wx.hideToast()
     })
-    
   },
-
  
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
   
-  },
+  }
+
 })

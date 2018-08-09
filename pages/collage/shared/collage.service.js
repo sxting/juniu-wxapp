@@ -3,7 +3,7 @@ import { http } from '../../../utils/http';
 let collageService = {};
 
 let API = constant.apiUrl;
-API = 'http://192.168.199.21:8080';
+API = 'http://192.168.199.26:8080';
 
 //商品详情
 collageService.getProductDetail = (data) => {
