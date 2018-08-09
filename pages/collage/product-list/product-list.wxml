@@ -3,7 +3,6 @@
   <view class="content-list collage-box">
     <!-- 拼团列表 -->
      <view class='collage-content-box'>
-      <scroll-view scroll-y bindscrolltolower="lowerScroll">
         <view class='collage-content' wx:for="{{collageProductList}}" wx:key="item">
           <view class='list-collage'>
             <view class='left-img fl'>
@@ -21,7 +20,6 @@
             <view class='go-btn' bindtap='goToCollageBtn' data-activityid="{{ item.activityId }}">去开团</view>
           </view>
         </view>
-      </scroll-view>
     </view>
   </view> 
   <!-- 底部logo -->

@@ -32,6 +32,7 @@ Page({
   },
   onShow() {
     if (this.data.isOnLoad) {
+      getCollageListInfor.call(this)      
       let self = this;
       homeService.ticketList({
         storeId: wx.getStorageSync(constant.STORE_INFO)
@@ -54,7 +55,7 @@ Page({
           })
         },
         complete: () => wx.hideToast()
-      })
+      });
     }
   },
 
@@ -106,6 +107,14 @@ Page({
   goCollagePageClick: function (e) {
     wx.navigateTo({
       url: '/pages/collage/product-list/product-list'
+    })
+  },
+
+  // 去开团
+  goToCollageBtn: function (e) {
+    console.log(e.currentTarget.dataset.activityid);
+    wx.navigateTo({
+      url: '/pages/collage/product-detail/product-detail?activityId = ' + e.currentTarget.dataset.activityid
     })
   },
 
@@ -221,6 +230,7 @@ Page({
     getStoreIndexInfo.call(self, storeId, wx.getStorageSync(constant.MERCHANTID) );
     getTicketInfo.call(self, storeId);
     getStoreInfo.call(self, storeId);
+    getCollageListInfor.call(self);
   },
 
   // 唤起地图
@@ -351,6 +361,30 @@ Page({
 
 })
 
+// 获取拼团信息列表
+function getCollageListInfor() {
+  let data = {
+    storeId: wx.getStorageSync(constant.STORE_INFO),
+    belongTo: wx.getStorageSync(constant.MERCHANTID),
+    buyerId: wx.getStorageSync(constant.USER_ID),
+    pageSize: 2,
+    platform: 'WECHAT_SP'
+  }
+  homeService.getProductList(data).subscribe({
+    next: res => {
+      if (res) {
+        console.log(res.elements);
+        this.data.collageProductList = res.elements;
+        this.setData({
+          collageProductList: this.data.collageProductList
+        })
+      }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
 // 获取卡券信息
 function getTicketInfo(storeId) {
   let self = this;
@@ -444,6 +478,7 @@ function closestStore () {
       });
       getTicketInfo.call(self, res.storeId);
       getStoreInfo.call(self, res.storeId);
+      getCollageListInfor.call(self);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -596,30 +631,6 @@ function getStoreInfo(storId) {
         longitude: res.longitude,
       });
       wx.setStorageSync(constant.address, res.address)
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
-}
-
-// 获取拼团信息列表
-function getCollageListInfor(data){
-  homeService.getProductList(data).subscribe({
-    next: res => {
-      if (res) {
-        console.log(res.elements);
-        let collageArr = [];
-        if (res.elements.length > 2) {
-          let index = res.elements.length - 1;
-          let listInfor = res.elements.splice(0, 2);
-          collageArr = listInfor;
-        } else {
-          collageArr = res.data;
-        }
-        this.setData({
-          collageProductList: collageArr
-        })
-      }
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
