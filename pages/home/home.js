@@ -114,7 +114,7 @@ Page({
   goToCollageBtn: function (e) {
     console.log(e.currentTarget.dataset.activityid);
     wx.navigateTo({
-      url: '/pages/collage/product-detail/product-detail?activityId = ' + e.currentTarget.dataset.activityid
+      url: '/pages/collage/product-detail/product-detail?activityId=' + e.currentTarget.dataset.activityid
     })
   },
 
