@@ -2,23 +2,23 @@
   <image class="product-img" src="{{jnImg}}"></image>
   <view class="product-box">
     <view class="product-name">
-      发型总监设计拼团活动周年庆
+      {{data.activityName}}
       <button class="share-btn" open-type="share"><text class="jn-icon icon-fenxiang"></text></button>
     </view>
     <view class="price-box">
-      <text>￥<text class="current">58</text> </text> 
-      <text class="yuanjia">88元</text> 
+      <text>￥<text class="current">{{presentPrice ? presentPrice : 0}}</text> </text> 
+      <text class="yuanjia">{{originalPrice ? originalPrice : 0}}元</text> 
     </view>
-    <view class="collage-num">3人团·已团356323件</view>
+    <view class="collage-num">{{data.peopleCount}}人团·已团{{data.openedGroupCount}}件</view>
   </view>
 
   <view class="jn-bg" wx:if="{{groupId || (!groupId && length > 0)}}"></view>
 
-<!--从店铺页点进来显示拼团项目详情-->
+  <!--从店铺页点进来显示拼团项目详情-->
   <view class="collage-list" wx:if="{{(!groupId) && length > 0}}">
     <view class="sub-title">小伙伴正在开团，可直接参与</view>
     <view>
-      <view wx:for="{{data.groups}}">
+      <view wx:for="{{data.openedGroups}}">
         <image src="{{item.picUrl ? item.picUrl : jnImg}}"></image>
         <view class="collage-product">
           <view class="collage-product-name">{{item.captain}}</view>
@@ -137,21 +137,25 @@
 
   <view class="jn-bg"></view>
 
-  <view class="product-detail bd">
-    <view class="product-detail-text">商品详情</view>
-    <image src="{{jnImg}}"></image>
-  </view>
+  <view class='margin-b130'>
+    <view class="product-detail bd" wx:if="{{data.picUrls && data.picUrls.length > 0}}">
+      <view class="product-detail-text">商品详情</view>
+      <image wx:for="{{data.picUrls}}" src="{{item ? item : jnImg}}"></image>
+    </view>
 
-  <view class="activity-notice bd">
-    <view class="activity-notice-text">活动须知</view>
-    <view class="notice-item">发型总监设计拼团活动周年庆</view>
-    <view class="notice-item">发型总监设计拼团活动周年庆</view>
-  </view>  
+    <view class="activity-notice bd" wx:if="{{data.activityNotes && data.activityNotes.length > 0}}">
+      <view class="notice-item" wx:for="{{data.activityNotes}}">
+        <view class="activity-notice-text">{{item.title}}</view>
+        <view wx:for="{{item.details}}" wx:for-item="notice">{{notice}}</view>
+      </view>
+    </view>  
+  </view>
 
   <view wx:if="{{!groupId}}">
-    <view class="jn-btn" wx:if="{{data.inventory > 0}}" bindtap="">一键开团 99元</view>
+    <view class="jn-btn" wx:if="{{data.product.inventory > 0}}" bindtap="onOpenGroupBtnClick">一键开团{{presentPrice}}元</view>
     <view class="jn-btn" wx:else>库存不足，可选择参团</view>
   </view>
+
   <!--通过分享进来的按钮  -->
   <view wx:else class="jn-btn">
     <view class="shared-one" wx:if="{{data.currentGroup.status === 'JOINING'}}">
