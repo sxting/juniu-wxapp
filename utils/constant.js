@@ -53,6 +53,7 @@ var constant = {
     STORE_FEE: 'STORE_FEE'
   },
   MERCHANTID : 'merchantId',
+  USER_ID: 'userId',
   CHEAP_CODE: 10170326,
   CONTACT: 18813074982,
   VERSION_NAME: 'version',

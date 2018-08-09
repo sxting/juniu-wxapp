@@ -166,8 +166,11 @@ Page({
 
 function getProductDetail() {
   let data = {
-    activityId: this.data.pinTuanId,
-    storeId: wx.getStorageSync(constant.STORE_INFO)
+    // activityId: this.data.pinTuanId,
+    activityId: '153379450814858554674',
+    storeId: wx.getStorageSync(constant.STORE_INFO),
+    belongTo: wx.getStorageSync(constant.MERCHANTID),
+    buyerId: wx.getStorageSync(constant.USER_ID)
   };
   if (this.data.groupId) {
     data.groupId = this.data.groupId
