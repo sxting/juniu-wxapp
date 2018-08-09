@@ -197,7 +197,7 @@ function getProductDetail() {
           self.setData({
             length: res.openedGroups.length
           })
-        }
+        }        
 
         let length = 0;
 
@@ -208,14 +208,14 @@ function getProductDetail() {
             data: data2
           })
           length = data2.currentGroup.picUrls.length
-        }
+        }        
 
         self.setData({
           presentPrice: res.product.activityPrice / 100,
           originalPrice: res.product.originalPrice / 100,
           joinNumber: length,
           // tel: self.data.data.storePhones[0]
-        })        
+        })                
 
         let nowTime = new Date();
 
@@ -229,7 +229,7 @@ function getProductDetail() {
           self.setData({
             imgs: imgs
           })
-        }
+        }        
 
         self.setData({
           applyStores: self.data.data.applyStores,
@@ -253,19 +253,21 @@ function getProductDetail() {
             }
           });
 
-          setInterval(function () {
-            self.data.collageList.forEach(function (item) {
-              if (new Date('2000/01/01 ' + item.time).getHours().toString() === '0' && new Date('2000/01/01 ' + item.time).getMinutes().toString() === '0' && new Date('2000/01/01 ' + item.time).getSeconds().toString() === '0') {
-                item.time = '00:00:00'
-              } else {
-                let time = new Date(new Date('2000/01/01 ' + item.time).getTime() - 1000);
-                item.time =
-                  (time.getHours().toString().length < 2 ? '0' + time.getHours() : time.getHours()) + ':' +
-                  (time.getMinutes().toString().length < 2 ? '0' + time.getMinutes() : time.getMinutes()) + ':' +
-                  (time.getSeconds().toString().length < 2 ? '0' + time.getSeconds() : time.getSeconds());
-              }
-            })
-          }, 1000);
+          if (self.data.collageList && self.data.collageList.length > 0) {
+            setInterval(function () {
+              self.data.collageList.forEach(function (item) {
+                if (new Date('2000/01/01 ' + item.time).getHours().toString() === '0' && new Date('2000/01/01 ' + item.time).getMinutes().toString() === '0' && new Date('2000/01/01 ' + item.time).getSeconds().toString() === '0') {
+                  item.time = '00:00:00'
+                } else {
+                  let time = new Date(new Date('2000/01/01 ' + item.time).getTime() - 1000);
+                  item.time =
+                    (time.getHours().toString().length < 2 ? '0' + time.getHours() : time.getHours()) + ':' +
+                    (time.getMinutes().toString().length < 2 ? '0' + time.getMinutes() : time.getMinutes()) + ':' +
+                    (time.getSeconds().toString().length < 2 ? '0' + time.getSeconds() : time.getSeconds());
+                }
+              })
+            }, 1000)
+          }; 
         }
 
         if (self.data.groupId) {
