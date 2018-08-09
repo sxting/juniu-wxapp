@@ -178,7 +178,7 @@ page {
   padding: 0 30rpx 20rpx;
   box-sizing: border-box;  
   width: 700rpx;
-  margin: 30rpx auto;
+  margin: 30rpx auto 0;
 }
 .product-detail-text, .activity-notice-text {
   height: 80rpx;
@@ -195,11 +195,15 @@ page {
 }
 
 .activity-notice {
-  margin: 0 auto 130rpx;
+  margin: 30rpx auto;
 }
 .notice-item {
   font-size: 26rpx;
   color: #999999;
+}
+
+.margin-b130 {
+  margin-bottom: 130rpx;
 }
 
 .shared-one text:first-child, .shared-two text:first-child, .shared-three text:first-child {

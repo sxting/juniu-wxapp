@@ -28,10 +28,8 @@ Page({
     collageList: [],
     imgs: [], //轮播图
     sharedPicUrl: [],
-    productName: '',
-    shops: [],
+    applyStores: [],
     token: wx.getStorageSync(constant.TOKEN),
-    loading: false,
     shopId: '',
     getUserInfo: true
   },
@@ -43,8 +41,8 @@ Page({
 
     this.setData({
       storeName: wx.getStorageSync('storeName'),
-      pinTuanId: options.pinTuanId,
-      groupId: options.groupId,
+      pinTuanId: options.activityId ? options.activityId : '',
+      groupId: options.groupId ? options.groupId : '',
       shopId: wx.getStorageSync(constant.STORE_INFO)
     })
 
@@ -155,7 +153,18 @@ Page({
 
   // 开团 
   onOpenGroupBtnClick() {
-
+    let data = this.data.data, 
+    pic = data.picUrls[0] ? data.picUrls[0] : this.data.jnImg,
+    pTId = this.data.pinTuanId, 
+    actName = data.activityName,
+    ppN = data.peopleCount,
+    dGN = data.openedGroupCount,
+      aPrice = data.product.activityPrice,
+      oPrice = data.product.originalPrice ;
+    
+    wx.navigateTo({
+      url: `/pages/collage/collage-submit/collage-submit?pic=${pic}&pinTuanId=${pTId}&activityName=${actName}&peopleNumber=${ppN}&dealGroupNumber=${dGN}&activityPrice=${aPrice}&originalPrice=${oPrice}`,
+    })
   },
 
   //参团
@@ -167,7 +176,7 @@ Page({
 function getProductDetail() {
   let data = {
     // activityId: this.data.pinTuanId,
-    activityId: '153379450814858554674',
+    activityId: '153380357486958907387',
     storeId: wx.getStorageSync(constant.STORE_INFO),
     belongTo: wx.getStorageSync(constant.MERCHANTID),
     buyerId: wx.getStorageSync(constant.USER_ID)
@@ -176,28 +185,22 @@ function getProductDetail() {
     data.groupId = this.data.groupId
   }
 
-  this.setData({
-    loading: true
-  })
   let self = this;
   collageService.getProductDetail(data).subscribe({
     next: res => {
-      self.setData({
-        loading: false
-      })
       if (res) {
         self.setData({
           data: res
         })
 
-        if (res.groups && res.groups.length) {
-          this.length = res.groups.length;
+        if (res.openedGroups && res.openedGroups.length) {
+          this.length = res.openedGroups.length;
           self.setData({
-            length: res.groups.length
+            length: res.openedGroups.length
           })
         }
 
-        let length;
+        let length = 0;
 
         if (self.data.groupId) {
           let data2 = self.data.data;
@@ -209,26 +212,29 @@ function getProductDetail() {
         }
 
         self.setData({
-          presentPrice: res.presentPrice / 100,
-          originalPrice: res.originalPrice / 100,
+          presentPrice: res.product.activityPrice / 100,
+          originalPrice: res.product.originalPrice / 100,
           joinNumber: length,
-          tel: self.data.data.storePhones[0]
-        })
+          // tel: self.data.data.storePhones[0]
+        })        
 
         let nowTime = new Date();
 
         if (self.data.data.picUrls) {
+          let imgs = []
           self.data.data.picUrls.forEach(function (item) {
-            self.data.imgs.push(
+            imgs.push(
               { url: `https://oss.juniuo.com/juniuo-pic/picture/juniuo/${item}/resize_375_210/mode_fill` }
             )
           });
+          self.setData({
+            imgs: imgs
+          })
         }
 
         self.setData({
-          productName: self.data.data.pinTuanName,
-          shops: self.data.data.shops,
-          collageList: self.data.data.groups
+          applyStores: self.data.data.applyStores,
+          collageList: self.data.data.openedGroups
         })
 
         /*倒计时*/
