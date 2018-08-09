@@ -3,23 +3,25 @@
   <view class="content-list collage-box">
     <!-- 拼团列表 -->
      <view class='collage-content-box'>
-      <view class='collage-content' wx:for="{{collageProductList}}">
-        <view class='list-collage'>
-          <view class='left-img fl'>
-            <image src='/asset/images/product.png'></image>
-          </view>
-          <view class='right-infor fl'>
-            <view class='name-collage'>发型总监设计</view>
-            <view class='price-box'>
-              <text>¥</text>
-              <text class='price-precent'>180</text>
-              <text class='price-origin'>88元</text>
+      <scroll-view scroll-y bindscrolltolower="lowerScroll">
+        <view class='collage-content' wx:for="{{collageProductList}}" wx:key="item">
+          <view class='list-collage'>
+            <view class='left-img fl'>
+              <image src='{{ item.cover?  item.cover : imgUrl }}'></image>
             </view>
-            <view class='detail-num'><text>3人团·</text>已团323件</view>
+            <view class='right-infor fl'>
+              <view class='name-collage'>{{item.activityName}}</view>
+              <view class='price-box'>
+                <text>¥</text>
+                <text class='price-precent'>{{ item.activityPrice / 100 }}</text>
+                <text class='price-origin'>{{ item.originalPrice / 100 }}元</text>
+              </view>
+              <view class='detail-num'><text>{{ item.peopleCount }}人团·</text>已团{{ item.openedGroupCount }}件</view>
+            </view>
+            <view class='go-btn' bindtap='goToCollageBtn' data-activityid="{{ item.activityId }}">去开团</view>
           </view>
-          <view class='go-btn'>去开团</view>
         </view>
-      </view>
+      </scroll-view>
     </view>
   </view> 
   <!-- 底部logo -->

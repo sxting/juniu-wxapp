@@ -21,10 +21,11 @@
   <view class='collage-box'>
     <view class='title-collage'>
       <view class="sub-title-left">
-        <view class="jn-icon icon-commodity"></view>
+        <!-- <view class="jn-icon icon-commodity"></view> -->
+        <image class='collage-icon' src='/asset/images/collage.png'></image>
         <view class="sub-title-text">拼团</view>
       </view>
-      <view class="sub-title-right" bindtap="goCollagePage">
+      <view class="sub-title-right" bindtap="goCollagePageClick">
         <view>查看更多</view>
         <view class="jn-icon icon-rightblue"></view>
       </view>

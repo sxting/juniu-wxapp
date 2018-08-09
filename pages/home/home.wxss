@@ -459,3 +459,9 @@ scroll-view {
   color: #a01df7;
   font-size: 38rpx;
 }
+.collage-icon{
+  width: 36rpx;
+  height: 34rpx;
+  vertical-align: middle;
+  margin-top:24rpx;
+}
