@@ -48,8 +48,6 @@ Page({
       shopId: wx.getStorageSync(constant.STORE_INFO)
     })
 
-    geList.call(this)
-
     if (wx.getStorageSync(constant.TOKEN)) {
       getProductDetail.call(this);
     } else {
