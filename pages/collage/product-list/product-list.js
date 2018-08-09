@@ -59,10 +59,6 @@ Page({
       url: '/pages/collage/product-detail/product-detail?activityId = ' + e.currentTarget.dataset.activityid
     })
   },
-
-  lowerScroll: function(e){
-    console.log(e)
-  },
  
   /**
    * 生命周期函数--监听页面显示
