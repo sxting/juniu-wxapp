@@ -13,6 +13,13 @@ homeService.ticketList = (data) => {
   return http.get(apiUrl, data);
 }
 
+//拼团列表
+homeService.getProductList = (data) => {
+  let apiUrl = 'http://192.168.199.26:8080' + '/consumer/activity/batchQuery.json';
+  // let apiUrl = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 + '/consumer/activity/batchQuery.json' : constant.apiUrl + '/consumer/activity/batchQuery.json';
+  return http.get(apiUrl, data);
+}
+
 homeService.storeInfoDetail = (data) => {
   let url = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 + '/member/appstore/storeInfo.json' : constant.apiUrl + '/account/appstore/app/storeInfo.json';
   return http.get(url, data)

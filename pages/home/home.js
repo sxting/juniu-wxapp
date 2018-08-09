@@ -28,6 +28,7 @@ Page({
     home: true,
     isOnLoad: false,
     getUserInfo: true,
+    collageProductList: [],//拼团列表
   },
   onShow() {
     if (this.data.isOnLoad) {
@@ -101,6 +102,12 @@ Page({
     });
   },
 
+  // 跳转到查看更多拼团列表页
+  goCollagePageClick: function (e) {
+    wx.navigateTo({
+      url: '/pages/collage/product-list/product-list'
+    })
+  },
 
   bindgetuserinfo(e) {
     let self = this;
@@ -589,6 +596,30 @@ function getStoreInfo(storId) {
         longitude: res.longitude,
       });
       wx.setStorageSync(constant.address, res.address)
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+// 获取拼团信息列表
+function getCollageListInfor(data){
+  homeService.getProductList(data).subscribe({
+    next: res => {
+      if (res) {
+        console.log(res.elements);
+        let collageArr = [];
+        if (res.elements.length > 2) {
+          let index = res.elements.length - 1;
+          let listInfor = res.elements.splice(0, 2);
+          collageArr = listInfor;
+        } else {
+          collageArr = res.data;
+        }
+        this.setData({
+          collageProductList: collageArr
+        })
+      }
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
