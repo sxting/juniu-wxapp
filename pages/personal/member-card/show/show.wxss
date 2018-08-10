@@ -41,6 +41,7 @@
   position: absolute;
   top: 200rpx;
   left: 50%;
+  text-align: center;
 }
 
 .phone-number {
