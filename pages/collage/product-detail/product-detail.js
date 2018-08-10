@@ -93,7 +93,7 @@ Page({
 
   onStoreClick() {
     wx.navigateTo({
-      url: '/pages/index/index?productId=' + this.data.pinTuanId,
+      url: '/pages/index/index?pinTuanId=' + this.data.pinTuanId,
     })
   },
 
@@ -167,9 +167,20 @@ Page({
     })
   },
 
-  //参团
+  //参团 groupId
   onGoJoinCollageClick() {
+    let data = this.data.data,
+      pic = data.picUrls[0] ? data.picUrls[0] : this.data.jnImg,
+      pTId = this.data.pinTuanId,
+      actName = data.activityName,
+      ppN = data.peopleCount,
+      dGN = data.openedGroupCount,
+      aPrice = data.product.activityPrice,
+      oPrice = data.product.originalPrice;
 
+    wx.navigateTo({
+      url: `/pages/collage/collage-submit/collage-submit?pic=${pic}&pinTuanId=${pTId}&activityName=${actName}&peopleNumber=${ppN}&dealGroupNumber=${dGN}&activityPrice=${aPrice}&originalPrice=${oPrice}&`,
+    })
   },
 })
 
