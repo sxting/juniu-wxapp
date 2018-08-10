@@ -93,7 +93,7 @@ Page({
 
   onStoreClick() {
     wx.navigateTo({
-      url: '/pages/index/index?pinTuanId=' + this.data.pinTuanId,
+      url: '/pages/index/index?pinTuanId=' + this.data.pinTuanId + '&stores=' + JSON.stringify(this.data.applyStores),
     })
   },
 
@@ -167,8 +167,8 @@ Page({
     })
   },
 
-  //参团 groupId
-  onGoJoinCollageClick() {
+  //参团 
+  onGoJoinCollageClick(e) {
     let data = this.data.data,
       pic = data.picUrls[0] ? data.picUrls[0] : this.data.jnImg,
       pTId = this.data.pinTuanId,
@@ -176,15 +176,16 @@ Page({
       ppN = data.peopleCount,
       dGN = data.openedGroupCount,
       aPrice = data.product.activityPrice,
-      oPrice = data.product.originalPrice;
+      oPrice = data.product.originalPrice,
+      groupId = e.currentTarget.dataset.groupid ? e.currentTarget.dataset.groupid : this.data.groupId;
 
     wx.navigateTo({
-      url: `/pages/collage/collage-submit/collage-submit?pic=${pic}&pinTuanId=${pTId}&activityName=${actName}&peopleNumber=${ppN}&dealGroupNumber=${dGN}&activityPrice=${aPrice}&originalPrice=${oPrice}&`,
+      url: `/pages/collage/collage-submit/collage-submit?pic=${pic}&pinTuanId=${pTId}&activityName=${actName}&peopleNumber=${ppN}&dealGroupNumber=${dGN}&activityPrice=${aPrice}&originalPrice=${oPrice}&groupId=${groupId}`,
     })
   },
 })
 
-function getProductDetail() {
+function getProductDetail() {  
   let data = {
     activityId: this.data.pinTuanId,
     storeId: wx.getStorageSync(constant.STORE_INFO),

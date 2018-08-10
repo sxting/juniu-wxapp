@@ -26,7 +26,8 @@ Page({
     areaId: '',
     productId: '',
     latitude: '',
-    longitude: ''
+    longitude: '',
+    pinTuanId: ''
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
@@ -35,6 +36,42 @@ Page({
     if (options.productId) {
       this.setData({
         productId: options.productId
+      })
+      // 获取当前地理位置
+      wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+          self.setData({
+            latitude: res.latitude,
+            longitude: res.longitude
+          })
+          getStoreListInfo.call(self);
+          tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
+        }
+      })
+    } else if (options.pinTuanId) { 
+      this.setData({
+        pinTuanId: options.pinTuanId
+      })
+      let storeList = JSON.parse(options.stores)
+      storeList.forEach(function(item) {
+        item.address = item.storeAddress
+      })
+      this.setData({
+        storeList: storeList
+      })
+    } else {
+      // 获取当前地理位置
+      wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+          self.setData({
+            latitude: res.latitude,
+            longitude: res.longitude
+          })
+          getStoreListInfo.call(self);
+          tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
+        }
       })
     }
   },
@@ -45,20 +82,6 @@ Page({
         self.setData({
           windowHeight: res.windowHeight
         });
-      }
-    })
-
-
-    // 获取当前地理位置
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        self.setData({
-          latitude: res.latitude,
-          longitude: res.longitude
-        })
-        getStoreListInfo.call(self);        
-        tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
       }
     })
 
@@ -99,7 +122,7 @@ Page({
   },
 
   routerToStoreIndex: function (e) {
-    if (this.data.productId) {
+    if (this.data.productId || this.data.pinTuanId) {
       return;
     }
     wx.setStorageSync(constant.STORE_INFO, e.currentTarget.dataset.storeid);
