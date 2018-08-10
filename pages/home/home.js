@@ -373,7 +373,6 @@ function getCollageListInfor() {
   homeService.getProductList(data).subscribe({
     next: res => {
       if (res) {
-        console.log(res.elements);
         this.data.collageProductList = res.elements;
         this.setData({
           collageProductList: this.data.collageProductList

@@ -12,7 +12,6 @@ Page({
     this.setData({
       data: options
     })
-    console.log(options);
   },
 
   // 点击提交订单
@@ -21,6 +20,21 @@ Page({
   }
 
 })
+
+// 订单提交
+function orderSubmit() {
+  let self = this;
+  let data = {
+    storeId: wx.getStorageSync(constant.STORE_INFO)
+  }
+  collageService.orderSubmit(data).subscribe({
+    next: res => {
+      
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
 
 
 
