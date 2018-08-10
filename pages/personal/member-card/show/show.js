@@ -28,7 +28,7 @@ Page({
       title: '条形码',
     });
 
-    wxbarcode.barcode('barcode', options.phone, 390, 150);
+    // wxbarcode.barcode('barcode', options.phone, 390, 150);
 
     var res = wx.getSystemInfoSync();
     this.setData({
@@ -38,7 +38,7 @@ Page({
       appLogo: wx.getStorageSync(constant.CARD_LOGO),
       barcode: `https://oss.juniuo.com/juniuo-pic/picture/juniuo/${options.barCode}/resize_187_100/mode_fill`   
     })
-    // console.log(this.data.barcode);
+    console.log(this.data.barcode);
     if (res.windowWidth > 320) {
       this.setData({
         barWidth: res.windowWidth /4
