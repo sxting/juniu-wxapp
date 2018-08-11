@@ -370,7 +370,10 @@ function logIn(code, appid, rawData) {
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,
-        success: function (res) {}
+        success: function (res) {
+          getProductDetail.call(self);
+          getStoreInfo.call(self)
+        }
       })
     },
     error: err => errDialog(err),

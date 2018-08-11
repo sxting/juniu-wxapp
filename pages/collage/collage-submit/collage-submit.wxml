@@ -34,7 +34,7 @@
     </view>
   </view>
 
-  <view class="order-submit" >确认支付</view>
+  <view class="order-submit" bindtap='onSubmitClick'>确认支付</view>
 </view> 
 
 <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 

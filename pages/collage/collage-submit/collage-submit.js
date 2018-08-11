@@ -1,4 +1,10 @@
 
+import { collageService } from '../shared/collage.service';
+import { errDialog, loading } from '../../../utils/util';
+import { constant } from '../../../utils/constant';
+import { homeService } from '../../home/shared/home.service';
+import { service } from '../../../service';
+
 Page({
   data: {
     jnImg: '/asset/images/product.png',
@@ -16,7 +22,7 @@ Page({
 
   // 点击提交订单
   onSubmitClick() {
-
+    orderSubmit.call(this);
   }
 
 })
@@ -27,7 +33,7 @@ function orderSubmit() {
   let data = {
     storeId: wx.getStorageSync(constant.STORE_INFO)
   }
-  collageService.orderSubmit(data).subscribe({
+  collageService.pay(data).subscribe({
     next: res => {
       
     },
