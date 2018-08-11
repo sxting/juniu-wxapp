@@ -50,7 +50,7 @@ Page({
 
   goMyCollageOrder() {
     wx.navigateTo({
-      url: '/pages/personal/order-form/order-form',
+      url: '/pages/personal/collage-order/order/order-list',
     })
   },
 
