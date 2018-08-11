@@ -374,6 +374,11 @@ function getCollageListInfor() {
     next: res => {
       if (res) {
         console.log(res.elements);
+        res.elements.forEach(function(item){
+          if (item.activityName && item.activityName.length > 8) {
+            item.activityName = item.activityName.substring(0, 8) + '...';
+          }
+        })
         this.data.collageProductList = res.elements;
         this.setData({
           collageProductList: this.data.collageProductList

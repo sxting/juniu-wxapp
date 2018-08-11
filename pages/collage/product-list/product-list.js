@@ -35,13 +35,18 @@ Page({
       storeId: this.data.storeId,
       belongTo: this.data.belongTo,
       buyerId: this.data.buyerId,
-      pageSize: 10,
+      pageSize: 1000,
       platform: 'WECHAT_SP'
     }
     collageService.getProductList(data).subscribe({
       next: res => {
         if(res){
           console.log(res.elements);
+          res.elements.forEach(function(item){
+            if (item.activityName && item.activityName.length > 8){
+              item.activityName = item.activityName.substring(0, 8) + '...';
+            }
+          })
           this.setData({
             collageProductList: res.elements
           })
