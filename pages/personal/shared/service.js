@@ -43,6 +43,13 @@ personalService.myTicket = (data) => {
   return http.get(url, data);
 }
 
+// 我的拼团订单详情页面
+personalService.getCollageOrderDetail = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/consumer/pintuan/order.json';
+  return http.get(url)
+}
+
 module.exports = {
   personalService: personalService
 }

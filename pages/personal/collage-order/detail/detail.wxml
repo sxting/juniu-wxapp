@@ -68,7 +68,7 @@
         <view wx:if="{{collageStatus === 'JOINING'}}">
           <view class="title-images">距结束时间仅剩</view>
           <view class="times">
-            <text>16</text>:<text>16</text>:<text>20</text>
+            <text>{{restHour}}</text>:<text>{{restMinute}}</text>:<text>{{restSecond}}</text>
           </view>
         </view>
         <!--大于四人拼团-->
@@ -81,10 +81,6 @@
             <view class="jn-icon icon-qm"></view>
           </view>
           <collage-portrait class="fl" fleg='' collageNumber="{{ collageNumber }}"> </collage-portrait> 
-
-          <!-- <view class="special-symbol fl">
-            <view class="jn-icon icon-diandian"></view>
-          </view> -->
         </view>
         <!--四人拼团-->
         <view class="images-boxes-collages clearfix" wx:if="{{collageNumber === 4 && collageStatus !== 'FINISH'}}">
@@ -120,8 +116,9 @@
           </view>
         </view>
         <!--拼团中-->
-        <view class="btns_add" wx:if="{{collageStatus === 'JOINING'}}">
-          <text class="invite-btns">邀请好友参团</text>
+        <view class="btns_add" wx:if="{{collageStatus === 'JOINING'}}" bindtap='onShareAppMessage'>
+          <!-- <text class="invite-btns">邀请好友参团</text> -->
+           <button class="invite-btns" open-type="share">邀请好友参团</button>
         </view>
 
         <!--拼团失败-->
