@@ -4,6 +4,7 @@
   padding-bottom: 100rpx;
   min-height: 100vh;
   box-sizing: border-box;
+  font-family: PingFangSC-Regular;
 }
 .tab {
   height: 88rpx;
@@ -86,7 +87,7 @@
   font-size: 40rpx;
 }
 .right-infor view:nth-of-type(2){
-  line-height: 60rpx;
+  line-height: 50rpx;
   font-size: 26rpx
 }
 .remaining-time{
@@ -113,17 +114,36 @@
 }
 .btn-box text{
   display: inline-block;
-  padding: 14rpx 28rpx;
   background-color: #FFFFFF;
   border: 2rpx solid #FF6600;
   border-radius: 32rpx;
-  margin-top: 16rpx
+  margin-top: 16rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  text-align: center
 }
 .btn-box text.cancel-btn{
   color: #999999;
   font-size: 26rpx;
   border: 2rpx solid #999999;
-  margin-right: 20rpx
+  margin-right: 20rpx;
+  width: 126rpx;
+}
+.btn-box text.pay-btn{
+  width: 160rpx;
+}
+.btn-box button.invent-btn{
+  width: 212rpx;
+  display: inline-block;
+  background-color: #FFFFFF;
+  border: 2rpx solid #FF6600;
+  border-radius: 32rpx;
+  margin-top: 16rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  font-size: 26rpx;
+  color: #FF6600;
+  text-align: center
 }
 .jn-bottom {
   background: #fff;
