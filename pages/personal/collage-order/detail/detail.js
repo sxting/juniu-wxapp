@@ -1,10 +1,9 @@
 import { personalService } from '../../shared/service.js';
 import { errDialog, loading } from '../../../../utils/util';
+import { constant } from '../../../../utils/constant'
 
 Page({
-  /**
-   * 页面的初始数据
-   */
+  /*** 页面的初始数据 */
   data: {
     orderNo: '',
     pictureUrl: '/asset/images/product.png',
@@ -25,12 +24,11 @@ Page({
     remainingCollages: [],
     settleCode: '',
     voucherOrderTime: '',
-    voucherStatus: ''
+    voucherStatus: '',
+    applyStores: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  /*** 生命周期函数--监听页面加载 */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '订单详情',
@@ -38,19 +36,12 @@ Page({
     this.setData({
       orderNo: options.orderNo ? options.orderNo : ''
     })
-    // 调取订单详情接口
+    /** 调取订单详情接口 */
     getCollageOrderDetail.call(this);
   },
 
-  /**
-   * 邀请好友参团
-   */
+  /*** 邀请好友参团 */
   onShareAppMessage: function (res) {
-    console.log(0);
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
     return {
       title: wx.getStorageSync('订单分享'),
       path: '/pages/collage/product-detail/product-detail?groupId='+ this.data.groupId + '&activityId=' + this.data.activityId + 'type=share',
@@ -65,17 +56,39 @@ Page({
     }
   },
 
-  // 拨打电话
+  /** 拨打电话 **/
   onTelClick() {
     let self = this;
     wx.makePhoneCall({
       phoneNumber: self.data.phone
     })
   },
+
+  /** 点击复制按钮 **/
+  copyTextBtn(e){
+    let copyData = e.currentTarget.dataset.copydata;
+    wx.setClipboardData({
+      data: copyData,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            console.log(res.data) // data
+          }
+        })
+      }
+    })
+  },
+
+  /** 适用门店 */ 
+  storeListClick(){
+    wx.navigateTo({
+      url: '/pages/index/index?pinTuanId=' + this.data.activityId + '&stores=' + JSON.stringify(this.data.applyStores),
+    })
+  }
+
 })
 
-
-// 获取订单详情页面
+/** 获取订单详情页面 */
 function getCollageOrderDetail() {
   let self = this;
   let data = {
@@ -99,7 +112,7 @@ function getCollageOrderDetail() {
     applyStores: [
       {
         current: true,
-        storeAddress: '学清路静淑里6号楼底商',
+        storeAddress: '学清路静淑里6号楼底商oooooo',
         storeId: '8888888888',
         storeName: '丽韵尚度美发沙龙',
         storePhones: [
@@ -118,8 +131,8 @@ function getCollageOrderDetail() {
     groupNo: '21667439824673289497',
     groupStatus: '',
     orderNo: '21667439824673289488',
-    orderStatus: 'CLOSE',
-    orderTime: '2018-08-11 12:30:16',
+    orderStatus: 'JOINING',
+    orderTime: '2018-08-13 22:30:16',
     paymentPrice: 10000,
     peopleCount: 10,
     voucher: {
@@ -133,15 +146,16 @@ function getCollageOrderDetail() {
       settleTime: '2018-08-11T06:58:11.936Z'
     }
   };
-  let remainingNumber = res.currentGroup ? Number(res.peopleCount) - Number(res.currentGroup.picUrls.length) : 0;//剩余拼团人数
-  /*图片逻辑*/
+  /** 剩余拼团人数 ****/
+  let remainingNumber = res.currentGroup ? Number(res.peopleCount) - Number(res.currentGroup.picUrls.length) : 0;
+  /*** 图片逻辑 ***/
   let collagesImage = res.currentGroup ? res.currentGroup.picUrls : [];
   if (res.peopleCount > 4) {
     this.data.arrCollageImageShow = collagesImage.slice(0, 3);
   } else {
     this.data.arrCollageImageShow = collagesImage;
   }
-  /* 未拼团图像*/
+  /*** 未拼团图像 ****/
   let remainingCollagesArr = [];
   if (remainingNumber > 0 && res.currentGroup) {
     if (Number(res.peopleCount) > 4 && Number(res.currentGroup.picUrls.length) === 1) {
@@ -154,7 +168,6 @@ function getCollageOrderDetail() {
         let list = '';
         remainingCollagesArr.push(list);
       }
-      return;
     } else if (Number(res.peopleCount) > 4 && Number(res.currentGroup.picUrls.length) >= 3) {
       remainingCollagesArr = [];
     } else {
@@ -164,9 +177,9 @@ function getCollageOrderDetail() {
       }
     }
   }
-  /* 拼团成功 */
+  /*****  拼团成功  ***/
   let settleCode = res.voucher ? res.voucher.settleCode : '';
-  // let voucherOrderTime = res.voucher ? formatDateTime.call(self,new Date(res.voucher.settleTime.replace(/-/g, '/'))) : '';
+  // // let voucherOrderTime = res.voucher ? formatDateTime.call(self,new Date(res.voucher.settleTime.replace(/-/g, '/'))) : '';
   let voucherOrderTime = res.voucher.settleTime;
   let voucherStatus = '';//拼团成功以后的状态
   if (res.orderStatus == 'FINISH') {
@@ -177,58 +190,94 @@ function getCollageOrderDetail() {
     } else if (res.voucher.settleStatus === 'EXPIRE_REFUND') {
       voucherStatus = '已过期';
     } else {
-      voucherStatus = '已退款';
+      voucherStatus = '已退款';//REFUND
     }
   }
-
-    this.setData({
-      activityName: res.activityName.length > 8 ? res.activityName.substring(0, 8) + '...' : res.activityName,
-      collageStatus: res.orderStatus,
-      orderDetailArr: res,
-      activityId: res.activityId,
-      collageNumber: res.peopleCount,
-      phone: res.applyStores[0].storePhones[0],
-      hadCollageNumber: res.currentGroup.picUrls.length,
-      remainingNumber: remainingNumber,
-      arrCollageImageShow: this.data.arrCollageImageShow,
-      remainingCollages: remainingCollagesArr,
-      settleCode: settleCode,
-      voucherOrderTime: voucherOrderTime,
-      voucherStatus: voucherStatus
-    })
-    console.log(this.data.arrCollageImageShow);
-    // 拼团数据
-    let expireTime = '2018-08-11 20:14:18';
-    let time = new Date(expireTime).getTime() - new Date().getTime();
+  this.setData({
+    activityName: res.activityName.length > 8 ? res.activityName.substring(0, 8) + '...' : res.activityName,
+    collageStatus: res.orderStatus,
+    orderDetailArr: res,
+    activityId: res.activityId,
+    collageNumber: res.peopleCount,
+    phone: res.applyStores[0].storePhones[0],
+    hadCollageNumber: res.currentGroup.picUrls.length,
+    remainingNumber: remainingNumber,
+    arrCollageImageShow: this.data.arrCollageImageShow,
+    remainingCollages: remainingCollagesArr,
+    settleCode: settleCode,
+    voucherOrderTime: voucherOrderTime,
+    voucherStatus: voucherStatus,
+    applyStores: res.applyStores
+  })
+  /** 拼团数据 **/
+  let countDownTime = '';
+  let expireTime = '2018-08-13 20:14:18';
+  let time = new Date(expireTime).getTime() - new Date().getTime();
+  if (time <= 0) {
+    countDownTime = '00:00:00'
+  }else{
     let hours = parseInt(time / 1000 / 60 / 60 + '');
     let minutes = parseInt(time / 1000 / 60 - hours * 60 + '');
     let seconds = parseInt(time / 1000 - minutes * 60 - hours * 3600 + '');
-    let countDownTime = (hours.toString().length < 2 ? '0' + hours : hours) + ':' +
+    countDownTime = (hours.toString().length < 2 ? '0' + hours : hours) + ':' +
       (minutes.toString().length < 2 ? '0' + minutes : minutes) + ':' +
       (seconds.toString().length < 2 ? '0' + seconds : seconds);
-    this.setData({
-      restHour: hours.toString().length < 2 ? '0' + hours : hours,
-      restMinute: minutes.toString().length < 2 ? '0' + minutes : minutes,
-      restSecond: seconds.toString().length < 2 ? '0' + seconds : seconds,
-    })
-    /*倒计时*/
-    let downTime = '2000/01/01';
-    let timer = setInterval(function () {
-      if (new Date(downTime + ' ' + countDownTime).getHours().toString() === '0' && new Date(downTime + ' ' + countDownTime).getMinutes().toString() === '0' && new Date(downTime + ' ' + countDownTime).getSeconds().toString() === '0') {
-        countDownTime = '00:00:00';
-        clearInterval(timer);
-      } else {
-        let times = new Date(new Date(downTime + ' ' + countDownTime).getTime() - 1000);
-        countDownTime =
-          (times.getHours().toString().length < 2 ? '0' + times.getHours() : times.getHours()) + ':' +
-          (times.getMinutes().toString().length < 2 ? '0' + times.getMinutes() : times.getMinutes()) + ':' +
-          (times.getSeconds().toString().length < 2 ? '0' + times.getSeconds() : times.getSeconds());
-      }
-      self.setData({
-        restHour: countDownTime.substring(0, 2),
-        restMinute: countDownTime.substring(3, 5),
-        restSecond: countDownTime.substring(6)
-      })
-    }, 1000)
-
   }
+  console.log(countDownTime);
+  this.setData({
+    restHour: countDownTime.substring(0, 2),
+    restMinute: countDownTime.substring(3, 5),
+    restSecond: countDownTime.substring(6)
+  })
+  /* 倒计时 */
+  let downTime = '2000/01/01';
+  let timer = setInterval(function () {
+    if (new Date(downTime + ' ' + countDownTime).getHours().toString() === '0' && new Date(downTime + ' ' + countDownTime).getMinutes().toString() === '0' && new Date(downTime + ' ' + countDownTime).getSeconds().toString() === '0') {
+      countDownTime = '00:00:00';
+      clearInterval(timer);
+    } else {
+      let times = new Date(new Date(downTime + ' ' + countDownTime).getTime() - 1000);
+      countDownTime =
+        (times.getHours().toString().length < 2 ? '0' + times.getHours() : times.getHours()) + ':' +
+        (times.getMinutes().toString().length < 2 ? '0' + times.getMinutes() : times.getMinutes()) + ':' +
+        (times.getSeconds().toString().length < 2 ? '0' + times.getSeconds() : times.getSeconds());
+    }
+    self.setData({
+      restHour: countDownTime.substring(0, 2),
+      restMinute: countDownTime.substring(3, 5),
+      restSecond: countDownTime.substring(6)
+    })
+  }, 1000)
+}
+
+/*** 立即支付 ***/
+function orderPayment() {
+  let self = this;
+  let data = {
+    activityId: this.data.activityId,
+    appid: this.data.appid,
+    storeId: wx.getStorageSync(constant.STORE_INFO)
+  }
+  personalService.paymentSubmit(data).subscribe({
+    next: res => {
+      console.log(res);
+      if (res) {
+        /** 微信支付 */
+        wx.requestPayment({
+          success: function (res) {
+
+          },
+          fail: function (result) {
+            console.log(result);
+          },
+          complete: function (result) {
+            console.log(result);
+          }
+        })
+      }
+
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}

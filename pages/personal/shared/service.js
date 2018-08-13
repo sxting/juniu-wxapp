@@ -56,6 +56,18 @@ personalService.getCollageListInfor = (data) => {
   return http.get(url)
 }
 
+// 拼团订单取消
+personalService.cancelFunction = (data) => {
+  let url = API + '/consumer/activity/order/cancel.json';
+  return http.get(url)
+}
+
+// 订单支付
+personalService.paymentSubmit = (data) => {
+  let url = API + '/consumer/activity/order/payment.json';
+  return http.get(url)
+}
+
 module.exports = {
   personalService: personalService
 }

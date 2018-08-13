@@ -47,7 +47,7 @@
         <text>{{ collageNumber }}人拼团</text>
         <text class="notes">(已有{{ hadCollageNumber }}人参团,还差{{ remainingNumber }}人)</text>
       </view>
-      <collage-portrait class="fr" fleg='more' collageNumber="{{ collageNumber }}"> </collage-portrait> 
+      <collage-portrait class="fr" fleg='more' collageNumber="{{ collageNumber }}" arrCollageImage="{{ arrCollageImageShow }}"></collage-portrait> 
     </view>
     <!--四人及四人以下拼团的时候  头部-->
     <view class="collage-person clearfix" wx:if="{{collageNumber <= 4 && collageStatus === 'JOINING'}}">
@@ -80,7 +80,7 @@
           <view class="special-symbol fl" wx:for="{{remainingCollages}}">
             <view class="jn-icon icon-qm"></view>
           </view>
-          <collage-portrait class="fl" fleg='' collageNumber="{{ collageNumber }}"> </collage-portrait> 
+          <collage-portrait class="fl" fleg='' collageNumber="{{ collageNumber }}" arrCollageImage="{{ arrCollageImageShow }}"></collage-portrait> 
         </view>
         <!--四人拼团-->
         <view class="images-boxes-collages clearfix" wx:if="{{collageNumber === 4 && collageStatus !== 'FINISH'}}">
@@ -179,8 +179,14 @@
     <view class='order-detail-box'>
       <view class="order-detail">
         <view wx:if="{{collageStatus != 'JOINING'}}"><text>交易号：</text>{{orderDetailArr.transNo}}</view>
-        <view wx:if="{{collageStatus != 'PRE_PAYMENT'&&collageStatus != 'PAY_TIMEOUT'}}"><text>团单编号：</text>{{orderDetailArr.groupNo}}</view>
-        <view><text>订单编号：</text>{{orderDetailArr.orderNo}}</view>
+        <view wx:if="{{collageStatus != 'PRE_PAYMENT'&&collageStatus != 'PAY_TIMEOUT'}}">
+          <text>团单编号：</text>{{orderDetailArr.groupNo}}
+          <text class='copy-btn' data-copydata="{{ orderDetailArr.orderNo }}"  bindtap='copyTextBtn'>复制</text>
+        </view>
+        <view>
+          <text>订单编号：</text>{{orderDetailArr.orderNo}}
+          <text class='copy-btn' data-copydata="{{ orderDetailArr.orderNo }}" bindtap='copyTextBtn'>复制</text>
+        </view>
         <view><text>下单时间：</text>{{orderDetailArr.orderTime}}</view>
       </view>
     </view>
