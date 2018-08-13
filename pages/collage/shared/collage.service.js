@@ -7,9 +7,9 @@ let API = constant.apiUrlTwo + 'pintuan';
 API = 'http://123.56.1.184:2000'; 
 
 
-// 下单  /consumer/pintuan/pay.json
-collageService.pay = (data) => {
-  let apiUrl = API + '/consumer/activity/order/tempPaymentSuccess.json';
+// 下单  /consumer/activity/order/payment.json
+collageService.payment = (data) => {
+  let apiUrl = API + '/consumer/activity/order/payment.json';
   return http.get(apiUrl, data);
 }
 

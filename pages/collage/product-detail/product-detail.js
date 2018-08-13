@@ -190,7 +190,8 @@ function getProductDetail() {
     activityId: this.data.pinTuanId,
     storeId: wx.getStorageSync(constant.STORE_INFO),
     belongTo: wx.getStorageSync(constant.MERCHANTID),
-    buyerId: wx.getStorageSync(constant.USER_ID)
+    buyerId: wx.getStorageSync(constant.USER_ID),
+    platform: 'WECHAT_SP'
   };
   if (this.data.groupId) {
     data.groupId = this.data.groupId
