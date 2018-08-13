@@ -1,6 +1,7 @@
 import { constant } from '../../../utils/constant';
 import { http } from '../../../utils/http';
 let personalService = {};
+let API = 'http://123.56.1.184:2000';
 
 // 查询我的订单详情  /app/order/detail.json
 personalService.getOrderDetail = (data) => {
@@ -45,8 +46,13 @@ personalService.myTicket = (data) => {
 
 // 我的拼团订单详情页面
 personalService.getCollageOrderDetail = (data) => {
-  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
-  let url = api + '/consumer/pintuan/order.json';
+  let url = API + '/consumer/activity/order/detail.json';
+  return http.get(url)
+}
+
+// 我的拼团订单列表页面
+personalService.getCollageListInfor = (data) => {
+  let url = API + '/consumer/activity/order/batchQuery.json';
   return http.get(url)
 }
 

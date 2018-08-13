@@ -253,7 +253,6 @@ page{
   border-radius: 8rpx;
 }
 .footer .order-detail-box .order-detail view {
-  display: inline-block;
   margin-bottom: 30rpx;
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
