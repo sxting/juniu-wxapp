@@ -92,7 +92,34 @@ page {
 }
 
 
+.tel-box {
+  height: 88rpx;
+  line-height: 88rpx;
+  position: relative;
+  width:690rpx;
+  margin:30rpx auto;
+  font-size:26rpx;
+  color:#333;
+  padding:0 20rpx;
+  box-sizing:border-box;
+}
 
-
+.tel-box input {
+    height: 88rpx;
+    line-height: 88rpx;
+    position: absolute;
+    left: 130rpx;
+    top: 0;
+    width: 220rpx;
+}
+.placeholder {
+    font-size: 26rpx;
+    color: #999999;
+}
+.tel-btn {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
 
 

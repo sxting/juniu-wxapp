@@ -46,9 +46,7 @@ Page({
       shopId: wx.getStorageSync(constant.STORE_INFO)
     })
 
-    if (wx.getStorageSync(constant.TOKEN)) {
-      getProductDetail.call(this);
-    } else {
+    if (options.type == 'share') {
       let self = this;
       wx.login({
         success: function (result) {
@@ -81,6 +79,8 @@ Page({
         },
         complete: function (res) { },
       });
+    } else {
+      getProductDetail.call(this);
     }
    
   },
@@ -190,7 +190,8 @@ function getProductDetail() {
     activityId: this.data.pinTuanId,
     storeId: wx.getStorageSync(constant.STORE_INFO),
     belongTo: wx.getStorageSync(constant.MERCHANTID),
-    buyerId: wx.getStorageSync(constant.USER_ID)
+    buyerId: wx.getStorageSync(constant.USER_ID),
+    platform: 'WECHAT_SP'
   };
   if (this.data.groupId) {
     data.groupId = this.data.groupId

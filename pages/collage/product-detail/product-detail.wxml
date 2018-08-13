@@ -24,7 +24,7 @@
           <view class="collage-product-name">{{item.captain}}</view>
           <view class="collage-product-num">还差{{(item.totalPeopleNumber - item.groupPeopleNumber) ? (item.totalPeopleNumber - item.groupPeopleNumber) : 0}}人拼团成功 剩余{{item.time}}</view>
         </view>
-        <view class="collage-btn" wx:if="{{item.totalPeopleNumber > item.groupPeopleNumber}}" bindtap="onGoJoinCollageClick" data-item="{{item}}">去参团</view>
+        <view class="collage-btn" wx:if="{{item.totalPeopleNumber > item.groupPeopleNumber}}" bindtap="onGoJoinCollageClick" data-groupid="{{item.groupId}}">去参团</view>
         <view class="collage-btn" wx:if="{{item.totalPeopleNumber === item.groupPeopleNumber}}">已成功</view>
       </view>
     </view>

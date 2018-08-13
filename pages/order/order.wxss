@@ -175,6 +175,9 @@
     left: 110rpx;
     top: 0;
 }
+.tel-box input {
+    width: 220rpx;
+}
 .placeholder {
     font-size: 26rpx;
     color: #999999;
