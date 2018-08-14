@@ -43,7 +43,7 @@ Page({
   /*** 邀请好友参团 */
   onShareAppMessage: function (res) {
     return {
-      title: wx.getStorageSync('订单分享'),
+      title: wx.getStorageSync('邀请好友'),
       path: '/pages/collage/product-detail/product-detail?groupId='+ this.data.groupId + '&activityId=' + this.data.activityId + 'type=share',
       success: function (res) {
         // 转发成功
@@ -92,7 +92,8 @@ Page({
 function getCollageOrderDetail() {
   let self = this;
   let data = {
-    orderNo: this.data.orderNo,
+    // orderNo: this.data.orderNo,
+    orderNo: '1534216756009472809519',
     platform: 'WECHAT_SP'
   }
   personalService.getCollageOrderDetail(data).subscribe({
@@ -132,8 +133,7 @@ function getCollageOrderDetail() {
         }
         /*****  拼团成功  ***/
         let settleCode = res.voucher ? res.voucher.settleCode : '';
-        // // let voucherOrderTime = res.voucher ? formatDateTime.call(self,new Date(res.voucher.settleTime.replace(/-/g, '/'))) : '';
-        let voucherOrderTime = res.voucher.settleTime;
+        let voucherOrderTime = res.voucher ? res.voucher.settleTime : '';
         let voucherStatus = '';//拼团成功以后的状态
         if (res.orderStatus == 'FINISH') {
           if (res.voucher.settleStatus === 'VALID') {
@@ -151,9 +151,10 @@ function getCollageOrderDetail() {
           collageStatus: res.orderStatus,
           orderDetailArr: res,
           activityId: res.activityId,
+          groupId: res.groupNo,
           collageNumber: res.peopleCount,
           phone: res.applyStores[0].storePhones[0],
-          hadCollageNumber: res.currentGroup.picUrls.length,
+          hadCollageNumber: res.currentGroup ? res.currentGroup.picUrls.length : 0,
           remainingNumber: remainingNumber,
           arrCollageImageShow: this.data.arrCollageImageShow,
           remainingCollages: remainingCollagesArr,
@@ -223,7 +224,6 @@ function orderPayment() {
         /** 微信支付 */
         wx.requestPayment({
           success: function (res) {
-
           },
           fail: function (result) {
             console.log(result);

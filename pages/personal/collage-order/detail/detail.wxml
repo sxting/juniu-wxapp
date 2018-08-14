@@ -25,7 +25,7 @@
         <view class="right-box fl">
           <view class="top-items-name">
             <text class="items-name">{{ activityName }}</text>
-            <text class="price">{{ orderDetailArr.paymentPrice? orderDetailArr.paymentPrice / 100 : 0 }}元</text>
+            <text class="price">{{ orderDetailArr.activityPrice? orderDetailArr.activityPrice / 100 : 0 }}元</text>
           </view>
           <view>
             <text class="collage-number">{{ collageNumber }}人团·</text>
@@ -37,7 +37,7 @@
   </view>
   <view class="real-payment clearfix">
     <text class="fl">实付款</text>
-    <view class="fr detail-pay-for">{{ orderDetailArr.paymentPrice? orderDetailArr.paymentPrice / 100 : 0 }}<text class="unit">元</text></view>
+    <view class="fr detail-pay-for">{{ orderDetailArr.activityPrice? orderDetailArr.activityPrice / 100 : 0 }}<text class="unit">元</text></view>
   </view>
   <!-- 中间部分 -->
   <view class='center-content' wx:if="{{collageStatus === 'JOINING'||collageStatus === 'CLOSE'}}">
@@ -178,7 +178,6 @@
     </view>
     <view class='order-detail-box'>
       <view class="order-detail">
-        <view wx:if="{{collageStatus != 'JOINING'}}"><text>交易号：</text>{{orderDetailArr.transNo}}</view>
         <view wx:if="{{collageStatus != 'PRE_PAYMENT'&&collageStatus != 'PAY_TIMEOUT'}}">
           <text>团单编号：</text>{{orderDetailArr.groupNo}}
           <text class='copy-btn' data-copydata="{{ orderDetailArr.orderNo }}"  bindtap='copyTextBtn'>复制</text>

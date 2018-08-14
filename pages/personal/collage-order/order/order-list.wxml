@@ -14,10 +14,10 @@
         </view>
         <view class='detail-infor clearfix'>
           <view class='img-box fl'>
-            <image src='{{ item.imageUrl? item.imageUrl : productImg }}'></image>
+            <image src='{{ item.picUrl? item.picUrl : productImg }}'></image>
           </view>
           <view class='right-infor fl'>
-            <view>{{item.activityName}}</view>
+            <view>{{item.activityName? item.activityName : '暂无拼团名称'}}</view>
             <view>下单时间：{{ item.orderTime }}</view>
             <view>¥<text>{{ item.orderAmount / 100 }}</text></view>
           </view>
@@ -34,8 +34,9 @@
         <text class='cancel-btn' data-orderno="{{ item.orderNo }}" bindtap='cancelClick'>取  消</text>
         <text class='pay-btn' data-orderno="{{ item.orderNo }}" bindtap='payImmediate'>立即支付</text>
       </view>
-      <view class='btn-box' wx:if="{{ item.orderStatus === 'JOINING_GROUP' }}" bindtap='onShareAppMessage'>
-        <button class="invent-btn" open-type="share" data-orderno="{{ item.orderNo }}">邀请好友参团</button>
+      <!-- wx:if="{{ item.orderStatus === 'JOINING_GROUP' }}" -->
+      <view class='btn-box' bindtap='onShareAppMessage'>
+        <button class="invent-btn" open-type="share" data-activityid="{{ item.activityId }}" data-groupid='{{ item.groupNo }}'>邀请好友参团</button>
       </view>
       <view class='btn-box' wx:if="{{ item.orderStatus === 'SETTLE' }}" bindtap='evaluationImmediate' data-orderno="{{ item.orderNo }}">
         <text class='pay-btn'>立即评价</text>

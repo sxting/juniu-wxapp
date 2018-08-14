@@ -34,10 +34,14 @@ Page({
     productImg: '/asset/images/product.png',
     collageListInfor: [],
     groupId: '',
+    storeId: ''
   },
 
   onLoad: function () {
     let self = this;
+    this.setData({
+      storeId: wx.getStorageSync(constant.STORE_INFO)
+    })
     wx.setNavigationBarTitle({
       title: '拼团订单',
     })
@@ -66,7 +70,8 @@ Page({
     console.log(e.currentTarget.dataset.orderno);
     let orderId = e.currentTarget.dataset.orderno;
     let data = {
-      orderNo: orderId
+      orderNo: orderId,
+      platform: 'WECHAT_SP'
     }
     personalService.cancelFunction(data).subscribe({
       next: res => {
@@ -84,19 +89,23 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (e,res) {
-    console.log(res);
-    let activityId = e.target.dataset.orderno;
-    return {
-      title: wx.getStorageSync('订单分享'),
-      path: '/pages/collage/product-detail/product-detail?groupId=' + this.data.groupId + '&activityId=' + activityId + 'type=share',
-      success: function (res) {
-        // 转发成功
-        console.log(res);
-      },
-      fail: function (res) {
-        // 转发失败
-        console.log(res);
+  onShareAppMessage: function (res) {
+    let self = this;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      let activityId = res.target.dataset.activityid;
+      let groupNo = res.target.dataset.groupid;
+      return {
+        title: wx.getStorageSync('订单分享'),
+        path: '/pages/collage/product-detail/product-detail?groupId=' + groupNo + '&activityId=' + activityId + '&storeId=' + self.data.storeId + 'type=share',
+        success: function (res) {
+          // 转发成功
+          console.log(res);
+        },
+        fail: function (res) {
+          // 转发失败
+          console.log(res);
+        }
       }
     }
   },
@@ -124,7 +133,8 @@ function getCollageOrderList(){
         console.log(res);
         let arrCollagesList = res.elements ? res.elements : [];
         arrCollagesList.forEach(function(item){
-          item.activityName = item.activityName.length > 8 ? item.activityName.substring(0, 8) + '...' : item.activityName;
+          item.activityName = item.activityName&&item.activityName.length > 8 ? item.activityName.substring(0, 8) + '...' : item.activityName;
+          item.picUrl = item.imageUrl ? constant.OSS_IMAGE_URL + `${item.imageUrl}/resize_750_360/mode_fill` : '';
         })
         this.setData({
           collageListInfor: arrCollagesList
@@ -142,7 +152,8 @@ function orderPayment() {
   let data = {
     activityId: this.data.activityId,
     appid: this.data.appid,
-    storeId: wx.getStorageSync(constant.STORE_INFO)
+    storeId: wx.getStorageSync(constant.STORE_INFO),
+    platform: 'WECHAT_SP'
   }
   personalService.paymentSubmit(data).subscribe({
     next: res => {
