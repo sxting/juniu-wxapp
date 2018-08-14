@@ -3,7 +3,6 @@ import { errDialog, loading } from '../../../../utils/util';
 import { constant } from '../../../../utils/constant'
 
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -114,37 +113,16 @@ Page({
 /**  获取拼团列表 ***/ 
 function getCollageOrderList(){
   let data = {
-    belongTo: wx.getStorageSync(constant.MERCHANTID),
-    buyerId: wx.getStorageSync(constant.USER_ID),
+    // belongTo: wx.getStorageSync(constant.MERCHANTID),
+    // buyerId: wx.getStorageSync(constant.USER_ID),
+    platform: 'WECHAT_SP'
   }
+  console.log(data);
   personalService.getCollageListInfor(data).subscribe({
     next: res => {
       if (res) {
         console.log(res);
-        let arrCollagesList = [
-          {
-            activityName: '染烫护理三合一套餐000',
-            groupStatus: 'string',
-            imageUrl: '',
-            orderAmount: 20000,
-            orderNo: '11111111',
-            orderStatus: 'PRE_PAYMENT',
-            orderTime: '2018-08-12 09:10:33',
-            settleStatus: 'string',
-            tabStatus: 'PRE_PAYMENT'
-          },
-          {
-            activityName: '染烫护理三合一套11111',
-            groupStatus: 'string',
-            imageUrl: '',
-            orderAmount: 8899,
-            orderNo: '222222222',
-            orderStatus: 'JOINING_GROUP',
-            orderTime: '2018-08-12 09:10:33',
-            settleStatus: 'string',
-            tabStatus: 'string'
-          },
-        ];
+        let arrCollagesList = res.elements ? res.elements : [];
         arrCollagesList.forEach(function(item){
           item.activityName = item.activityName.length > 8 ? item.activityName.substring(0, 8) + '...' : item.activityName;
         })
@@ -156,7 +134,6 @@ function getCollageOrderList(){
     error: err => errDialog(err),
     complete: () => wx.hideToast()
   })
-
 }
 
 /*** 立即支付 ***/ 

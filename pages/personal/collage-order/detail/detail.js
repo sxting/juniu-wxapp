@@ -92,162 +92,120 @@ Page({
 function getCollageOrderDetail() {
   let self = this;
   let data = {
-    orderNo: this.data.orderNo
+    orderNo: this.data.orderNo,
+    platform: 'WECHAT_SP'
   }
-  // personalService.getCollageOrderDetail(data).subscribe({
-  //   next: res => {
-  //     if (res) {
-  //       console.log(res);
-
-  //     }
-  //   },
-  //   error: err => errDialog(err),
-  //   complete: () => wx.hideToast()
-  // })
-  let res = {
-    activityCover: '',
-    activityId: '111111',
-    activityName: '发型总监设计发型总监设计哈哈哈哈',
-    activityPrice: 18800,
-    applyStores: [
-      {
-        current: true,
-        storeAddress: '学清路静淑里6号楼底商oooooo',
-        storeId: '8888888888',
-        storeName: '丽韵尚度美发沙龙',
-        storePhones: [
-          '15210921650'
-        ]
+  personalService.getCollageOrderDetail(data).subscribe({
+    next: res => {
+      if (res) {
+        console.log(res);
+        /** 剩余拼团人数 ****/
+        let remainingNumber = res.currentGroup ? Number(res.peopleCount) - Number(res.currentGroup.picUrls.length) : 0;
+        /*** 图片逻辑 ***/
+        let collagesImage = res.currentGroup ? res.currentGroup.picUrls : [];
+        if (res.peopleCount > 4) {
+          this.data.arrCollageImageShow = collagesImage.slice(0, 3);
+        } else {
+          this.data.arrCollageImageShow = collagesImage;
+        }
+        /*** 未拼团图像 ****/
+        let remainingCollagesArr = [];
+        if (remainingNumber > 0 && res.currentGroup) {
+          if (Number(res.peopleCount) > 4 && Number(res.currentGroup.picUrls.length) === 1) {
+            for (let i = 0; i < 2; i++) {
+              let list = '';
+              remainingCollagesArr.push(list);
+            }
+          } else if (Number(res.peopleCount) > 4 && Number(res.currentGroup.picUrls.length) === 2) {
+            for (let i = 0; i < 1; i++) {
+              let list = '';
+              remainingCollagesArr.push(list);
+            }
+          } else if (Number(res.peopleCount) > 4 && Number(res.currentGroup.picUrls.length) >= 3) {
+            remainingCollagesArr = [];
+          } else {
+            for (let i = 0; i < remainingNumber; i++) {
+              let list = '';
+              remainingCollagesArr.push(list);
+            }
+          }
+        }
+        /*****  拼团成功  ***/
+        let settleCode = res.voucher ? res.voucher.settleCode : '';
+        // // let voucherOrderTime = res.voucher ? formatDateTime.call(self,new Date(res.voucher.settleTime.replace(/-/g, '/'))) : '';
+        let voucherOrderTime = res.voucher.settleTime;
+        let voucherStatus = '';//拼团成功以后的状态
+        if (res.orderStatus == 'FINISH') {
+          if (res.voucher.settleStatus === 'VALID') {
+            voucherStatus = '未使用';
+          } else if (res.voucher.settleStatus === 'SETTLE') {
+            voucherStatus = '已核销';
+          } else if (res.voucher.settleStatus === 'EXPIRE_REFUND') {
+            voucherStatus = '已过期';
+          } else {
+            voucherStatus = '已退款';//REFUND
+          }
+        }
+        this.setData({
+          activityName: res.activityName.length > 8 ? res.activityName.substring(0, 8) + '...' : res.activityName,
+          collageStatus: res.orderStatus,
+          orderDetailArr: res,
+          activityId: res.activityId,
+          collageNumber: res.peopleCount,
+          phone: res.applyStores[0].storePhones[0],
+          hadCollageNumber: res.currentGroup.picUrls.length,
+          remainingNumber: remainingNumber,
+          arrCollageImageShow: this.data.arrCollageImageShow,
+          remainingCollages: remainingCollagesArr,
+          settleCode: settleCode,
+          voucherOrderTime: voucherOrderTime,
+          voucherStatus: voucherStatus,
+          applyStores: res.applyStores
+        })
+        /** 拼团数据 **/
+        let countDownTime = '';
+        let expireTime = '2018-08-13 20:14:18';
+        let time = new Date(expireTime).getTime() - new Date().getTime();
+        if (time <= 0) {
+          countDownTime = '00:00:00'
+        } else {
+          let hours = parseInt(time / 1000 / 60 / 60 + '');
+          let minutes = parseInt(time / 1000 / 60 - hours * 60 + '');
+          let seconds = parseInt(time / 1000 - minutes * 60 - hours * 3600 + '');
+          countDownTime = (hours.toString().length < 2 ? '0' + hours : hours) + ':' +
+            (minutes.toString().length < 2 ? '0' + minutes : minutes) + ':' +
+            (seconds.toString().length < 2 ? '0' + seconds : seconds);
+        }
+        console.log(countDownTime);
+        this.setData({
+          restHour: countDownTime.substring(0, 2),
+          restMinute: countDownTime.substring(3, 5),
+          restSecond: countDownTime.substring(6)
+        })
+        /* 倒计时 */
+        let downTime = '2000/01/01';
+        let timer = setInterval(function () {
+          if (new Date(downTime + ' ' + countDownTime).getHours().toString() === '0' && new Date(downTime + ' ' + countDownTime).getMinutes().toString() === '0' && new Date(downTime + ' ' + countDownTime).getSeconds().toString() === '0') {
+            countDownTime = '00:00:00';
+            clearInterval(timer);
+          } else {
+            let times = new Date(new Date(downTime + ' ' + countDownTime).getTime() - 1000);
+            countDownTime =
+              (times.getHours().toString().length < 2 ? '0' + times.getHours() : times.getHours()) + ':' +
+              (times.getMinutes().toString().length < 2 ? '0' + times.getMinutes() : times.getMinutes()) + ':' +
+              (times.getSeconds().toString().length < 2 ? '0' + times.getSeconds() : times.getSeconds());
+          }
+          self.setData({
+            restHour: countDownTime.substring(0, 2),
+            restMinute: countDownTime.substring(3, 5),
+            restSecond: countDownTime.substring(6)
+          })
+        }, 1000)
       }
-    ],
-    currentGroup: {
-      expireTime: '2018-08-11T06:58:11.936Z',
-      picUrls: [
-        '/asset/images/head-portrait.png', '/asset/images/head-portrait.png'
-      ],
-      status: ''
     },
-    finishedGroupCount: 888,
-    groupNo: '21667439824673289497',
-    groupStatus: '',
-    orderNo: '21667439824673289488',
-    orderStatus: 'JOINING',
-    orderTime: '2018-08-13 22:30:16',
-    paymentPrice: 10000,
-    peopleCount: 10,
-    voucher: {
-      enableRefund: true,
-      orderNo: '',
-      orderStatus: '',
-      phone: '15210921650',
-      settleCode: '4385 4754 5457',
-      settleStatus: '',
-      settleStoreName: '发型总监设计拼团活动周年庆',
-      settleTime: '2018-08-11T06:58:11.936Z'
-    }
-  };
-  /** 剩余拼团人数 ****/
-  let remainingNumber = res.currentGroup ? Number(res.peopleCount) - Number(res.currentGroup.picUrls.length) : 0;
-  /*** 图片逻辑 ***/
-  let collagesImage = res.currentGroup ? res.currentGroup.picUrls : [];
-  if (res.peopleCount > 4) {
-    this.data.arrCollageImageShow = collagesImage.slice(0, 3);
-  } else {
-    this.data.arrCollageImageShow = collagesImage;
-  }
-  /*** 未拼团图像 ****/
-  let remainingCollagesArr = [];
-  if (remainingNumber > 0 && res.currentGroup) {
-    if (Number(res.peopleCount) > 4 && Number(res.currentGroup.picUrls.length) === 1) {
-      for (let i = 0; i < 2; i++) {
-        let list = '';
-        remainingCollagesArr.push(list);
-      }
-    } else if (Number(res.peopleCount) > 4 && Number(res.currentGroup.picUrls.length) === 2) {
-      for (let i = 0; i < 1; i++) {
-        let list = '';
-        remainingCollagesArr.push(list);
-      }
-    } else if (Number(res.peopleCount) > 4 && Number(res.currentGroup.picUrls.length) >= 3) {
-      remainingCollagesArr = [];
-    } else {
-      for (let i = 0; i < remainingNumber; i++) {
-        let list = '';
-        remainingCollagesArr.push(list);
-      }
-    }
-  }
-  /*****  拼团成功  ***/
-  let settleCode = res.voucher ? res.voucher.settleCode : '';
-  // // let voucherOrderTime = res.voucher ? formatDateTime.call(self,new Date(res.voucher.settleTime.replace(/-/g, '/'))) : '';
-  let voucherOrderTime = res.voucher.settleTime;
-  let voucherStatus = '';//拼团成功以后的状态
-  if (res.orderStatus == 'FINISH') {
-    if (res.voucher.settleStatus === 'VALID') {
-      voucherStatus = '未使用';
-    } else if (res.voucher.settleStatus === 'SETTLE') {
-      voucherStatus = '已核销';
-    } else if (res.voucher.settleStatus === 'EXPIRE_REFUND') {
-      voucherStatus = '已过期';
-    } else {
-      voucherStatus = '已退款';//REFUND
-    }
-  }
-  this.setData({
-    activityName: res.activityName.length > 8 ? res.activityName.substring(0, 8) + '...' : res.activityName,
-    collageStatus: res.orderStatus,
-    orderDetailArr: res,
-    activityId: res.activityId,
-    collageNumber: res.peopleCount,
-    phone: res.applyStores[0].storePhones[0],
-    hadCollageNumber: res.currentGroup.picUrls.length,
-    remainingNumber: remainingNumber,
-    arrCollageImageShow: this.data.arrCollageImageShow,
-    remainingCollages: remainingCollagesArr,
-    settleCode: settleCode,
-    voucherOrderTime: voucherOrderTime,
-    voucherStatus: voucherStatus,
-    applyStores: res.applyStores
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
   })
-  /** 拼团数据 **/
-  let countDownTime = '';
-  let expireTime = '2018-08-13 20:14:18';
-  let time = new Date(expireTime).getTime() - new Date().getTime();
-  if (time <= 0) {
-    countDownTime = '00:00:00'
-  }else{
-    let hours = parseInt(time / 1000 / 60 / 60 + '');
-    let minutes = parseInt(time / 1000 / 60 - hours * 60 + '');
-    let seconds = parseInt(time / 1000 - minutes * 60 - hours * 3600 + '');
-    countDownTime = (hours.toString().length < 2 ? '0' + hours : hours) + ':' +
-      (minutes.toString().length < 2 ? '0' + minutes : minutes) + ':' +
-      (seconds.toString().length < 2 ? '0' + seconds : seconds);
-  }
-  console.log(countDownTime);
-  this.setData({
-    restHour: countDownTime.substring(0, 2),
-    restMinute: countDownTime.substring(3, 5),
-    restSecond: countDownTime.substring(6)
-  })
-  /* 倒计时 */
-  let downTime = '2000/01/01';
-  let timer = setInterval(function () {
-    if (new Date(downTime + ' ' + countDownTime).getHours().toString() === '0' && new Date(downTime + ' ' + countDownTime).getMinutes().toString() === '0' && new Date(downTime + ' ' + countDownTime).getSeconds().toString() === '0') {
-      countDownTime = '00:00:00';
-      clearInterval(timer);
-    } else {
-      let times = new Date(new Date(downTime + ' ' + countDownTime).getTime() - 1000);
-      countDownTime =
-        (times.getHours().toString().length < 2 ? '0' + times.getHours() : times.getHours()) + ':' +
-        (times.getMinutes().toString().length < 2 ? '0' + times.getMinutes() : times.getMinutes()) + ':' +
-        (times.getSeconds().toString().length < 2 ? '0' + times.getSeconds() : times.getSeconds());
-    }
-    self.setData({
-      restHour: countDownTime.substring(0, 2),
-      restMinute: countDownTime.substring(3, 5),
-      restSecond: countDownTime.substring(6)
-    })
-  }, 1000)
 }
 
 /*** 立即支付 ***/
