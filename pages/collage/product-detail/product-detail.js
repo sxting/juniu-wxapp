@@ -132,20 +132,13 @@ Page({
   },
 
   onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/collage/product-detail/product-detail?storeId=' + this.data.storeId + '&activityId=' + this.data.pinTuanId,
+      path: '/pages/collage/product-detail/product-detail?type=share&storeId=' + this.data.storeId + '&activityId=' + this.data.pinTuanId,
       success: function (res) {
-        // 转发成功
         console.log(res);
       },
       fail: function (res) {
-        // 转发失败
         console.log(res);
       }
     }
@@ -206,7 +199,6 @@ function getProductDetail() {
         })
 
         if (res.openedGroups && res.openedGroups.length) {
-          this.length = res.openedGroups.length;
           self.setData({
             length: res.openedGroups.length
           })
@@ -226,8 +218,7 @@ function getProductDetail() {
         self.setData({
           presentPrice: res.product.activityPrice / 100,
           originalPrice: res.product.originalPrice / 100,
-          joinNumber: length,
-          // tel: self.data.data.storePhones[0]
+          joinNumber: length
         })                
 
         let nowTime = new Date();
