@@ -30,7 +30,6 @@ Page({
     sharedPicUrl: [],
     applyStores: [],
     token: wx.getStorageSync(constant.TOKEN),
-    shopId: '',
     getUserInfo: true
   },
 
@@ -43,10 +42,10 @@ Page({
       storeName: wx.getStorageSync('storeName'),
       pinTuanId: options.activityId ? options.activityId : '',
       groupId: options.groupId ? options.groupId : '',
-      shopId: wx.getStorageSync(constant.STORE_INFO)
     })
 
     if (options.type == 'share') {
+      wx.setStorageSync(constant.STORE_INFO, options.storeId)
       let self = this;
       wx.login({
         success: function (result) {
@@ -134,7 +133,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/collage/product-detail/product-detail?type=share&storeId=' + this.data.storeId + '&activityId=' + this.data.pinTuanId,
+      path: '/pages/collage/product-detail/product-detail?type=share&storeId=' + wx.getStorageSync(constant.STORE_INFO) + '&activityId=' + this.data.pinTuanId,
       success: function (res) {
         console.log(res);
       },
@@ -193,6 +192,8 @@ function getProductDetail() {
   let self = this;
   collageService.getProductDetail(data).subscribe({
     next: res => {
+      console.log(res);
+      console.log(JSON.stringify(res));
       if (res) {
         self.setData({
           data: res
