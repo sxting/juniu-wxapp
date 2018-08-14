@@ -38,11 +38,7 @@
         <text class="notes">(已有{{joinNumber}}人参团,还差{{(data.peopleNumber - joinNumber) ? (data.peopleNumber - joinNumber) : 0}}人)</text>
       </view>
       <!--如果拼团人数大于四人才显示-->
-       <!-- <view class="fr check-all" bindtap='onShowMoreClick' wx:if="{{data.peopleNumber > 4}}">
-        <text>查看全部</text>
-        <text class="iconfont icon-jiantou"></text>
-      </view>  -->
-      <collage-portrait class="fr" fleg='more' collageNumber="{{ data.peopleNumber }}" wx:if="{{data.peopleNumber > 4}}" > </collage-portrait> 
+      <collage-portrait class="fr" fleg='more' collageNumber="{{data.peopleNumber}}" arrCollageImage="{{data.currentGroup.picUrls}}" wx:if="{{data.peopleNumber > 4}}" > </collage-portrait> 
     </view>
 
     <!--倒计时拼团人-->

@@ -30,7 +30,6 @@ Page({
     sharedPicUrl: [],
     applyStores: [],
     token: wx.getStorageSync(constant.TOKEN),
-    shopId: '',
     getUserInfo: true
   },
 
@@ -43,10 +42,10 @@ Page({
       storeName: wx.getStorageSync('storeName'),
       pinTuanId: options.activityId ? options.activityId : '',
       groupId: options.groupId ? options.groupId : '',
-      shopId: wx.getStorageSync(constant.STORE_INFO)
     })
 
     if (options.type == 'share') {
+      wx.setStorageSync(constant.STORE_INFO, options.storeId)
       let self = this;
       wx.login({
         success: function (result) {
@@ -132,20 +131,13 @@ Page({
   },
 
   onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/collage/product-detail/product-detail?storeId=' + this.data.storeId + '&activityId=' + this.data.pinTuanId,
+      path: '/pages/collage/product-detail/product-detail?type=share&storeId=' + wx.getStorageSync(constant.STORE_INFO) + '&activityId=' + this.data.pinTuanId,
       success: function (res) {
-        // 转发成功
         console.log(res);
       },
       fail: function (res) {
-        // 转发失败
         console.log(res);
       }
     }
@@ -200,13 +192,14 @@ function getProductDetail() {
   let self = this;
   collageService.getProductDetail(data).subscribe({
     next: res => {
+      console.log(res);
+      console.log(JSON.stringify(res));
       if (res) {
         self.setData({
           data: res
         })
 
         if (res.openedGroups && res.openedGroups.length) {
-          this.length = res.openedGroups.length;
           self.setData({
             length: res.openedGroups.length
           })
@@ -226,8 +219,7 @@ function getProductDetail() {
         self.setData({
           presentPrice: res.product.activityPrice / 100,
           originalPrice: res.product.originalPrice / 100,
-          joinNumber: length,
-          // tel: self.data.data.storePhones[0]
+          joinNumber: length
         })                
 
         let nowTime = new Date();
