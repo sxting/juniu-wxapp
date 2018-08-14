@@ -14,30 +14,30 @@
         </view>
         <view class='detail-infor clearfix'>
           <view class='img-box fl'>
-            <image src='{{productImg}}'></image>
+            <image src='{{ item.imageUrl? item.imageUrl : productImg }}'></image>
           </view>
           <view class='right-infor fl'>
             <view>{{item.activityName}}</view>
-            <view>下单时间：{{ item.openedTime }}</view>
-            <view>¥<text>399</text></view>
+            <view>下单时间：{{ item.orderTime }}</view>
+            <view>¥<text>{{ item.orderAmount / 100 }}</text></view>
           </view>
         </view>
       </view>
       <!-- <view class='remaining-time'>剩余时间:
         <text>00:00:04</text>
       </view> -->
-      <view class='remaining-time' wx:if="{{ item.groupStatus === 'VALID' || item.groupStatus === 'SETTLE' }}">实付款
-        <text>299元</text>
+      <view class='remaining-time' wx:if="{{ item.orderStatus === 'VALID' || item.orderStatus === 'SETTLE' }}">实付款
+        <text>{{ item.orderAmount / 100 }}元</text>
       </view>
       <!-- 按钮盒子 -->
-      <view class='btn-box' wx:if="{{ item.groupStatus === 'PAY' }}">
-        <text class='cancel-btn' bindtap='cancelClick'>取  消</text>
-        <text class='pay-btn' bindtap='payImmediate'>立即支付</text>
+      <view class='btn-box' wx:if="{{ item.orderStatus === 'PRE_PAYMENT' }}">
+        <text class='cancel-btn' data-orderno="{{ item.orderNo }}" bindtap='cancelClick'>取  消</text>
+        <text class='pay-btn' data-orderno="{{ item.orderNo }}" bindtap='payImmediate'>立即支付</text>
       </view>
-      <view class='btn-box' wx:if="{{ item.groupStatus === 'REFUND' }}" bindtap='onShareAppMessage'>
-        <button class="invent-btn" open-type="share" data-activityid="{{ item.activityId }}">邀请好友参团</button>
+      <view class='btn-box' wx:if="{{ item.orderStatus === 'JOINING_GROUP' }}" bindtap='onShareAppMessage'>
+        <button class="invent-btn" open-type="share" data-orderno="{{ item.orderNo }}">邀请好友参团</button>
       </view>
-      <view class='btn-box' wx:if="{{ item.groupStatus === 'SETTLE' }}" bindtap='evaluationImmediate' data-activityid="{{ item.activityId }}">
+      <view class='btn-box' wx:if="{{ item.orderStatus === 'SETTLE' }}" bindtap='evaluationImmediate' data-orderno="{{ item.orderNo }}">
         <text class='pay-btn'>立即评价</text>
       </view>
     </view>

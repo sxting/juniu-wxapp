@@ -47,13 +47,25 @@ personalService.myTicket = (data) => {
 // 我的拼团订单详情页面
 personalService.getCollageOrderDetail = (data) => {
   let url = API + '/consumer/activity/order/detail.json';
-  return http.get(url)
+  return http.get(url, data)
 }
 
 // 我的拼团订单列表页面
 personalService.getCollageListInfor = (data) => {
   let url = API + '/consumer/activity/order/batchQuery.json';
-  return http.get(url)
+  return http.get(url, data)
+}
+
+// 拼团订单取消
+personalService.cancelFunction = (data) => {
+  let url = API + '/consumer/activity/order/cancel.json';
+  return http.get(url, data)
+}
+
+// 订单支付
+personalService.paymentSubmit = (data) => {
+  let url = API + '/consumer/activity/order/payment.json';
+  return http.get(url, data)
 }
 
 module.exports = {
