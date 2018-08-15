@@ -10,6 +10,10 @@ page {
   height: 328rpx;
   display:block;
 }
+.product-img image {
+  width: 100%;
+  height: 328rpx;
+}
 .product-box {
     background-color: #fff;
     padding: 20rpx 30rpx;
@@ -204,6 +208,11 @@ page {
 
 .margin-b130 {
   margin-bottom: 130rpx;
+}
+
+.disabled {
+  background: #C5C5C5;
+  color: #FFFFFF;
 }
 
 .shared-one text:first-child, .shared-two text:first-child, .shared-three text:first-child {

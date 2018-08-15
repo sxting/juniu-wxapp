@@ -1,5 +1,10 @@
 <view class="page">
-  <image class="product-img" src="{{jnImg}}"></image>
+  <!--轮播图部分-->
+  <swiper class="product-img" autoplay="true" interval="3000" duration="500">
+    <swiper-item wx:for="{{imgs}}">
+      <image src="{{item.url}}"></image> 
+    </swiper-item>
+  </swiper>
   <view class="product-box">
     <view class="product-name">
       {{data.activityName}}
@@ -22,10 +27,10 @@
         <image src="{{item.picUrl ? item.picUrl : jnImg}}"></image>
         <view class="collage-product">
           <view class="collage-product-name">{{item.captain}}</view>
-          <view class="collage-product-num">还差{{(item.totalPeopleNumber - item.groupPeopleNumber) ? (item.totalPeopleNumber - item.groupPeopleNumber) : 0}}人拼团成功 剩余{{item.time}}</view>
+          <view class="collage-product-num">还差{{(item.totalPeopleCount - item.groupPeopleCount) ? (item.totalPeopleCount - item.groupPeopleCount) : 0}}人拼团成功 剩余{{item.time}}</view>
         </view>
-        <view class="collage-btn" wx:if="{{item.totalPeopleNumber > item.groupPeopleNumber}}" bindtap="onGoJoinCollageClick" data-groupid="{{item.groupId}}">去参团</view>
-        <view class="collage-btn" wx:if="{{item.totalPeopleNumber === item.groupPeopleNumber}}">已成功</view>
+        <view class="collage-btn" wx:if="{{item.totalPeopleCount > item.groupPeopleCount}}" bindtap="onGoJoinCollageClick" data-groupid="{{item.groupId}}">去参团</view>
+        <view class="collage-btn" wx:if="{{item.totalPeopleCount === item.groupPeopleCount}}">已成功</view>
       </view>
     </view>
   </view>
@@ -34,11 +39,11 @@
   <view class="center-content" wx:elif="{{groupId}}">
     <view class="collage-person clearfix">
       <view class="fl">
-        <text>{{data.peopleNumber}}人拼团</text>
-        <text class="notes">(已有{{joinNumber}}人参团,还差{{(data.peopleNumber - joinNumber) ? (data.peopleNumber - joinNumber) : 0}}人)</text>
+        <text>{{data.peopleCount}}人拼团</text>
+        <text class="notes">(已有{{joinNumber}}人参团,还差{{(data.peopleCount - joinNumber) ? (data.peopleCount - joinNumber) : 0}}人)</text>
       </view>
       <!--如果拼团人数大于四人才显示-->
-      <collage-portrait class="fr" fleg='more' collageNumber="{{data.peopleNumber}}" arrCollageImage="{{data.currentGroup.picUrls}}" wx:if="{{data.peopleNumber > 4}}" > </collage-portrait> 
+      <collage-portrait class="fr" fleg='more' collageNumber="{{data.peopleCount}}" arrCollageImage="{{data.currentGroup.picUrls}}" wx:if="{{data.peopleCount > 4}}" > </collage-portrait> 
     </view>
 
     <!--倒计时拼团人-->
@@ -51,7 +56,7 @@
           </view>
         </view>
         <!--大于四人拼团-->
-        <view class="images-boxes-collages clearfix" wx:if="{{data.peopleNumber > 4}}">
+        <view class="images-boxes-collages clearfix" wx:if="{{data.peopleCount > 4}}">
 
           <view wx:for="{{data.currentGroup.picUrls.slice(0,3)}}" wx:for-index="i">
             <image src='{{item ? item : jnImg}}'></image>
@@ -62,14 +67,10 @@
             <text class="iconfont icon-qm"></text>
           </view>
 
-          <collage-portrait class="fl" fleg='' collageNumber="{{ data.peopleNumber }}"> </collage-portrait> 
-
-          <!-- <view class="special-symbol" bindtap='onShowMoreClick'>
-            <text class="iconfont icon-diandian"></text>
-          </view> -->
+          <collage-portrait class="fl" fleg='' collageNumber="{{ data.peopleCount }}"> </collage-portrait> 
         </view>
         <!--四人拼团-->
-        <view class="images-boxes-collages clearfix" wx:if="{{data.peopleNumber == 4}}">
+        <view class="images-boxes-collages clearfix" wx:if="{{data.peopleCount == 4}}">
           <view wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
             <image src='{{item ? item : jnImg}}'></image>
             <text class="head" wx:if="{{i === 0}}">团长</text>
@@ -79,7 +80,7 @@
           </view>
         </view>
         <!--三人拼团-->
-        <view class="images-boxes-collages three-people clearfix" wx:if="{{data.peopleNumber == 3}}">
+        <view class="images-boxes-collages three-people clearfix" wx:if="{{data.peopleCount == 3}}">
           <view wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
             <image src='{{item ? item : jnImg}}'></image>
             <text class="head" wx:if="{{i === 0}}">团长</text>
@@ -89,7 +90,7 @@
           </view>
         </view>
         <!--两人拼团-->
-        <view class="images-boxes-collages two-people clearfix" wx:if="{{data.peopleNumber == 2}}">
+        <view class="images-boxes-collages two-people clearfix" wx:if="{{data.peopleCount == 2}}">
           <view wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
             <image src='{{item ? item : jnImg}}'></image>
             <text class="head" wx:if="{{i === 0}}">团长</text>
@@ -101,7 +102,7 @@
 
         <view class="collage-successed-tip">
           <!--正在拼团-->
-          <text wx:if="{{data.currentGroup.status === 'JOINING'}}">还差<text class="jn-color">{{data.peopleNumber - joinNumber}}</text>人拼团成功</text>
+          <text wx:if="{{data.currentGroup.status === 'JOINING'}}">还差<text class="jn-color">{{data.peopleCount - joinNumber}}</text>人拼团成功</text>
           <!--拼团成功-->
           <text wx:if="{{data.currentGroup.status === 'FINISH'}}">该团已成功，可选择开团或参与其它团</text>
           <!--拼团失败-->
@@ -134,9 +135,9 @@
   <view class="jn-bg"></view>
 
   <view class='margin-b130'>
-    <view class="product-detail bd" wx:if="{{data.picUrls && data.picUrls.length > 0}}">
+    <view class="product-detail bd" wx:if="{{productImgs && productImgs.length > 0}}">
       <view class="product-detail-text">商品详情</view>
-      <image wx:for="{{data.picUrls}}" src="{{item ? item : jnImg}}"></image>
+      <image wx:for="{{productImgs}}" src="{{item.url ? item.url : jnImg}}"></image>
     </view>
 
     <view class="activity-notice bd" wx:if="{{data.activityNotes && data.activityNotes.length > 0}}">
@@ -149,7 +150,7 @@
 
   <view wx:if="{{!groupId}}">
     <view class="jn-btn" wx:if="{{data.product.inventory > 0}}" bindtap="onOpenGroupBtnClick">一键开团{{presentPrice}}元</view>
-    <view class="jn-btn" wx:else>库存不足，可选择参团</view>
+    <view class="jn-btn disabled" wx:else>库存不足，可选择参团</view>
   </view>
 
   <!--通过分享进来的按钮  -->
