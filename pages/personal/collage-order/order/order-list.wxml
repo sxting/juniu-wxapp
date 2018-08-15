@@ -5,12 +5,12 @@
     class="tab-item {{index == tabIndex ? 'active' : ''}}">{{item.typeText}}</view>
   </view>
   <!-- 列表内容 -->
-  <view class='list-content-box'>
-    <view class='list-content' wx:for="{{ collageListInfor }}" wx:key="item">
+  <view class='list-content-box' wx:if="{{ collageListInfor.length > 0 }}">
+    <view class='list-content' wx:for="{{ collageListInfor }}" wx:key="item" data-orderno='{{ item.orderNo }}' bindtap='checkOrderDetailInfor'>
       <view class='list-infor'>
         <view class='list-title clearfix'>
           <text class='fl'>拼团</text>
-          <text class='fr'>待付款</text>
+          <text class='fr'>{{ item.orderStatusText }}</text>
         </view>
         <view class='detail-infor clearfix'>
           <view class='img-box fl'>
@@ -42,6 +42,10 @@
       </view>
     </view>
   </view>
+  <view class="space-box" wx:else>
+    <view class="space-bg"><image src="/asset/images/nofind.png"></image></view>
+    <view class="space-text">暂无订单</view>
+  </view>
   <!-- logo底部 -->
-  <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
+  <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view>
 </view>
