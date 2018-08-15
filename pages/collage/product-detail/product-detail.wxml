@@ -68,10 +68,6 @@
           </view>
 
           <collage-portrait class="fl" fleg='' collageNumber="{{ data.peopleCount }}"> </collage-portrait> 
-
-          <!-- <view class="special-symbol" bindtap='onShowMoreClick'>
-            <text class="iconfont icon-diandian"></text>
-          </view> -->
         </view>
         <!--四人拼团-->
         <view class="images-boxes-collages clearfix" wx:if="{{data.peopleCount == 4}}">
@@ -154,7 +150,7 @@
 
   <view wx:if="{{!groupId}}">
     <view class="jn-btn" wx:if="{{data.product.inventory > 0}}" bindtap="onOpenGroupBtnClick">一键开团{{presentPrice}}元</view>
-    <view class="jn-btn" wx:else>库存不足，可选择参团</view>
+    <view class="jn-btn disabled" wx:else>库存不足，可选择参团</view>
   </view>
 
   <!--通过分享进来的按钮  -->

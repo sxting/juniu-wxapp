@@ -210,6 +210,11 @@ page {
   margin-bottom: 130rpx;
 }
 
+.disabled {
+  background: #C5C5C5;
+  color: #FFFFFF;
+}
+
 .shared-one text:first-child, .shared-two text:first-child, .shared-three text:first-child {
   width: 40%;
   background: #353A41;
