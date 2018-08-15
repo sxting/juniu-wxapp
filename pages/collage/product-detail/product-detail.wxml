@@ -5,7 +5,6 @@
       <image src="{{item.url}}"></image> 
     </swiper-item>
   </swiper>
-  <!-- <image class="product-img" src="{{ imgs[0].url ? imgs[0].url : jnImg}}"></image> -->
   <view class="product-box">
     <view class="product-name">
       {{data.activityName}}

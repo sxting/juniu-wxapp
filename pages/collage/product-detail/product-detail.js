@@ -148,7 +148,7 @@ Page({
   // 开团 
   onOpenGroupBtnClick() {
     let data = this.data.data, 
-    pic = data.picUrls[0] ? data.picUrls[0] : this.data.jnImg,
+      pic = this.data.imgs[0].url ? this.data.imgs[0].url : this.data.jnImg,
     pTId = this.data.pinTuanId, 
     actName = data.activityName,
     ppN = data.peopleCount,
@@ -164,7 +164,7 @@ Page({
   //参团 
   onGoJoinCollageClick(e) {
     let data = this.data.data,
-      pic = data.picUrls[0] ? data.picUrls[0] : this.data.jnImg,
+      pic = this.data.imgs[0].url ? this.data.imgs[0].url : this.data.jnImg,
       pTId = this.data.pinTuanId,
       actName = data.activityName,
       ppN = data.peopleCount,
