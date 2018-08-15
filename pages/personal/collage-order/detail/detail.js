@@ -2,6 +2,7 @@ import { personalService } from '../../shared/service.js';
 import { errDialog, loading } from '../../../../utils/util';
 import { constant } from '../../../../utils/constant'
 
+
 Page({
   /*** 页面的初始数据 */
   data: {
@@ -84,6 +85,11 @@ Page({
     wx.navigateTo({
       url: '/pages/index/index?pinTuanId=' + this.data.activityId + '&stores=' + JSON.stringify(this.data.applyStores),
     })
+  },
+
+  /** 立即支付 */ 
+  orderPaymentClick(){
+    orderPayment.call(this);
   }
 
 })
@@ -212,18 +218,48 @@ function getCollageOrderDetail() {
 /*** 立即支付 ***/
 function orderPayment() {
   let self = this;
+  let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+  let appId = extConfig.theAppid ? extConfig.theAppid : 'wx3bb038494cd68262';
   let data = {
     activityId: this.data.activityId,
-    appid: this.data.appid,
-    storeId: wx.getStorageSync(constant.STORE_INFO)
+    appid: appId,
+    storeId: wx.getStorageSync(constant.STORE_INFO),
+    buyerPhone: this.data.phone,
+    platform: 'WECHAT_SP'
   }
   personalService.paymentSubmit(data).subscribe({
     next: res => {
       console.log(res);
       if (res) {
-        /** 微信支付 */
+        wx.requestPayment({
+          timeStamp: res.payInfo.timeStamp,
+          nonceStr: res.payInfo.nonceStr,
+          package: res.payInfo.package,
+          signType: res.payInfo.signType,
+          paySign: res.payInfo.paySign,
+          success: function (result) {
+            wx.navigateTo({
+              url: '/pages/personal/collage-order/detail/detail?orderNo=' + res.orderId,
+            });
+            console.log(result)
+          },
+          fail: function (result) {
+            wx.navigateTo({
+              url: '/pages/personal/collage-order/detail/detail?orderNo=' + res.orderId,
+            });
+            console.log(result);
+          },
+          complete: function (result) {
+            wx.navigateTo({
+              url: '/pages/personal/collage-order/detail/detail?orderNo=' + res.orderId,
+            });
+            console.log(result);
+          }
+        })
+        /** 唤起微信支付 */
         wx.requestPayment({
           success: function (res) {
+
           },
           fail: function (result) {
             console.log(result);
@@ -233,7 +269,6 @@ function orderPayment() {
           }
         })
       }
-
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

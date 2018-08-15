@@ -152,7 +152,7 @@
   <view class="jn-payment-bottom"  wx:if="{{collageStatus === 'FINISH'}}"><image src="/asset/images/logo.png"></image></view> 
 
   <!-- 立即付款 -->
-  <view class="application-refund-btn" wx:if="{{collageStatus === 'PRE_PAYMENT'}}">
+  <view class="application-refund-btn" wx:if="{{collageStatus === 'PRE_PAYMENT'}}" bindtap='orderPaymentClick'>
     <text>立即付款</text>
   </view>
  

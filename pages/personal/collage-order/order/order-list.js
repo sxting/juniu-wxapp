@@ -66,11 +66,12 @@ Page({
     })
   },
 
-  /**
-   * 立即支付
-   */ 
-  payImmediate: function () {
-    orderPayment.call(this);
+  /*** 立即支付 */ 
+  payImmediate: function (e) {
+    let orderno = e.currentTarget.dataset.orderno;
+    wx.navigateTo({
+      url: '/pages/personal/collage-order/detail/detail?orderNo=' + orderno
+    })
   },
 
   /** 取消 */ 
@@ -194,59 +195,3 @@ function getCollageOrderList(){
     complete: () => wx.hideToast()
   })
 }
-
-/*** 立即支付 ***/ 
-function orderPayment() {
-  let self = this;
-  let data = {
-    activityId: this.data.activityId,
-    appid: this.data.appid,
-    storeId: wx.getStorageSync(constant.STORE_INFO),
-    platform: 'WECHAT_SP'
-  }
-  personalService.paymentSubmit(data).subscribe({
-    next: res => {
-      console.log(res);
-      if (res){
-        /** 唤起微信支付 */ 
-        wx.requestPayment({
-          success: function (res) {
-
-          },
-          fail: function (result) {
-            console.log(result);
-          },
-          complete: function (result) {
-            console.log(result);
-          }
-        })
-      }
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
-}
-
-/*
-
-
-orderStatus: {
-
-  PAID: {
-
-
-
-
-  },
-  unPAID:{
-
-
-
-
-  }
-
-}
-
-
-*/ 
-
