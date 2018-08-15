@@ -46,6 +46,7 @@ Page({
             if (item.activityName && item.activityName.length > 8){
               item.activityName = item.activityName.substring(0, 8) + '...';
             }
+            item.cover = item.cover && item.cover != null ? constant.OSS_IMAGE_URL + `${item.cover}/resize_110_83/mode_fill` : '';
           })
           this.setData({
             collageProductList: res.elements

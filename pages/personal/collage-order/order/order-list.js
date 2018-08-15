@@ -95,9 +95,11 @@ Page({
       // 来自页面内转发按钮
       let activityId = res.target.dataset.activityid;
       let groupNo = res.target.dataset.groupid;
+
+      console.log(groupNo)
       return {
         title: wx.getStorageSync('订单分享'),
-        path: '/pages/collage/product-detail/product-detail?groupId=' + groupNo + '&activityId=' + activityId + '&storeId=' + self.data.storeId + 'type=share',
+        path: '/pages/collage/product-detail/product-detail?groupId=' + groupNo + '&activityId=' + activityId + '&storeId=' + self.data.storeId + '&type=share',
         success: function (res) {
           // 转发成功
           console.log(res);
@@ -172,7 +174,6 @@ function orderPayment() {
           }
         })
       }
-   
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
