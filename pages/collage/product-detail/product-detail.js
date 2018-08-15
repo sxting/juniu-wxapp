@@ -26,7 +26,8 @@ Page({
     originalPrice: '',//原价
     showAlert: false,
     collageList: [],
-    imgs: [], //轮播图
+    imgs: [],  //轮播图
+    productImgs: [],  //商品详情
     sharedPicUrl: [],
     applyStores: [],
     token: wx.getStorageSync(constant.TOKEN),
@@ -34,6 +35,7 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(options);
     wx.setNavigationBarTitle({
       title: '项目详情',
     })
@@ -189,6 +191,7 @@ function getProductDetail() {
     data.groupId = this.data.groupId
   }
 
+  console.log(data);
   let self = this;
   collageService.getProductDetail(data).subscribe({
     next: res => {
@@ -228,11 +231,23 @@ function getProductDetail() {
           let imgs = []
           self.data.data.picUrls.forEach(function (item) {
             imgs.push(
-              { url: `https://oss.juniuo.com/juniuo-pic/picture/juniuo/${item}/resize_375_210/mode_fill` }
+              { url: `${constant.OSS_IMAGE_URL}${item}/resize_375_210/mode_fill` }
             )
           });
           self.setData({
             imgs: imgs
+          })
+        }
+
+        if (self.data.data.product.picIds) {
+          let productImgs = []
+          self.data.data.product.picIds.forEach(function (item) {
+            productImgs.push(
+              { url: `${constant.OSS_IMAGE_URL}${item}/resize_375_210/mode_fill` }
+            )
+          });
+          self.setData({
+            productImgs: productImgs
           })
         }        
 

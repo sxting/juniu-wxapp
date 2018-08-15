@@ -4,7 +4,7 @@ let collageService = {};
 
 let API = constant.apiUrlTwo + 'pintuan';
 // API = 'http://192.168.199.26:8080';
-API = 'http://123.56.1.184:2000'; 
+// API = 'http://123.56.1.184:2000'; 
 // API = 'http://192.168.199.23:2000'; 
 
 
