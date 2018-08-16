@@ -15,10 +15,10 @@ Page({
     phone: '',
     groupId: '',
     activityId: '',
-    collageStatus: '',
+    collageStatus: 'JOINING',
     orderDetailArr: {},//订单信息
     activityName: '',
-    collageNumber: 0,
+    collageNumber: 2,
     remainingNumber: 0,
     hadCollageNumber: 0,
     groupNo: '',
@@ -102,7 +102,8 @@ Page({
 function getCollageOrderDetail() {
   let self = this;
   let data = {
-    orderNo: this.data.orderNo,
+    // orderNo: this.data.orderNo,
+    orderNo: '153441317325576946587587',
     platform: 'WECHAT_SP'
   }
   personalService.getCollageOrderDetail(data).subscribe({
@@ -143,8 +144,8 @@ function getCollageOrderDetail() {
         }
         let activityCoverUrl = res.activityCover ? constant.OSS_IMAGE_URL + `${res.activityCover}/resize_110_83/mode_fill` :  '';
         /*****  拼团成功  ***/
-        let settleCode = res.voucher ? res.voucher.settleCode : '';
-        let voucherOrderTime = res.voucher ? res.voucher.settleTime : '';
+        let settleCode = res.voucher ? res.voucher.code : '';
+        let voucherOrderTime = res.voucher ? res.voucher.orderTime : '';
         let voucherStatus = '';//拼团成功以后的状态
         if (res.orderStatus == 'FINISH') {
           if (res.voucher.settleStatus === 'VALID') {
