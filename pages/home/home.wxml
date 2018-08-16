@@ -31,7 +31,7 @@
     </view>
     <view class='collage-content-box'>
       <view class='collage-content'>
-        <view class='list-collage' wx:for="{{collageProductList}}" wx:key="item">
+        <view class='list-collage' wx:for="{{collageProductList}}" wx:key="item"  data-activityid="{{ item.activityId }}" bindtap='goToCollageBtn'>
           <view class='left-img fl'>
             <image src='{{ item.cover?  item.cover : juniuImg }}'></image>
           </view>
@@ -44,7 +44,7 @@
             </view>
             <view><text>{{ item.peopleCount }}人团·</text>已团{{ item.openedGroupCount }}件</view>
           </view>
-          <view class='go-btn' bindtap='goToCollageBtn' data-activityid="{{ item.activityId }}">去开团</view>
+          <view class='go-btn'>去开团</view>
         </view>
       </view>
     </view>
