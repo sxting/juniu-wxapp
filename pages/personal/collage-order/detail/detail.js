@@ -44,9 +44,12 @@ Page({
 
   /*** 邀请好友参团 */
   onShareAppMessage: function (res) {
+    console.log(this.data.activityId);
+    console.log(this.data.groupId);
+
     return {
       title: wx.getStorageSync('邀请好友'),
-      path: '/pages/collage/product-detail/product-detail?groupId='+ this.data.groupId + '&activityId=' + this.data.activityId + 'type=share',
+      path: '/pages/collage/product-detail/product-detail?groupId=' + this.data.groupId + '&activityId=' + this.data.activityId + '&type=share',
       success: function (res) {
         // 转发成功
         console.log(res);
@@ -174,7 +177,8 @@ function getCollageOrderDetail() {
         })
         /** 拼团数据 **/
         let countDownTime = '';
-        let expireTime = res.currentGroup.expireTime;
+        let expireTime = res.currentGroup && res.currentGroup != null ? res.currentGroup.expireTime.replace(/-/g, '/') : '';
+        console.log(expireTime);
         let time = new Date(expireTime).getTime() - new Date().getTime();
         if (time <= 0) {
           countDownTime = '00:00:00'

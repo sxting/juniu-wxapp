@@ -1,6 +1,6 @@
 <view class='jn-content'>
   <!--未支付的时候  提示的小tip-->
-  <view class='head-tips clearfix' wx:if="{{collageStatus === 'PRE_PAYMENT'}}">
+  <view class='head-tips clearfix' wx:if="{{orderDetailArr.orderStatus === 'PRE_PAYMENT'}}">
     <text class='fl jn-icon icon-clock'></text>
     <view class="fl text-tips">
       <text>待支付</text>
@@ -152,7 +152,7 @@
   <view class="jn-payment-bottom"  wx:if="{{collageStatus === 'FINISH'}}"><image src="/asset/images/logo.png"></image></view> 
 
   <!-- 立即付款 -->
-  <view class="application-refund-btn" wx:if="{{collageStatus === 'PRE_PAYMENT'}}" bindtap='orderPaymentClick'>
+  <view class="application-refund-btn" wx:if="{{orderDetailArr.orderStatus === 'PRE_PAYMENT'}}" bindtap='orderPaymentClick'>
     <text>立即付款</text>
   </view>
  
@@ -178,7 +178,7 @@
     </view>
     <view class='order-detail-box'>
       <view class="order-detail">
-        <view wx:if="{{collageStatus != 'PRE_PAYMENT'&&collageStatus != 'PAY_TIMEOUT'}}">
+        <view wx:if="{{orderDetailArr.orderStatus != 'PRE_PAYMENT' && orderDetailArr.orderStatus != 'PAY_TIMEOUT'}}">
           <text>团单编号：</text>{{orderDetailArr.groupNo}}
           <text class='copy-btn' data-copydata="{{ orderDetailArr.orderNo }}"  bindtap='copyTextBtn'>复制</text>
         </view>
@@ -192,24 +192,3 @@
     <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
   </view>
 </view>
-
-
-<!-- 
-
-
-拼团中： 
-
-
-拼团失败：
-
-
-拼团超时：
-
-
-拼团取消:
-
-
-拼团成功：
-
-
- -->
