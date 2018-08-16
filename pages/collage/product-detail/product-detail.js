@@ -231,7 +231,7 @@ function getProductDetail() {
           let imgs = []
           self.data.data.picUrls.forEach(function (item) {
             imgs.push(
-              { url: `${constant.OSS_IMAGE_URL}${item}/resize_375_164/mode_fill` }
+              { url: `${constant.OSS_IMAGE_URL}${item}/resize_375_180/mode_fill` }
             )
           });
           self.setData({

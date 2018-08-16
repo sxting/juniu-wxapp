@@ -141,9 +141,10 @@
     </view>
 
     <view class="activity-notice bd" wx:if="{{data.activityNotes && data.activityNotes.length > 0}}">
+      <view class="activity-notice-text activity-notice-text-title1">活动须知</view>
       <view class="notice-item" wx:for="{{data.activityNotes}}">
-        <view class="activity-notice-text">{{item.title}}</view>
-        <view wx:for="{{item.details}}" wx:for-item="notice">{{notice}}</view>
+        <view class="activity-notice-text activity-notice-text-title">{{item.title}}</view>
+        <view class='notice' wx:for="{{item.details}}" wx:for-item="notice">{{index+1}}. {{notice}}</view>
       </view>
     </view>  
   </view>
