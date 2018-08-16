@@ -19,8 +19,8 @@
   <view class="head-collage">
     <view class="title-collage-detail-box">
       <view class="title-collage-detail clearfix">
-        <view class="left-box fl">
-          <image src="{{ orderDetailArr.activityCover? orderDetailArr.activityCover : pictureUrl }}"></image>
+        <view class="left-box fl">        
+          <image src="{{ activityCover? activityCover : pictureUrl }}"></image>
         </view>
         <view class="right-box fl">
           <view class="top-items-name">
@@ -192,3 +192,24 @@
     <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
   </view>
 </view>
+
+
+<!-- 
+
+
+拼团中： 
+
+
+拼团失败：
+
+
+拼团超时：
+
+
+拼团取消:
+
+
+拼团成功：
+
+
+ -->

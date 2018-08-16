@@ -8,6 +8,7 @@ Page({
   data: {
     orderNo: '',
     pictureUrl: '/asset/images/product.png',
+    activityCover: '',
     restHour: '',
     restMinute: '',
     restSecond: '',
@@ -57,7 +58,7 @@ Page({
     }
   },
 
-  /** 拨打电话 **/
+  /**  拨打电话  **/
   onTelClick() {
     let self = this;
     wx.makePhoneCall({
@@ -65,7 +66,7 @@ Page({
     })
   },
 
-  /** 点击复制按钮 **/
+  /**  点击复制按钮  **/
   copyTextBtn(e){
     let copyData = e.currentTarget.dataset.copydata;
     wx.setClipboardData({
@@ -80,7 +81,7 @@ Page({
     })
   },
 
-  /** 适用门店 */ 
+  /**  适用门店  ***/ 
   storeListClick(){
     wx.navigateTo({
       url: '/pages/index/index?pinTuanId=' + this.data.activityId + '&stores=' + JSON.stringify(this.data.applyStores),
@@ -107,6 +108,7 @@ function getCollageOrderDetail() {
         console.log(res);
         /** 剩余拼团人数 ****/
         let remainingNumber = res.currentGroup ? Number(res.peopleCount) - Number(res.currentGroup.picUrls.length) : 0;
+
         /*** 图片逻辑 ***/
         let collagesImage = res.currentGroup ? res.currentGroup.picUrls : [];
         if (res.peopleCount > 4) {
@@ -136,6 +138,7 @@ function getCollageOrderDetail() {
             }
           }
         }
+        let activityCoverUrl = res.activityCover ? constant.OSS_IMAGE_URL + `${res.activityCover}/resize_110_83/mode_fill` :  '';
         /*****  拼团成功  ***/
         let settleCode = res.voucher ? res.voucher.settleCode : '';
         let voucherOrderTime = res.voucher ? res.voucher.settleTime : '';
@@ -153,7 +156,8 @@ function getCollageOrderDetail() {
         }
         this.setData({
           activityName: res.activityName.length > 8 ? res.activityName.substring(0, 8) + '...' : res.activityName,
-          collageStatus: res.orderStatus,
+          activityCover: activityCoverUrl,
+          collageStatus: res.groupStatus,
           orderDetailArr: res,
           activityId: res.activityId,
           groupId: res.groupNo,
@@ -170,7 +174,7 @@ function getCollageOrderDetail() {
         })
         /** 拼团数据 **/
         let countDownTime = '';
-        let expireTime = '2018-08-13 20:14:18';
+        let expireTime = res.currentGroup.expireTime;
         let time = new Date(expireTime).getTime() - new Date().getTime();
         if (time <= 0) {
           countDownTime = '00:00:00'

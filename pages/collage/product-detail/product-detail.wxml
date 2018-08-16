@@ -22,8 +22,8 @@
   <!--从店铺页点进来显示拼团项目详情-->
   <view class="collage-list" wx:if="{{(!groupId) && length > 0}}">
     <view class="sub-title">小伙伴正在开团，可直接参与</view>
-    <view>
-      <view wx:for="{{data.openedGroups}}">
+    <view class='detail-imgs-box'>
+      <view class='detail-imgs li' wx:for="{{data.openedGroups}}">
         <image src="{{item.picUrl ? item.picUrl : jnImg}}"></image>
         <view class="collage-product">
           <view class="collage-product-name">{{item.captain}}</view>

@@ -104,25 +104,6 @@ Page({
     wx.navigateTo({
       url: '/pages/personal/collage-order/detail/detail?orderNo=' + orderno
     })
-    // if (res.from === 'button') {
-    //   // 来自页面内转发按钮
-    //   let activityId = res.target.dataset.activityid;
-    //   let groupNo = res.target.dataset.groupid;
-
-    //   console.log(groupNo)
-    //   return {
-    //     title: wx.getStorageSync('订单分享'),
-    //     path: '/pages/collage/product-detail/product-detail?groupId=' + groupNo + '&activityId=' + activityId + '&storeId=' + self.data.storeId + '&type=share',
-    //     success: function (res) {
-    //       // 转发成功
-    //       console.log(res);
-    //     },
-    //     fail: function (res) {
-    //       // 转发失败
-    //       console.log(res);
-    //     }
-    //   }
-    // }
   },
   
   //  立即评价
@@ -163,7 +144,11 @@ function getCollageOrderList(){
           item.activityName = item.activityName&&item.activityName.length > 8 ? item.activityName.substring(0, 8) + '...' : item.activityName;
           item.picUrl = item.imageUrl ? constant.OSS_IMAGE_URL + `${item.imageUrl}/resize_100_75/mode_fill` : '';
           if (item.orderStatus === 'PAID'){//已经支付
-
+            if( item.groupStatus === 'JOINING' ){
+              item.orderStatusText = '待成团';
+            } else if (item.groupStatus === 'FINISH'){
+              item.orderStatusText = '待消费';
+            }
           }else{
             if (item.orderStatus === 'PRE_PAYMENT'){
               item.orderStatusText = '待付款';

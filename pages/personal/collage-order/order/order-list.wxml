@@ -34,7 +34,7 @@
         <text class='cancel-btn' data-orderno="{{ item.orderNo }}" bindtap='cancelClick'>取  消</text>
         <text class='pay-btn' data-orderno="{{ item.orderNo }}" bindtap='payImmediate'>立即支付</text>
       </view>
-      <view class='btn-box' wx:if="{{ item.orderStatus === 'JOINING_GROUP' }}" bindtap='onShareAppMessage'>
+      <view class='btn-box' wx:if="{{ item.orderStatus === 'PAID'|| item.groupStatus === 'JOINING' }}" bindtap='onShareAppMessage'>
         <button class="invent-btn" open-type="share" data-orderno="{{ item.orderNo }}" data-activityid="{{ item.activityId }}" data-groupid='{{ item.groupNo }}'>邀请好友参团</button>
       </view>
       <view class='btn-box' wx:if="{{ item.orderStatus === 'SETTLE' }}" bindtap='evaluationImmediate' data-orderno="{{ item.orderNo }}">

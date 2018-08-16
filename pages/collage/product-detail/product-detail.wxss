@@ -232,3 +232,21 @@ page {
 .shared-one text:last-child, .shared-two text:last-child, .shared-three text:last-child {
   display: inline-block;
 }
+
+/* .detail-imgs-box{
+  padding: 20rpx 0
+}
+.detail-imgs-box .detail-imgs{
+  height: 100rpx;
+  position: relative;
+  margin-bottom: 16rpx;
+}
+.detail-imgs-box .detail-imgs:last-of-type{
+  margin-bottom: 0
+}
+.detail-imgs image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  float: left;
+} */
