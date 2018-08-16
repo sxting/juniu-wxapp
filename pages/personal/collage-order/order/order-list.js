@@ -100,25 +100,29 @@ Page({
    */
   onShareAppMessage: function (res) {
     let self = this;
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      let activityId = res.target.dataset.activityid;
-      let groupNo = res.target.dataset.groupid;
+    let orderno = res.currentTarget.dataset.orderno;
+    wx.navigateTo({
+      url: '/pages/personal/collage-order/detail/detail?orderNo=' + orderno
+    })
+    // if (res.from === 'button') {
+    //   // 来自页面内转发按钮
+    //   let activityId = res.target.dataset.activityid;
+    //   let groupNo = res.target.dataset.groupid;
 
-      console.log(groupNo)
-      return {
-        title: wx.getStorageSync('订单分享'),
-        path: '/pages/collage/product-detail/product-detail?groupId=' + groupNo + '&activityId=' + activityId + '&storeId=' + self.data.storeId + '&type=share',
-        success: function (res) {
-          // 转发成功
-          console.log(res);
-        },
-        fail: function (res) {
-          // 转发失败
-          console.log(res);
-        }
-      }
-    }
+    //   console.log(groupNo)
+    //   return {
+    //     title: wx.getStorageSync('订单分享'),
+    //     path: '/pages/collage/product-detail/product-detail?groupId=' + groupNo + '&activityId=' + activityId + '&storeId=' + self.data.storeId + '&type=share',
+    //     success: function (res) {
+    //       // 转发成功
+    //       console.log(res);
+    //     },
+    //     fail: function (res) {
+    //       // 转发失败
+    //       console.log(res);
+    //     }
+    //   }
+    // }
   },
   
   //  立即评价
