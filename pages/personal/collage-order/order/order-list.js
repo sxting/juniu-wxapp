@@ -164,10 +164,6 @@ function getCollageOrderList(){
           item.picUrl = item.imageUrl ? constant.OSS_IMAGE_URL + `${item.imageUrl}/resize_100_75/mode_fill` : '';
           if (item.orderStatus === 'PAID'){//已经支付
 
-
-
-
-
           }else{
             if (item.orderStatus === 'PRE_PAYMENT'){
               item.orderStatusText = '待付款';

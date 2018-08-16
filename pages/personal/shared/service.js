@@ -1,7 +1,7 @@
 import { constant } from '../../../utils/constant';
 import { http } from '../../../utils/http';
 let personalService = {};
-let API = 'http://123.56.1.184:2000';
+let API = constant.apiUrlTwo + 'pintuan';
 
 // 查询我的订单详情  /app/order/detail.json
 personalService.getOrderDetail = (data) => {
