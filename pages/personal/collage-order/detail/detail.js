@@ -98,8 +98,7 @@ Page({
 function getCollageOrderDetail() {
   let self = this;
   let data = {
-    // orderNo: this.data.orderNo,
-    orderNo: '1534216756009472809519',
+    orderNo: this.data.orderNo,
     platform: 'WECHAT_SP'
   }
   personalService.getCollageOrderDetail(data).subscribe({
