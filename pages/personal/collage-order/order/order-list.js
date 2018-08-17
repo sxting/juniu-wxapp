@@ -29,7 +29,7 @@ Page({
       title: '拼团订单',
     })
     // 获取拼团订单列表
-    getCollageOrderList.call(self);
+    getCollageOrderList.call(self, '');
   },
 
   // tab切换 
@@ -39,22 +39,7 @@ Page({
       tabIndex: index,
       status: e.currentTarget.dataset.status
     })
-    console.log(this.data.status);
-    let arrData = [];
-    if (this.data.status === 'PRE_PAYMENT'){//待付款
-      arrData = this.data.prePaymentArrData;
-    } else if (this.data.status === 'JOINING_GROUP') {//待成团
-      arrData = this.data.joiningGroupArrData;
-    } else if (this.data.status === 'FINISHED_GROUP'){//待消费
-      arrData = this.data.finishedGroupArrData;
-    } else if (this.data.status === 'FINISHED'){//已完成
-      arrData = this.data.finishedArrData;
-    }else{//全部
-      getCollageOrderList.call(this);
-    }
-    this.setData({
-      collageListInfor: arrData
-    })
+    getCollageOrderList.call(this, this.data.status);
   },
 
   /** 点击团单到订单详情页 */ 
@@ -116,7 +101,7 @@ Page({
 })
 
 /**  获取拼团列表 ***/ 
-function getCollageOrderList(){
+function getCollageOrderList(type){
   let data = {
     platform: 'WECHAT_SP'
   }
@@ -124,17 +109,6 @@ function getCollageOrderList(){
     next: res => {
       if (res) {
         console.log(res);
-        /** orderStatus的状态值
-         * 
-         * 预支付: PRE_PAYMENT
-         * 
-         * 已支付: PAID
-         * 
-         * 支付超时: PAYMENT_TIMEOUT
-         * 
-         * 支付取消: CANCEL
-         * 
-         **/ 
         let arrCollagesList = res.elements ? res.elements : [];
         let prePaymentArr = []; 
         let joiningGroupArr = []; 
@@ -144,10 +118,16 @@ function getCollageOrderList(){
           item.activityName = item.activityName&&item.activityName.length > 8 ? item.activityName.substring(0, 8) + '...' : item.activityName;
           item.picUrl = item.imageUrl ? constant.OSS_IMAGE_URL + `${item.imageUrl}/resize_100_75/mode_fill` : '';
           if (item.orderStatus === 'PAID'){//已经支付
-            if( item.groupStatus === 'JOINING' ){
+            if (item.groupStatus === 'JOINING' && item.tabStatus === 'JOINING_GROUP' ){
               item.orderStatusText = '待成团';
-            } else if (item.groupStatus === 'FINISH'){
+            } else if (item.settleStatus === 'REFUND'){
+              item.orderStatusText = '已退款';
+            } else if (item.settleStatus === 'VALID') {
               item.orderStatusText = '待消费';
+            } else if (item.settleStatus === 'SETTLE') {
+              item.orderStatusText = '已消费';
+            } else if (item.settleStatus === 'EXPIRE_REFUND') {
+              item.orderStatusText = '已过期';
             }
           }else{
             if (item.orderStatus === 'PRE_PAYMENT'){
@@ -167,12 +147,21 @@ function getCollageOrderList(){
             finishedArr.push(item);
           }
         })
+        let arrData = [];
+        if (type === 'PRE_PAYMENT'){
+          arrData = prePaymentArr;
+        } else if (type === 'JOINING_GROUP'){
+          arrData = joiningGroupArr;
+        } else if (type === 'FINISHED_GROUP') {
+          arrData = finishedGroupArr;
+        } else if (type === 'FINISHED') {
+          arrData = finishedArr;
+        } else {
+          arrData = arrCollagesList;
+        }
+        console.log(arrData);
         this.setData({
-          collageListInfor: arrCollagesList,
-          prePaymentArrData: prePaymentArr,
-          joiningGroupArrData: joiningGroupArr,//待成团
-          finishedGroupArrData: finishedGroupArr,//待消费
-          finishedArrData: finishedArr
+          collageListInfor: arrData
         })
       }
     },
