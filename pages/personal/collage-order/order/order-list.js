@@ -72,7 +72,7 @@ Page({
         if (res) {
           console.log(res);
           wx.navigateTo({
-            url: '/pages/personal/collage-order/detail/?orderNo=' + orderId
+            url: '/pages/personal/collage-order/detail/detail?orderNo=' + orderId
           })
         }
       },
