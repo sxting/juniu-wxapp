@@ -419,6 +419,39 @@ function logIn(code, appid, rawData) {
   })
 }
 
+//商品评价列表
+function getProductCommentList() {
+  let data = {
+    pageIndex: this.data.pageIndex,
+    pageSize: this.data.pageSize,
+    storeId: this.data.storeId,
+    productId: this.data.productId
+  }
+  productService.getProductCommentList(data).subscribe({
+    next: res => {
+      res.comments.forEach((item) => {
+        let dateArray = item.juniuoModel.dateCreated.split(' ');
+        item.date = dateArray[0];
+        item.time = dateArray[1];
+
+        if (item.imagesUrl) {
+          item.imagesUrl.forEach((img, index) => {
+            item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_71_72/mode_fill`;
+          });
+        }
+      });
+
+      this.setData({
+        commentList: res.comments,
+        countPage: res.pageInfo.countPage
+      })
+
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+} 
+
 //生成从minNum到maxNum的随机数
 function randomNum(minNum, maxNum) {
   switch (arguments.length) {

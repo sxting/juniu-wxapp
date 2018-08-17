@@ -89,7 +89,7 @@ page {
   line-height: 90rpx;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1rpx solid #f3f3f3; 
+  border-bottom: 2rpx solid #f3f3f3; 
   background-color: #fff;
 }
 

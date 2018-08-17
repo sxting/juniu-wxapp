@@ -24,8 +24,8 @@ page {
   font-size: 32rpx;
 }
 .share-btn {
-  width: 40rpx;
-  height: 40rpx;
+  width: 50rpx;
+  height: 50rpx;
   background-color: #fff;
   border: none;
   outline: none;
@@ -66,35 +66,36 @@ page {
 .collage-list {
   padding: 30rpx;
   background-color: #fff;
+  padding-top: 10rpx;
 }
 .collage-list .bd {
   padding-bottom: 16rpx;
 }
 .collage-list .sub-title {
   border-bottom: 2rpx solid #f3f3f3;
-  font-size: 28rpx;
+  font-size: 30rpx;
   height: 88rpx; 
   line-height: 88rpx;
   color: #111111;
-  padding: 0 20rpx;
+  /* padding: 0 20rpx; */
 }
 .collage-list .li {
   height: 120rpx;
   overflow: hidden;
-  padding-left: 20rpx;
+  /* padding-left: 20rpx; */
   padding-bottom: 2rpx;
 }
 .collage-list .li image {
   float: left;
   width: 100rpx; 
   height:100rpx;
-  margin-top: 16rpx;
+  margin-top: 10rpx;
   margin-right: 20rpx;
   border-radius: 50%;
 }
 .collage-list .li .collage-product {
   float: left;
-  margin-top: 24rpx;
+  margin-top: 20rpx;
 }
 .collage-product-name {
   line-height: 28rpx;
@@ -114,7 +115,7 @@ page {
 }
 .collage-btn {
   float: right;
-  margin-right: 20rpx;
+  /* margin-right: 20rpx; */
   width: 132rpx; 
   height: 56rpx; 
   line-height: 56rpx;
@@ -138,7 +139,7 @@ page {
 }
 .store-box .sub-title {
   padding: 0 30rpx;
-  border-bottom: 1px solid #f3f3f3;
+  border-bottom: 2rpx solid #f3f3f3;
   height: 88rpx;
   line-height: 88rpx;
   color: #111111;
@@ -147,7 +148,7 @@ page {
   height: 90rpx;
   line-height: 90rpx;
   font-size: 30rpx;
-  border-bottom: 1px solid #f3f3f3;  
+  border-bottom: 2rpx solid #f3f3f3;  
   color: #000;
   padding: 0 30rpx;  
 }

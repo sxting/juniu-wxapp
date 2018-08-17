@@ -26,7 +26,7 @@ page {
 .collage-name {
   color: #333;
   font-size: 32rpx;
-  margin-top: 14rpx;
+  margin-top: 16rpx;
 }
 .collage-name text:last-child {
   font-size: 26rpx; 
@@ -40,6 +40,7 @@ page {
 .collage-num {
   font-size: 26rpx;
   color: #000000;
+  margin-top: 6rpx;
 }
 
 .price-box {
