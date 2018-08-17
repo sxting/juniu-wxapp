@@ -119,7 +119,7 @@ page {
   background-color: #FFF;
 }
 .collage-box .collage-content-box{
-  padding: 24rpx 26rpx;
+  padding: 26rpx 30rpx;
 }
 .collage-box .collage-content-box .collage-content{
   box-shadow: 0 2rpx 6rpx 0 #D8D8D8;

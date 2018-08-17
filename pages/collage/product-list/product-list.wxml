@@ -23,5 +23,6 @@
     </view>
   </view> 
   <!-- 底部logo -->
-  <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
+  <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view>
+  <!-- <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view>  -->
 </view>

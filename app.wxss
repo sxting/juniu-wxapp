@@ -468,6 +468,7 @@ page {
   font-family: AppleSystemUIFont;
   font-size: 26rpx;
   margin: 10rpx 0 34rpx;
+  color: #FF5822;
 }
 .center-content .images-box .details-img .times text {
   display: inline-block;

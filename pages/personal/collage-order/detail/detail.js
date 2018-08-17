@@ -3,7 +3,6 @@ import { errDialog, loading } from '../../../../utils/util';
 import { constant } from '../../../../utils/constant';
 var wxbarcode = require('../../../../utils/index.js');
 
-
 Page({
   /*** 页面的初始数据 */
   data: {
@@ -33,6 +32,7 @@ Page({
 
   /*** 生命周期函数--监听页面加载 */
   onLoad: function (options) {
+    let self = this;
     wx.setNavigationBarTitle({
       title: '订单详情',
     })
@@ -40,7 +40,9 @@ Page({
       orderNo: options.orderNo ? options.orderNo : ''
     })
     /** 调取订单详情接口 */
-    getCollageOrderDetail.call(this);
+    setTimeout(function(){
+      getCollageOrderDetail.call(self);
+    },1000)
   },
 
   /*** 邀请好友参团 */

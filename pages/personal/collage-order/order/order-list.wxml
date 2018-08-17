@@ -31,8 +31,8 @@
       </view>
       <!-- 按钮盒子 -->
       <view class='btn-box' wx:if="{{ item.orderStatus === 'PRE_PAYMENT' }}">
-        <text class='cancel-btn' data-orderno="{{ item.orderNo }}" bindtap='cancelClick'>取  消</text>
-        <text class='pay-btn' data-orderno="{{ item.orderNo }}" bindtap='payImmediate'>立即支付</text>
+        <text class='cancel-btn' data-orderno="{{ item.orderNo }}" catchtap='cancelClick'>取  消</text>
+        <text class='pay-btn' data-orderno="{{ item.orderNo }}" catchtap='payImmediate'>立即支付</text>
       </view>
       <view class='btn-box' wx:if="{{ item.orderStatus === 'PAID'&& item.groupStatus === 'JOINING' }}" >
         <view class="invent-btn">邀请好友参团</view>
