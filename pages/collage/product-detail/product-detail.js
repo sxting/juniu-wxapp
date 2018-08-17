@@ -43,7 +43,7 @@ Page({
     this.setData({
       storeName: wx.getStorageSync('storeName'),
       pinTuanId: options.activityId ? options.activityId : '',
-      groupId: options.groupId ? options.groupId : '',
+      groupId: options.groupId ? options.groupId : '1534476704893122255136',
     })
 
     if (options.type == 'share') {
@@ -213,10 +213,18 @@ function getProductDetail() {
         if (self.data.groupId && self.data.data.currentGroup) {
           let data2 = self.data.data;
           data2.currentGroup.expireTime = data2.currentGroup.expireTime.replace(/-/g, '/');
+          
+          length = data2.currentGroup.picUrls.length;
+
+          if(length < data2.peopleCount && data2.currentGroup.status == 'FINISH') {
+            let num = randomNum.call(self, 1, 5);
+            for (let i = 0; i < (data2.peopleCount - length); i++) {
+              data2.currentGroup.picUrls.push(`/asset/images/pintuan_head${num}.jpg`)
+            }
+          }
           self.setData({
             data: data2
           })
-          length = data2.currentGroup.picUrls.length
         }        
 
         self.setData({
@@ -395,4 +403,19 @@ function logIn(code, appid, rawData) {
     error: err => errDialog(err),
     complete: () => wx.hideToast()
   })
+}
+
+//生成从minNum到maxNum的随机数
+function randomNum(minNum, maxNum) {
+  switch (arguments.length) {
+    case 1:
+      return parseInt(Math.random() * minNum + 1, 10);
+      break;
+    case 2:
+      return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+      break;
+    default:
+      return 0;
+      break;
+  }
 }
