@@ -105,7 +105,7 @@
         </view>
         <!--两人拼团-->
         <view class="images-boxes-collages two-people clearfix" wx:if="{{collageNumber === 2 && collageStatus != 'FINISH'}}">
-          <view class='images-detail fl two mr100' wx:for="{{arrCollageImageShow}}" wx:for-index="index">
+          <view class='images-detail fl two mr50' wx:for="{{arrCollageImageShow}}" wx:for-index="index">
             <image src="{{item}}"></image>
             <text class="head {{collageStatus === 'CLOSE'? 'bg' : ''}}" wx:if="{{index === 0}}">团长</text>
           </view>
