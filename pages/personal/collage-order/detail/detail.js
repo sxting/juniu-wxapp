@@ -15,7 +15,7 @@ Page({
     phone: '',
     groupId: '',
     activityId: '',
-    collageStatus: 'JOINING',
+    collageStatus: '',
     orderDetailArr: {},//订单信息
     activityName: '',
     collageNumber: 2,
@@ -247,10 +247,16 @@ function orderPayment() {
           signType: res.payInfo.signType,
           paySign: res.payInfo.paySign,
           success: function (result) {
-            getCollageOrderDetail.call(self);
+            console.log('8888');
+            setTimeout(function () {
+              getCollageOrderDetail.call(self);
+            }, 1000)
           },
           fail: function (result) {
-            getCollageOrderDetail.call(self);
+            console.log('99999');
+            setTimeout(function () {
+              getCollageOrderDetail.call(self);
+            }, 1000)
           },
           complete: function (result) {
             

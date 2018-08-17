@@ -4,7 +4,7 @@
     <text class='fl jn-icon icon-clock'></text>
     <view class="fl text-tips">
       <text>待支付</text>
-      <text>请在下单后3分钟内付款，超时订单将自动关闭</text>
+      <text>请在下单后5分钟内付款，超时订单将自动关闭</text>
     </view>
   </view>
   <!--已超时的时候  提示的小tip-->
