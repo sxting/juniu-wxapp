@@ -1,6 +1,7 @@
 import { personalService } from '../../shared/service.js';
 import { errDialog, loading } from '../../../../utils/util';
-import { constant } from '../../../../utils/constant'
+import { constant } from '../../../../utils/constant';
+var wxbarcode = require('../../../../utils/index.js');
 
 
 Page({
@@ -153,6 +154,8 @@ function getCollageOrderDetail() {
           } else {
             voucherStatus = '已退款';//REFUND
           }
+          /** 券码 **/ 
+          wxbarcode.barcode('barcode', res.voucher.code, 520, 186);
         }
         this.setData({
           activityName: res.activityName.length > 8 ? res.activityName.substring(0, 8) + '...' : res.activityName,
