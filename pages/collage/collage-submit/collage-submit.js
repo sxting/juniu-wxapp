@@ -64,6 +64,9 @@ function orderSubmit() {
   let self = this;
   let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
   let appId = extConfig.theAppid ? extConfig.theAppid : 'wx3bb038494cd68262';
+  if ((this.data.tel + '').length !== 11) {
+    errDialog('请填写正确的手机号'); return;
+  }
   let data = {
     storeId: wx.getStorageSync(constant.STORE_INFO),
     activityId: this.data.data.pinTuanId,
