@@ -1,4 +1,4 @@
-<view class='jn-content'>
+<view class='jn-content page'>
   <!--未支付的时候  提示的小tip-->
   <view class='head-tips clearfix' wx:if="{{orderDetailArr.orderStatus === 'PRE_PAYMENT'}}">
     <text class='fl jn-icon icon-clock'></text>
@@ -189,6 +189,5 @@
         <view><text>下单时间：</text>{{orderDetailArr.orderTime}}</view>
       </view>
     </view>
-    <view class="jn-bottom"><image src="/asset/images/logo.png"></image></view> 
   </view>
 </view>
