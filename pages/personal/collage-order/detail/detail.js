@@ -44,12 +44,9 @@ Page({
 
   /*** 邀请好友参团 */
   onShareAppMessage: function (res) {
-    console.log(this.data.activityId);
-    console.log(this.data.groupId);
-
     return {
       title: wx.getStorageSync('邀请好友'),
-      path: '/pages/collage/product-detail/product-detail?groupId=' + this.data.groupId + '&activityId=' + this.data.activityId + '&type=share',
+      path: '/pages/collage/product-detail/product-detail?groupId=' + this.data.groupId + '&activityId=' + this.data.activityId + '&storeId=' + wx.getStorageSync(constant.STORE_INFO) + '&type=share',
       success: function (res) {
         // 转发成功
         console.log(res);
@@ -102,8 +99,7 @@ Page({
 function getCollageOrderDetail() {
   let self = this;
   let data = {
-    // orderNo: this.data.orderNo,
-    orderNo: '153441317325576946587587',
+    orderNo: this.data.orderNo,
     platform: 'WECHAT_SP'
   }
   personalService.getCollageOrderDetail(data).subscribe({
@@ -147,7 +143,7 @@ function getCollageOrderDetail() {
         let settleCode = res.voucher ? res.voucher.code : '';
         let voucherOrderTime = res.voucher ? res.voucher.orderTime : '';
         let voucherStatus = '';//拼团成功以后的状态
-        if (res.orderStatus == 'FINISH') {
+        if (res.voucher) {
           if (res.voucher.settleStatus === 'VALID') {
             voucherStatus = '未使用';
           } else if (res.voucher.settleStatus === 'SETTLE') {
