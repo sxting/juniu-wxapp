@@ -47,9 +47,8 @@
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/collage/product-detail/product-detail",
+					"pathName": "pages/home/home",
 					"query": "activityId=1534471289389691289260"
-
 				}
 			]
 		}
