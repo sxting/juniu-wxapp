@@ -28,8 +28,9 @@ Page({
     this.setData({
       storeId: wx.getStorageSync(constant.STORE_INFO),
       merchantId: wx.getStorageSync(constant.MERCHANTID),
-      productId: options.productId,
-      staffId: options.staffId
+      productId: options.productId ? options.productId : '',
+      staffId: options.staffId ? options.staffId : '',
+      activityId: options.activityId ? options.activityId : ''
     })
   },
 
@@ -145,7 +146,8 @@ Page({
       score: this.data.starCount,
       content: this.data.commentContent,
       isShow: 1,
-      imageIds: this.data.pictureId
+      imageIds: this.data.pictureId,
+      activityId: this.data.activityId ? this.data.activityId : '',
     };
 
     commentService.making(data).subscribe({

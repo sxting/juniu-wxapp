@@ -4,6 +4,7 @@ import { errDialog, loading } from '../../../utils/util';
 import { constant } from '../../../utils/constant';
 import { homeService } from '../../home/shared/home.service';
 import { service } from '../../../service';
+import { productService } from '../../product/shared/service.js'
 
 Page({
   data: {
@@ -31,7 +32,11 @@ Page({
     sharedPicUrl: [],
     applyStores: [],
     token: wx.getStorageSync(constant.TOKEN),
-    getUserInfo: true
+    getUserInfo: true,
+    pageIndex: 1,
+    pageSize: 10,
+    countPage: 1,
+    productId: '',
   },
 
   onLoad: function (options) {
@@ -39,14 +44,16 @@ Page({
     wx.setNavigationBarTitle({
       title: '项目详情',
     })
-    //1534471289389691289260
-    //1534486340978192233874
+    //1534471289389691289260, 1534492886056393843540
+    //1534486340978192233874, 1534492911020635915801
 
     this.setData({
       storeName: wx.getStorageSync('storeName'),
       pinTuanId: options.activityId ? options.activityId : '',
       groupId: options.groupId ? options.groupId : '',
     })
+
+    getProductCommentList.call(this);
 
     if (options.type == 'share') {
       wx.setStorageSync(constant.STORE_INFO, options.storeId)
@@ -147,6 +154,16 @@ Page({
     }
   },
 
+  onScrollTolower: function () {
+    if (this.data.pageIndex == this.data.countPage) {
+      return;
+    }
+    this.setData({
+      pageIndex: this.data.pageIndex + 1
+    })
+    getProductCommentList.call(this)
+  },
+
   // 开团 
   onOpenGroupBtnClick() {
     let data = this.data.data, 
@@ -203,6 +220,7 @@ function getProductDetail() {
         self.setData({
           data: res
         })
+       
 
         if (res.openedGroups && res.openedGroups.length) {
           self.setData({
@@ -424,8 +442,8 @@ function getProductCommentList() {
   let data = {
     pageIndex: this.data.pageIndex,
     pageSize: this.data.pageSize,
-    storeId: this.data.storeId,
-    productId: this.data.productId
+    storeId: wx.getStorageSync(constant.STORE_INFO),
+    activityId: this.data.pinTuanId
   }
   productService.getProductCommentList(data).subscribe({
     next: res => {
