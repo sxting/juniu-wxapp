@@ -95,9 +95,9 @@ function orderSubmit() {
           console.log(result);
         },
         complete: function (result) {
-          wx.navigateTo({
-            url: '/pages/personal/collage-order/detail/detail?orderNo=' + res.orderId,
-          });
+          // wx.navigateTo({
+          //   url: '/pages/personal/collage-order/detail/detail?orderNo=' + res.orderId,
+          // });
           console.log(result);
         }
       })

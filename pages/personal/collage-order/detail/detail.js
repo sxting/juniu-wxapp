@@ -247,34 +247,13 @@ function orderPayment() {
           signType: res.payInfo.signType,
           paySign: res.payInfo.paySign,
           success: function (result) {
-            wx.navigateTo({
-              url: '/pages/personal/collage-order/detail/detail?orderNo=' + res.orderId,
-            });
-            console.log(result)
+            getCollageOrderDetail.call(self);
           },
           fail: function (result) {
-            wx.navigateTo({
-              url: '/pages/personal/collage-order/detail/detail?orderNo=' + res.orderId,
-            });
-            console.log(result);
+            getCollageOrderDetail.call(self);
           },
           complete: function (result) {
-            wx.navigateTo({
-              url: '/pages/personal/collage-order/detail/detail?orderNo=' + res.orderId,
-            });
-            console.log(result);
-          }
-        })
-        /** 唤起微信支付 */
-        wx.requestPayment({
-          success: function (res) {
-
-          },
-          fail: function (result) {
-            console.log(result);
-          },
-          complete: function (result) {
-            console.log(result);
+            
           }
         })
       }
