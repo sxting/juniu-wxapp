@@ -58,7 +58,7 @@
         </view>
         <!--大于四人拼团-->
         <view class="images-boxes-collages clearfix" wx:if="{{data.peopleCount > 4}}">
-          <view class='images-detail fl' wx:for="{{data.currentGroup.picUrls.slice(0,3)}}" wx:for-index="i">
+          <view class='images-detail fl' wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i" wx:if="{{i<3}}">
             <image src='{{item ? item : jnImg}}'></image>
             <text class="head" wx:if="{{i === 0}}">团长</text>
           </view>
