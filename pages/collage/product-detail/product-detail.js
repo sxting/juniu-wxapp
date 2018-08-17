@@ -210,7 +210,7 @@ function getProductDetail() {
 
         let length = 0;
 
-        if (self.data.groupId) {
+        if (self.data.groupId && data2.currentGroup) {
           let data2 = self.data.data;
           data2.currentGroup.expireTime = data2.currentGroup.expireTime.replace(/-/g, '/');
           self.setData({
