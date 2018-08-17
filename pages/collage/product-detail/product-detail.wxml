@@ -147,6 +147,43 @@
         <view class='notice' wx:for="{{item.details}}" wx:for-item="notice">{{index+1}}. {{notice}}</view>
       </view>
     </view>  
+
+    <!--顾客评价-->
+  <view class="comment-box" wx:if="{{commentList && commentList.length > 0}}">  
+    <view class="sub-title"><icon class="jn-icon icon-Evaluation"></icon> 评价</view>
+    <scroll-view scroll-y="true" bindscrolltolower="onScrollTolower">
+    <!--循环的评价-->
+    <view class="comment-list">
+      <view wx:for="{{commentList}}" wx:for-item="comment" class="comment-item-box w-inner">
+        <view class="comment-top">
+          <image src="{{comment.headImageUrl}}"></image>
+          <view class="comment-top-center">
+            <view>{{comment.nick}}</view>
+            <!--星级-->
+            <view class="start-box">
+              <view class="space-start-box">
+                 <icon wx:for="{{starArr}}" class="jn-icon icon-starempty"></icon>
+              </view>
+              <view class="starts-box">
+                 <icon wx:for="{{starArr}}" wx:for-item="star" wx:if="{{comment.score > star}}" class="jn-icon icon-stars"></icon>
+              </view>
+            </view>
+          </view>
+          <view class="comment-time-box">
+            <text>{{comment.date}} </text>   
+            <text>{{comment.time}}</text>
+          </view>
+        </view>
+        <view class="comment-content"> {{comment.content}} </view>
+        <view class="comment-images">
+          <image wx:for="{{comment.imagesUrl}}" src="{{item}}" bindtap="onImgItemClick" data-url="{{item}}"></image>
+        </view>
+      </view>
+
+      <!-- <view class="juniu-bottom comment-jn-bottom" wx:if="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>       -->
+    </view>
+    </scroll-view>
+  </view>
   </view>
 
   <view wx:if="{{!groupId}}">

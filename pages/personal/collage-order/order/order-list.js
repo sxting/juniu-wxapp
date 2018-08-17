@@ -95,7 +95,7 @@ Page({
   evaluationImmediate: function(e){
     console.log(e.currentTarget.dataset.activityid);
     wx.navigateTo({
-      url: '/pages/comment/making/making?productId=' + e.currentTarget.dataset.activityid
+      url: '/pages/comment/making/making?activityId=' + e.currentTarget.dataset.activityid
     })
   }
 })

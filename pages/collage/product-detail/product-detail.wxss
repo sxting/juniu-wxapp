@@ -234,6 +234,10 @@ page {
   display: inline-block;
 }
 
+.comment-box {
+  margin-top: 0;
+}
+
 /* .detail-imgs-box{
   padding: 20rpx 0
 }
