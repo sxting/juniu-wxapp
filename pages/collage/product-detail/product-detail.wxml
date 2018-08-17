@@ -36,11 +36,12 @@
   </view>
 
   <!--通过别人的分享点进来 可以参团-->
-  <view class="center-content" wx:elif="{{groupId}}">
+  <view class='center-content' wx:elif="{{groupId}}">
     <view class="collage-person clearfix">
       <view class="fl">
         <text>{{data.peopleCount}}人拼团</text>
-        <text class="notes">(已有{{joinNumber}}人参团,还差{{(data.peopleCount - joinNumber) ? (data.peopleCount - joinNumber) : 0}}人)</text>
+        <text wx:if="{{ (data.peopleCount > joinNumber && data.currentGroup.status === 'FINISH')}}"></text>
+        <text class="notes" wx:else>(已有{{joinNumber}}人参团,还差{{(data.peopleCount - joinNumber) ? (data.peopleCount - joinNumber) : 0}}人)</text>
       </view>
       <!--如果拼团人数大于四人才显示-->
       <collage-portrait class="fr" fleg='more' collageNumber="{{data.peopleCount}}" arrCollageImage="{{data.currentGroup.picUrls}}" wx:if="{{data.peopleCount > 4}}" > </collage-portrait> 
@@ -57,46 +58,45 @@
         </view>
         <!--大于四人拼团-->
         <view class="images-boxes-collages clearfix" wx:if="{{data.peopleCount > 4}}">
-
-          <view wx:for="{{data.currentGroup.picUrls.slice(0,3)}}" wx:for-index="i">
+          <view class='images-detail fl' wx:for="{{data.currentGroup.picUrls.slice(0,3)}}" wx:for-index="i">
             <image src='{{item ? item : jnImg}}'></image>
             <text class="head" wx:if="{{i === 0}}">团长</text>
           </view>
-          <view class="special-symbol" wx:for="{{qmArr}}"
+          <view class="special-symbol fl" wx:for="{{qmArr}}"
               style="{{data.currentGroup.picUrls.length > 2 ? 'display: none' : ''}}">
-            <text class="iconfont icon-qm"></text>
+            <text class="jn-icon icon-qm"></text>
           </view>
 
           <collage-portrait class="fl" fleg='' collageNumber="{{ data.peopleCount }}"> </collage-portrait> 
         </view>
         <!--四人拼团-->
         <view class="images-boxes-collages clearfix" wx:if="{{data.peopleCount == 4}}">
-          <view wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
+          <view class='images-detail fl' wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
             <image src='{{item ? item : jnImg}}'></image>
             <text class="head" wx:if="{{i === 0}}">团长</text>
           </view>
-          <view class="special-symbol" wx:for="{{qmArr}}">
-            <text class="iconfont icon-qm"></text>
+          <view class="special-symbol fl" wx:for="{{qmArr}}">
+            <text class="jn-icon icon-qm"></text>
           </view>
         </view>
         <!--三人拼团-->
         <view class="images-boxes-collages three-people clearfix" wx:if="{{data.peopleCount == 3}}">
-          <view wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
+          <view class='images-detail three' wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
             <image src='{{item ? item : jnImg}}'></image>
             <text class="head" wx:if="{{i === 0}}">团长</text>
           </view>
-          <view class="special-symbol" wx:for="{{qmArr}}">
-            <text class="iconfont icon-qm"></text>
+          <view class="special-symbol three" wx:for="{{qmArr}}">
+            <text class="jn-icon icon-qm"></text>
           </view>
         </view>
         <!--两人拼团-->
         <view class="images-boxes-collages two-people clearfix" wx:if="{{data.peopleCount == 2}}">
-          <view wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
+          <view class='images-detail fl two mr50' wx:for="{{data.currentGroup.picUrls}}" wx:for-index="i">
             <image src='{{item ? item : jnImg}}'></image>
             <text class="head" wx:if="{{i === 0}}">团长</text>
           </view>
-          <view class="special-symbol" wx:for="{{qmArr}}">
-            <text class="iconfont icon-qm"></text>
+          <view class="special-symbol two" wx:for="{{qmArr}}">
+            <text class="jn-icon icon-qm"></text>
           </view>
         </view>
 
@@ -157,16 +157,16 @@
   <!--通过分享进来的按钮  -->
   <view wx:else class="jn-btn">
     <view class="shared-one" wx:if="{{data.currentGroup.status === 'JOINING'}}">
-      <text class="fl" bindtap=''>我要开团</text>
-      <text bindtap=''>一键参团 200元</text>
+      <text class="fl" bindtap='onOpenGroupBtnClick'>我要开团</text>
+      <text bindtap='onGoJoinCollageClick'>一键参团</text>
     </view>
     <view class="shared-two" wx:elif="{{data.currentGroup.status === 'FINISH'}}">
       <text class="fl">该拼团已成功</text>
-      <text bindtap=''>我来开这个团</text>
+      <text bindtap='onOpenGroupBtnClick'>我来开这个团</text>
     </view>
     <view class="shared-three" wx:elif="{{data.currentGroup.status === 'CLOSE'}}">
       <text class="fl">该拼团已失败</text>
-      <text bindtap=''>我来开这个团</text>
+      <text bindtap='onOpenGroupBtnClick'>我来开这个团</text>
     </view>
   </view>
 </view>

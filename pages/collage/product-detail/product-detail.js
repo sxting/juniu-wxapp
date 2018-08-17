@@ -39,6 +39,8 @@ Page({
     wx.setNavigationBarTitle({
       title: '项目详情',
     })
+    //1534471289389691289260
+    //1534486340978192233874
 
     this.setData({
       storeName: wx.getStorageSync('storeName'),
@@ -213,10 +215,18 @@ function getProductDetail() {
         if (self.data.groupId && self.data.data.currentGroup) {
           let data2 = self.data.data;
           data2.currentGroup.expireTime = data2.currentGroup.expireTime.replace(/-/g, '/');
+          
+          length = data2.currentGroup.picUrls.length;
+
+          if(length < data2.peopleCount && data2.currentGroup.status == 'FINISH') {
+            let num = randomNum.call(self, 1, 5);
+            for (let i = 0; i < (data2.peopleCount - length); i++) {
+              data2.currentGroup.picUrls.push(`/asset/images/pintuan_head${num}.jpg`)
+            }
+          }
           self.setData({
             data: data2
           })
-          length = data2.currentGroup.picUrls.length
         }        
 
         self.setData({
@@ -299,7 +309,7 @@ function getProductDetail() {
         }
 
         if (self.data.groupId) {
-          if (self.data.data.peopleNumber > 4) {
+          if (self.data.data.peopleCount > 4) {
             if (length >= 3) {
 
             } else {
@@ -308,7 +318,7 @@ function getProductDetail() {
               }
             }
           } else {
-            for (let i = 0; i < self.data.data.peopleNumber - length; i++) {
+            for (let i = 0; i < self.data.data.peopleCount - length; i++) {
               self.data.qmArr.push('')
             }
           }
@@ -340,7 +350,19 @@ function getProductDetail() {
               self.data.sharedMinites = time.getMinutes().toString().length < 2 ? '0' + time.getMinutes() : time.getMinutes();
               self.data.sharedSeconds = time.getSeconds().toString().length < 2 ? '0' + time.getSeconds() : time.getSeconds();
             }
-          }, 1000)
+            self.setData({
+              sharedHours: self.data.sharedHours,
+              sharedMinites: self.data.sharedMinites,
+              sharedSeconds: self.data.sharedSeconds
+            })
+          }, 1000);
+
+          self.setData({
+            qmArr: self.data.qmArr,
+            sharedHours: self.data.sharedHours,
+            sharedMinites: self.data.sharedMinites,
+            sharedSeconds: self.data.sharedSeconds
+          })
         }
       }
     },
@@ -395,4 +417,19 @@ function logIn(code, appid, rawData) {
     error: err => errDialog(err),
     complete: () => wx.hideToast()
   })
+}
+
+//生成从minNum到maxNum的随机数
+function randomNum(minNum, maxNum) {
+  switch (arguments.length) {
+    case 1:
+      return parseInt(Math.random() * minNum + 1, 10);
+      break;
+    case 2:
+      return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+      break;
+    default:
+      return 0;
+      break;
+  }
 }

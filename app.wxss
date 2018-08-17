@@ -563,6 +563,9 @@ page {
 .center-content .images-box .details-img .images-boxes-collages .mr100{
   margin-right: 100rpx
 }
+.center-content .images-box .details-img .images-boxes-collages .mr50 {
+  margin-right: 50rpx
+}
 .center-content .images-box .details-img .two-people .two:last-of-type{
   float: right;
 }
