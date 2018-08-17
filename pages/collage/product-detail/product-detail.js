@@ -42,8 +42,8 @@ Page({
 
     this.setData({
       storeName: wx.getStorageSync('storeName'),
-      pinTuanId: options.activityId ? options.activityId : '',
-      groupId: options.groupId ? options.groupId : '',
+      pinTuanId: options.activityId ? options.activityId : '1534471289389691289260',
+      groupId: options.groupId ? options.groupId : '1534486340978192233874',
     })
 
     if (options.type == 'share') {
@@ -307,7 +307,7 @@ function getProductDetail() {
         }
 
         if (self.data.groupId) {
-          if (self.data.data.peopleNumber > 4) {
+          if (self.data.data.peopleCount > 4) {
             if (length >= 3) {
 
             } else {
@@ -316,7 +316,7 @@ function getProductDetail() {
               }
             }
           } else {
-            for (let i = 0; i < self.data.data.peopleNumber - length; i++) {
+            for (let i = 0; i < self.data.data.peopleCount - length; i++) {
               self.data.qmArr.push('')
             }
           }
@@ -348,6 +348,11 @@ function getProductDetail() {
               self.data.sharedMinites = time.getMinutes().toString().length < 2 ? '0' + time.getMinutes() : time.getMinutes();
               self.data.sharedSeconds = time.getSeconds().toString().length < 2 ? '0' + time.getSeconds() : time.getSeconds();
             }
+            self.setData({
+              sharedHours: self.data.sharedHours,
+              sharedMinites: self.data.sharedMinites,
+              sharedSeconds: self.data.sharedSeconds
+            })
           }, 1000);
 
           self.setData({
