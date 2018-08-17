@@ -178,7 +178,7 @@
     </view>
     <view class='order-detail-box'>
       <view class="order-detail">
-        <view wx:if="{{orderDetailArr.orderStatus != 'PRE_PAYMENT' || orderDetailArr.orderStatus != 'PAY_TIMEOUT'}}">
+        <view wx:if="{{orderDetailArr.orderStatus != 'PRE_PAYMENT' && orderDetailArr.orderStatus != 'PAYMENT_TIMEOUT'}}">
           <text>团单编号：</text>{{orderDetailArr.groupNo}}
           <text class='copy-btn' data-copydata="{{ orderDetailArr.orderNo }}"  bindtap='copyTextBtn'>复制</text>
         </view>
