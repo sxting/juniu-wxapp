@@ -101,14 +101,14 @@
   </view>
 
   <!--优惠券  -->
-  <view class="cfaftsman-list">
+  <view class="cfaftsman-list" wx:if="{{ticketList.length > 0}}">
     <view class="sub-title">
       <view class="sub-title-left">
         <view class="jn-icon ticket ticket-color"></view>
         <view class="sub-title-text">优惠券</view>
       </view>
     </view>
-    <view class='ticket-block' wx:if="{{ticketList.length > 0}}">
+    <view class='ticket-block'>
       <!--循环的项目-->
       <view class="tickte-item" wx:for="{{ticketList}}">
         <view class="yuan1"></view>
