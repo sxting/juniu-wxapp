@@ -43,7 +43,7 @@ Page({
     this.setData({
       storeName: wx.getStorageSync('storeName'),
       pinTuanId: options.activityId ? options.activityId : '',
-      groupId: options.groupId ? options.groupId : '1534476704893122255136',
+      groupId: options.groupId ? options.groupId : '',
     })
 
     if (options.type == 'share') {
