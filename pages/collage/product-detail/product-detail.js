@@ -277,15 +277,23 @@ function getProductDetail() {
             setInterval(function () {
               self.data.collageList.forEach(function (item) {
                 if (new Date('2000/01/01 ' + item.time).getHours().toString() === '0' && new Date('2000/01/01 ' + item.time).getMinutes().toString() === '0' && new Date('2000/01/01 ' + item.time).getSeconds().toString() === '0') {
-                  item.time = '00:00:00'
+                  item.time = '00:00:00';
+                  self.setData({
+                    collageList: self.data.collageList
+                  })
                 } else {
                   let time = new Date(new Date('2000/01/01 ' + item.time).getTime() - 1000);
                   item.time =
                     (time.getHours().toString().length < 2 ? '0' + time.getHours() : time.getHours()) + ':' +
                     (time.getMinutes().toString().length < 2 ? '0' + time.getMinutes() : time.getMinutes()) + ':' +
                     (time.getSeconds().toString().length < 2 ? '0' + time.getSeconds() : time.getSeconds());
+
+                  self.setData({
+                    collageList: self.data.collageList
+                  })
                 }
               })
+
             }, 1000)
           }; 
         }
