@@ -348,7 +348,14 @@ function getProductDetail() {
               self.data.sharedMinites = time.getMinutes().toString().length < 2 ? '0' + time.getMinutes() : time.getMinutes();
               self.data.sharedSeconds = time.getSeconds().toString().length < 2 ? '0' + time.getSeconds() : time.getSeconds();
             }
-          }, 1000)
+          }, 1000);
+
+          self.setData({
+            qmArr: self.data.qmArr,
+            sharedHours: self.data.sharedHours,
+            sharedMinites: self.data.sharedMinites,
+            sharedSeconds: self.data.sharedSeconds
+          })
         }
       }
     },
