@@ -133,13 +133,8 @@
           <view>{{ voucherStatus }}</view>
           <view>下单时间：{{ voucherOrderTime }}</view>
         </view>
-        <!-- <view class="code" wx:for="{{orderDetail.vouchers}}" wx:for-index="index">
-          <canvas canvas-id="{{'barcode'+index}}" />
-          <view class="code-num">券码 {{item.voucherCode}}</view>
-        </view> -->
         <view class="qrcode-box">
           <view class="qrcode">
-            <!-- <image class="jn-qrcode" id="barcode" src=''></image> -->
             <canvas class="jn-qrcode"  canvas-id="barcode" />
             <view class="coupon-code">
               <text class="coupon">券码</text>
