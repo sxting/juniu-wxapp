@@ -24,13 +24,18 @@
   color: #FF6700;
 }
 .list-content-box{
-  padding: 30rpx 24rpx 22rpx 24rpx;
+  padding: 30rpx;
+  font-size: 0;
 }
 .list-content{
   width: 100%;
   height: auto;
   box-shadow: 0 2rpx 6rpx 0 #D8D8D8;
-  border-radius: 8rpx
+  border-radius: 8rpx;
+  margin-bottom: 30rpx
+}
+.list-content-box .list-content:last-of-type{
+  margin-bottom: 0rpx
 }
 .list-infor{
   width: 100%;
@@ -39,7 +44,6 @@
 }
 .list-title{
   padding: 0 26rpx;
-  margin-top: 14rpx;
 }
 .list-title text{
   font-family: PingFangSC-Regular;

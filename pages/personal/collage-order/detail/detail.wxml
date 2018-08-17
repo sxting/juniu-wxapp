@@ -39,6 +39,7 @@
     <text class="fl">实付款</text>
     <view class="fr detail-pay-for">{{ orderDetailArr.activityPrice? orderDetailArr.activityPrice / 100 : 0 }}<text class="unit">元</text></view>
   </view>
+  <view class='tt' wx:if="{{collageStatus === 'JOINING'||collageStatus === 'CLOSE'}}"></view>
   <!-- 中间部分 -->
   <view class='center-content' wx:if="{{collageStatus === 'JOINING'||collageStatus === 'CLOSE'}}">
     <!--多人拼团的时候  头部-->
@@ -123,7 +124,7 @@
       </view>
     </view>
   </view>
-
+  <view class='tt' wx:if="{{collageStatus === 'FINISH'}}"></view>
   <!--中间部分拼团成功-->
   <view wx:if="{{collageStatus === 'FINISH'}}">
     <view class="collage-success-box">
@@ -155,7 +156,7 @@
   <view class="application-refund-btn" wx:if="{{orderDetailArr.orderStatus === 'PRE_PAYMENT'}}" bindtap='orderPaymentClick'>
     <text>立即付款</text>
   </view>
- 
+ <view class='tt' wx:if="{{collageStatus != 'FINISH'}}"></view>
   <!-- 公用底部 -->
    <view class="footer" wx:if="{{collageStatus != 'FINISH'}}">
     <view class="store-detail">
@@ -176,6 +177,7 @@
         </view>
       </view>
     </view>
+    <view class='tt'></view>
     <view class='order-detail-box'>
       <view class="order-detail">
         <view wx:if="{{orderDetailArr.orderStatus != 'PRE_PAYMENT' && orderDetailArr.orderStatus != 'PAYMENT_TIMEOUT'}}">
