@@ -39,11 +39,13 @@ Page({
     wx.setNavigationBarTitle({
       title: '项目详情',
     })
+    //1534471289389691289260
+    //1534486340978192233874
 
     this.setData({
       storeName: wx.getStorageSync('storeName'),
-      pinTuanId: options.activityId ? options.activityId : '1534471289389691289260',
-      groupId: options.groupId ? options.groupId : '1534486340978192233874',
+      pinTuanId: options.activityId ? options.activityId : '',
+      groupId: options.groupId ? options.groupId : '',
     })
 
     if (options.type == 'share') {
