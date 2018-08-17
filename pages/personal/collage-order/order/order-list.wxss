@@ -132,7 +132,7 @@
 .btn-box text.pay-btn{
   width: 160rpx;
 }
-.btn-box button.invent-btn{
+.btn-box .invent-btn{
   width: 212rpx;
   display: inline-block;
   background-color: #FFFFFF;
