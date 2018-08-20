@@ -27,7 +27,9 @@ Page({
     settleCode: '',
     voucherOrderTime: '',
     voucherStatus: '',
-    applyStores: []
+    isOnLoad: false,
+    applyStores: [],
+    timerAll: null
   },
 
   /*** 生命周期函数--监听页面加载 */
@@ -45,20 +47,31 @@ Page({
     },1000)
   },
 
+  onShow() {
+    let self = this;
+    console.log('00000');
+    getCollageOrderDetail.call(self);
+  },
+
   /*** 邀请好友参团 */
   onShareAppMessage: function (res) {
+    let self = this;
     return {
       title: wx.getStorageSync('邀请好友'),
       path: '/pages/collage/product-detail/product-detail?groupId=' + this.data.groupId + '&activityId=' + this.data.activityId + '&storeId=' + wx.getStorageSync(constant.STORE_INFO) + '&type=share',
       success: function (res) {
         // 转发成功
-        console.log(res);
+        console.log(res + '转发成功');
+        self.setData({
+          isOnLoad: true
+        })
       },
       fail: function (res) {
         // 转发失败
         console.log(res);
       }
     }
+   
   },
 
   /**  拨打电话  **/
@@ -175,12 +188,11 @@ function getCollageOrderDetail() {
           settleCode: settleCode,
           voucherOrderTime: voucherOrderTime,
           voucherStatus: voucherStatus,
-          applyStores: res.applyStores
+          applyStores: res.applyStores,
         })
         /** 拼团数据 **/
         let countDownTime = '';
         let expireTime = res.currentGroup && res.currentGroup != null ? res.currentGroup.expireTime.replace(/-/g, '/') : '';
-        console.log(expireTime);
         let time = new Date(expireTime).getTime() - new Date().getTime();
         if (time <= 0) {
           countDownTime = '00:00:00'
@@ -217,6 +229,16 @@ function getCollageOrderDetail() {
             restSecond: countDownTime.substring(6)
           })
         }, 1000)
+
+        console.log(this.data.isOnLoad);
+        if (res.groupStatus != 'FINISH' && this.data.isOnLoad) {
+          console.log('hahaha');
+          self.data.timerAll = setInterval(function () {
+            getCollageOrderDetail.call(self);
+          }, 20000)
+        }else{
+          clearInterval(self.data.timerAll);
+        }
       }
     },
     error: err => errDialog(err),
