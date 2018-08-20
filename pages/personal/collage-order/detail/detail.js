@@ -18,7 +18,7 @@ Page({
     collageStatus: '',
     orderDetailArr: {},//订单信息
     activityName: '',
-    collageNumber: 2,
+    collageNumber: 0,
     remainingNumber: 0,
     hadCollageNumber: 0,
     groupNo: '',
@@ -29,7 +29,7 @@ Page({
     voucherStatus: '',
     isOnLoad: false,
     applyStores: [],
-    timerAll: null
+    timerAll: ''
   },
 
   /*** 生命周期函数--监听页面加载 */
@@ -47,10 +47,17 @@ Page({
     },1000)
   },
 
-  onShow() {
+  onShow: function() {
     let self = this;
-    console.log('00000');
     getCollageOrderDetail.call(self);
+  },
+
+  onUnload: function(){
+    clearInterval(this.data.timerAll);
+  },
+
+  onHide: function () {
+    clearInterval(this.data.timerAll);
   },
 
   /*** 邀请好友参团 */
@@ -71,7 +78,6 @@ Page({
         console.log(res);
       }
     }
-   
   },
 
   /**  拨打电话  **/
@@ -233,9 +239,11 @@ function getCollageOrderDetail() {
         console.log(this.data.isOnLoad);
         if (res.groupStatus != 'FINISH' && this.data.isOnLoad) {
           console.log('hahaha');
-          self.data.timerAll = setInterval(function () {
-            getCollageOrderDetail.call(self);
-          }, 20000)
+          this.setData({
+            timerAll: setInterval(function () {
+              getCollageOrderDetail.call(self);
+            }, 20000)
+          })
         }else{
           clearInterval(self.data.timerAll);
         }

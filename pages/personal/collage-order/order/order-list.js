@@ -47,7 +47,7 @@ Page({
     console.log(e.currentTarget.dataset.orderno);
     let orderno = e.currentTarget.dataset.orderno;
     wx.navigateTo({
-      url: '/pages/personal/collage-order/detail/detail?orderNo=' + orderno
+      url: '/pages/personal/collage-order/detail/detail?orderNo=' + orderno 
     })
   },
 
