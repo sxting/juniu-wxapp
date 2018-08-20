@@ -277,13 +277,11 @@ function orderPayment() {
           signType: res.payInfo.signType,
           paySign: res.payInfo.paySign,
           success: function (result) {
-            console.log('8888');
             setTimeout(function () {
               getCollageOrderDetail.call(self);
             }, 1000)
           },
           fail: function (result) {
-            console.log('99999');
             setTimeout(function () {
               getCollageOrderDetail.call(self);
             }, 1000)
