@@ -29,7 +29,8 @@ Page({
     voucherStatus: '',
     isOnLoad: false,
     applyStores: [],
-    timerAll: ''
+    timerAll: '',
+    showBtn: false
   },
 
   /*** 生命周期函数--监听页面加载 */
@@ -39,8 +40,10 @@ Page({
       title: '订单详情',
     })
     this.setData({
-      orderNo: options.orderNo ? options.orderNo : ''
+      orderNo: options.orderNo ? options.orderNo : '',
+      showBtn: options.show && options.show === 'true'? true : false
     })
+    
     /** 调取订单详情接口 */
     setTimeout(function(){
       getCollageOrderDetail.call(self);

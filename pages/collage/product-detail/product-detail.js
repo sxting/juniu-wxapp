@@ -234,7 +234,7 @@ function getProductDetail() {
 
           if (data2.currentGroup.orderStatus == 'PAID' && data2.currentGroup.orderNo && data2.currentGroup.groupStatus == 'FINISH') {
             wx.navigateTo({
-              url: '/pages/personal/collage-order/detail/detail?orderNo=' + data2.currentGroup.orderNo,
+              url: '/pages/personal/collage-order/detail/detail?show=true&orderNo=' + data2.currentGroup.orderNo,
             })
           }
 
