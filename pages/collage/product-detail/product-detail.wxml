@@ -40,7 +40,7 @@
     <view class="collage-person clearfix">
       <view class="fl">
         <text>{{data.peopleCount}}人拼团</text>
-        <text wx:if="{{ (data.peopleCount > joinNumber && data.currentGroup.status === 'FINISH')}}"></text>
+        <text wx:if="{{ (data.peopleCount > joinNumber && data.currentGroup.groupStatus === 'FINISH')}}"></text>
         <text class="notes" wx:else>(已有{{joinNumber}}人参团,还差{{(data.peopleCount - joinNumber) ? (data.peopleCount - joinNumber) : 0}}人)</text>
       </view>
       <!--如果拼团人数大于四人才显示-->
@@ -50,7 +50,7 @@
     <!--倒计时拼团人-->
     <view class="images-box">
       <view class="details-img">
-        <view wx:if="{{data.currentGroup.status === 'JOINING'}}">
+        <view wx:if="{{data.currentGroup.groupStatus === 'JOINING'}}">
           <view class="title-images">距结束时间仅剩</view>
           <view class="times">
             <text>{{sharedHours}}</text>:<text>{{sharedMinites}}</text>:<text>{{sharedSeconds}}</text>
@@ -102,11 +102,11 @@
 
         <view class="collage-successed-tip">
           <!--正在拼团-->
-          <text wx:if="{{data.currentGroup.status === 'JOINING'}}">还差<text class="jn-color">{{data.peopleCount - joinNumber}}</text>人拼团成功</text>
+          <text wx:if="{{data.currentGroup.groupStatus === 'JOINING'}}">还差<text class="jn-color">{{data.peopleCount - joinNumber}}</text>人拼团成功</text>
           <!--拼团成功-->
-          <text wx:if="{{data.currentGroup.status === 'FINISH'}}">该团已成功，可选择开团或参与其它团</text>
+          <text wx:if="{{data.currentGroup.groupStatus === 'FINISH'}}">该团已成功，可选择开团或参与其它团</text>
           <!--拼团失败-->
-          <text wx:if="{{data.currentGroup.status === 'CLOSE'}}">该团已失败，款项已原路返回</text>
+          <text wx:if="{{data.currentGroup.groupStatus === 'CLOSE'}}">该团已失败，款项已原路返回</text>
         </view>
 
       </view>
@@ -179,8 +179,6 @@
           <image wx:for="{{comment.imagesUrl}}" src="{{item}}" bindtap="onImgItemClick" data-url="{{item}}"></image>
         </view>
       </view>
-
-      <!-- <view class="juniu-bottom comment-jn-bottom" wx:if="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>       -->
     </view>
     </scroll-view>
   </view>
@@ -193,15 +191,15 @@
 
   <!--通过分享进来的按钮  -->
   <view wx:else class="jn-btn">
-    <view class="shared-one" wx:if="{{data.currentGroup.status === 'JOINING'}}">
+    <view class="shared-one" wx:if="{{data.currentGroup.groupStatus === 'JOINING'}}">
       <text class="fl" bindtap='onOpenGroupBtnClick'>我要开团</text>
       <text bindtap='onGoJoinCollageClick'>一键参团</text>
     </view>
-    <view class="shared-two" wx:elif="{{data.currentGroup.status === 'FINISH'}}">
+    <view class="shared-two" wx:elif="{{data.currentGroup.groupStatus === 'FINISH'}}">
       <text class="fl">该拼团已成功</text>
       <text bindtap='onOpenGroupBtnClick'>我来开这个团</text>
     </view>
-    <view class="shared-three" wx:elif="{{data.currentGroup.status === 'CLOSE'}}">
+    <view class="shared-three" wx:elif="{{data.currentGroup.groupStatus === 'CLOSE'}}">
       <text class="fl">该拼团已失败</text>
       <text bindtap='onOpenGroupBtnClick'>我来开这个团</text>
     </view>

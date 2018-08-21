@@ -44,8 +44,8 @@ Page({
     wx.setNavigationBarTitle({
       title: '项目详情',
     })
-    //1534471289389691289260, 1534492886056393843540
-    //1534486340978192233874, 1534492911020635915801
+    //1534471289389691289260, 1534492886056393843540, 1534735240436269620378
+    //1534486340978192233874, 1534492911020635915801, 1534839570793107958230
 
     this.setData({
       storeName: wx.getStorageSync('storeName'),
@@ -68,7 +68,6 @@ Page({
               })
               let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
               let appId = 'wx3bb038494cd68262';
-              console.log(result.code);
               if (result.code) {
                 logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
               } else {
@@ -232,11 +231,18 @@ function getProductDetail() {
 
         if (self.data.groupId && self.data.data.currentGroup) {
           let data2 = self.data.data;
+
+          if (data2.currentGroup.orderStatus == 'PAID' && data2.currentGroup.orderNo && data2.currentGroup.groupStatus == 'FINISH') {
+            wx.navigateTo({
+              url: '/pages/personal/collage-order/detail/detail?orderNo=' + data2.currentGroup.orderNo,
+            })
+          }
+
           data2.currentGroup.expireTime = data2.currentGroup.expireTime.replace(/-/g, '/');
           
           length = data2.currentGroup.picUrls.length;
 
-          if(length < data2.peopleCount && data2.currentGroup.status == 'FINISH') {
+          if (length < data2.peopleCount && data2.currentGroup.groupStatus == 'FINISH') {
             let num = randomNum.call(self, 1, 5);
             for (let i = 0; i < (data2.peopleCount - length); i++) {
               data2.currentGroup.picUrls.push(`/asset/images/pintuan_head${num}.jpg`)
