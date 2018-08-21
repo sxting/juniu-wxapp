@@ -37,6 +37,7 @@ Page({
     pageSize: 10,
     countPage: 1,
     productId: '',
+    showBtn: false
   },
 
   onLoad: function (options) {
@@ -52,10 +53,13 @@ Page({
       pinTuanId: options.activityId ? options.activityId : '',
       groupId: options.groupId ? options.groupId : '',
     })
-
+    
     getProductCommentList.call(this);
 
     if (options.type == 'share') {
+      this.setData({
+        showBtn: true
+      })
       wx.setStorageSync(constant.STORE_INFO, options.storeId)
       let self = this;
       wx.login({
@@ -103,6 +107,13 @@ Page({
   onStoreClick() {
     wx.navigateTo({
       url: '/pages/index/index?pinTuanId=' + this.data.pinTuanId + '&stores=' + JSON.stringify(this.data.applyStores),
+    })
+  },
+
+  /** 返回首页 */
+  comeBackHome() {
+    wx.reLaunch({
+      url: '/pages/home/home'
     })
   },
 

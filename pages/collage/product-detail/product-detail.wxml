@@ -214,3 +214,5 @@
     <button class="alert-btn" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">确定</button>
   </view>
 </view>
+
+<view wx:if='{{showBtn}}' class='comeBackHome' bindtap='comeBackHome'>去首页</view>

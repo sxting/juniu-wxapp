@@ -237,6 +237,9 @@ page {
 .comment-box {
   margin-top: 0;
 }
+.comeBackHome {
+   bottom:65%;
+ }
 
 /* .detail-imgs-box{
   padding: 20rpx 0
