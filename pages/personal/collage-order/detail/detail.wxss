@@ -332,3 +332,15 @@ page{
   height: 20rpx;
   background-color: #F8F8F8;
 }
+.comeBackHome{
+  font-size:28rpx;
+  padding:0 30rpx;
+  height:56rpx;
+  background-color:#FF6600;
+  border-radius:0 28rpx 28rpx 0;
+  color:#FFF;
+  line-height:56rpx;
+  position:fixed;
+  bottom:10%;
+  z-index:10000
+}

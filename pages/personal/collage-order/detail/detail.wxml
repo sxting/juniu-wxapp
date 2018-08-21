@@ -192,4 +192,5 @@
       </view>
     </view>
   </view>
+  <view class='comeBackHome' bindtap='comeBackHome'>去首页</view>
 </view>

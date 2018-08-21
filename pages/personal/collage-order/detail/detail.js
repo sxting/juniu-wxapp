@@ -113,8 +113,14 @@ Page({
   /** 立即支付 */ 
   orderPaymentClick(){
     orderPayment.call(this);
-  }
+  },
 
+  /** 返回首页 */ 
+  comeBackHome(){
+    wx.reLaunch({
+      url: '/pages/home/home'
+    })
+  }
 })
 
 /** 获取订单详情页面 */
