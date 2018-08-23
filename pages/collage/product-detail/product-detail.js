@@ -10,7 +10,7 @@ Page({
   data: {
     jnImg: '/asset/images/product.png',
     storeName: wx.getStorageSync('storeName'),
-    address: '学清路静淑里6号楼底商',
+    address: '',
     merchantPid: wx.getStorageSync(constant.MERCHANTID),
     pinTuanId: '',
     groupId: '', //通过分享的链接点进来 带的参数； 通过 来判断高级插件区点进来的还是分享的链接点进来的

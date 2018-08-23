@@ -12,6 +12,7 @@ Page({
     selectCardIndex: 0,
     showRecord: true,
     cardId: '',
+    cardType: '',
     jnImg: '/asset/images/card-bg2.png',
   },
   onLoad: function (options) {
@@ -30,12 +31,12 @@ Page({
   // 跳转到消费记录
   goConsume: function () {
     wx.navigateTo({
-      url: `/pages/personal/member-card/consume/consume?cardId=${this.data.cards[this.data.selectCardIndex].cardId}&cardType=${this.data.cards[this.data.selectCardIndex].cardType}`,
+      url: `/pages/personal/member-card/consume/consume?cardId=${this.data.cardId}&cardType=${this.data.cardType}`,
     })
   },
   goDetail: function () {
     wx.navigateTo({
-      url: `/pages/personal/member-card/detail/detail?cardId=${this.data.cards[this.data.selectCardIndex].cardId}`,
+      url: `/pages/personal/member-card/detail/detail?cardId=${this.data.cardId}`,
     })
   },
 
@@ -75,6 +76,11 @@ function getCardList(storeId) {
       res.cards.forEach((item) => {
         if (item.background) {
           item.background = constant.OSS_IMAGE_URL + `${item.background}/resize_345_120/mode_fill`;
+        }
+        if (item.cardId == self.data.cardId) {
+          self.setData({
+            cardType: item.cardType
+          });
         }
       });
       self.setData({
