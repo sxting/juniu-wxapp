@@ -155,7 +155,7 @@
           bindtap="onTicketBottomClick" data-marketingid="{{item.marketingId}}">
           <view class="open-btn jn-icon icon-xia" wx:if="{{item.ticketSwitch === 'CLOSE'}}"></view>
           <view class="close-btn jn-icon icon-shang" wx:else></view>
-          <view>有效期：领取后{{item.validDateCount}}内有效</view>
+          <view>有效期：领取后{{item.validDateCount}}天内有效</view>
           <view wx:if="{{item.ticketSwitch === 'OPEN'}}">
             <text wx:if="{{item.disabledWeekDate}}">不可用时间：{{item.selectedWeek1}}至{{item.selectedWeek2}}<text wx:if="{{item.unUseStartTime && item.unUseEndTime}}">（{{item.unUseStartTime}}-{{item.unUseEndTime}}）</text></text>
             <text wx:else>不可用时间：无限制</text>
