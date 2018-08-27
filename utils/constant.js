@@ -3,7 +3,7 @@
  */
 
 var constant = {
-  TPLID: 'test2.15',
+  TPLID: 'test2.16',
   address: 'address',
   phoneNumber: 'phoneNumber',
   couponId: 'couponId',
