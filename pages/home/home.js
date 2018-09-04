@@ -118,6 +118,17 @@ Page({
     })
   },
 
+  // 保存图片
+  saveImageToPhotos(e){
+    let self = this;
+    let imgUrlPath = e.currentTarget.dataset.imageid;
+    let imgalist = [imgUrlPath];
+    wx.previewImage({
+      current: imgalist, // 当前显示图片的http链接 
+      urls: imgalist // 需要预览的图片http链接列表 
+    })
+  },
+
   bindgetuserinfo(e) {
     let self = this;
     if (e.detail.errMsg == 'getUserInfo:ok') {
