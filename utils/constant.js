@@ -14,11 +14,11 @@ var constant = {
   // apiUrl: 'https://b-test.juniuo.com/wxapp',
   // apiUrl2: 'https://b-test.juniuo.com/wxapp',
   // apiUrlTwo: 'https://b-test.juniuo.com/',
-  // apiUrl3: 'https://b-test.juniuo.com/', //
+  // apiUrl3: 'https://b-test.juniuo.com/', 
   apiUrl: 'https://biz.juniuo.com/wxapp',
-  apiUrl2: 'https://biz.juniuo.com/wxapp', //
+  apiUrl2: 'https://biz.juniuo.com/wxapp', 
   apiUrlTwo: 'https://biz.juniuo.com/',
-  apiUrl3: 'https://biz.juniuo.com/', //
+  apiUrl3: 'https://biz.juniuo.com/', 
   // imgUrl: 'http://ts.diankayi.net/',
   // apiUrl: 'https://biz.juniuo.com/wxapp',
   imgUrl: 'https://biz.juniuo.com/',
