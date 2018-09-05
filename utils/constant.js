@@ -3,7 +3,7 @@
  */
 
 var constant = {
-  TPLID: 'test2.18',
+  TPLID: '2.18',
   address: 'address',
   phoneNumber: 'phoneNumber',
   couponId: 'couponId',
@@ -11,20 +11,20 @@ var constant = {
   cardName: 'cardName',
   sessionKey: 'sessionKey',
   version2: 2,
-  apiUrl: 'https://b-test.juniuo.com/wxapp',
-  apiUrl2: 'https://b-test.juniuo.com/wxapp',
-  apiUrlTwo: 'https://b-test.juniuo.com/',
-  apiUrl3: 'https://b-test.juniuo.com/', //
-  // apiUrl: 'https://biz.juniuo.com/wxapp',
-  // apiUrl2: 'https://biz.juniuo.com/wxapp', //
-  // apiUrlTwo: 'https://biz.juniuo.com/',
-  // apiUrl3: 'https://biz.juniuo.com/', //
+  // apiUrl: 'https://b-test.juniuo.com/wxapp',
+  // apiUrl2: 'https://b-test.juniuo.com/wxapp',
+  // apiUrlTwo: 'https://b-test.juniuo.com/',
+  // apiUrl3: 'https://b-test.juniuo.com/', //
+  apiUrl: 'https://biz.juniuo.com/wxapp',
+  apiUrl2: 'https://biz.juniuo.com/wxapp', //
+  apiUrlTwo: 'https://biz.juniuo.com/',
+  apiUrl3: 'https://biz.juniuo.com/', //
   // imgUrl: 'http://ts.diankayi.net/',
   // apiUrl: 'https://biz.juniuo.com/wxapp',
-  // imgUrl: 'https://biz.juniuo.com/',
-  // OSS_IMAGE_URL: 'https://oss.juniuo.com/juniuo-pic/picture/juniuo/',
-  imgUrl: 'https://b-test.juniuo.com/',
-  OSS_IMAGE_URL: 'https://fdfs.juniuo.com/juniuo-pic/picture/juniuo/',
+  imgUrl: 'https://biz.juniuo.com/',
+  OSS_IMAGE_URL: 'https://oss.juniuo.com/juniuo-pic/picture/juniuo/',
+  // imgUrl: 'https://b-test.juniuo.com/',
+  // OSS_IMAGE_URL: 'https://fdfs.juniuo.com/juniuo-pic/picture/juniuo/',
   CARD_LOGO: 'card-log',
   APP_ID: 'wxedcf0f0c4cc429c8',
   TOKEN: 'app-token',
