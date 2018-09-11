@@ -32,19 +32,38 @@ page {
 }
 
 .address-and-tel {
-  height: 88rpx;
-  line-height: 88rpx;
+  /* height: 88rpx; */
+  /* line-height: 88rpx; */
   background-color: #fff;
   margin-bottom: 20rpx;
   font-size: 28rpx;
   color: #999;
   padding: 0 30rpx;
   border-top: 2rpx solid #f3f3f3;
+  display: flex;
+  justify-content: space-between
 }
 .icon-address {
   font-size: 30rpx;
   padding-right: 6rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  width: 40rpx;
 }
+.address-text {
+  display:inline-block;
+  width: 580rpx;
+  height:88rpx;
+  line-height: 88rpx;
+  box-sizing: border-box;
+  max-width: 580rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
+}
+
 .icon-tel {
   font-size: 30rpx;
 }
@@ -55,6 +74,8 @@ page {
   margin-top: 26rpx;
   line-height: 36rpx;
   text-align: right;
+  width: 60rpx;
+  box-sizing: border-box;
 }
 
 .new-order-tip-box {

@@ -450,6 +450,7 @@ function closestStore () {
       if (res.pictureVOS && res.pictureVOS.length > 0) {
         res.pictureVOS.forEach((item) => {
           if (item.picUrl) {
+            item.picUrl2 = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_690_360/mode_fill`;
             item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_750_360/mode_fill`;
           }
         });
@@ -510,6 +511,7 @@ function getStoreIndexInfo(storeId, merchantId) {
       if (res.pictureVOS && res.pictureVOS.length > 0) {
         res.pictureVOS.forEach((item) => {
           if (item.picUrl) {
+            item.picUrl2 = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_690_360/mode_fill`;
             item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_750_360/mode_fill`;
           }
         });
