@@ -2,7 +2,7 @@
   <!--轮播图部分-->
   <view class="banner-box">
     <swiper class="img-box" autoplay="true" interval="3000" duration="500">
-      <swiper-item wx:for="{{productImages}}">
+      <swiper-item wx:for="{{productImages}}"  bindtap='saveImageToPhotos' data-imageid='{{item.picUrl}}'>
          <image binderror="imgError" src="{{item.picUrl}}"></image> 
       </swiper-item>
     </swiper>
@@ -182,7 +182,7 @@
 
     <view class="merchant-img-list">
       <!--循环的商户图片  -->
-      <view wx:for="{{productImages}}" class="merchant-img-item"><image src="{{item.picUrl2}}"></image></view>
+      <view wx:for="{{productImages}}" class="merchant-img-item" bindtap='saveImageToPhotos' data-imageid='{{item.picUrl2}}'><image src="{{item.picUrl2}}"></image></view>
     </view>
   </view>
 
