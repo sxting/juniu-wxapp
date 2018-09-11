@@ -1,6 +1,6 @@
 .product-image{
     width: 100vw;
-    height: 360rpx;
+    height: 520rpx;
     display: block;
 }
 .product-box {
@@ -60,14 +60,20 @@
   font-size: 26rpx;
   color: #333;
   height: 50rpx;
-  line-height: 50rpx;
 }
 .icon-address {
   font-size: 30rpx;
   padding-right: 6rpx;
-  color: #3b3b3b;
-  line-height: 30rpx;
-  vertical-align: text-bottom;
+  color: #3b3b3b; 
+}
+.address-text {
+  display: inline-block;
+  max-width: 580rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:1;
 }
 .icon-tel {
   font-size: 36rpx;

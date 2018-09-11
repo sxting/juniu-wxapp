@@ -5,6 +5,7 @@ import { constant } from '../../../utils/constant';
 
 Page({
   data: {
+    juniuImg: '/asset/images/product.png',
     label: '',
     storeId: '',
     reserveList: [],
@@ -35,7 +36,9 @@ Page({
         next: res => {
           console.log(res);
           res.forEach((item) => {
-            item.avatar = constant.OSS_IMAGE_URL + `${item.avatar}/resize_50_50/mode_fill`;
+            if (item.avatar) {
+              item.avatar = constant.OSS_IMAGE_URL + `${item.avatar}/resize_96_96/mode_fill`;
+            }
           });
           this.setData({
             staffNumber: res.length,
@@ -96,7 +99,9 @@ function getStaffList() {
   craftsmanService.getStaffList(data).subscribe({
     next: res => {
       res.staffAppVOS.forEach((item) => {
-        item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
+        if (item.headPortrait) {
+          item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_96_96/mode_fill`;
+        }
       });
       this.setData({
         staffList: res.staffAppVOS,

@@ -301,8 +301,8 @@ Page({
   imgError: function (event) {
     this.data.productImages.forEach((item) => {
       if (event.detail.errMsg.indexOf(item.picUrl) > 0) {
-        if (item.picUrl.indexOf('_750x360') > 0) {
-          item.picUrl = item.picUrl.split('_750x360')[0] + '.' + 'png';
+        if (item.picUrl.indexOf('_750x520') > 0) {
+          item.picUrl = item.picUrl.split('_750x520')[0] + '.' + 'png';
         }
       }
     });
@@ -461,8 +461,8 @@ function closestStore () {
       if (res.pictureVOS && res.pictureVOS.length > 0) {
         res.pictureVOS.forEach((item) => {
           if (item.picUrl) {
-            item.picUrl2 = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_690_360/mode_fill`;
-            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_750_360/mode_fill`;
+            item.picUrl2 = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_690_480/mode_fill`;
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_750_520/mode_fill`;
           }
         });
         self.setData({
@@ -477,10 +477,10 @@ function closestStore () {
         })
         if (res.productList.length == 1 || res.productList.length == 3) {
           if (res.productList[0].picUrl) {
-            res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_690_360/mode_fill`;            
+            res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_690_480/mode_fill`;            
           }
         } else {
-          res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_330_190/mode_fill`;                      
+          res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_334_232/mode_fill`;              
         }
       }
 
@@ -522,8 +522,8 @@ function getStoreIndexInfo(storeId, merchantId) {
       if (res.pictureVOS && res.pictureVOS.length > 0) {
         res.pictureVOS.forEach((item) => {
           if (item.picUrl) {
-            item.picUrl2 = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_690_360/mode_fill`;
-            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_750_360/mode_fill`;
+            item.picUrl2 = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_690_480/mode_fill`;
+            item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_750_520/mode_fill`;
           }
         });
         self.setData({
@@ -538,10 +538,10 @@ function getStoreIndexInfo(storeId, merchantId) {
         })
         if (res.productList.length == 1 || res.productList.length == 3) {
           if (res.productList[0].picUrl) {
-            res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_690_360/mode_fill`;
+            res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_690_480/mode_fill`;
           }
         } else {
-          res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_330_190/mode_fill`;
+          res.productList[0].picUrl = constant.OSS_IMAGE_URL + `${res.productList[0].picUrl}/resize_334_232/mode_fill`;
         }
       }  
 

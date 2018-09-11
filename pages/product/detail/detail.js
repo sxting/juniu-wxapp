@@ -156,7 +156,7 @@ function getProductDetail() {
   productService.getProductDetail(data).subscribe({
     next: res => {
       if (res.url) {
-        res.url = constant.OSS_IMAGE_URL + `${res.url}/resize_750_360/mode_fill`;
+        res.url = constant.OSS_IMAGE_URL + `${res.url}/resize_750_520/mode_fill`;
       }
       this.setData({
         productInfo: res

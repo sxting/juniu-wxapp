@@ -12,14 +12,14 @@ page {
 
 .img-box {
   width: 100%;
-  height: 360rpx;
+  height: 520rpx;
   background: #ccc;
   z-index: -1;
 }
 
 .img-box image {
   width: 100%;
-  height: 360rpx;
+  height: 520rpx;
 }
 
 .store-btn-box {
@@ -217,8 +217,8 @@ page {
 } 
 
 .product-box {
-  height: 310rpx;
-  width: 330rpx;
+  height: 352rpx;
+  width: 334rpx;
   min-width: 330rpx;
   box-sizing: border-box;
   background: #FFFFFF;
@@ -230,19 +230,19 @@ page {
 .product-big:first-child {
   width: 690rpx;
   min-width: 690rpx;
-  height: 490rpx; 
+  height: 610rpx; 
   border-radius: 8rpx;
 }
 
 .product-img {
   width: 100%;
-  height: 190rpx;
+  height: 232rpx;
   border-radius: 12rpx 12rpx 0 0;
 }
 
 .product-big:first-child .product-img {
   width: 100%;
-  height: 360rpx;
+  height: 480rpx;
   border-radius: 8rpx 8rpx 0 0;
 }
 
@@ -341,7 +341,7 @@ page {
 }
 .merchant-img-item image{
   width: 690rpx;
-  height: 360rpx;
+  height: 480rpx;
   margin: 0 auto;
   display: block;
   border-radius: 8rpx;
@@ -480,9 +480,10 @@ scroll-view {
   color: #a01df7;
   font-size: 38rpx;
 }
-.collage-icon{
+.collage-icon {
   width: 36rpx;
   height: 34rpx;
   vertical-align: middle;
   margin-top:24rpx;
+  border-radius: 8rpx;
 }

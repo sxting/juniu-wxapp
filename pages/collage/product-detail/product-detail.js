@@ -276,7 +276,7 @@ function getProductDetail() {
           let imgs = []
           self.data.data.picUrls.forEach(function (item) {
             imgs.push(
-              { url: `${constant.OSS_IMAGE_URL}${item}/resize_345_180/mode_fill` }
+              { url: `${constant.OSS_IMAGE_URL}${item}/resize_750_520/mode_fill` }
             )
           });
           self.setData({
@@ -288,7 +288,7 @@ function getProductDetail() {
           let productImgs = []
           self.data.data.product.picIds.forEach(function (item) {
             productImgs.push(
-              { url: `${constant.OSS_IMAGE_URL}${item}/resize_345_180/mode_fill` }
+              { url: `${constant.OSS_IMAGE_URL}${item}/resize_650_300/mode_fill` }
             )
           });
           self.setData({

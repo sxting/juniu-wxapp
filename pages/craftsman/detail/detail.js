@@ -135,7 +135,7 @@ function getStaffDetail() {
   craftsmanService.getStaffDetail(data).subscribe({
     next: res => {
       if (res.headPortrait) {
-        res.headPortrait = constant.OSS_IMAGE_URL + `${res.headPortrait}/resize_80_80/mode_fill`;
+        res.headPortrait = constant.OSS_IMAGE_URL + `${res.headPortrait}/resize_168_168/mode_fill`;
       }
       this.setData({
         staffInfo: res

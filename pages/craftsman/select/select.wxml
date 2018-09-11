@@ -10,7 +10,7 @@
             <view wx:for="{{reserveList}}" 
             bindtap="onItemClick" data-staff-id="{{item.staffId}}" data-staff-name="{{item.staffName}}" 
             class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-              <image src="{{item.avatar}}" class="head-img" /> 
+              <image src="{{item.avatar ? item.avatar : juniuImg}}" class="head-img" /> 
               <view class="weui-cell__bd weui-cell_primary">
                 <view class="staffname">{{item.staffName}}
                   <image src="/asset/images/jinpai.png" wx:if="index === 0"></image>
@@ -39,7 +39,7 @@
             <view wx:for="{{staffList}}" wx:for-index="index"
             bindtap="onItemClick" data-staff-id="{{item.staffId}}" data-staff-name="{{item.staffName}}" 
             class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-              <image src="{{item.headPortrait}}" class="head-img" /> 
+              <image src="{{item.headPortrait ? item.headPortrait : juniuImg}}" class="head-img" /> 
               <view class="weui-cell__bd weui-cell_primary ">
                 <view class="staffname">{{item.staffName}}
                   <image src="/asset/images/jinpai.png" wx:if="index === 0"></image>
