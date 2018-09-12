@@ -163,7 +163,8 @@ page {
 }
 .collage-box .collage-content-box .collage-content .list-collage .left-img image{
   width: 100%;
-  height: 100%
+  height: 100%;
+  border-radius: 8rpx;
 }
 .collage-box .collage-content-box .collage-content .list-collage .right-infor{
   font-family: PingFangSC-Regular;
@@ -485,5 +486,4 @@ scroll-view {
   height: 34rpx;
   vertical-align: middle;
   margin-top:24rpx;
-  border-radius: 8rpx;
 }
