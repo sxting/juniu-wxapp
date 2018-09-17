@@ -30,6 +30,7 @@ Page({
     pinTuanId: ''
   },
   onLoad: function (options) {
+    let self = this;
     wx.setNavigationBarTitle({
       title: '适用门店',
     })

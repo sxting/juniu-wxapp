@@ -34,12 +34,8 @@ Page({
       storeName: wx.getStorageSync('storeName')
     })
 
-    let token = wx.getStorageSync(constant.TOKEN);
     let self = this;
-    if (token) {
-      getProductDetail.call(this);
-      getProductCommentList.call(this)
-    } else {
+    if (options.type === 'shared') {
       wx.login({
         success: function (result) {
           wx.getUserInfo({
@@ -58,37 +54,17 @@ Page({
         fail: function (res) { },
         complete: function (res) { },
       });
+    } else {
+      getProductDetail.call(this);
+      getProductCommentList.call(this)
+      getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
     }
-  },
-
-  onShow: function() {
-    let self = this;
-    setTimeout(function() {
-      if (self.data.productId) {
-        self.setData({
-          storeId: wx.getStorageSync(constant.STORE_INFO),
-          storeName: wx.getStorageSync('storeName')
-        })
-
-        let token = wx.getStorageSync(constant.TOKEN);
-        if (token) {
-          getProductDetail.call(self);
-          getProductCommentList.call(self)
-        }
-      }
-    }, 200)
-    getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
   },
 
   onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/product/detail/detail?storeId=' + this.data.storeId + '&productId=' + this.data.productId,
+      path: '/pages/product/detail/detail?type=shared&storeId=' + this.data.storeId + '&productId=' + this.data.productId,
       success: function (res) {
         // 转发成功
         console.log(res);
@@ -221,6 +197,7 @@ function logIn(code, appid, rawData) {
         success: function (res) {
           getProductDetail.call(self);
           getProductCommentList.call(self)
+          getStoreInfo.call(self, wx.getStorageSync(constant.STORE_INFO))
         }
       })
     },

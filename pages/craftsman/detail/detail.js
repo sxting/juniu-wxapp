@@ -36,12 +36,9 @@ Page({
       storeName: wx.getStorageSync('storeName')
     })
 
-    let token = wx.getStorageSync(constant.TOKEN);
     let self = this;
-    if (token) {
-      getStaffDetail.call(this);
-      getComments.call(this)
-    } else {
+
+    if (options.type === 'shared') {
       wx.login({
         success: function (result) {
           wx.getUserInfo({
@@ -60,27 +57,50 @@ Page({
         fail: function (res) { },
         complete: function (res) { },
       });
-    }    
+    } else {
+      getStaffDetail.call(this);
+      getComments.call(this)
+      getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
+    }  
   },
 
   onShow: function() {
     if (this.data.storeId && this.data.staffId) {
-      getStaffDetail.call(this);
-      getComments.call(this);
-      getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
+      let data = {
+        pageIndex: this.data.pageIndex,
+        pageSize: this.data.pageSize,
+        storeId: this.data.storeId,
+        craftsmanId: this.data.staffId
+      }
+      craftsmanService.getStaffCommentList(data).subscribe({
+        next: res => {
+          res.comments.forEach((item) => {
+            let dateArray = item.juniuoModel.dateCreated.split(' ');
+            item.date = dateArray[0];
+            item.time = dateArray[1];
+            if (item.imagesUrl) {
+              item.imagesUrl.forEach((img, index) => {
+                item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_71_72/mode_fill`;
+              });
+            }
+          });
+          this.setData({
+            commentList: res.comments,
+            countPage: res.pageInfo.countPage
+          })
+        },
+        error: err => {},
+        complete: () => wx.hideToast()
+      })
     }
   },
 
   //分享 
   onShareAppMessage: function (res) {
-    if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
     // staffId = 1507865304614994341106 & storeId=1500534105280134281527
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/craftsman/detail/detail?storeId=' + this.data.storeId + '&staffId=' + this.data.staffId,
+      path: '/pages/craftsman/detail/detail?type=shared&storeId=' + this.data.storeId + '&staffId=' + this.data.staffId,
       success: function (res) {
         // 转发成功
         console.log(res);
@@ -197,6 +217,7 @@ function logIn(code, appid, rawData) {
         success: function (res) {
           getStaffDetail.call(self);
           getComments.call(self)
+          getStoreInfo.call(self, wx.getStorageSync(constant.STORE_INFO))
         }
       })
     },
