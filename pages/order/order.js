@@ -373,6 +373,7 @@ function getAfterSomeDay(date, num) {
     return {
       date: (odate.getMonth() + 1) + '.' + dateNum,
       year: odate.getFullYear(),
+      day: dateNum,
       week: changeDayToChinese.call(this,odate.getDay()),
       dateData: odate.getFullYear() + '-' + (odate.getMonth() + 1) + '-' + dateNum
     };
