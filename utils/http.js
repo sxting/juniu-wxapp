@@ -10,16 +10,32 @@ const REQ_METHOD = {
 
 let http = {}
 
+function randomNum(n) {
+  var t = '';
+  for (var i = 0; i < n; i++) {
+    t += Math.floor(Math.random() * 10);
+  }
+  return t;
+}
+
 http.get = (url, data = {}, header = { 'content-type': 'application/json' }) => {
   try {
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       : wx.getStorageSync(constant.TOKEN);
+    let clientId = wx.getStorageSync(constant.CLIENT_ID)
+      ? wx.getStorageSync(constant.CLIENT_ID)
+      : randomNum.call(this, 30);
     if (value) {
       header = {
         'content-type': 'application/json',
         'token': value,
+        'clientType': 'mini',
+        'clientId': clientId
       }
+    }
+    if (!wx.getStorageSync(constant.CLIENT_ID)) {
+      wx.setStorageSync(constant.CLIENT_ID, clientId)
     }
   } catch (e) {
     // Do something when catch error
@@ -37,11 +53,19 @@ http.post = (url, data = {}, header = { 'content-type': 'application/json' }) =>
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       : wx.getStorageSync(constant.TOKEN);
+    let clientId = wx.getStorageSync(constant.CLIENT_ID)
+      ? wx.getStorageSync(constant.CLIENT_ID)
+      : randomNum.call(this, 30);
     if (value) {
       header = {
         'content-type': 'application/json',
-        'token': value
+        'token': value,
+        'clientType': 'mini',
+        'clientId': clientId
       }
+    }
+    if (!wx.getStorageSync(constant.CLIENT_ID)) {
+      wx.setStorageSync(constant.CLIENT_ID, clientId)
     }
   } catch (e) {
     // Do something when catch error
@@ -59,11 +83,19 @@ http.post2 = (url, data = {}, header = { 'content-type': 'application/x-www-form
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       : wx.getStorageSync(constant.TOKEN);
+    let clientId = wx.getStorageSync(constant.CLIENT_ID)
+      ? wx.getStorageSync(constant.CLIENT_ID)
+      : randomNum.call(this, 30);
     if (value) {
       header = {
         'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-        'token': value
+        'token': value,
+        'clientType': 'mini',
+        'clientId': clientId
       }
+    }
+    if (!wx.getStorageSync(constant.CLIENT_ID)) {
+      wx.setStorageSync(constant.CLIENT_ID, clientId)
     }
   } catch (e) {
     // Do something when catch error
@@ -81,11 +113,19 @@ http.put = (url, data = {}, header = { 'content-type': 'application/json' }) => 
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       : wx.getStorageSync(constant.TOKEN);
+    let clientId = wx.getStorageSync(constant.CLIENT_ID)
+      ? wx.getStorageSync(constant.CLIENT_ID)
+      : randomNum.call(this, 30);
     if (value) {
       header = {
         'content-type': 'application/json',
-        'token': value
+        'token': value,
+        'clientType': 'mini',
+        'clientId': clientId
       }
+    }
+    if (!wx.getStorageSync(constant.CLIENT_ID)) {
+      wx.setStorageSync(constant.CLIENT_ID, clientId)
     }
   } catch (e) {
     // Do something when catch error
@@ -98,11 +138,19 @@ http.delete = (url, data = {}, header = { 'content-type': 'application/json' }) 
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       : wx.getStorageSync(constant.TOKEN);
+    let clientId = wx.getStorageSync(constant.CLIENT_ID)
+      ? wx.getStorageSync(constant.CLIENT_ID)
+      : randomNum.call(this, 30);
     if (value) {
       header = {
         'content-type': 'application/json',
-        'token': value
+        'token': value,
+        'clientType': 'mini',
+        'clientId': clientId
       }
+    }
+    if (!wx.getStorageSync(constant.CLIENT_ID)) {
+      wx.setStorageSync(constant.CLIENT_ID, clientId)
     }
   } catch (e) {
     // Do something when catch error
