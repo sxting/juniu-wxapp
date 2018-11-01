@@ -21,7 +21,9 @@ Page({
     address: '',
     tel: '',
     showBigImg: false,
-    bigImg: ''
+    bigImg: '',
+    showSelectCountAlert: false,
+    count: 1
   },
 
   onLoad: function (options) {
@@ -116,12 +118,41 @@ Page({
     })
   },
 
+  // 点击立即购买弹出选择数量弹框
+  alertCountSelect() {
+    this.setData({
+      showSelectCountAlert: true
+    })
+  },
+
   // 立即购买
   onBuyClick: function() {
     wx.navigateTo({
-      url: '/pages/pay/pay?productId=' + this.data.productId,
+      url: '/pages/pay/pay?productId=' + this.data.productId + '&count=' + this.data.count,
     })
-  }
+    this.setData({
+      showSelectCountAlert: false
+    })
+  },
+
+  onCountLeftClick() {
+    if (this.data.count == 1) {
+      return
+    };
+    --this.data.count;
+    this.setData({
+      count: this.data.count,
+      payPrice: this.data.productInfo.currentPrice * this.data.count / 100
+    })
+  },
+
+  onCountRightClick() {
+    ++this.data.count;
+    this.setData({
+      count: this.data.count,
+      payPrice: this.data.productInfo.currentPrice * this.data.count / 100
+    })
+  },
 })
 
 // 商品详情

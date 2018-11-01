@@ -42,7 +42,8 @@ Page({
     })
     this.setData({
       productId: options.productId,
-      storeId: wx.getStorageSync(constant.STORE_INFO)
+      storeId: wx.getStorageSync(constant.STORE_INFO),
+      count: options.count,
     })
     getProductDetail.call(this);
     productCoupon.call(this);

@@ -58,16 +58,26 @@
           <image wx:for="{{comment.imagesUrl}}" src="{{item}}" bindtap="onImgItemClick" data-url="{{item}}"></image>
         </view>
       </view>
-
-      <!-- <view class="juniu-bottom comment-jn-bottom" wx:if="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>       -->
     </view>
     </scroll-view>
   </view>
 
-  <view class="juniu-bottom" hidden="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>
-  <view class="go-pay" bindtap="onBuyClick">立即购买</view>
+  <!-- <view class="juniu-bottom" hidden="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view> -->
+  <view class="go-pay" bindtap="alertCountSelect">立即购买</view>
 </view>
 
 <view class="big-img" wx:if="{{showBigImg}}" bindtap="onBigImgClick">
   <image src="{{bigImg}}"></image>
 </view> 
+
+<view class='select-count-box' wx:if="{{showSelectCountAlert}}">
+  <view class='count-box'>
+    <text>购买数量</text>
+    <view class="fr count-btn">
+      <text class='count-btn-left' bindtap="onCountLeftClick">—</text> 
+      <text class="count">{{count}}</text> 
+      <text class='count-btn-right' bindtap="onCountRightClick">+</text>
+    </view>
+  </view>
+  <view class="go-pay" bindtap="onBuyClick">立即购买</view>
+</view>

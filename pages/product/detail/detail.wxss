@@ -127,3 +127,47 @@ scroll-view {
   top: 50%;
   margin-top: -430rpx;
 }
+
+.select-count-box {
+  box-shadow: 0 -1px 3px 0 #D8D8D8;
+  border-radius: 6px 6px 0 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 240rpx;
+  width: 100vw;
+  color: #333;
+  font-size: 30rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.count-box {
+  margin-top: 20rpx;
+}
+.count-btn {
+  text-align: center;
+}
+.count-btn>text {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: inline-block;
+  border: 2rpx solid #FF6600;
+  border-radius: 4rpx;
+}
+.count-btn .count {
+  width: 80rpx;
+  background-color: #ff6600;
+  color: #fff;
+  margin: 0 20rpx;
+  font-family: 'PingFangSC-Medium';
+}
+.count-btn .count-btn-left {
+  background: #FBFBFB;
+  color: #ff6600;
+}
+.count-btn .count-btn-right {
+  background-color: #ff6600;
+  color: #fff;
+  font-family: 'PingFangSC-Medium';
+}
