@@ -12,27 +12,33 @@
   <view class="price"><text>售价</text><text class="fr">{{productInfo.currentPrice ? productInfo.currentPrice / 100 : ''}}元</text></view>
   <view class="count-box">
     <text>数量</text>
-    <view class="fr count-btn">
+    <text class='fr'>{{count}}</text>
+    <!-- <view class="fr count-btn">
       <text bindtap="onCountLeftClick">-</text> 
       <text class="count">{{count}}</text> 
       <text bindtap="onCountRightClick">+</text>
-    </view>
+    </view> -->
   </view>
   <view class="total-price"><text>小计</text><text class="fr">{{productInfo.currentPrice ? productInfo.currentPrice * count / 100 : ''}}元</text></view>
 </view>
 
 <view class="item rights">
-  <view class="coupon" bindtap="goMyCoupon">
+  <!-- 如果选择了计次卡和期限卡  那隐藏优惠券选项 -->
+  <view class="coupon" bindtap="goMyCoupon" hidden="{{ cardId && (cardType === 'METERING' || cardType === 'TIMES')}}">
     <text>优惠券</text>
     <view class="fr" wx:if="{{productCouponLength > 0}}">
-      <text wx:if="{{couponId}}">已选一张优惠券 ></text>
-      <text wx:else>{{productCouponLength}}张优惠券可用 ></text>
+      <text wx:if="{{couponId}}">已选一张优惠券 {{couponPrice}} ></text>
+      <text wx:else>{{productCouponLength}}张优惠券 ></text>
     </view>
     <view class="fr" wx:else>暂无可用优惠券</view>
   </view>
   <view class="member-right" wx:if="{{productCardLength > 0}}" bindtap="goMyCard">
     <text>会员权益</text>
-    <view class="fr"> <text wx:if="{{cardName}}">{{cardName}}</text> > </view>
+    <view class="fr"> <text wx:if="{{cardName}}">{{cardName}} <text wx:if="{{cardPrice}}">-{{cardPrice}}</text></text> > </view>
+  </view>
+  <view class="pay-price">
+    <text>实付款</text>
+    <view class="fr">{{payPrice}}</view>
   </view>
 </view>
 
@@ -50,8 +56,9 @@
   <view class="pay" bindtap="onZhijieOrderPay">直接付款</view>
 </view>
 
-<view class="juniu-bottom pay-ju-bottom"><image src="/asset/images/logo.png"></image></view>  
+<!-- <view class="juniu-bottom pay-ju-bottom"><image src="/asset/images/logo.png"></image></view>   -->
 
+<!-- 办卡弹框 -->
 <view class="member-rights-alert-bg" wx:if="{{showCardBuy}}">
   <view class="member-rights-alert" wx:if="{{!showPaySuccess}}">
     <view class="rights-title">会员权益</view>

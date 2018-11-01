@@ -4,6 +4,53 @@
 .page__bd{
     padding-bottom: 0;
 }
+.not-select {
+  height: 92rpx;
+  line-height: 92rpx;
+  font-size: 28rpx;
+  color: #666666;
+  padding-left: 30rpx;
+  background-color: #fff;
+  width: 690rpx;
+  margin: 30rpx auto 0;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+  box-shadow:0rpx 2rpx 6rpx 0rpx #D8D8D8;
+  margin-bottom: 30rpx;
+}
+.icon-select-box, .icon-select-box-selected {
+  float:right;
+  margin-right:30rpx;
+  margin-top: 26rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 50%;
+  position: relative;
+}
+.icon-select-box-selected {
+  border: 2rpx solid #ff6600;
+}
+.icon-duihao {
+  font-size: 30rpx;
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  top: 0;
+  left: 0;
+  color: #ff6600;
+  text-align: center;
+}
+.icon-right-1 {
+  font-size: 32rpx;
+  color: #ff6600;
+  position: absolute;
+  right: 10rpx;
+  top: 0;
+}
+
+
 .weui-tab__content{
     padding-top: 20px;
     width: 690rpx;

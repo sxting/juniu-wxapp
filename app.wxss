@@ -337,7 +337,7 @@ page {
 }
 
 .ticket-title-box {
-  width: 350rpx;
+  width: 400rpx;
   text-align: left;
 }
 
@@ -374,7 +374,7 @@ page {
 }
 
 .ticket-title {
-  font-size: 36rpx;
+  font-size: 30rpx;
   color: #111111;
   padding: 34rpx 0 16rpx;
 }

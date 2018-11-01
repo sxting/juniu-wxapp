@@ -1,6 +1,58 @@
 .page {
   border-top: 2rpx solid #f3f3f3;
-  padding-bottom: 120rpx;
+  padding-bottom: 30rpx;
+  min-height: 100vh;
+  background-color: #f3f3f3;
+}
+.not-select {
+  height: 92rpx;
+  line-height: 92rpx;
+  font-size: 28rpx;
+  color: #666666;
+  padding-left: 30rpx;
+  background-color: #fff;
+  width: 690rpx;
+  margin: 30rpx auto 0;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+}
+.icon-select-box, .icon-select-box-selected {
+  float:right;
+  margin-right:30rpx;
+  margin-top: 26rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 50%;
+  position: relative;
+}
+.icon-select-box-selected {
+  border: 2rpx solid #ff6600;
+}
+.icon-duihao {
+  font-size: 30rpx;
+  position: absolute;
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  top: 0;
+  left: 0;
+  color: #ff6600;
+  text-align: center;
+}
+.icon-right-1 {
+  font-size: 30rpx;
+  color: #ff6600;
+  position: absolute;
+  right: 6rpx;
+  top: -10rpx;
+}
+.card-item .select-image {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .card-item {
   width: 690rpx;

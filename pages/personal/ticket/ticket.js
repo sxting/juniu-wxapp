@@ -2,6 +2,8 @@ var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
 import { personalService } from '../shared/service.js'
 import { errDialog } from '../../../utils/util';
 import { constant } from '../../../utils/constant';
+
+var NP = require('../../../utils/number-precision.js')
 // 类型 UNUSED(可使用)，USED(已使用)，OVERDUE(已过期)
 Page({
   data: {
@@ -12,7 +14,9 @@ Page({
     storeId: '',
     ticketList: [],
     productId: '',
-    ticketId: ''
+    ticketId: '',
+    selectedTicketId: '',
+    price: 0
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
@@ -20,7 +24,9 @@ Page({
     })
     if (options.productId) {
       this.setData({
-        productId: options.productId
+        productId: options.productId,
+        selectedTicketId: options.ticketId ? options.ticketId : '',
+        price: options.price
       })
     }
     var that = this;
@@ -57,8 +63,15 @@ Page({
 
   //选择优惠券 
   onTicketItemClick(e) {
-    if (this.data.productId && e.currentTarget.dataset.canuse) {
+    let item = e.currentTarget.dataset.item ? e.currentTarget.dataset.item : { useLimitMoney : -1 };
+    if (this.data.productId && e.currentTarget.dataset.canuse && this.data.activeIndex === 0 && item.useLimitMoney <= this.data.price) {
       wx.setStorageSync(constant.couponId, e.currentTarget.dataset.couponid)
+      if (item.couponDefType === 'MONEY') {
+        wx.setStorageSync(constant.couponPrice, item.couponDefAmount / 100)
+      } else if (item.couponDefType === 'DISCOUNT') {
+        let price = NP.times(NP.minus(1, NP.divide(item.couponDefDiscount, 10)), this.data.price) 
+        wx.setStorageSync(constant.couponPrice, parseInt(price)/100)
+      }
       wx.navigateBack({
         delta: 1
       })
@@ -95,7 +108,7 @@ function getMyTicket(storeId, couponStatus) {
       res.forEach((item) => {
         item.ticketSwitch = 'CLOSE';
         item.consumeLimitProductIdsArr = item.consumeLimitProductIds.split(',');
-        item.productNoUse = item.consumeLimitProductIdsArr.indexOf(self.data.productId) < 0 && item.consumeLimitProductIds != ''
+        item.productNoUse = (item.consumeLimitProductIdsArr.indexOf(self.data.productId) < 0 && item.consumeLimitProductIds != '');
         if (item.disabledWeekDate) {
           let disabledWeekDateArr = item.disabledWeekDate.split(',');
           item.selectedWeek1 = weekText.call(self, disabledWeekDateArr[0]);

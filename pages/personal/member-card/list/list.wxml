@@ -1,9 +1,18 @@
 <view class="page" wx:if="{{showClickBind == 'F'}}">
+  <view class='not-select' wx:if="{{productId}}" bindtap='onCardItemClick' data-cardid="no">
+    暂不使用会员卡
+    <text class='icon-select-box-selected' wx:if="{{selectedCardId === 'no'}}">
+      <text class='icon-duihao jn-icon'></text>
+    </text>
+    <text class='icon-select-box' wx:else></text>
+  </view>
   <view class="card-item" wx:for="{{cards}}" bindtap="onCardItemClick" 
   data-cardname="{{item.cardName}}" data-cardid="{{item.cardId}}" data-type="{{item.type}}" data-balance="{{item.balance}}">
     <view wx:if="{{productId && (item.type == 'STORED' || item.type == 'REBATE') && item.balance < price }}" class="prevent">
       余额不足
     </view>
+    <image class='select-image' src='/asset/images/select-icon.png' wx:if="{{productId && selectedCardId === item.cardId}}"></image>
+    <!-- <icon wx:if="{{productId && selectedCardId === item.cardId}}" class='jn-icon icon-right-1'></icon> -->
     <image src="{{item.background ? item.background : jnImg}}"></image>
     <view class="card">
       <view class="fl">
