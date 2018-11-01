@@ -47,8 +47,8 @@
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/home/home",
-					"query": "activityId=1534471289389691289260"
+					"pathName": "pages/personal/member-card/band/band",
+					"query": ""
 				}
 			]
 		}

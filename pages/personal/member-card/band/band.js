@@ -15,6 +15,7 @@ Page({
     validCode: '',
     storeId: '',
     marketingid: '',
+    loading: false,
   },
 
   onLoad: function (options) {
@@ -52,7 +53,13 @@ Page({
   getMsgCode: function () {
     let phone = this.data.phoneNumber;
     let self = this;
+    if(this.data.loading) {
+      return;
+    }
     if (checkMobile(phone)) {
+      this.setData({
+        loading: true
+      })
       memberCardService.getVaildCode({
         phone: phone,
         bizType: 'MEMBER_VALID'
@@ -67,7 +74,12 @@ Page({
           time.call(self);
         },
         error: err => errDialog(err),
-        complete: () => wx.hideToast()
+        complete: () => {
+          wx.hideToast();
+          self.setData({
+            loading: false
+          })
+        }
       });
     } else {
       errDialog('请输入正确的手机号格式');
@@ -84,6 +96,9 @@ Page({
     })
   },
   bindCard: function (e) {
+    if (this.data.loading) {
+      return;
+    }
     if (this.data.validCode) {
       bindMemberCard.call(this, this.data.storeId, this.data.phoneNumber, this.data.validCode);
     } else {
@@ -116,6 +131,9 @@ function reciveTicket() {
 //绑定会员卡
 function bindMemberCard(storeId, phone, validCode) {
   let self = this;
+  this.setData({
+    loading: true,
+  })
   memberCardService.bindCard({
     storeId: storeId,
     phone: phone,
@@ -148,7 +166,12 @@ function bindMemberCard(storeId, phone, validCode) {
       // }
     },
     error: err => errDialog(err),
-    complete: () => wx.hideToast()
+    complete: () => {
+      wx.hideToast();
+      self.setData({
+        loading: false,
+      })
+    }
   });
 }
 /**
