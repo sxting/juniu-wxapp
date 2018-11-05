@@ -71,6 +71,7 @@
 </view> 
 
 <view class='select-count-box' wx:if="{{showSelectCountAlert}}">
+  <view class='icon-close1 jn-icon' bindtap='closeCountClick'></view>
   <view class='count-box'>
     <text>购买数量</text>
     <view class="fr count-btn">

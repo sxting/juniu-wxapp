@@ -196,4 +196,6 @@
 .icon-duihao::before {
   content: '\e6bf'
 } 
-
+.icon-close1::before {
+  content: '\e700'
+}

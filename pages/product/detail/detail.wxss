@@ -98,6 +98,7 @@ scroll-view {
 .go-pay {
   position: fixed;
   bottom: 0;
+  left: 0;
   height: 100rpx;
   line-height: 100rpx;
   text-align: center;
@@ -134,15 +135,16 @@ scroll-view {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 240rpx;
+  height: 330rpx;
   width: 100vw;
   color: #333;
   font-size: 30rpx;
   padding: 30rpx;
   box-sizing: border-box;
+  background:#fff;
 }
 .count-box {
-  margin-top: 20rpx;
+  margin-top: 96rpx;
 }
 .count-btn {
   text-align: center;
@@ -170,4 +172,12 @@ scroll-view {
   background-color: #ff6600;
   color: #fff;
   font-family: 'PingFangSC-Medium';
+}
+.icon-close1 {
+  color: #999999;
+  font-size: 40rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  padding:0 10rpx;
 }

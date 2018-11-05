@@ -153,6 +153,12 @@ Page({
       payPrice: this.data.productInfo.currentPrice * this.data.count / 100
     })
   },
+
+  closeCountClick() {
+    this.setData({
+      showSelectCountAlert: false
+    })
+  }
 })
 
 // 商品详情
