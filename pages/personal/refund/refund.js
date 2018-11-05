@@ -5,7 +5,8 @@ Page({
   data: {
     orderId: '',
     orderDetail: '',
-    jnImg: '/asset/images/product.png'
+    jnImg: '/asset/images/product.png',
+    success: false
   },
 
   onLoad: function (options) {
@@ -17,6 +18,15 @@ Page({
 
   onRefundClick() {
     refund.call(this)
+  },
+
+  successYBtnClick() {
+    this.setData({
+      success: false
+    })
+    wx.navigateBack({
+      delta: 2
+    })
   }
   
 })
@@ -28,8 +38,8 @@ function refund() {
   }
   personalService.refund(data).subscribe({
     next: res => {
-      wx.navigateBack({
-        delta: 2
+      this.setData({
+        success: true
       })
     },
     error: err => errDialog(err),
