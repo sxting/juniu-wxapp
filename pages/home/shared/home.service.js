@@ -32,6 +32,12 @@ homeService.closestStore = (data) => {
   return http.get(apiUrl, data);
 }
 
+// 获取名称管理  
+homeService.getSysConfig = (data) => {
+  let apiUrl = constant.apiUrlTwo + '/account/config/getSysConfig.json';
+  return http.get(apiUrl, data);
+}
+
 module.exports = {
   homeService: homeService
 }

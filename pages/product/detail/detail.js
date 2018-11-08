@@ -164,7 +164,8 @@ Page({
 // 商品详情
 function getProductDetail() {
   let data = {
-    productId: this.data.productId
+    productId: this.data.productId,
+    storeId: this.data.storeId
   }
   productService.getProductDetail(data).subscribe({
     next: res => {

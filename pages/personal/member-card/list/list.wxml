@@ -8,7 +8,7 @@
   </view>
   <view class="card-item" wx:for="{{cards}}" bindtap="onCardItemClick" 
   data-cardname="{{item.cardName}}" data-cardid="{{item.cardId}}" data-type="{{item.type}}" data-balance="{{item.balance}}">
-    <view wx:if="{{productId && (item.type == 'STORED' || item.type == 'REBATE') && item.balance < price }}" class="prevent">
+    <view wx:if="{{productId && (item.type == 'STORED' || item.type == 'REBATE') && item.balance/100 < price }}" class="prevent">
       余额不足
     </view>
     <image class='select-image' src='/asset/images/select-icon.png' wx:if="{{productId && selectedCardId === item.cardId}}"></image>

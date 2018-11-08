@@ -49,7 +49,7 @@ Page({
 
   onCommentClick: function (e) {
     wx.navigateTo({
-      url: '/pages/comment/making/making?productId=' + e.currentTarget.dataset.productid,
+      url: '/pages/comment/making/making?productId=' + e.currentTarget.dataset.productid + '&orderId=' + e.currentTarget.dataset.orderid,
     })
   }
   

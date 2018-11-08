@@ -65,6 +65,7 @@
     <view class="jn-icon icon-close" bindtap="onCloseCardClick"></view>        
     <view class="card-list">
       <view class="card" wx:for="{{productCardConfigList}}" wx:key="item" 
+      wx:if="{{!((item.type === 'STORED' && item.rules[0].balance/100 < payPrice) || (item.type === 'REBATE' && item.rules[0].balance/100 < payPrice))}}"
       bindtap="onCardConfigItemClick" data-ruleid="{{item.rules[0].ruleId}}" data-cardid="{{item.cardConfigId}}">
         <image src="/asset/images/card-bg.png"></image>
         <view class="cardprice">
