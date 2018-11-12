@@ -171,7 +171,8 @@
         </view>
       </view>
       <view class="address-and-tel" bindtap="onAddressClick">
-        <view class="jn-icon icon-dingwei"></view>{{ orderDetailArr.applyStores[0].storeAddress }}
+        <view class="jn-icon icon-address"></view>
+        <text class='address-text'>{{ orderDetailArr.applyStores[0].storeAddress }}</text>
         <view class="fr tel-box" catchtap="onTelClick">
           <view class="jn-icon icon-tel"></view>
         </view>

@@ -148,24 +148,16 @@ page {
   height: 90rpx;
   line-height: 90rpx;
   font-size: 30rpx;
-  border-bottom: 2rpx solid #f3f3f3;  
   color: #000;
   padding: 0 30rpx;  
 }
-.address-and-tel {
-  font-size: 26rpx;
-  color: #333;
-  height: 90rpx;
-  line-height: 90rpx;
-  padding: 0 30rpx;  
-}
-.icon-address {
+/* .icon-address {
   font-size: 30rpx;
   padding-right: 6rpx;
   color: #3b3b3b;
   line-height: 30rpx;
   vertical-align: text-bottom;
-}
+} */
 .icon-tel {
   font-size: 36rpx;
   color: #999999;  
@@ -177,6 +169,8 @@ page {
   line-height: 36rpx;
   text-align: right;
   margin-top: 26rpx;
+  width: 60rpx;
+  box-sizing: border-box;
 }
 
 .product-detail, .activity-notice {

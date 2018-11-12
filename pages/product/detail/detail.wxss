@@ -50,18 +50,17 @@
 }
 .store {
   height: 144rpx;
-  padding: 0 20rpx;
 }
 .store-name {
-  padding: 20rpx 0 10rpx;
+  padding: 20rpx 20rpx 10rpx;
   font-size: 30rpx;
 }
-.address-and-tel {
+/* .address-and-tel {
   font-size: 26rpx;
   color: #333;
   height: 50rpx;
-}
-.icon-address {
+} */
+/* .icon-address {
   font-size: 30rpx;
   padding-right: 6rpx;
   color: #3b3b3b; 
@@ -74,7 +73,7 @@
   display:-webkit-box;
   -webkit-box-orient:vertical;
   -webkit-line-clamp:1;
-}
+} */
 .icon-tel {
   font-size: 36rpx;
   color: #999999;  
@@ -85,6 +84,7 @@
   padding-left: 30rpx;
   line-height: 36rpx;
   text-align: right;
+  margin-top:26rpx;
 }
 
 .icon-Evaluation {
