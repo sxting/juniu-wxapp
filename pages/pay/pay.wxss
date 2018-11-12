@@ -63,10 +63,14 @@
 
 .member-right {
   border-top: 2rpx solid #F3F3F3;
+  border-bottom: 2rpx solid #F3F3F3;
 }
 .rights .fr {
   font-size: 24rpx;
   color: #FF6600;
+}
+.pay-price>.fr {
+  font-size: 34rpx;
 }
 
 .tel>text, .note>text {

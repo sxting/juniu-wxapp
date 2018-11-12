@@ -11,7 +11,8 @@ Page({
     orderId: '',
     jnImg: '/asset/images/product.png',
     recordType: '',
-    preOrderJson: ''
+    preOrderJson: '',
+    leftDays: 0,
   },
 
   onLoad: function (options) {
@@ -97,11 +98,20 @@ function getOrderDetail() {
       }
       // let date = new Date(res.payDate)
       // res.payDate = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+
+      let leftDays = 0;
+      if (res.vouchers[0] && res.vouchers[0].endDate) {
+        let endTime = new Date(res.vouchers[0].endDate.replace(/-/g, '/')).getTime();
+        let nowTime = new Date().getTime();
+        leftDays = Math.ceil((endTime - nowTime) / 1000 / 60 / 60 / 24);
+      }
+
       this.setData({
         status: status,
         orderDetail: res,
         recordType: res.recordType,
-        preOrderJson: JSON.parse(res.preOrderJson)
+        preOrderJson: JSON.parse(res.preOrderJson),
+        leftDays: leftDays
       })
 
       let self = this;

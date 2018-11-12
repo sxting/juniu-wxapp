@@ -19,7 +19,8 @@ Page({
     staffList: [],
     productList: [],
     selectProductName: '',
-    selectStaffName: ''
+    selectStaffName: '',
+    orderId: ''
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
@@ -30,7 +31,8 @@ Page({
       merchantId: wx.getStorageSync(constant.MERCHANTID),
       productId: options.productId ? options.productId : '',
       staffId: options.staffId ? options.staffId : '',
-      activityId: options.activityId ? options.activityId : ''
+      activityId: options.activityId ? options.activityId : '',
+      orderId: options.orderId ? options.orderId : ''
     })
   },
 
@@ -148,6 +150,7 @@ Page({
       isShow: 1,
       imageIds: this.data.pictureId,
       activityId: this.data.activityId ? this.data.activityId : '',
+      orderId: this.data.orderId
     };
 
     commentService.making(data).subscribe({

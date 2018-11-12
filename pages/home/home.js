@@ -29,6 +29,8 @@ Page({
     isOnLoad: false,
     getUserInfo: true,
     collageProductList: [],//拼团列表
+    productTagName: '服务项目',
+    staffTagName: '手艺人',
   },
   onShow() {
     if (this.data.isOnLoad) {
@@ -583,6 +585,8 @@ function logIn(code, appid, rawData) {
         key: constant.TOKEN,
         data: res.juniuToken,
         success: function (res) {
+          getSysConfig.call(self, `${wx.getStorageSync(constant.MERCHANTID)}_wechat_product`)
+          getSysConfig.call(self, `${wx.getStorageSync(constant.MERCHANTID)}_wechat_staff`)
           wx.getLocation({
             success: function (result) {
               self.setData({
@@ -599,6 +603,29 @@ function logIn(code, appid, rawData) {
           })
         }
       })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+// 标签名称
+function getSysConfig(configKey) {
+  let self = this;
+  homeService.getSysConfig({
+    configKey: configKey
+  }).subscribe({
+    next: res => {
+      console.log(res);
+      if (configKey === `${wx.getStorageSync(constant.MERCHANTID)}_wechat_product`) {
+        self.setData({
+          productTagName: res.configValue ? res.configValue : self.data.productTagName
+        })
+      } else if (configKey === `${wx.getStorageSync(constant.MERCHANTID)}_wechat_staff`) {
+        self.setData({
+          staffTagName: res.configValue ? res.configValue : self.data.staffTagName
+        })
+      }  
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

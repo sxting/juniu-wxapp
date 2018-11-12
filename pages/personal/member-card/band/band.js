@@ -15,6 +15,7 @@ Page({
     validCode: '',
     storeId: '',
     marketingid: '',
+    form: '',
     loading: false,
   },
 
@@ -143,7 +144,7 @@ function bindMemberCard(storeId, phone, validCode) {
       if (res.showClickBind === 'F') {
         if (self.data.marketingid) {
           reciveTicket.call(self)
-        } else if(self.data.from == 'product') {
+        } else if (self.data.form == 'product') {
           wx.navigateBack({
             delta: 1
           })

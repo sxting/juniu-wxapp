@@ -28,8 +28,11 @@ Page({
     wx.setNavigationBarTitle({
       title: '拼团订单',
     })
+  },
+
+  onShow: function() {
     // 获取拼团订单列表
-    getCollageOrderList.call(self, '');
+    getCollageOrderList.call(this, '');
   },
 
   // tab切换 
@@ -95,7 +98,7 @@ Page({
   evaluationImmediate: function(e){
     console.log(e.currentTarget.dataset.activityid);
     wx.navigateTo({
-      url: '/pages/comment/making/making?activityId=' + e.currentTarget.dataset.activityid
+      url: '/pages/comment/making/making?activityId=' + e.currentTarget.dataset.activityid + '&orderId=' + e.currentTarget.dataset.orderno
     })
   }
 })

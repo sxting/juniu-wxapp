@@ -132,7 +132,7 @@
         <view class='title-name'>{{ activityName }}</view>
         <view class="detail-infor">
           <view>{{ voucherStatus }}</view>
-          <view>下单时间：{{ voucherOrderTime }}</view>
+          <view wx:if="{{orderDetailArr.voucher.settleStatus !== 'SETTLE'}}">剩余有效期：{{ orderDetailArr.voucher.leftDays }}天</view>
         </view>
         <view class="qrcode-box">
           <view class="qrcode">
@@ -156,10 +156,10 @@
   <view class="application-refund-btn" wx:if="{{orderDetailArr.orderStatus === 'PRE_PAYMENT'}}" bindtap='orderPaymentClick'>
     <text>立即付款</text>
   </view>
- <view class='tt' wx:if="{{collageStatus != 'FINISH'}}"></view>
+ <view class='tt'></view>
   <!-- 公用底部 -->
-   <view class="footer" wx:if="{{collageStatus != 'FINISH'}}">
-    <view class="store-detail">
+  <view class="footer">
+    <view class="store-detail" wx:if="{{collageStatus != 'FINISH'}}">
       <view class="clearfix store-list-btn" bindtap='storeListClick'>
         <text class="fl">适用门店</text>
         <view class="jn-icon icon-rightblue fr"></view>
@@ -171,13 +171,14 @@
         </view>
       </view>
       <view class="address-and-tel" bindtap="onAddressClick">
-        <view class="jn-icon icon-dingwei"></view>{{ orderDetailArr.applyStores[0].storeAddress }}
+        <view class="jn-icon icon-address"></view>
+        <text class='address-text'>{{ orderDetailArr.applyStores[0].storeAddress }}</text>
         <view class="fr tel-box" catchtap="onTelClick">
           <view class="jn-icon icon-tel"></view>
         </view>
       </view>
     </view>
-    <view class='tt'></view>
+    <view class='tt' wx:if="{{collageStatus != 'FINISH'}}"></view>
     <view class='order-detail-box'>
       <view class="order-detail">
         <view wx:if="{{orderDetailArr.orderStatus != 'PRE_PAYMENT' && orderDetailArr.orderStatus != 'PAYMENT_TIMEOUT'}}">

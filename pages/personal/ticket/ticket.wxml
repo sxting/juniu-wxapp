@@ -13,10 +13,18 @@
 
       <view class="weui-tab__panel">
         <view class="weui-tab__content" style='padding-top:20rpx !important;'>
-          
+          <view class='not-select' wx:if="{{productId && activeIndex === 0}}" bindtap="onTicketItemClick" data-couponid="no" data-canuse="true">暂不使用优惠券
+            <text class='icon-select-box-selected' wx:if="{{selectedTicketId === 'no'}}">
+              <text class='icon-duihao jn-icon'></text>
+            </text>
+            <text class='icon-select-box' wx:else></text>
+          </view>
             <!--循环的项目-->
-          <view class="tickte-item {{item.couponStatus == 'OVERDUE' || (item.productNoUse && productId) ? 'disabled' : ''}}" 
-          wx:for="{{ticketList}}" bindtap="onTicketItemClick" data-couponid="{{item.couponId}}" data-canuse="{{!item.productNoUse}}" >
+          <view class="tickte-item {{activeIndex == 2 || (item.productNoUse && productId) || (item.useLimitMoney > price && productId) ? 'disabled' : ''}}" 
+          wx:for="{{ticketList}}" bindtap="onTicketItemClick" data-couponid="{{item.couponId}}" data-canuse="{{!item.productNoUse}}" data-item='{{item}}'>
+
+            <view class='jn-icon icon-right-1' wx:if="{{productId && selectedTicketId === item.couponId}}"></view>
+
             <view class="yuan1"></view>
             <view class="yuan2"></view>
 
@@ -36,8 +44,8 @@
                 </view>
                 <view class="gift-name" wx:else>{{item.couponDefProductName}}</view>
               </view>
-              <view class="disabled-img" wx:if="{{item.couponStatus == 'OVERDUE' || (item.productNoUse && productId)}}">
-                <image wx:if="{{item.couponStatus == 'OVERDUE'}}" src="/asset/images/coupon-dateunuse.png"></image>
+              <view class="disabled-img" wx:if="{{activeIndex === 2 || (item.productNoUse && productId)}}">
+                <image wx:if="{{activeIndex === 2}}" src="/asset/images/coupon-dateunuse.png"></image>
                 <image wx:else src="/asset/images/coupon-unuse.png"></image>
               </view>
             </view>

@@ -62,7 +62,7 @@
         <text wx:elif="{{status == 2}}">未使用</text>
         <text wx:elif="{{status == 5}}">已退款</text>
       </view>
-      <view class="code-order-time">下单时间：{{orderDetail.juniuoModel.dateCreated}}</view>
+      <view class="code-order-time" wx:if="{{orderDetail.status !== 'FINISH'}}">剩余有效期：{{leftDays}}天</view>
     </view>
     <view class="code" wx:for="{{orderDetail.vouchers}}" wx:for-index="index">
       <canvas canvas-id="{{'barcode'+index}}" />

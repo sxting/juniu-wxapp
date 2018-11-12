@@ -3,6 +3,8 @@ import { constant } from '../../utils/constant';
 import { errDialog } from '../../utils/util';
 import { payService } from 'shared/service.js'
 import { service } from '../../service';
+// import { strip } from '../../utils/number-precision.js';
+var NP = require('../../utils/number-precision.js');
 
 Page({
   data: {
@@ -25,7 +27,13 @@ Page({
     phone: '',
     type: '',
     memo: '',
-    noCardConfig: true
+    noCardConfig: true,
+    selectedCardId: '',
+    selectedTicketId: '',
+    payPrice: 0,
+    cardPrice: 0,
+    couponPrice: 0,
+    cardType: '',
   },
 
   onLoad: function (options) {
@@ -34,7 +42,8 @@ Page({
     })
     this.setData({
       productId: options.productId,
-      storeId: wx.getStorageSync(constant.STORE_INFO)
+      storeId: wx.getStorageSync(constant.STORE_INFO),
+      count: options.count,
     })
     getProductDetail.call(this);
     productCoupon.call(this);
@@ -45,18 +54,57 @@ Page({
     let self = this;
     productCard.call(this);
     if (wx.getStorageSync(constant.couponId)) {
+      if (wx.getStorageSync(constant.couponId) === 'no') {
+        this.setData({
+          couponId: '',
+          selectedTicketId: wx.getStorageSync(constant.couponId),
+          couponPrice: 0
+        })
+      } else {
+        this.setData({
+          couponId: wx.getStorageSync(constant.couponId),
+          couponPrice: wx.getStorageSync(constant.couponPrice),
+        })
+      }
       this.setData({
-        couponId: wx.getStorageSync(constant.couponId)
+        selectedTicketId: wx.getStorageSync(constant.couponId),
+        payPrice: this.data.cardId ? 0 : NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice)
       })
+       //如果选择了会员卡，改变优惠券的时候 需要重新计算会员卡的扣卡金额
+      if (this.data.cardId && (wx.getStorageSync(constant.cardType) === 'STORED' || wx.getStorageSync(constant.cardType) === 'REBATE' || this.data.cardType === 'STORED' || this.data.cardType === 'REBATE')) {
+        this.setData({
+          cardPrice: NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice)
+        })
+      }
+      
       wx.removeStorageSync(constant.couponId)      
+      wx.removeStorageSync(constant.couponPrice)      
     }
     if (wx.getStorageSync(constant.cardId)) {
-      this.setData({
-        cardId: wx.getStorageSync(constant.cardId),
-        cardName: wx.getStorageSync(constant.cardName)
-      })
+      if (wx.getStorageSync(constant.cardId) === 'no') {
+        this.setData({
+          cardId: '',
+          cardName: '',
+          selectedCardId: wx.getStorageSync(constant.cardId),
+          payPrice: NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice)
+        })
+      } else {
+        this.setData({
+          cardType: wx.getStorageSync(constant.cardType) ? wx.getStorageSync(constant.cardType) : '',
+          cardId: wx.getStorageSync(constant.cardId),
+          cardName: wx.getStorageSync(constant.cardName),
+          selectedCardId: wx.getStorageSync(constant.cardId),
+          payPrice: 0,
+        })
+        if (wx.getStorageSync(constant.cardType) === 'STORED' || wx.getStorageSync(constant.cardType) === 'REBATE') {
+          this.setData({
+            cardPrice: NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice)
+          })
+        }
+      }
       wx.removeStorageSync(constant.cardId);
       wx.removeStorageSync(constant.cardName);          
+      wx.removeStorageSync(constant.cardType);          
     }
     service.userIsBind().subscribe({
       next: res => {
@@ -77,14 +125,16 @@ Page({
     };
     --this.data.count;
     this.setData({
-      count: this.data.count
+      count: this.data.count,
+      payPrice: this.data.productInfo.currentPrice * this.data.count / 100
     })
   },
 
   onCountRightClick() {
     ++this.data.count;
     this.setData({
-      count: this.data.count
+      count: this.data.count,
+      payPrice: this.data.productInfo.currentPrice * this.data.count / 100
     })
   },
 
@@ -100,14 +150,14 @@ Page({
       return;
     }
     wx.navigateTo({
-      url: '/pages/personal/ticket/ticket?productId=' + this.data.productId,
+      url: '/pages/personal/ticket/ticket?productId=' + this.data.productId + '&ticketId=' + this.data.selectedTicketId + '&price=' + this.data.productInfo.currentPrice * this.data.count,
     })
   },
 
   // 跳转到我的会员卡列表
   goMyCard() {
     wx.navigateTo({
-      url: '/pages/personal/member-card/list/list?productId=' + this.data.productId + '&price=' + this.data.productInfo.currentPrice,
+      url: '/pages/personal/member-card/list/list?productId=' + this.data.productId + '&price=' + this.data.payPrice + '&cardId=' + this.data.selectedCardId,
     })
   },
 
@@ -182,7 +232,8 @@ Page({
 // 商品详情
 function getProductDetail() {
   let data = {
-    productId: this.data.productId
+    productId: this.data.productId,
+    storeId: this.data.storeId
   }
   productService.getProductDetail(data).subscribe({
     next: res => {
@@ -190,7 +241,8 @@ function getProductDetail() {
         res.url = constant.OSS_IMAGE_URL + `${res.url}/resize_375_180/mode_fill`;
       }
       this.setData({
-        productInfo: res
+        productInfo: res,
+        payPrice: (res.currentPrice / 100) * this.data.count
       })
     },
     error: err => errDialog(err),
@@ -292,6 +344,9 @@ function onlineBuy() {
   //    wx3bb038494cd68262
   let appId = extConfig.theAppid ? extConfig.theAppid : 'wx3bb038494cd68262';
   // type不能为空 在线购卡付款:OPENCARD, 在线付款:PAY, 扣减会员卡:DEDUCTION
+  if ((this.data.cardType === 'METERING' || this.data.cardType === 'TIMES') && this.data.cardId) {
+    this.data.couponId = '';
+  }
   let data = {
     appid: appId,
     buyProductRequest: {

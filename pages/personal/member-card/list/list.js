@@ -9,7 +9,8 @@ Page({
     showClickBind: 'F',
     productId: '',
     jnImg: '/asset/images/card-bg1.png',
-    price: ''
+    price: '',
+    selectedCardId: 'no',
   },
 
   onLoad: function (options) {
@@ -20,7 +21,8 @@ Page({
     if (options.productId) {
       this.setData({
         productId: options.productId,
-        price: options.price
+        price: options.price,
+        selectedCardId: options.cardId ? options.cardId : ''
       })
       productCardList.call(this)
     } else {
@@ -35,6 +37,7 @@ Page({
       }
       wx.setStorageSync(constant.cardId, e.currentTarget.dataset.cardid)
       wx.setStorageSync(constant.cardName, e.currentTarget.dataset.cardname)
+      wx.setStorageSync(constant.cardType, e.currentTarget.dataset.type)
       wx.navigateBack({ 
         delta: 1
       })

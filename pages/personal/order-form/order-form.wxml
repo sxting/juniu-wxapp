@@ -28,7 +28,8 @@
         </view>
       </view>
       <view class="comment" wx:if="{{item.status == 'FINISH'}}">
-        <view class="comment-btn" bindtap="onCommentClick" data-productid="{{item.productIds}}">立即评价</view>
+        <view class="comment-btn" wx:if="{{item.commentCount === 0}}" bindtap="onCommentClick" data-productid="{{item.productIds}}" data-orderid='{{item.orderId}}' >立即评价</view>
+        <view class="comment-btn" wx:else>已评价</view>
       </view>
     </view>
   </view>

@@ -50,18 +50,17 @@
 }
 .store {
   height: 144rpx;
-  padding: 0 20rpx;
 }
 .store-name {
-  padding: 20rpx 0 10rpx;
+  padding: 20rpx 20rpx 10rpx;
   font-size: 30rpx;
 }
-.address-and-tel {
+/* .address-and-tel {
   font-size: 26rpx;
   color: #333;
   height: 50rpx;
-}
-.icon-address {
+} */
+/* .icon-address {
   font-size: 30rpx;
   padding-right: 6rpx;
   color: #3b3b3b; 
@@ -74,7 +73,7 @@
   display:-webkit-box;
   -webkit-box-orient:vertical;
   -webkit-line-clamp:1;
-}
+} */
 .icon-tel {
   font-size: 36rpx;
   color: #999999;  
@@ -85,6 +84,7 @@
   padding-left: 30rpx;
   line-height: 36rpx;
   text-align: right;
+  margin-top:26rpx;
 }
 
 .icon-Evaluation {
@@ -98,6 +98,7 @@ scroll-view {
 .go-pay {
   position: fixed;
   bottom: 0;
+  left: 0;
   height: 100rpx;
   line-height: 100rpx;
   text-align: center;
@@ -126,4 +127,57 @@ scroll-view {
   left: 0;
   top: 50%;
   margin-top: -430rpx;
+}
+
+.select-count-box {
+  box-shadow: 0 -1px 3px 0 #D8D8D8;
+  border-radius: 6px 6px 0 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 330rpx;
+  width: 100vw;
+  color: #333;
+  font-size: 30rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  background:#fff;
+}
+.count-box {
+  margin-top: 96rpx;
+}
+.count-btn {
+  text-align: center;
+}
+.count-btn>text {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  display: inline-block;
+  border: 2rpx solid #FF6600;
+  border-radius: 4rpx;
+}
+.count-btn .count {
+  width: 80rpx;
+  background-color: #ff6600;
+  color: #fff;
+  margin: 0 20rpx;
+  font-family: 'PingFangSC-Medium';
+}
+.count-btn .count-btn-left {
+  background: #FBFBFB;
+  color: #ff6600;
+}
+.count-btn .count-btn-right {
+  background-color: #ff6600;
+  color: #fff;
+  font-family: 'PingFangSC-Medium';
+}
+.icon-close1 {
+  color: #999999;
+  font-size: 40rpx;
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  padding:0 10rpx;
 }
