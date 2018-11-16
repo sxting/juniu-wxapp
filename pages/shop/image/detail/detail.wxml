@@ -1,0 +1,29 @@
+<view class='works-detail-box'>
+  <image class='big-img' src='{{bigImage.url}}'></image>
+  <view class='little-imgs'>
+    <image wx:for="{{imageList}}" src='{{item.url}}' bindtap='onLittleImgClick' data-item="{{item}}"></image>
+  </view>
+  <view class='work-msg'>
+    <text>最潮短发设计女生</text>
+    <button class='jn-icon icon-transmit fr' open-type="share"></button>
+  </view>
+</view>
+
+<view class='other-works-box mt-10'>
+  <view class='sub-title'>其它作品</view>
+  <view class='works-item-box'>
+    <view class='works-item' wx:for="{{worksList}}" bindtap='onOtherWorkItemClick' data-item='{{item}}'>
+      <image class='work-img' src='{{item.url}}' style='height: {{item.height*2}}rpx'></image>
+      <view class='work-name'>{{item.name}}</view>
+    </view>
+  </view>
+</view>
+
+<!--授权弹框  -->
+<view class="alert-bg" wx:if="{{!getUserInfo}}">
+  <view class="alert-box">
+    <view class="alert-title">温馨提示</view>
+    <view class="alert-tip">您需要先授权才能正常访问</view>
+    <button class="alert-btn" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">确定</button>
+  </view>
+</view>

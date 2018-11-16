@@ -19,6 +19,10 @@ page {
   width: 100vw;
 }
 
+.mt-10 {
+  margin-top: 20rpx;
+}
+
  .jn-btn {
   background: #FF6600;
   height: 100rpx;
@@ -130,6 +134,56 @@ page {
   -webkit-box-orient:vertical;
   -webkit-line-clamp:1;
 }
+
+.address-and-tel>.tel-box>.icon-tel {
+  font-size: 30rpx;
+}
+.address-and-tel>.tel-box {
+  height: 36rpx;
+  border-left: 2rpx solid #e1e1e1;
+  padding-left: 30rpx;
+  margin-top: 26rpx;
+  line-height: 36rpx;
+  text-align: right;
+  width: 60rpx;
+  box-sizing: border-box;
+}
+
+/* 作品 */
+.works-item-box {
+  margin-top: 20rpx;  
+  column-count: 2;
+  column-gap: 18rpx;
+  padding-right: 30rpx;
+}
+.works-item-box .works-item {
+  background-color: #fff;
+  width: 336rpx;
+  border: 2rpx solid #DEDEDE;
+  border-radius: 8rpx;
+  display: inline-block;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.works-item-box .works-item .work-img {
+  width: 100%;
+  border-radius: 8rpx 8rpx 0 0;
+  display: block;
+}
+.works-item-box .work-name {
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+}
+.works-item-box .video-icon {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+/* 作品 */
 
 
 /*弹框  */
