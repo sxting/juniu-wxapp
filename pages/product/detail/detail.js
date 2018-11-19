@@ -32,8 +32,7 @@ Page({
     })
     this.setData({
       productId: options.productId,
-      storeId: wx.getStorageSync(constant.STORE_INFO),
-      storeName: wx.getStorageSync('storeName')
+      storeId: options.storeId ? options.storeId : wx.getStorageSync(constant.STORE_INFO)
     })
 
     let self = this;
@@ -235,7 +234,7 @@ function logIn(code, appid, rawData) {
         success: function (res) {
           getProductDetail.call(self);
           getProductCommentList.call(self)
-          getStoreInfo.call(self, wx.getStorageSync(constant.STORE_INFO))
+          getStoreInfo.call(self, self.data.storeId)
         }
       })
     },
@@ -252,8 +251,10 @@ function getStoreInfo(storId) {
       self.setData({
         address: res.address,
         tel: res.mobie,
+        storeName: res.storeName 
       });
-      wx.setStorageSync(constant.address, res.address)
+      wx.setStorageSync(constant.address, res.address);
+      wx.setStorageSync('storeName', res.storeName);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
