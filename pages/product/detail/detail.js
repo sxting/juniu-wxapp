@@ -32,8 +32,7 @@ Page({
     })
     this.setData({
       productId: options.productId,
-      storeId: wx.getStorageSync(constant.STORE_INFO),
-      storeName: wx.getStorageSync('storeName')
+      storeId: options.storeId ? options.storeId : wx.getStorageSync(constant.STORE_INFO)
     })
 
     let self = this;
@@ -112,7 +111,7 @@ Page({
   },
 
   // 点击适用门店
-  onStoreClick: function() {
+  onStoreClick: function () {
     wx.navigateTo({
       url: '/pages/index/index?productId=' + this.data.productId,
     })
@@ -126,7 +125,7 @@ Page({
   },
 
   // 立即购买
-  onBuyClick: function() {
+  onBuyClick: function () {
     wx.navigateTo({
       url: '/pages/pay/pay?productId=' + this.data.productId + '&count=' + this.data.count,
     })
@@ -195,7 +194,7 @@ function getProductCommentList() {
         let dateArray = item.juniuoModel.dateCreated.split(' ');
         item.date = dateArray[0];
         item.time = dateArray[1];
-        
+
         if (item.imagesUrl) {
           item.imagesUrl.forEach((img, index) => {
             item.imagesUrl[index] = constant.OSS_IMAGE_URL + `${img}/resize_71_72/mode_fill`;
@@ -212,7 +211,7 @@ function getProductCommentList() {
     error: err => errDialog(err),
     complete: () => wx.hideToast()
   })
-} 
+}
 
 function logIn(code, appid, rawData) {
   let self = this;
@@ -235,7 +234,7 @@ function logIn(code, appid, rawData) {
         success: function (res) {
           getProductDetail.call(self);
           getProductCommentList.call(self)
-          getStoreInfo.call(self, wx.getStorageSync(constant.STORE_INFO))
+          getStoreInfo.call(self, self.data.storeId)
         }
       })
     },
@@ -252,8 +251,10 @@ function getStoreInfo(storId) {
       self.setData({
         address: res.address,
         tel: res.mobie,
+        storeName: res.storeName
       });
-      wx.setStorageSync(constant.address, res.address)
+      wx.setStorageSync(constant.address, res.address);
+      wx.setStorageSync('storeName', res.storeName);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()

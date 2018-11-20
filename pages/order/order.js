@@ -33,7 +33,7 @@ Page({
     month: new Date().getMonth() + 1,
     year: new Date().getFullYear()
   },
-  onShow: function (options) {
+  onShow: function () {
     wx.setNavigationBarTitle({
       title: wx.getStorageSync('storeName'),
     })
