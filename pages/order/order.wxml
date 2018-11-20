@@ -51,7 +51,6 @@
     <view class="user-msg-box">
         <view class="tel-box">
             <text>手机号</text>
-             <!-- bindinput="onTelChange" -->
             <input type="number" value="{{tel}}" bindinput="onTelChange" placeholder-class="placeholder" placeholder="请输入手机号"/>
             <button class="tel-btn" open-type="getPhoneNumber" catchgetphonenumber="getUserPhoneNumber">授权手机号</button>
         </view>
@@ -69,7 +68,7 @@
 <view class="alert-bg" wx:if="{{success}}">
   <view class="alert-box">
     <view class="alert-title">预约成功</view>
-    <view class="alert-tip">可在个人中心-我的预约卡中查看</view>
+    <view class="alert-tip">可在个人中心-我的预约中查看</view>
     <view class="alert-btn">
       <view class="alert-btnl" bindtap="successYBtnClick">确定</view>
       <view class="alert-btnr" bindtap="successNBtnClick">返回</view>
