@@ -20,14 +20,25 @@
     </view>
   </view>
 
-  <view class="store-box">
+  <view class='introduction'>
+    <text>简介：</text>
+    <text>用心才能做到最好，把顾客的问题当作自己的问题去解决去解决！擅长设计、裁剪、发型、烫染造型设计、日系及潮色造型</text>
+  </view>
+
+  <!-- <view class="store-box">
     <view class="store-name">{{storeName}}</view>
     <view class="store-address">{{address}}</view>
+  </view> -->
+
+  <view class='tab'>
+    <text bindtap='onTabItemClick' data-tab='works' class='{{tab === "works" ? "active" : ""}}'>作品</text>
+    <text bindtap='onTabItemClick' data-tab='comments' class='{{tab === "comments" ? "active" : ""}}'>评价</text>
   </view>
     
     <!--顾客评价-->
+  <block wx:if="{{tab === 'comments'}}">
   <view class="comment-box" wx:if="{{commentList && commentList.length > 0}}">  
-    <view class="sub-title"><icon class="jn-icon icon-Evaluation"></icon> 评价</view>
+    <!-- <view class="sub-title"><icon class="jn-icon icon-Evaluation"></icon> 评价</view> -->
     <scroll-view scroll-y="true" bindscrolltolower="onScrollTolower">
     <!--循环的评价-->
     <view class="comment-list">
@@ -59,9 +70,27 @@
     </view>
     </scroll-view>
   </view>
+  <view wx:else class='no-comments'>
+    <image src='/asset/images/no-comments.png'></image>
+    <view>TA目前暂无评价哦</view>
+  </view>
+  <image class="create-comment" src="/asset/images/edit.png" bindtap="onCreateCommentClick"></image> 
+  </block>
 
-  <view class="juniu-bottom" hidden="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>
-  <image class="create-comment" src="/asset/images/edit.png" bindtap="onCreateCommentClick"></image>  
+  <block wx:else>
+  <view class='works-item-box' wx:if="{{worksList && worksList.length > 0}}">  
+    <view class='works-item' wx:for="{{worksList}}" bindtap='goWorkDetail'>
+      <image class='video-icon' src='/asset/images/video.png'></image>
+      <image class='work-img' src='{{item.url}}' style='height: {{item.height*2}}rpx'></image>
+      <view class='work-name'>{{item.name}}</view>
+    </view>
+  </view>
+  <view wx:else class='no-works'>
+    <image src='/asset/images/no-works.png'></image>
+    <view>TA还未上传作品哦</view>
+  </view>
+  </block>
+
   <button class="shared-box" open-type="share">推荐给好友</button>
 </view>
 

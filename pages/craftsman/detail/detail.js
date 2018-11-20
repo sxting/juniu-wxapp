@@ -20,6 +20,8 @@ Page({
     showBigImg: false,
     bigImg: '',
     address: '',
+    tab: 'works',
+    worksList: []
   },
   
   onLoad: function (options) {
@@ -110,6 +112,13 @@ Page({
         console.log(res);
       }
     }
+  },
+
+  // tab切换
+  onTabItemClick(e) {
+    this.setData({
+      tab: e.currentTarget.dataset.tab
+    })
   },
 
   //上拉触底 

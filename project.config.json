@@ -47,8 +47,14 @@
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/shop/video/detail/detail",
+					"pathName": "pages/order/order",
 					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "band",
+					"pathName": "pages/craftsman/detail/detail",
+					"query": "staffId=1530602630309219640942&storeId=1530602323164136822988"
 				}
 			]
 		}

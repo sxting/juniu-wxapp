@@ -1,8 +1,16 @@
 //app.js
 import { service } from 'service';
-import { errDialog, loading } from 'utils/util'
-import { constant } from 'utils/constant'
+import { errDialog, loading } from 'utils/util';
+import { constant } from 'utils/constant';
+
+
 App({
+  onShow: function() {
+    const updateManager = wx.getUpdateManager();
+    updateManager.onUpdateReady(function () {
+      updateManager.applyUpdate()
+    })
+  },
   onLaunch: function (options) {
     let appId = 'wxedcf0f0c4cc429c8';
     let self = this;
