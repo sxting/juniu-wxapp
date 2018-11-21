@@ -21,7 +21,8 @@ Page({
     bigImg: '',
     address: '',
     tab: 'works',
-    worksList: []
+    worksList: [],
+    imageWidth: 168,
   },
   
   onLoad: function (options) {
@@ -61,7 +62,8 @@ Page({
       });
     } else {
       getStaffDetail.call(this);
-      getComments.call(this)
+      getComments.call(this);
+      getWorkList.call(this);
       getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
     }  
   },
@@ -153,6 +155,20 @@ Page({
       showBigImg: false,
       bigImg: ''
     })
+  },
+
+  // 点击作品跳转作品详情
+  onWorkItemClick(e) {
+    let type = e.currentTarget.dataset.type
+    if (type === 'video') {
+      wx.navigateTo({
+        url: '/pages/shop/video/detail/detail',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/shop/image/detail/detail',
+      })
+    }
   }
 })
 
@@ -205,6 +221,57 @@ function getComments() {
   })
 }
 
+// 查询员工作品列表
+function getWorkList() {
+  let resData = [
+    {
+      name: '最潮短发设计女生',
+      picId: 'kLBwUYVJW_xy_1.2',
+    },
+    {
+      name: '最潮短发设计女生',
+      picId: 'kLBwUYVJW_xy_0.8',
+    },
+    {
+      name: '最潮短发设计女生',
+      picId: 'kLBwUYVJW_xy_1',
+    },
+    {
+      name: '最潮短发设计女生',
+      picId: 'kLBwUYVJW_xy_0.5',
+    },
+    {
+      name: '最潮短发设计女生最潮短发设计女生',
+      picId: 'kLBwUYVJW_xy_1.4',
+    },
+    {
+      name: '最潮短发设计女生',
+      picId: 'kLBwUYVJW_xy_1',
+    },
+    {
+      name: '最潮短发设计女生',
+      picId: 'kLBwUYVJW_xy_0.5',
+    },
+    {
+      name: '最潮短发设计女生',
+      picId: 'kLBwUYVJW_xy_1.4',
+    }
+  ];
+
+  let self = this;
+  resData.forEach(function (item) {
+    let index = item.picId.lastIndexOf('_');
+    let picId = item.picId.slice(0, index);
+    let scale = item.picId.slice(index + 1, item.picId.length);
+    item.height = Math.floor(self.data.imageWidth / scale);
+    item.url = constant.OSS_IMAGE_URL + `${picId}/resize_${self.data.imageWidth}_${item.height}/mode_fill`
+  })
+
+  this.setData({
+    worksList: resData
+  })
+}
+
 function logIn(code, appid, rawData) {
   let self = this;
   service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
@@ -225,7 +292,8 @@ function logIn(code, appid, rawData) {
         data: res.juniuToken,
         success: function (res) {
           getStaffDetail.call(self);
-          getComments.call(self)
+          getComments.call(self);
+          getWorkList.call(self);
           getStoreInfo.call(self, wx.getStorageSync(constant.STORE_INFO))
         }
       })

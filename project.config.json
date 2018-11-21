@@ -47,8 +47,8 @@
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/order/order",
-					"query": ""
+					"pathName": "pages/product/detail/detail",
+					"query": "productId=2c9172e26468380901646920c725007b&storeId=1530602323164136822988"
 				},
 				{
 					"id": 1,

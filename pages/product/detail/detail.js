@@ -28,7 +28,7 @@ Page({
 
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '商品详情',
+      title: '项目详情',
     })
     this.setData({
       productId: options.productId,

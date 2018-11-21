@@ -153,6 +153,14 @@ scroll-view {
   max-height:100%;
 }
 
+.works-item-box {
+  margin-top: 0;
+  padding-left:30rpx;
+  background-color:#fff;
+  padding-bottom: 100rpx;
+  padding-top: 20rpx;
+}
+
 .big-img {
   position: fixed;
   top: 0;

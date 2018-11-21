@@ -27,6 +27,20 @@
     </view>
   </view>
 
+  <view class='{{commentList && commentList.length > 0 ? "" : "mb-100"}}'>
+    <view class='product-detail'>
+      <view class='sub-title'>商品详情</view>
+      <view class='image-box'>
+        <image src='{{juniuImg}}'></image>
+      </view>
+    </view>
+
+    <view class='notice' wx:if="{{productInfo.notice}}">
+      <view class='sub-title'>活动须知</view>
+      <view class='notice-text'>{{productInfo.notice}}</view>
+    </view>
+  </view>
+
     <!--顾客评价-->
   <view class="comment-box" wx:if="{{commentList && commentList.length > 0}}">  
     <view class="sub-title"><icon class="jn-icon icon-Evaluation"></icon> 评价</view>
@@ -62,7 +76,6 @@
     </scroll-view>
   </view>
 
-  <!-- <view class="juniu-bottom" hidden="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view> -->
   <view class="go-pay" bindtap="alertCountSelect">立即购买</view>
 </view>
 

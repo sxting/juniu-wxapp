@@ -23,6 +23,10 @@ page {
   margin-top: 20rpx;
 }
 
+.mb-100 {
+  margin-bottom: 100rpx;
+}
+
  .jn-btn {
   background: #FF6600;
   height: 100rpx;
