@@ -28,16 +28,19 @@
   </view>
 
   <view class='{{commentList && commentList.length > 0 ? "" : "mb-100"}}'>
-    <view class='product-detail'>
+    <view class='product-detail' wx:if="{{productInfo.descPicIds}}">
       <view class='sub-title'>商品详情</view>
       <view class='image-box'>
-        <image src='{{juniuImg}}'></image>
+        <image wx:for="{{productInfo.descPicUrls}}" src='{{item}}'></image>
       </view>
     </view>
 
     <view class='notice' wx:if="{{productInfo.notice}}">
       <view class='sub-title'>活动须知</view>
-      <view class='notice-text'>{{productInfo.notice}}</view>
+      <view class='notice-item' wx:for="{{productInfo.noticeArr}}" wx:for-item="item1">
+        <view class='notice-item-title'>{{item1.title}}</view>
+        <view wx:for="{{item1.details}}" wx:for-item="item2">{{item2}}</view>
+      </view>
     </view>
   </view>
 

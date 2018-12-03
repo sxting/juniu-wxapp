@@ -171,6 +171,17 @@ function getProductDetail() {
       if (res.url) {
         res.url = constant.OSS_IMAGE_URL + `${res.url}/resize_750_520/mode_fill`;
       }
+      if (res.descPicIds) {
+        let descPicUrls = res.descPicIds.split(',');
+        res.descPicUrls = [];
+        descPicUrls.forEach(function(item) {
+          item = constant.OSS_IMAGE_URL + `${item}/resize_690_300/mode_fill`;
+          res.descPicUrls.push(item)
+        })
+      }
+      if (res.notice) {
+        res.noticeArr = JSON.parse(res.notice);
+      }
       this.setData({
         productInfo: res
       })

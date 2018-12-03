@@ -1,5 +1,5 @@
 import { craftsmanService } from '../shared/service.js'
-import { errDialog } from '../../../utils/util'; 
+import { errDialog, workDataFun } from '../../../utils/util'; 
 import { constant } from '../../../utils/constant';
 import { service } from '../../../service';
 import { homeService } from '../../home/shared/home.service';
@@ -160,13 +160,13 @@ Page({
   // 点击作品跳转作品详情
   onWorkItemClick(e) {
     let type = e.currentTarget.dataset.type
-    if (type === 'video') {
+    if (type === 'VIDEO') {
       wx.navigateTo({
-        url: '/pages/shop/video/detail/detail',
+        url: '/pages/shop/video/detail/detail?productionId=' + e.currentTarget.dataset.id,
       })
     } else {
       wx.navigateTo({
-        url: '/pages/shop/image/detail/detail',
+        url: '/pages/shop/image/detail/detail?productionId=' + e.currentTarget.dataset.id,
       })
     }
   }
@@ -223,53 +223,20 @@ function getComments() {
 
 // 查询员工作品列表
 function getWorkList() {
-  let resData = [
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.2',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.8',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.5',
-    },
-    {
-      name: '最潮短发设计女生最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.4',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.5',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.4',
-    }
-  ];
-
+  let data = {
+    id: this.data.staffId,
+    type: 'STAFF'
+  };
   let self = this;
-  resData.forEach(function (item) {
-    let index = item.picId.lastIndexOf('_');
-    let picId = item.picId.slice(0, index);
-    let scale = item.picId.slice(index + 1, item.picId.length);
-    item.height = Math.floor(self.data.imageWidth / scale);
-    item.url = constant.OSS_IMAGE_URL + `${picId}/resize_${self.data.imageWidth}_${item.height}/mode_fill`
-  })
-
-  this.setData({
-    worksList: resData
-  })
+  craftsmanService.getStaffProductionList(data).subscribe({
+    next: res => {
+      this.setData({
+        worksList: workDataFun(res, self.data.imageWidth)
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })  
 }
 
 function logIn(code, appid, rawData) {

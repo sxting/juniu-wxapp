@@ -7,6 +7,13 @@ shopService.storeInfoDetail = (data) => {
   return http.get(url, data)
 }
 
+// 手艺人作品详情
+shopService.getStaffProductionDetail = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/account/production/detail.json';
+  return http.get(url, data)
+}
+
 module.exports = {
   shopService: shopService
 }

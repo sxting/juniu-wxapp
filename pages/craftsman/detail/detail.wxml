@@ -21,14 +21,17 @@
   </view>
 
   <view class='introduction'>
-    <text>简介：</text>
-    <text>用心才能做到最好，把顾客的问题当作自己的问题去解决去解决！擅长设计、裁剪、发型、烫染造型设计、日系及潮色造型</text>
+    <view wx:if="{{staffInfo.introduction}}">
+      <text>简介：</text>
+      <text>{{staffInfo.introduction}}</text>
+    </view>
+    <view>
+      <view wx:if="{{staffInfo.advantage}}">
+        <text>擅长：</text>
+        <text>{{staffInfo.advantage}}</text>
+      </view>
+    </view>
   </view>
-
-  <!-- <view class="store-box">
-    <view class="store-name">{{storeName}}</view>
-    <view class="store-address">{{address}}</view>
-  </view> -->
 
   <view class='tab'>
     <text bindtap='onTabItemClick' data-tab='works' class='{{tab === "works" ? "active" : ""}}'>作品</text>
@@ -79,8 +82,8 @@
 
   <block wx:else>
   <view class='works-item-box' wx:if="{{worksList && worksList.length > 0}}">  
-    <view class='works-item' wx:for="{{worksList}}" bindtap='onWorkItemClick' data-type=''>
-      <image class='video-icon' src='/asset/images/video.png'></image>
+    <view class='works-item' wx:for="{{worksList}}" bindtap='onWorkItemClick' data-type='{{item.sourceType}}' data-id='{{item.productionId}}'>
+      <image wx:if="{{item.sourceType === 'VIDEO'}}" class='video-icon' src='/asset/images/video.png'></image>
       <image class='work-img' src='{{item.url}}' style='height: {{item.height*2}}rpx'></image>
       <view class='work-name'>{{item.name}}</view>
     </view>

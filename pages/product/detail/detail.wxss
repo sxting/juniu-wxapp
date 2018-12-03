@@ -77,9 +77,13 @@
   margin-top: 20rpx;
 }
 
-.notice-text {
+.notice-item {
   font-size: 24rpx;
   color: #999999;
+}
+.notice-item-title {
+  font-size: 26rpx;
+  color: #666;
 }
 .sub-title {
   font-size: 32rpx;

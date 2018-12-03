@@ -1,5 +1,7 @@
 import { constant } from '../../../../utils/constant';
 import { service } from '../../../../service';
+import { shopService } from '../../shared/shop.service.js'
+import { errDialog, workDataFun } from '../../../../utils/util';
 
 Page({
   data: {
@@ -7,12 +9,16 @@ Page({
     imageList: [],
     worksList: [],
     imageWidth: 168,
-    getUserInfo: true
+    getUserInfo: true,
+    productionId: ''
   },
 
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '图片详情',
+    })
+    this.setData({
+      productionId: options.productionId
     })
     if (options.type && options.type === 'share') {
       let self = this;
@@ -106,85 +112,50 @@ Page({
 })
 
 function getData() {
-  this.setData({
-    imageList: [
-      {
-        url: '/asset/images/pintuan_head1.jpg',
-        index: 0
-      },
-      {
-        url: '/asset/images/pintuan_head2.jpg',
-        index: 1
-      },
-      {
-        url: '/asset/images/pintuan_head3.jpg',
-        index: 2
-      },
-      {
-        url: '/asset/images/pintuan_head4.jpg',
-        index: 3
-      },
-      {
-        url: '/asset/images/pintuan_head5.jpg',
-        index: 4
-      },
-      {
-        url: '/asset/images/pintuan_head3.jpg',
-        index: 5
-      }
-    ],
-  })
-
-  this.setData({
-    bigImage: this.data.imageList[0]
-  })
-
-  let resData = [
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.2',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.8',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.5',
-    },
-    {
-      name: '最潮短发设计女生最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.4',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.5',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.4',
-    }
-  ];
-
+  let data = {
+    productionId: this.data.productionId
+  }
   let self = this;
-  resData.forEach(function (item) {
-    let index = item.picId.lastIndexOf('_');
-    let picId = item.picId.slice(0, index);
-    let scale = item.picId.slice(index + 1, item.picId.length);
-    item.height = Math.floor(self.data.imageWidth / scale);
-    item.url = constant.OSS_IMAGE_URL + `${picId}/resize_${self.data.imageWidth}_${item.height}/mode_fill`
-  })
+  shopService.getStaffProductionDetail(data).subscribe({
+    next: res => {
+      this.setData({
+        worksList: workDataFun(res.other, self.data.imageWidth)
+      })
+      this.setData({
+        imageList: [
+          {
+            url: '/asset/images/pintuan_head1.jpg',
+            index: 0
+          },
+          {
+            url: '/asset/images/pintuan_head2.jpg',
+            index: 1
+          },
+          {
+            url: '/asset/images/pintuan_head3.jpg',
+            index: 2
+          },
+          {
+            url: '/asset/images/pintuan_head4.jpg',
+            index: 3
+          },
+          {
+            url: '/asset/images/pintuan_head5.jpg',
+            index: 4
+          },
+          {
+            url: '/asset/images/pintuan_head3.jpg',
+            index: 5
+          }
+        ],
+      })
 
-  this.setData({
-    worksList: resData
+      this.setData({
+        bigImage: this.data.imageList[0]
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
   })
 }
 

@@ -47,14 +47,8 @@
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/product/detail/detail",
-					"query": "productId=2c9172e26468380901646920c725007b&storeId=1530602323164136822988"
-				},
-				{
-					"id": 1,
-					"name": "band",
-					"pathName": "pages/craftsman/detail/detail",
-					"query": "staffId=1530602630309219640942&storeId=1530602323164136822988"
+					"pathName": "pages/shop/image/detail/detail",
+					"query": "productionId=2018120318020285589751649"
 				}
 			]
 		}
