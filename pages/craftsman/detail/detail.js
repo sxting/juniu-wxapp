@@ -41,7 +41,10 @@ Page({
 
     let self = this;
 
-    if (options.type === 'shared') {
+    if (options.type && options.type === 'shared') {
+      this.setData({
+        storeId: options.storeId
+      })
       wx.login({
         success: function (result) {
           wx.getUserInfo({
@@ -247,6 +250,7 @@ function logIn(code, appid, rawData) {
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
+      wx.setStorageSync(constant.STORE_INFO, this.data.storeId);
 
       if (res.ver == '2') {
         wx.setStorageSync(constant.VER, 2);

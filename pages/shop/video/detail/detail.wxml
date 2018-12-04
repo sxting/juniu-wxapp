@@ -1,14 +1,14 @@
 <view class='works-detail-box'>
   <view bindtap='showVideo'>
     <image class='video-icon' src='/asset/images/video.png'></image>
-    <image class='big-img' src='{{bigImage}}'></image></view>
+    <image class='big-img' src='{{bigImage.url}}'></image></view>
   <view class='work-msg'>
-    <text>最潮短发设计女生</text>
+    <text>{{title}}</text>
     <button class='jn-icon icon-transmit fr' open-type="share"></button>
   </view>
 </view>
 
-<view class='other-works-box mt-10'>
+<view class='other-works-box mt-10' wx:if="{{worksList.length > 0}}">
   <view class='sub-title'>其它作品</view>
   <view class='works-item-box'>
     <view class='works-item' wx:for="{{worksList}}" bindtap='onOtherWorkItemClick' data-item='{{item}}'>

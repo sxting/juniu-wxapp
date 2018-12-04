@@ -126,7 +126,7 @@ function workDataFun(data, imgW) {
 
   resData.forEach(function (item) {
     let index = item.picId.lastIndexOf('_');
-    let picId = item.picId.slice(0, index);
+    // let picId = item.picId.slice(0, index);
     let scale = item.picId.slice(index + 1, item.picId.length);
     item.height = Math.floor(imgW / scale);
     item.url = constant.OSS_IMAGE_URL + `${item.picId}/resize_${imgW}_${item.height}/mode_fill`

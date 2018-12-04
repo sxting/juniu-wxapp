@@ -157,7 +157,7 @@ scroll-view {
   margin-top: 0;
   padding-left:30rpx;
   background-color:#fff;
-  padding-bottom: 100rpx;
+  /* padding-bottom: 100rpx; */
   padding-top: 20rpx;
 }
 

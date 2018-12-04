@@ -156,9 +156,15 @@ page {
 /* 作品 */
 .works-item-box {
   margin-top: 20rpx;  
+  padding-right: 30rpx;
+  padding-bottom: 100rpx;
   column-count: 2;
   column-gap: 18rpx;
-  padding-right: 30rpx;
+  column-fill: balance;
+  -o-column-fill: balance;
+  -ms-column-fill: balance;
+  -moz-column-fill: balance;
+  -webkit-column-fill: balance;
 }
 .works-item-box .works-item {
   background-color: #fff;

@@ -47,8 +47,20 @@
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/shop/image/detail/detail",
-					"query": "productionId=2018120318020285589751649"
+					"pathName": "pages/shop/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "band",
+					"pathName": "pages/craftsman/detail/detail",
+					"query": "staffId=1531810475724113003382&storeId=1531800050458194516965"
+				},
+				{
+					"id": 2,
+					"name": "band",
+					"pathName": "pages/shop/video/detail/detail",
+					"query": "productionId=2018120411073436970806363"
 				}
 			]
 		}

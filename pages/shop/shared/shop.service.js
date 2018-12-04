@@ -14,6 +14,14 @@ shopService.getStaffProductionDetail = (data) => {
   return http.get(url, data)
 }
 
+// 视频地址接口  getVideoUrlById.json
+shopService.getVideoUrlById = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrlTwo : constant.apiUrlTwo
+  let url = api + '/getVideoUrlById.json';
+  return http.get(url, data)
+}
+
+
 module.exports = {
   shopService: shopService
 }

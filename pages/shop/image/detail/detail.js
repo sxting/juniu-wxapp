@@ -5,12 +5,16 @@ import { errDialog, workDataFun } from '../../../../utils/util';
 
 Page({
   data: {
+    storeId: wx.getStorageSync(constant.STORE_INFO),
+    imgHttpUrl: constant.OSS_IMAGE_URL,
     bigImage: '',
     imageList: [],
     worksList: [],
     imageWidth: 168,
+    imageLitleWidth: 60,
     getUserInfo: true,
-    productionId: ''
+    productionId: '',
+    title: ''
   },
 
   onLoad: function (options) {
@@ -18,9 +22,13 @@ Page({
       title: '图片详情',
     })
     this.setData({
-      productionId: options.productionId
+      productionId: options.productionId,
+      storeId: wx.getStorageSync(constant.STORE_INFO)
     })
     if (options.type && options.type === 'share') {
+      this.setData({
+        storeId: options.storeId
+      })
       let self = this;
       wx.login({
         success: function (result) {
@@ -84,8 +92,8 @@ Page({
     }
   },
 
-  onLittleImgClick(item) {
-    let index = item.currentTarget.dataset.item.index;
+  onLittleImgClick(e) {
+    let index = e.currentTarget.dataset.item.index;
     this.setData({
       bigImage: this.data.imageList[index]
     })
@@ -94,7 +102,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/shop/image/detail/detail?type=share',
+      path: '/pages/shop/image/detail/detail?type=share&productionId=' + this.data.productionId,
       success: function (res) {
         console.log(res);
       },
@@ -105,8 +113,11 @@ Page({
   },
 
   /*点击其他作品*/
-  onOtherWorkItemClick(item) {
-
+  onOtherWorkItemClick(e) {
+    this.setData({
+      productionId: e.currentTarget.dataset.item.productionId
+    });
+    getData.call(this);
   } 
 
 })
@@ -119,39 +130,21 @@ function getData() {
   shopService.getStaffProductionDetail(data).subscribe({
     next: res => {
       this.setData({
-        worksList: workDataFun(res.other, self.data.imageWidth)
+        worksList: workDataFun(res.other, self.data.imageWidth),
+        title: res.production.title
       })
-      this.setData({
-        imageList: [
-          {
-            url: '/asset/images/pintuan_head1.jpg',
-            index: 0
-          },
-          {
-            url: '/asset/images/pintuan_head2.jpg',
-            index: 1
-          },
-          {
-            url: '/asset/images/pintuan_head3.jpg',
-            index: 2
-          },
-          {
-            url: '/asset/images/pintuan_head4.jpg',
-            index: 3
-          },
-          {
-            url: '/asset/images/pintuan_head5.jpg',
-            index: 4
-          },
-          {
-            url: '/asset/images/pintuan_head3.jpg',
-            index: 5
-          }
-        ],
+      let imageList = []
+      res.production.merchantMediaDTOS.forEach(function(item, i) {
+        imageList.push({
+          url: constant.OSS_IMAGE_URL + `${item.sourceId}/resize_60_60/mode_fill`,
+          index: i,
+          sourceId: item.sourceId
+        })
       })
 
       this.setData({
-        bigImage: this.data.imageList[0]
+        imageList: imageList,
+        bigImage: imageList[0]
       })
     },
     error: err => errDialog(err),
@@ -168,7 +161,8 @@ function logIn(code, appid, rawData) {
       wx.setStorageSync(constant.MERCHANTID, res.merchantId ? res.merchantId : '153179997107784038184');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
       wx.setStorageSync(constant.sessionKey, res.sessionKey);
-      wx.setStorageSync(constant.USER_ID, res.userId)
+      wx.setStorageSync(constant.USER_ID, res.userId);
+      wx.setStorageSync(constant.STORE_INFO, this.data.storeId);
 
       if (res.ver == '2') {
         wx.setStorageSync(constant.VER, 2);

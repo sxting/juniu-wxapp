@@ -12,7 +12,7 @@ page {
   width: 690rpx;
   height: 100%;
   margin: 0 auto;
-  background-color: pink;
+  background-color: FFF;
 }
 
 .swiper image {
@@ -80,4 +80,8 @@ page {
 .service-scene image {
   width: 690rpx;
   height: 478rpx;
+}
+
+.works-item-box {
+  padding-bottom: 0;
 }

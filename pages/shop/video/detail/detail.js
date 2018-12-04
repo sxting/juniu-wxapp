@@ -1,22 +1,34 @@
 import { constant } from '../../../../utils/constant';
 import { service } from '../../../../service';
+import { shopService } from '../../shared/shop.service.js'
+import { errDialog, workDataFun } from '../../../../utils/util';
 
 Page({
   data: {
+    storeId: wx.getStorageSync(constant.STORE_INFO),
     getUserInfo: true,
     bigImage: '/asset/images/pintuan_head1.jpg',
     worksList: [],
     imageWidth: 168,
     showVideo: false,
-    src: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+    src: '',
+    productionId: '', 
+    title: ''   
   },
   
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '视频详情',
     })
+    this.setData({
+      productionId: options.productionId,
+      storeId: wx.getStorageSync(constant.STORE_INFO)
+    })
     this.videoCtx = wx.createVideoContext('myVideo');
     if (options.type && options.type === 'share') {
+      this.setData({
+        storeId: options.storeId
+      })
       let self = this;
       wx.login({
         success: function (result) {
@@ -54,8 +66,18 @@ Page({
   },
 
   showVideo() {
-    this.setData({
-      showVideo: true
+    let data = {
+      videoId: this.data.bigImage.sourceId.split(',')[1]
+    }
+    shopService.getVideoUrlById(data).subscribe({
+      next: res => {
+        this.setData({
+          showVideo: true,
+          src: res
+        })
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
     })
   },
 
@@ -99,7 +121,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/shop/video/detail/detail?type=share',
+      path: '/pages/shop/video/detail/detail?type=share&productionId=' + this.data.productionId + '&storeId=' + this.data.storeId,
       success: function (res) {
         console.log(res);
       },
@@ -110,72 +132,54 @@ Page({
   },
 
   /*点击其他作品*/
-  onOtherWorkItemClick(item) {
-
+  onOtherWorkItemClick(e) {
+    this.setData({
+      productionId: e.currentTarget.dataset.item.productionId
+    });
+    getData.call(this);
   } 
 
 })
 
 function getData() {
-  let resData = [
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.2',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.8',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.5',
-    },
-    {
-      name: '最潮短发设计女生最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.4',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.5',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.4',
-    }
-  ];
-
+  let data = {
+    productionId: this.data.productionId
+  }
   let self = this;
-  resData.forEach(function (item) {
-    let index = item.picId.lastIndexOf('_');
-    let picId = item.picId.slice(0, index);
-    let scale = item.picId.slice(index + 1, item.picId.length);
-    item.height = Math.floor(self.data.imageWidth / scale);
-    item.url = constant.OSS_IMAGE_URL + `${picId}/resize_${self.data.imageWidth}_${item.height}/mode_fill`
-  })
+  shopService.getStaffProductionDetail(data).subscribe({
+    next: res => {
+      this.setData({
+        worksList: workDataFun(res.other, self.data.imageWidth),
+        title: res.production.title
+      })
+      let imageList = []
+      res.production.merchantMediaDTOS.forEach(function (item, i) {
+        imageList.push({
+          url: constant.OSS_IMAGE_URL + `${item.sourceId.split(',')[0]}/resize_345_200/mode_fill`,
+          index: i,
+          sourceId: item.sourceId
+        })
+      })
 
-  this.setData({
-    worksList: resData
+      this.setData({
+        bigImage: imageList[0]
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
   })
 }
 
 function logIn(code, appid, rawData) {
   let self = this;
-  console.log(rawData)
   service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, res.merchantId ? res.merchantId : '153179997107784038184');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
       wx.setStorageSync(constant.sessionKey, res.sessionKey);
-      wx.setStorageSync(constant.USER_ID, res.userId)
+      wx.setStorageSync(constant.USER_ID, res.userId);
+      wx.setStorageSync(constant.STORE_INFO, this.data.storeId);
 
       if (res.ver == '2') {
         wx.setStorageSync(constant.VER, 2);

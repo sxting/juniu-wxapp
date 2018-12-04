@@ -1,56 +1,48 @@
 <!-- 轮播图 -->
 <view class='banner-box'>
   <swiper class='swiper'>
-    <swiper-item>
-      <image src='/asset/images/video.png'></image>
-    </swiper-item>
-    <swiper-item>
-      <image src='/asset/images/video.png'></image>
-    </swiper-item>
-    <swiper-item>
-      <image src='/asset/images/video.png'></image>
+    <swiper-item wx:for="{{bannerCollArr}}">
+      <image src='{{item}}'></image>
     </swiper-item>
   </swiper>
 </view>
 
 <view>
   <view class='h44 store-name-box'>
-    <text class='fl store-name'>桔牛测试门店育文街分店</text>
-    <text class='fr'> <text class='jn-icon icon-shijian1'></text> 9:00～22:00</text>
+    <text class='fl store-name'>{{storeInfo.storeName}}</text>
+    <text class='fr'> <text class='jn-icon icon-shijian1'></text> {{storeInfo.businessStart}}～{{storeInfo.businessEnd}}</text>
   </view>
   <view class='h44 address-and-tel'>
     <icon class="jn-icon icon-address"></icon>
-    <text class='address-text'>{{storeAddress}}</text>
-    <view class="fr tel-box"><view class="jn-icon icon-tel"></view></view>
+    <text class='address-text'>{{storeInfo.address}}</text>
+    <view class="fr tel-box" catchtap="onTelClick"><view class="jn-icon icon-tel"></view></view>
   </view>
 </view>
 
-<view class='tag-box mt-10'>
+<view class='tag-box mt-10' wx:if="{{storeInfo.label}}">
   <text class='jn-icon icon-biaoqian'></text>
   <text class='tag-name'>店铺标签</text>
   <view class='tag-item-box'>
-    <text>桔牛美发沙龙</text>
-    <text>Wi-Fi</text>
-    <text>Wi-Fi</text>
+    <text wx:for="{{storeInfo.labelArr}}">{{item}}</text>
   </view>
 </view>
 
-<view class='works-box mt-10'>
+<view class='works-box mt-10' wx:if="{{worksList.length > 0}}">
   <text class='jn-icon icon-works'></text>
   <text class='tag-name'>作品展示</text>
   <view class='works-item-box'>
-    <view class='works-item' wx:for="{{worksList}}" bindtap='goWorkDetail'>
-      <image class='video-icon' src='/asset/images/video.png'></image>
+    <view class='works-item' wx:for="{{worksList}}" bindtap='goWorkDetail' data-type='{{item.sourceType}}' data-id='{{item.productionId}}'>
+      <image wx:if="{{item.sourceType === 'VIDEO'}}" class='video-icon' src='/asset/images/video.png'></image>
       <image class='work-img' src='{{item.url}}' style='height: {{item.height*2}}rpx'></image>
       <view class='work-name'>{{item.name}}</view>
     </view>
   </view>
 </view>
 
-<view class='service-scene mt-10'>
+<view class='service-scene mt-10' wx:if="{{storeInfo.environment}}">
   <text class='jn-icon icon-service'></text>
   <text class='tag-name'>服务环境</text>
   <view class='image-box'>
-    <image wx:for="{{worksList}}" src='{{item.url}}'></image>
+    <image wx:for="{{environmentArr}}" src='{{item}}'></image>
   </view> 
 </view>

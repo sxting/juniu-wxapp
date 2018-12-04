@@ -322,7 +322,7 @@ Page({
       next: res => {
         wx.showModal({
           title: '领取成功',
-          content: '请到个中心我的优惠券中查看',
+          content: '请到个人中心我的优惠券中查看',
           showCancel: false,
           success: function (res) {
             if (res.confirm) {
@@ -672,7 +672,7 @@ function getStoreInfo(storId) {
     next: res => {
       self.setData({
         storeAddress: res.address,
-        tel: res.mobie,
+        tel: res.mobile,
         latitude: res.latitude,
         longitude: res.longitude,
       });

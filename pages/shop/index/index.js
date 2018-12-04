@@ -1,79 +1,96 @@
 import { constant } from '../../../utils/constant';
+import { service } from '../../../service';
+import { shopService } from '../shared/shop.service.js'
+import { errDialog, workDataFun } from '../../../utils/util';
+import { craftsmanService } from '../../craftsman/shared/service.js'
 
 Page({
   data: {
-    storeAddress: '学清路静淑里6号楼底商',
+    storeId: wx.getStorageSync(constant.STORE_INFO),
     imageWidth: 168,
-    worksList: []
+    storeInfo: '',
+    worksList: [],
+    environmentArr: [],
+    bannerCollArr: []
   },
 
-  onLoad: function (options) {
+  onShow: function (options) {
     wx.setNavigationBarTitle({
       title: wx.getStorageSync('storeName'),
     })
-    getWorkList.call(this)
+    this.setData({
+      storeId: wx.getStorageSync(constant.STORE_INFO)
+    })
+    getStoreInfo.call(this);
+    getWorkList.call(this);
+  },
+
+  onTelClick() {
+    let self = this;
+    wx.makePhoneCall({
+      phoneNumber: self.data.storeInfo.mobile
+    })
   },
  
-  goWorkDetail(type) {
-    if(type === 'video') {
+  goWorkDetail(e) {
+    let type = e.currentTarget.dataset.type
+    if (type === 'VIDEO') {
       wx.navigateTo({
-        url: '/pages/shop/video/detail/detail',
+        url: '/pages/shop/video/detail/detail?productionId=' + e.currentTarget.dataset.id,
       })
     } else {
       wx.navigateTo({
-        url: '/pages/shop/image/detail/detail',
+        url: '/pages/shop/image/detail/detail?productionId=' + e.currentTarget.dataset.id,
       })
     }
   }
 
 })
 
+function getStoreInfo() {
+  let data = {
+    storeId: this.data.storeId
+  }
+  shopService.storeInfoDetail(data).subscribe({
+    next: res => {
+      if(res.label) {
+        res.labelArr = res.label.split(' ')
+      }
+      let environmentArr = [], bannerCollArr = [];
+      if (res.environment) {
+        let arr = res.environment.split(',');
+        arr.forEach(function(item) {
+          environmentArr.push(constant.OSS_IMAGE_URL + `${item}/resize_345_239/mode_fill`)        
+        })
+      }
+      res.bannerColl.forEach(function (item) {
+        bannerCollArr.push(constant.OSS_IMAGE_URL + `${item}/resize_345_260/mode_fill`)
+      })
+
+      this.setData({
+        storeInfo: res,
+        environmentArr: environmentArr,
+        bannerCollArr: bannerCollArr
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
 function getWorkList() {
-  let resData = [
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.2',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.8',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.5',
-    },
-    {
-      name: '最潮短发设计女生最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.4',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_0.5',
-    },
-    {
-      name: '最潮短发设计女生',
-      picId: 'kLBwUYVJW_xy_1.4',
-    }
-  ];
-
+  let data = {
+    id: this.data.storeId,
+    type: 'STORE'
+  };
   let self = this;
-  resData.forEach(function(item) {
-    let index = item.picId.lastIndexOf('_');
-    let picId = item.picId.slice(0, index);
-    let scale = item.picId.slice(index + 1, item.picId.length);
-    item.height = Math.floor(self.data.imageWidth / scale);
-    item.url = constant.OSS_IMAGE_URL + `${picId}/resize_${self.data.imageWidth}_${item.height}/mode_fill`
-  })
-
-  this.setData({
-    worksList: resData
-  })
+  craftsmanService.getStaffProductionList(data).subscribe({
+    next: res => {
+      this.setData({
+        worksList: workDataFun(res, self.data.imageWidth)
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  }) 
 }

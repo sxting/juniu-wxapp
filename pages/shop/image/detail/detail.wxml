@@ -1,15 +1,15 @@
 <view class='works-detail-box'>
-  <image class='big-img' src='{{bigImage.url}}'></image>
+  <image class='big-img' src='{{imgHttpUrl + bigImage.sourceId + "/resize_345_200/mode_fill"}}'></image>
   <view class='little-imgs'>
     <image wx:for="{{imageList}}" src='{{item.url}}' bindtap='onLittleImgClick' data-item="{{item}}"></image>
   </view>
   <view class='work-msg'>
-    <text>最潮短发设计女生</text>
+    <text>{{title}}</text>
     <button class='jn-icon icon-transmit fr' open-type="share"></button>
   </view>
 </view>
 
-<view class='other-works-box mt-10'>
+<view class='other-works-box mt-10' wx:if="{{worksList.length > 0}}">
   <view class='sub-title'>其它作品</view>
   <view class='works-item-box'>
     <view class='works-item' wx:for="{{worksList}}" bindtap='onOtherWorkItemClick' data-item='{{item}}'>
