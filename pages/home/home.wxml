@@ -102,7 +102,7 @@
   </view>
 
   <!--优惠券  -->
-  <view class="cfaftsman-list" wx:if="{{ticketList.length > 0}}">
+  <view class="cfaftsman-list coupon-box" wx:if="{{ticketList.length > 0}}">
     <view class="sub-title">
       <view class="sub-title-left">
         <view class="jn-icon ticket ticket-color"></view>
@@ -168,21 +168,6 @@
       <view class="search-more" bindtap="onSearchMoreTicketClick" wx:if="{{showSearchMoreTicket}}">
         查看更多 <text class="jn-icon icon-xia"></text>
       </view>
-    </view>
-  </view>
-
-  <view class="merchant-img-box" wx:if="{{storeInfo}}">
-    <view class="sub-title">
-      <view class="sub-title-left">
-        <view class="jn-icon icon-morentupianccccccpx"></view>
-        <!-- <view class="sub-title-left-border"></view> -->
-        <view class="sub-title-text">商户图片</view>
-      </view>
-    </view>
-
-    <view class="merchant-img-list">
-      <!--循环的商户图片  -->
-      <view wx:for="{{productImages}}" class="merchant-img-item" bindtap='saveImageToPhotos' data-imageid='{{item.picUrl2}}'><image src="{{item.picUrl2}}"></image></view>
     </view>
   </view>
 

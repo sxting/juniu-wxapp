@@ -470,7 +470,7 @@ page {
 .ticket-title {
   font-size: 30rpx;
   color: #111111;
-  padding: 34rpx 0 16rpx;
+  padding: 20rpx 0 14rpx;
 }
 .use-limit-box, .gift-name {
   font-size: 26rpx;
