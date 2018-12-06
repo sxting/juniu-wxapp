@@ -12,7 +12,7 @@ page {
   margin-top: 0;
   display: block;
   background-color: pink;
-  border-radius: 8rpx;
+  border-radius: 10rpx;
 }
 
 .little-imgs {

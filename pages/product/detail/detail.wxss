@@ -72,7 +72,7 @@
 } 
 .product-detail image {
   width: 690rpx;
-  height: 300rpx;
+  height: 480rpx;
   border-radius: 8rpx;
   margin-top: 20rpx;
 }

@@ -23,7 +23,8 @@ Page({
     showBigImg: false,
     bigImg: '',
     showSelectCountAlert: false,
-    count: 1
+    count: 1,
+    getUserInfo: true
   },
 
   onLoad: function (options) {
@@ -42,6 +43,9 @@ Page({
           wx.getUserInfo({
             withCredentials: true,
             success: function (res) {
+              self.setData({
+                getUserInfo: true
+              })
               let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
               let appId = 'wx3bb038494cd68262';
               if (result.code) {
@@ -49,10 +53,19 @@ Page({
               } else {
                 console.log('获取用户登录态失败！' + result.errMsg)
               }
+            },
+            fail: function () {
+              self.setData({
+                getUserInfo: false
+              })
             }
           });
         },
-        fail: function (res) { },
+        fail: function (res) {
+          self.setData({
+            getUserInfo: false
+          })
+         },
         complete: function (res) { },
       });
     } else {
@@ -74,6 +87,33 @@ Page({
         // 转发失败
         console.log(res);
       }
+    }
+  },
+
+  bindgetuserinfo(e) {
+    let self = this;
+    if (e.detail.errMsg == 'getUserInfo:ok') {
+      wx.login({
+        success: function (result) {
+          self.setData({
+            getUserInfo: true
+          })
+          let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+          let appId = 'wx3bb038494cd68262';
+          console.log(result.code);
+          if (result.code) {
+            logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, e.detail.rawData);
+          } else {
+            console.log('获取用户登录态失败！' + result.errMsg)
+          }
+        },
+        fail: function (res) {
+          self.setData({
+            getUserInfo: false
+          })
+        },
+        complete: function (res) { },
+      });
     }
   },
 
@@ -175,7 +215,7 @@ function getProductDetail() {
         let descPicUrls = res.descPicIds.split(',');
         res.descPicUrls = [];
         descPicUrls.forEach(function(item) {
-          item = constant.OSS_IMAGE_URL + `${item}/resize_690_300/mode_fill`;
+          item = constant.OSS_IMAGE_URL + `${item}/resize_690_480/mode_fill`;
           res.descPicUrls.push(item)
         })
       }
@@ -261,7 +301,7 @@ function getStoreInfo(storId) {
     next: res => {
       self.setData({
         address: res.address,
-        tel: res.mobie,
+        tel: res.mobile,
         storeName: res.storeName 
       });
       wx.setStorageSync(constant.address, res.address);

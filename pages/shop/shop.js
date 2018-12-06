@@ -98,7 +98,7 @@ function getStoreInfo(storId) {
     next: res => {
       self.setData({
         addr: res.address,
-        tell: res.mobie,
+        tell: res.mobile,
         time: res.businessStart + '-' + res.businessEnd,
         markers: [{
           id: 0,

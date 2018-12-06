@@ -140,7 +140,7 @@ page {
 }
 
 .address-and-tel>.tel-box>.icon-tel {
-  font-size: 30rpx;
+  font-size: 34rpx;
 }
 .address-and-tel>.tel-box {
   height: 36rpx;
@@ -169,7 +169,7 @@ page {
 .works-item-box .works-item {
   background-color: #fff;
   width: 336rpx;
-  border: 2rpx solid #DEDEDE;
+  border: 2rpx solid #f3f3f3;
   border-radius: 8rpx;
   display: inline-block;
   margin-bottom: 20rpx;
@@ -204,7 +204,7 @@ page {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 999;
 }
 .alert-box {
   width: 600rpx;
@@ -271,13 +271,13 @@ page {
     border-bottom: 1px solid #f8f8f8;
 }
 .comment-list {
-  box-shadow: 0 2rpx 6rpx 0 rgba(216,216,216,0.50);
+  /* box-shadow: 0 2rpx 6rpx 0 rgba(216,216,216,0.50); */
   border-radius: 8rpx; 
-  margin: 20rpx;
+  margin: 0 20rpx 20rpx;
    position: relative;
 }
 .comment-item-box {
-    padding-bottom:10rpx;
+    padding-bottom: 30rpx;
     border-bottom: 1px solid #F3F3F3;
 }
 .comment-item-box:last-child {
@@ -342,6 +342,7 @@ page {
     height: 140rpx;
     margin-right: 20rpx;
     border-radius: 8rpx;
+    display: inline-block;
 }
 .comment-images image:last-child {
     margin-right: 0;

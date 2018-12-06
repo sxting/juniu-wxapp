@@ -131,7 +131,7 @@ function getStoreInfo(storId) {
     next: res => {
       self.setData({
         storeAddress: res.address,
-        tel: res.mobie
+        tel: res.mobile
       })
     },
     error: err => errDialog(err),

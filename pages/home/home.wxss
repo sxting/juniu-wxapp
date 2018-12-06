@@ -280,9 +280,6 @@ page {
   background-color: #fff;
   margin-top: 20rpx;
 }
-.coupon-box {
-  padding-bottom: 100rpx;
-}
 
 .cfaftsman-list .sub-title {
   margin-left: 0;

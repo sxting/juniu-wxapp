@@ -81,8 +81,8 @@ Page({
               getUserInfo: true
             })
             let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+            console.log(extConfig);
             let appId = 'wx3bb038494cd68262';
-            console.log(result.code);
             if (result.code) {
               logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
             } else {
@@ -616,7 +616,6 @@ function getSysConfig(configKey) {
     configKey: configKey
   }).subscribe({
     next: res => {
-      console.log(res);
       if (configKey === `${wx.getStorageSync(constant.MERCHANTID)}_wechat_product`) {
         self.setData({
           productTagName: res.configValue ? res.configValue : self.data.productTagName

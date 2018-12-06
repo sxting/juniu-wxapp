@@ -133,10 +133,17 @@ Page({
 
   /*点击其他作品*/
   onOtherWorkItemClick(e) {
+    let item = e.currentTarget.dataset.item;
     this.setData({
-      productionId: e.currentTarget.dataset.item.productionId
+      productionId: item.productionId
     });
-    getData.call(this);
+    if (item.sourceType === "VIDEO") {
+      getData.call(this);
+    } else {
+      wx.redirectTo({
+        url: '/pages/shop/image/detail/detail?productionId=' + item.productionId
+      })
+    }
   } 
 
 })

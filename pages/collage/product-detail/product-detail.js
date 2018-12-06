@@ -416,7 +416,7 @@ function getStoreInfo() {
     next: res => {
       self.setData({
         address: res.address,
-        tel: res.mobie
+        tel: res.mobile
       });
       wx.setStorageSync(constant.address, res.address)
     },
