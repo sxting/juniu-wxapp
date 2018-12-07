@@ -32,7 +32,10 @@
     "pages/collage/collage-submit/collage-submit",
     "pages/personal/collage-order/detail/detail",
     "pages/collage/product-list/product-list",
-    "pages/personal/collage-order/order/order-list"
+    "pages/personal/collage-order/order/order-list",
+    "pages/shop/index/index",
+    "pages/shop/video/detail/detail",
+    "pages/shop/image/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -51,6 +54,12 @@
         "text": "首页",
         "iconPath": "asset/images/home-icon.png",
         "selectedIconPath": "asset/images/home-icon-select.png"
+      },
+      {
+        "pagePath": "pages/shop/index/index",
+        "text": "店铺",
+        "iconPath": "asset/images/shop-icon.png",
+        "selectedIconPath": "asset/images/shop-icon-select.png"
       },
       {
         "pagePath": "pages/order/order",

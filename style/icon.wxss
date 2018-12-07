@@ -199,3 +199,22 @@
 .icon-close1::before {
   content: '\e700'
 }
+.icon-biaoqian::before {
+  content: '\e6f2'
+}
+
+.icon-works::before {
+  content: '\e6f4'
+}
+.icon-service::before {
+  content: '\e6f5'
+}
+.icon-shijian1::before {
+  content: '\e702'
+}
+.icon-thumb::before {
+  content: '\e6fd'
+}
+.icon-transmit::before {
+  content: '\e6fe'
+}

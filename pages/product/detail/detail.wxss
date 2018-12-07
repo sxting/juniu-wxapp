@@ -48,32 +48,10 @@
   height: 88rpx;
   line-height: 88rpx;
 }
-.store {
-  height: 144rpx;
-}
 .store-name {
   padding: 20rpx 20rpx 10rpx;
   font-size: 30rpx;
 }
-/* .address-and-tel {
-  font-size: 26rpx;
-  color: #333;
-  height: 50rpx;
-} */
-/* .icon-address {
-  font-size: 30rpx;
-  padding-right: 6rpx;
-  color: #3b3b3b; 
-}
-.address-text {
-  display: inline-block;
-  max-width: 580rpx;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  display:-webkit-box;
-  -webkit-box-orient:vertical;
-  -webkit-line-clamp:1;
-} */
 .icon-tel {
   font-size: 36rpx;
   color: #999999;  
@@ -85,6 +63,31 @@
   line-height: 36rpx;
   text-align: right;
   margin-top:26rpx;
+}
+
+.product-detail, .notice {
+  background-color: #fff;
+  margin-top: 20rpx;
+  padding: 30rpx;
+} 
+.product-detail image {
+  width: 690rpx;
+  height: 480rpx;
+  border-radius: 8rpx;
+  margin-top: 20rpx;
+}
+
+.notice-item {
+  font-size: 24rpx;
+  color: #999999;
+}
+.notice-item-title {
+  font-size: 26rpx;
+  color: #666;
+}
+.sub-title {
+  font-size: 32rpx;
+  color: #333333;
 }
 
 .icon-Evaluation {

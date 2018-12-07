@@ -1,5 +1,5 @@
 import { craftsmanService } from '../shared/service.js'
-import { errDialog } from '../../../utils/util'; 
+import { errDialog, workDataFun } from '../../../utils/util'; 
 import { constant } from '../../../utils/constant';
 import { service } from '../../../service';
 import { homeService } from '../../home/shared/home.service';
@@ -20,6 +20,10 @@ Page({
     showBigImg: false,
     bigImg: '',
     address: '',
+    tab: 'works',
+    worksList: [],
+    imageWidth: 168,
+    getUserInfo: true
   },
   
   onLoad: function (options) {
@@ -38,12 +42,18 @@ Page({
 
     let self = this;
 
-    if (options.type === 'shared') {
+    if (options.type && options.type === 'shared') {
+      this.setData({
+        storeId: options.storeId
+      })
       wx.login({
         success: function (result) {
           wx.getUserInfo({
             withCredentials: true,
             success: function (res) {
+              self.setData({
+                getUserInfo: true
+              })
               let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
               let appId = 'wx3bb038494cd68262';
               if (result.code) {
@@ -51,15 +61,25 @@ Page({
               } else {
                 console.log('获取用户登录态失败！' + result.errMsg)
               }
+            },
+            fail: function () {
+              self.setData({
+                getUserInfo: false
+              })
             }
           });
         },
-        fail: function (res) { },
+        fail: function (res) { 
+          self.setData({
+            getUserInfo: false
+          })
+        },
         complete: function (res) { },
       });
     } else {
       getStaffDetail.call(this);
-      getComments.call(this)
+      getComments.call(this);
+      getWorkList.call(this);
       getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
     }  
   },
@@ -112,6 +132,40 @@ Page({
     }
   },
 
+  bindgetuserinfo(e) {
+    let self = this;
+    if (e.detail.errMsg == 'getUserInfo:ok') {
+      wx.login({
+        success: function (result) {
+          self.setData({
+            getUserInfo: true
+          })
+          let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+          let appId = 'wx3bb038494cd68262';
+          console.log(result.code);
+          if (result.code) {
+            logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, e.detail.rawData);
+          } else {
+            console.log('获取用户登录态失败！' + result.errMsg)
+          }
+        },
+        fail: function (res) {
+          self.setData({
+            getUserInfo: false
+          })
+        },
+        complete: function (res) { },
+      });
+    }
+  },
+
+  // tab切换
+  onTabItemClick(e) {
+    this.setData({
+      tab: e.currentTarget.dataset.tab
+    })
+  },
+
   //上拉触底 
   onScrollTolower: function () {
     if (this.data.pageIndex == this.data.countPage) {
@@ -144,6 +198,20 @@ Page({
       showBigImg: false,
       bigImg: ''
     })
+  },
+
+  // 点击作品跳转作品详情
+  onWorkItemClick(e) {
+    let type = e.currentTarget.dataset.type
+    if (type === 'VIDEO') {
+      wx.navigateTo({
+        url: '/pages/shop/video/detail/detail?productionId=' + e.currentTarget.dataset.id,
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/shop/image/detail/detail?productionId=' + e.currentTarget.dataset.id,
+      })
+    }
   }
 })
 
@@ -196,6 +264,24 @@ function getComments() {
   })
 }
 
+// 查询员工作品列表
+function getWorkList() {
+  let data = {
+    id: this.data.staffId,
+    type: 'STAFF'
+  };
+  let self = this;
+  craftsmanService.getStaffProductionList(data).subscribe({
+    next: res => {
+      this.setData({
+        worksList: workDataFun(res, self.data.imageWidth)
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })  
+}
+
 function logIn(code, appid, rawData) {
   let self = this;
   service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
@@ -204,6 +290,7 @@ function logIn(code, appid, rawData) {
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
+      wx.setStorageSync(constant.STORE_INFO, this.data.storeId);
 
       if (res.ver == '2') {
         wx.setStorageSync(constant.VER, 2);
@@ -216,7 +303,8 @@ function logIn(code, appid, rawData) {
         data: res.juniuToken,
         success: function (res) {
           getStaffDetail.call(self);
-          getComments.call(self)
+          getComments.call(self);
+          getWorkList.call(self);
           getStoreInfo.call(self, wx.getStorageSync(constant.STORE_INFO))
         }
       })
@@ -233,7 +321,7 @@ function getStoreInfo(storId) {
     next: res => {
       self.setData({
         address: res.address,
-        tel: res.mobie,
+        tel: res.mobile,
       });
       wx.setStorageSync(constant.address, res.address)
     },

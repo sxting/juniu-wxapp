@@ -1,0 +1,90 @@
+page {
+  background: #F6F6F6;
+}
+
+.banner-box {
+  width: 100vw;
+  height: 520rpx;
+  background-color: #fff;
+}
+
+.swiper {
+  width: 690rpx;
+  height: 100%;
+  margin: 0 auto;
+  background-color: FFF;
+}
+
+.swiper image {
+  width: 690rpx;
+  height: 520rpx;
+  border-radius: 10rpx;
+}
+
+.h44 {
+  height: 88rpx;
+  background-color: #fff;
+}
+
+.store-name-box {
+  padding: 0 30rpx;
+}
+
+.store-name-box>text {
+  line-height: 88rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.store-name-box .store-name {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.address-and-tel .tel-box .icon-tel {
+  color: #ff6600;
+}
+
+.tag-box, .works-box, .service-scene {
+  background-color: #fff;
+  padding: 30rpx;
+  padding-right: 0;
+}
+
+.icon-biaoqian, .icon-works, .icon-service {
+  color: #ff6600;
+  font-size: 30rpx;
+  margin-right: 20rpx;
+}
+
+.tag-name {
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.tag-item-box {
+  font-size: 28rpx;
+  color: #FF6600;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-item-box>text {
+  border: 2rpx solid #ff6600;
+  border-radius: 36rpx;
+  margin-right: 30rpx;
+  padding: 0 20rpx;
+  margin-top: 20rpx;
+ }
+
+.image-box {
+  margin-top: 20rpx;
+}
+.service-scene image {
+  width: 690rpx;
+  height: 478rpx;
+}
+
+.works-item-box {
+  padding-bottom: 0;
+}

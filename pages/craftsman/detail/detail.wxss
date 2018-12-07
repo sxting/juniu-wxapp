@@ -45,6 +45,21 @@
     padding-right: 16rpx; 
 } 
 
+.introduction {
+  background-color: #fff;
+  font-size: 24rpx;
+  color: #333333;
+  padding: 20rpx 30rpx;
+}
+.introduction text {
+  display: inline-block;
+  vertical-align:top;
+
+}
+.introduction text:last-child {
+  width: 600rpx;
+}
+
 .store-box {
   height: 128rpx;
   padding: 0 20rpx;
@@ -65,6 +80,41 @@
   display:-webkit-box; 
   -webkit-box-orient:vertical;
   -webkit-line-clamp:1;
+}
+
+.tab {
+  height: 90rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #DEDEDE;
+  margin-top: 20rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 30rpx;
+  color: #333333;
+}
+.tab text {
+  display: inline-block;
+  width: 344rpx;
+}
+.comment-box {
+  margin-top: 0;
+}
+.tab .active {
+  color: #FF6600;
+  border-bottom: 2rpx solid #FF6600;
+}
+
+.no-works, .no-comments {
+  background-color: #fff;
+  text-align: center;
+  font-size: 30rpx;
+  color: #666666;
+}
+.no-works image, .no-comments image {
+  width: 320rpx;
+  height: 220rpx;
+  margin-top: 60rpx;
+  margin-bottom: 30rpx;
 }
 
 .create-comment {
@@ -101,6 +151,14 @@
 scroll-view {
   height: 100%;
   max-height:100%;
+}
+
+.works-item-box {
+  margin-top: 0;
+  padding-left:30rpx;
+  background-color:#fff;
+  /* padding-bottom: 100rpx; */
+  padding-top: 20rpx;
 }
 
 .big-img {

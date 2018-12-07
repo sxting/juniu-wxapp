@@ -20,14 +20,28 @@
     </view>
   </view>
 
-  <view class="store-box">
-    <view class="store-name">{{storeName}}</view>
-    <view class="store-address">{{address}}</view>
+  <view class='introduction'>
+    <view wx:if="{{staffInfo.introduction}}">
+      <text>简介：</text>
+      <text>{{staffInfo.introduction}}</text>
+    </view>
+    <view>
+      <view wx:if="{{staffInfo.advantage}}">
+        <text>擅长：</text>
+        <text>{{staffInfo.advantage}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='tab'>
+    <text bindtap='onTabItemClick' data-tab='works' class='{{tab === "works" ? "active" : ""}}'>作品</text>
+    <text bindtap='onTabItemClick' data-tab='comments' class='{{tab === "comments" ? "active" : ""}}'>评价</text>
   </view>
     
     <!--顾客评价-->
+  <block wx:if="{{tab === 'comments'}}">
   <view class="comment-box" wx:if="{{commentList && commentList.length > 0}}">  
-    <view class="sub-title"><icon class="jn-icon icon-Evaluation"></icon> 评价</view>
+    <!-- <view class="sub-title"><icon class="jn-icon icon-Evaluation"></icon> 评价</view> -->
     <scroll-view scroll-y="true" bindscrolltolower="onScrollTolower">
     <!--循环的评价-->
     <view class="comment-list">
@@ -59,12 +73,39 @@
     </view>
     </scroll-view>
   </view>
+  <view wx:else class='no-comments'>
+    <image src='/asset/images/no-comments.png'></image>
+    <view>TA目前暂无评价哦</view>
+  </view>
+  <image class="create-comment" src="/asset/images/edit.png" bindtap="onCreateCommentClick"></image> 
+  </block>
 
-  <view class="juniu-bottom" hidden="{{commentList && commentList.length > 0}}"><image src="/asset/images/logo.png"></image></view>
-  <image class="create-comment" src="/asset/images/edit.png" bindtap="onCreateCommentClick"></image>  
+  <block wx:else>
+  <view class='works-item-box' wx:if="{{worksList && worksList.length > 0}}">  
+    <view class='works-item' wx:for="{{worksList}}" bindtap='onWorkItemClick' data-type='{{item.sourceType}}' data-id='{{item.productionId}}'>
+      <image wx:if="{{item.sourceType === 'VIDEO'}}" class='video-icon' src='/asset/images/video.png'></image>
+      <image class='work-img' src='{{item.url}}' style='height: {{item.height*2}}rpx'></image>
+      <view class='work-name'>{{item.name}}</view>
+    </view>
+  </view>
+  <view wx:else class='no-works'>
+    <image src='/asset/images/no-works.png'></image>
+    <view>TA还未上传作品哦</view>
+  </view>
+  </block>
+
   <button class="shared-box" open-type="share">推荐给好友</button>
 </view>
 
 <view class="big-img" wx:if="{{showBigImg}}" bindtap="onBigImgClick">
   <image src="{{bigImg}}"></image>
 </view> 
+
+<!--授权弹框  -->
+<view class="alert-bg" wx:if="{{!getUserInfo}}">
+  <view class="alert-box">
+    <view class="alert-title">温馨提示</view>
+    <view class="alert-tip">您需要先授权才能正常访问</view>
+    <button class="alert-btn" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">确定</button>
+  </view>
+</view>

@@ -1,10 +1,18 @@
 //app.js
 import { service } from 'service';
-import { errDialog, loading } from 'utils/util'
-import { constant } from 'utils/constant'
+import { errDialog, loading } from 'utils/util';
+import { constant } from 'utils/constant';
+
+
 App({
+  onShow: function() {
+    const updateManager = wx.getUpdateManager();
+    updateManager.onUpdateReady(function () {
+      updateManager.applyUpdate()
+    })
+  },
   onLaunch: function (options) {
-    let appId = 'wxedcf0f0c4cc429c8';
+    let appId = 'wx3bb038494cd68262';
     let self = this;
     if (this.globalData.scene) {
       this.globalData.scene = options.scene;
@@ -49,7 +57,7 @@ App({
   globalData: {
     userInfo: null,
     merchantId: '1498644115879207297302',
-    appId: 'wxedcf0f0c4cc429c8',
+    appId: 'wx3bb038494cd68262',
     scene: 0
   }
 })

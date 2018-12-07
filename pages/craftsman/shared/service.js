@@ -32,6 +32,13 @@ craftsmanService.getStaffCommentList = (data) => {
   return http.get(url, data)
 }
 
+// 查询员工作品列表 /wxapp/production/list.json
+craftsmanService.getStaffProductionList = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/account/production/list.json';
+  return http.get(url, data)
+}
+
 module.exports = {
   craftsmanService: craftsmanService
 }

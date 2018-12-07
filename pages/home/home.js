@@ -81,8 +81,8 @@ Page({
               getUserInfo: true
             })
             let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+            console.log(extConfig);
             let appId = 'wx3bb038494cd68262';
-            console.log(result.code);
             if (result.code) {
               logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
             } else {
@@ -322,7 +322,7 @@ Page({
       next: res => {
         wx.showModal({
           title: '领取成功',
-          content: '请到个中心我的优惠券中查看',
+          content: '请到个人中心我的优惠券中查看',
           showCancel: false,
           success: function (res) {
             if (res.confirm) {
@@ -616,7 +616,6 @@ function getSysConfig(configKey) {
     configKey: configKey
   }).subscribe({
     next: res => {
-      console.log(res);
       if (configKey === `${wx.getStorageSync(constant.MERCHANTID)}_wechat_product`) {
         self.setData({
           productTagName: res.configValue ? res.configValue : self.data.productTagName
@@ -672,7 +671,7 @@ function getStoreInfo(storId) {
     next: res => {
       self.setData({
         storeAddress: res.address,
-        tel: res.mobie,
+        tel: res.mobile,
         latitude: res.latitude,
         longitude: res.longitude,
       });
