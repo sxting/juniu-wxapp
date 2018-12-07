@@ -3,7 +3,7 @@
  */
 
 var constant = {
-  TPLID: 'test2.19.9',
+  TPLID: '2.19.11',
   address: 'address',
   phoneNumber: 'phoneNumber',
   couponId: 'couponId',
@@ -15,19 +15,19 @@ var constant = {
   sessionKey: 'sessionKey',
   version2: 2,
 
-  apiUrl: 'https://b-test.juniuo.com/wxapp',
-  apiUrl2: 'https://b-test.juniuo.com/wxapp',
-  apiUrlTwo: 'https://b-test.juniuo.com/',
-  apiUrl3: 'https://b-test.juniuo.com/',
-  imgUrl: 'https://b-test.juniuo.com/',
-  OSS_IMAGE_URL: 'https://fdfs.juniuo.com/juniuo-pic/picture/juniuo/',
+  // apiUrl: 'https://b-test.juniuo.com/wxapp',
+  // apiUrl2: 'https://b-test.juniuo.com/wxapp',
+  // apiUrlTwo: 'https://b-test.juniuo.com/',
+  // apiUrl3: 'https://b-test.juniuo.com/',
+  // imgUrl: 'https://b-test.juniuo.com/',
+  // OSS_IMAGE_URL: 'https://fdfs.juniuo.com/juniuo-pic/picture/juniuo/',
 
-  // apiUrl: 'https://biz.juniuo.com/wxapp',
-  // apiUrl2: 'https://biz.juniuo.com/wxapp', 
-  // apiUrlTwo: 'https://biz.juniuo.com/',
-  // apiUrl3: 'https://biz.juniuo.com/', 
-  // imgUrl: 'https://biz.juniuo.com/',
-  // OSS_IMAGE_URL: 'https://oss.juniuo.com/juniuo-pic/picture/juniuo/',
+  apiUrl: 'https://biz.juniuo.com/wxapp',
+  apiUrl2: 'https://biz.juniuo.com/wxapp', 
+  apiUrlTwo: 'https://biz.juniuo.com/',
+  apiUrl3: 'https://biz.juniuo.com/', 
+  imgUrl: 'https://biz.juniuo.com/',
+  OSS_IMAGE_URL: 'https://oss.juniuo.com/juniuo-pic/picture/juniuo/',
 
   CARD_LOGO: 'card-log',
   APP_ID: 'wx3bb038494cd68262',
