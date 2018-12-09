@@ -123,7 +123,16 @@ Page({
 
   // 立即领取优惠券
   bindReceiveCoupon(){
+    wx.navigateTo({
+      url: '/pages/personal/member-card/band/band?type=' + 'coupon',
+    });
+  },
 
+  // 关闭领取优惠券信息
+  closeThisAlertCoupon(){
+    this.setData({
+      getNewuserInfo: false
+    })
   },
 
   // 保存图片

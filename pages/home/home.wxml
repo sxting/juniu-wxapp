@@ -246,9 +246,9 @@
       </view>
       <!-- 领取新人券按钮 -->
       <view class='btn-box-receive'>
-        <button class="alert-btn" open-type="getUserInfo" bindgetuserinfo="bindReceiveCoupon">立即领取</button>
+        <button class="alert-btn" bindtap="bindReceiveCoupon">立即领取</button>
       </view>
     </view>
-    <image src='/asset/images/closebtn.png' class='close-btn-cn'></image>
+    <image src='/asset/images/closebtn.png' class='close-btn-cn' bindtap='closeThisAlertCoupon'></image>
   </view>
 </view>
