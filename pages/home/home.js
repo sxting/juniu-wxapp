@@ -31,6 +31,7 @@ Page({
     collageProductList: [],//拼团列表
     productTagName: '服务项目',
     staffTagName: '手艺人',
+    getNewuserInfo: true,//获取新客领券
   },
   onShow() {
     if (this.data.isOnLoad) {
@@ -118,6 +119,11 @@ Page({
     wx.navigateTo({
       url: '/pages/collage/product-detail/product-detail?activityId=' + e.currentTarget.dataset.activityid
     })
+  },
+
+  // 立即领取优惠券
+  bindReceiveCoupon(){
+
   },
 
   // 保存图片

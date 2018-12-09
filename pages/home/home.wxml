@@ -219,3 +219,36 @@
     <button class="alert-btn" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">确定</button>
   </view>
 </view>
+
+<!--新客领券弹框  -->
+<view class="alert-bg" wx:if="{{getNewuserInfo}}">
+  <view class="alert-box-cn">
+    <image src='/asset/images/alertbg.png' class='alert-bg-cn'></image>
+    <!-- 新人优惠券信息infor -->
+    <view class='infor-shared'>
+      <view class='infor-box'>
+        <!-- 左边优惠券面值 -->
+        <view class='left-box-infor'>
+          <view class='coupon-money'>
+            <text>¥</text>
+            <text>30</text>
+          </view>
+          <view class='coupon-name'>代金券</view>
+        </view>
+        <!--右边优惠券信息-->
+        <view class='right-box-infor'>
+          <view class='coupon-infor'>
+            <text>新人专享券</text>
+            <text>有效期：领取后30天内有效</text>
+            <text>消费满100元可使用</text>
+          </view>
+        </view>
+      </view>
+      <!-- 领取新人券按钮 -->
+      <view class='btn-box-receive'>
+        <button class="alert-btn" open-type="getUserInfo" bindgetuserinfo="bindReceiveCoupon">立即领取</button>
+      </view>
+    </view>
+    <image src='/asset/images/closebtn.png' class='close-btn-cn'></image>
+  </view>
+</view>
