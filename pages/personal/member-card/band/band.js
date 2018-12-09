@@ -17,17 +17,20 @@ Page({
     marketingid: '',
     form: '',
     loading: false,
+    sceneType: false,//查看场景是不是从新人领券页面跳转过来的，是true 不是即为false
   },
 
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '绑定手机号',
     });
+    console.log(options.type);
     this.setData(
       {
         storeId: wx.getStorageSync(constant.STORE_INFO),
         marketingid: options.marketingid ? options.marketingid: '',
-        form: options.from
+        form: options.from,
+        sceneType: options.type && options.type === 'coupon'? true : false
       }
     )
   },
