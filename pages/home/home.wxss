@@ -273,6 +273,14 @@ page {
   border-radius: 30rpx;
   padding: 0 8rpx;
 }
+
+.sold-box {
+  opacity: 0.8;
+  padding: 0 8rpx;
+  padding-left: 0rpx;
+  font-size: 25rpx;
+  color: #999999;
+}
 /*商品end  */
 
 /*手艺人start */

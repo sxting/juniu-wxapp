@@ -37,6 +37,11 @@
 .price-box .current {
     font-size: 60rpx;
 }
+.sold-box {
+  padding-left: 20rpx;
+  font-size: 25rpx;
+  color: #999999;
+}
 
 .store-box {
   background-color: #fff;

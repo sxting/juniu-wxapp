@@ -70,8 +70,9 @@
             <image src="{{item.picUrl ? item.picUrl : juniuImg}}" class="product-img"></image>
             <view class="product-bottom">
               <text class="product-name">{{item.productName}}</text>
-              <text class="product-item-tab" wx:if="{{item.categoryType == 'SERVICE'}}">服务产品</text>
-              <text class="product-item-tab" wx:elif="{{item.categoryType == 'GOODS'}}">实体产品</text>
+              <!-- <text class="product-item-tab" wx:if="{{item.categoryType == 'SERVICE'}}">服务产品</text>
+              <text class="product-item-tab" wx:elif="{{item.categoryType == 'GOODS'}}">实体产品</text> -->
+              <text class='sold-box'>已售{{item.soldNum ? item.soldNum : 0}}件</text>
               <text class="current-price fr">￥{{item.currentPrice / 100}}</text>
             </view>
           </view>
