@@ -231,7 +231,7 @@
         <view class='left-box-infor'>
           <view class='coupon-money'>
             <text>¥</text>
-            <text>30</text>
+            <text>{{newerCouponListInfor.couponDefAmount? newerCouponListInfor.couponDefAmount/100 : 0}}</text>
           </view>
           <view class='coupon-name'>代金券</view>
         </view>
@@ -239,8 +239,8 @@
         <view class='right-box-infor'>
           <view class='coupon-infor'>
             <text>新人专享券</text>
-            <text>有效期：领取后30天内有效</text>
-            <text>消费满100元可使用</text>
+            <text>有效期：领取后{{newerCouponListInfor.validDateCount}}天内有效</text>
+            <text>消费满{{newerCouponListInfor.useLimitMoney/100}}元可使用</text>
           </view>
         </view>
       </view>

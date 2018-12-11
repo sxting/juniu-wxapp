@@ -11,8 +11,7 @@ import { indexService } from '../index/shared/index.service';
 var app = getApp()
 Page({
   data: {
-    productImages: [
-    ],
+    productImages: [],
     storeId: '',
     storeName: '',
     scene: 0,
@@ -32,10 +31,11 @@ Page({
     productTagName: '服务项目',
     staffTagName: '手艺人',
     getNewuserInfo: true,//获取新客领券
+    newerCouponListInfor: [],//首页新人券information
   },
   onShow() {
     if (this.data.isOnLoad) {
-      getCollageListInfor.call(this)      
+      getCollageListInfor.call(this);//获取拼团信息列表
       let self = this;
       homeService.ticketList({
         storeId: wx.getStorageSync(constant.STORE_INFO)
@@ -104,6 +104,7 @@ Page({
        },
       complete: function (res) { },
     });
+    receiveNewerCouponList.call(this);//获取新人领取优惠券的信息
   },
 
   // 跳转到查看更多拼团列表页
@@ -126,6 +127,9 @@ Page({
     wx.navigateTo({
       url: '/pages/personal/member-card/band/band?type=' + 'coupon',
     });
+  　this.setData({
+      getNewuserInfo: false
+    })
   },
 
   // 关闭领取优惠券信息
@@ -814,4 +818,24 @@ function weekText(str) {
       break;
   }
   return name;
+}
+
+/*** 首页新人领取优惠券 ***/ 
+function receiveNewerCouponList(){
+  let self  = this;
+  let data = {
+    storeId: wx.getStorageSync(constant.STORE_INFO)
+  }
+  homeService.receiveNewerCouponList(data).subscribe({
+    next: res => {
+      if (res) {
+        self.getNewuserInfo = res && res[0].marketingSence === 'WECHAT_NEWER_ACTIVITY'? true :  false;
+        this.setData({
+          newerCouponListInfor: res[0]
+        })
+      }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
 }
