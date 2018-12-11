@@ -27,16 +27,21 @@
   </view>
 </view>
 
-<view class='works-box mt-10' wx:if="{{worksList.length > 0}}">
+<view class='works-box mt-10'>
   <text class='jn-icon icon-works'></text>
   <text class='tag-name'>作品展示</text>
-  <view class='works-item-box'>
-    <view class='works-item' wx:for="{{worksList}}" bindtap='goWorkDetail' data-type='{{item.sourceType}}' data-id='{{item.productionId}}'>
-      <image wx:if="{{item.sourceType === 'VIDEO'}}" class='video-icon' src='/asset/images/video.png'></image>
-      <image class='work-img' src='{{item.url}}' style='height: {{item.height*2}}rpx'></image>
-      <view class='work-name'>{{item.name}}</view>
+
+    <view class='works-item-box' wx:if="{{worksList.length > 0}}">
+      <view class='works-item' wx:for="{{worksList}}" bindtap='goWorkDetail' data-type='{{item.sourceType}}' data-id='{{item.productionId}}'>
+        <image wx:if="{{item.sourceType === 'VIDEO'}}" class='video-icon' src='/asset/images/video.png'></image>
+        <image class='work-img' src='{{item.url}}' style='height: {{item.height*2}}rpx'></image>
+        <view class='work-name'>{{item.name}}</view>
+      </view>
     </view>
-  </view>
+    <view wx:else class='no-works'>
+        <image src='/asset/images/no-works.png'></image>
+        <view>该店还未上传作品哦</view>
+    </view>
 </view>
 
 <view class='service-scene mt-10' wx:if="{{storeInfo.environment}}">

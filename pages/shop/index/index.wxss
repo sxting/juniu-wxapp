@@ -88,3 +88,15 @@ page {
 .works-item-box {
   padding-bottom: 0;
 }
+.no-works, .no-comments {
+  background-color: #fff;
+  text-align: center;
+  font-size: 30rpx;
+  color: #666666;
+}
+.no-works image, .no-comments image {
+  width: 320rpx;
+  height: 220rpx;
+  margin-top: 60rpx;
+  margin-bottom: 30rpx;
+}
