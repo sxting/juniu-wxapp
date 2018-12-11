@@ -3,7 +3,7 @@ import { http } from '../../../utils/http';
 let homeService = {};
 /**GET /appstore/app/storeIndex.json 门店首页信息 */
 homeService.storeIndex = (data) => {
-  let apiUrl = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 + '/member/appstore/storeIndex.json' : constant.apiUrl + '/account/appstore/app/storeIndex.json';
+  let apiUrl = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 + '/member/appstore/storeIndex.json' : constant.apiUrl + '/member/appstore/storeIndex.json';
   return http.get(apiUrl, data);
 }
 
