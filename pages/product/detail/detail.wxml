@@ -91,7 +91,7 @@
   <view class='icon-close1 jn-icon' bindtap='closeCountClick'></view>
   <view class='count-box'>
     <text>购买数量</text>
-    <text class='xiangou' wx:if="{{productInfo.wxBuyLimitNum > 0}}"> （限购{{productInfo.wxBuyLimitNum}}份）</text>
+    <text class='xiangou' wx:if="{{productInfo.wxBuyLimitNum > 0}}"> （限购{{productInfo.wxBuyLimitNum}}件）</text>
     <view class="fr count-btn">
       <text class='count-btn-left' bindtap="onCountLeftClick">—</text> 
       <text class="count">{{count}}</text> 
