@@ -186,6 +186,10 @@ Page({
   },
 
   onCountRightClick() {
+    let num = this.data.productInfo.wxBuyLimitNum;
+    if (num > 0 && this.data.count === num) {
+      return;
+    }
     ++this.data.count;
     this.setData({
       count: this.data.count,

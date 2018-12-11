@@ -184,3 +184,8 @@ scroll-view {
   right: 30rpx;
   padding:0 10rpx;
 }
+
+.xiangou {
+  font-size: 26rpx;
+  color: #666;
+}
