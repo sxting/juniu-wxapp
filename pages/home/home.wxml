@@ -221,7 +221,7 @@
 </view>
 
 <!--新客领券弹框  -->
-<view class="alert-bg" wx:if="{{getNewuserInfo}}">
+<view class="alert-bg" wx:if="{{!getNewuserInfo}}">
   <view class="alert-box-cn">
     <image src='/asset/images/alertbg.png' class='alert-bg-cn'></image>
     <!-- 新人优惠券信息infor -->
@@ -239,14 +239,14 @@
         <view class='right-box-infor'>
           <view class='coupon-infor'>
             <text>新人专享券</text>
-            <text>有效期：领取后{{newerCouponListInfor.validDateCount}}天内有效</text>
-            <text>消费满{{newerCouponListInfor.useLimitMoney/100}}元可使用</text>
+            <text>有效期：领取后{{newerCouponListInfor.validDateCount? newerCouponListInfor.validDateCount : 0}}天内有效</text>
+            <text>消费满{{newerCouponListInfor.useLimitMoney/100? newerCouponListInfor.useLimitMoney : 0}}元可使用</text>
           </view>
         </view>
       </view>
       <!-- 领取新人券按钮 -->
       <view class='btn-box-receive'>
-        <button class="alert-btn" bindtap="bindReceiveCoupon">立即领取</button>
+        <button class="alert-btn" data-marketingid='{{newerCouponListInfor.marketingId}}' bindtap="bindReceiveCoupon">立即领取</button>
       </view>
     </view>
     <image src='/asset/images/closebtn.png' class='close-btn-cn' bindtap='closeThisAlertCoupon'></image>

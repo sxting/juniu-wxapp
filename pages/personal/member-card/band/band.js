@@ -30,7 +30,7 @@ Page({
         storeId: wx.getStorageSync(constant.STORE_INFO),
         marketingid: options.marketingid ? options.marketingid: '',
         form: options.from,
-        sceneType: options.type && options.type === 'coupon'? true : false
+        sceneType: options.type && options.type == 'coupon'? true : false
       }
     )
   },
@@ -104,7 +104,11 @@ Page({
       return;
     }
     if (this.data.validCode) {
-      bindMemberCard.call(this, this.data.storeId, this.data.phoneNumber, this.data.validCode);
+      // if (this.data.sceneType){//true 即为新人券
+      //   bindMemberByGetCoupon.call(this, this.data.storeId, this.data.phoneNumber, this.data.validCode);
+      // }else{
+        bindMemberCard.call(this, this.data.storeId, this.data.phoneNumber, this.data.validCode);
+      // }
     } else {
       errDialog('验证码不能为空');
     }
@@ -200,4 +204,32 @@ function time(o) {
     },
       1000);
   }
+}
+
+// 新人专享绑定手机号
+function bindMemberByGetCoupon(storeId, phone, validCode) {
+  let marketingId = this.data.marketingid;
+  ticketService.bindMemberByGetCoupon(
+    {
+      marketingId: marketingId,
+      storeId: storeId,
+      phone: phone,
+      validCode: validCode
+    }).subscribe({
+      next: res => {
+        wx.showModal({
+          title: '领取成功',
+          content: '请到个中心我的优惠券中查看',
+          showCancel: false,
+          success: function (res) {
+            console.log(res);
+            // wx.navigateBack({
+            //   delta: 1
+            // })
+          }
+        })
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
 }

@@ -86,6 +86,7 @@ Page({
             let appId = 'wx3bb038494cd68262';
             if (result.code) {
               logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+              userIsBind.call(self);//检测是否绑定了  是否需要弹出新人券弹框
             } else {
               console.log('获取用户登录态失败！' + result.errMsg)
             }
@@ -123,13 +124,10 @@ Page({
   },
 
   // 立即领取优惠券
-  bindReceiveCoupon(){
+  bindReceiveCoupon(e){
     wx.navigateTo({
-      url: '/pages/personal/member-card/band/band?type=' + 'coupon',
+      url: '/pages/personal/member-card/band/band?marketingid=' + e.currentTarget.dataset.marketingid + '&type=coupon',
     });
-  　this.setData({
-      getNewuserInfo: false
-    })
   },
 
   // 关闭领取优惠券信息
@@ -829,11 +827,40 @@ function receiveNewerCouponList(){
   homeService.receiveNewerCouponList(data).subscribe({
     next: res => {
       if (res) {
-        self.getNewuserInfo = res && res[0].marketingSence === 'WECHAT_NEWER_ACTIVITY'? true :  false;
+        let moneyMax = 0;
+        let newerCouponInfor;
+        let couponListInfor = [];
+        res.forEach((item) => {
+          if ( item.marketingSence == 'WECHAT_NEWER_ACTIVITY'){
+            couponListInfor.push(item);
+          }
+        });//筛选新人券
+        if (newerCouponInfor){
+          newerCouponInfor.forEach((item) => {
+            if (moneyMax < item.couponDefAmount) {
+              moneyMax = item.couponDefAmount;
+              newerCouponInfor = item;
+            }
+          });
+        }//找到面值最大的一张券展示
+        console.log(newerCouponInfor);
         this.setData({
-          newerCouponListInfor: res[0]
+          newerCouponListInfor: newerCouponInfor
         })
       }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+// 检测是否绑定 绑定就不展示新人券弹框
+function userIsBind(){
+  service.userIsBind().subscribe({
+    next: res => {
+      this.setData({
+        getNewuserInfo: res.isBind && res.isBind == 1 ? true : false
+      })
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
