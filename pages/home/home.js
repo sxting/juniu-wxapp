@@ -34,7 +34,8 @@ Page({
   },
   onShow() {
     if (this.data.isOnLoad) {
-      getCollageListInfor.call(this)      
+      getCollageListInfor.call(this);
+      getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));      
       let self = this;
       homeService.ticketList({
         storeId: wx.getStorageSync(constant.STORE_INFO)
