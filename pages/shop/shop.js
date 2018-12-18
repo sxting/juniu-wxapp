@@ -17,7 +17,8 @@ Page({
     tell: '010-90441899',
     addr: '北京市朝阳区红军营南路媒体村8号楼',
     time: '09:00-21:00',
-    storeId: ''
+    storeId: '',
+    storeName: wx.getStorageSync('storeName')
   },
 
   /**
@@ -25,7 +26,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      storeId: options.storeId
+      storeId: options.storeId,
     })
     getStoreInfo.call(this, this.data.storeId);
   },
@@ -97,7 +98,7 @@ function getStoreInfo(storId) {
     next: res => {
       self.setData({
         addr: res.address,
-        tell: res.mobie,
+        tell: res.mobile,
         time: res.businessStart + '-' + res.businessEnd,
         markers: [{
           id: 0,

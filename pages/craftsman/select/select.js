@@ -5,6 +5,7 @@ import { constant } from '../../../utils/constant';
 
 Page({
   data: {
+    juniuImg: '/asset/images/product.png',
     label: '',
     storeId: '',
     reserveList: [],
@@ -17,14 +18,15 @@ Page({
   },
 
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '选择手艺人',
+    })
     this.setData({
-      storeId: options.storeId,
-      from: options.from
+      storeId: wx.getStorageSync(constant.STORE_INFO),
+      from: options.from ? options.from : '',
+      label: options.label ? options.label : ''     
     })
     if (options.label == 'order') {
-      this.setData({
-        label: options.label
-      })
       let todayDate = new Date();
       let data = {
         storeId: this.data.storeId,
@@ -33,6 +35,11 @@ Page({
       craftsmanService.getReserveList(data).subscribe({
         next: res => {
           console.log(res);
+          res.forEach((item) => {
+            if (item.avatar) {
+              item.avatar = constant.OSS_IMAGE_URL + `${item.avatar}/resize_96_96/mode_fill`;
+            }
+          });
           this.setData({
             staffNumber: res.length,
             reserveList: res
@@ -48,8 +55,13 @@ Page({
 
   onItemClick: function(e) {
     if(this.data.label == 'order') {
-      wx.redirectTo({
-        url: `/pages/order/order?storeId=${this.data.storeId}&craftsmanId=${e.currentTarget.dataset.staffId}&craftsmanName=${e.currentTarget.dataset.staffName}`,
+      wx.setStorageSync("staffId", e.currentTarget.dataset.staffId)
+      wx.setStorageSync("staffName", e.currentTarget.dataset.staffName)
+      wx.switchTab({
+        url: `/pages/order/order?aa=1`,
+        success: function(res) {
+          console.log(res);
+        }
       })
     } else if (this.data.label == 'comment') {
       wx.redirectTo({
@@ -87,7 +99,9 @@ function getStaffList() {
   craftsmanService.getStaffList(data).subscribe({
     next: res => {
       res.staffAppVOS.forEach((item) => {
-        item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_50_50/mode_fill`;
+        if (item.headPortrait) {
+          item.headPortrait = constant.OSS_IMAGE_URL + `${item.headPortrait}/resize_96_96/mode_fill`;
+        }
       });
       this.setData({
         staffList: res.staffAppVOS,

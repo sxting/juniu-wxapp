@@ -9,16 +9,16 @@
 }
 
 .mainBox {
-  width: 100%;
-  font-family: PingFangSC-Regular;
-  font-size: 28rpx;
-  color: #888;
-  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: #666;
 }
 
 .BOX {
-  width: 100%;
+  width: 690rpx;
   background: #fff;
+  margin: 30rpx auto 0;
+  box-shadow: 0 2rpx 6rpx 0 #D8D8D8;
+  border-radius: 8rpx;
 }
 
 .main {
@@ -89,5 +89,12 @@ scroll-view {
 }
 
 .bottomRight {
-  color: #222;
+  color: #9f9f9f;
+}
+
+.color1 {
+  color: #FF3232;
+}
+.color2 {
+  color: #03BC01;
 }

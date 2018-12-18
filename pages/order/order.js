@@ -1,5 +1,8 @@
 import { orderService} from 'shared/service.js'
 import { errDialog } from '../../utils/util';
+import { constant } from '../../utils/constant';
+import { memberCardService } from '../personal/member-card/shared/service';
+
 //获取应用实例
 var app = getApp()
 Page({
@@ -26,33 +29,68 @@ Page({
     note: '',  //备注
     peopleNumber: '1', //预约人数
     isToday: true, 
+    success: false,
+    month: new Date().getMonth() + 1,
+    year: new Date().getFullYear()
   },
-  onLoad: function (options) {
+  onShow: function () {
+    wx.setNavigationBarTitle({
+      title: wx.getStorageSync('storeName'),
+    })
     let today = changeDate.call(this,new Date());
     let dateArr = [];
     for(let i=0; i<7; i++) {
       dateArr.push(getAfterSomeDay.call(this, today, i))
     }
-    dateArr[0].week = '今天';
-    dateArr[1].week = '明天';
+    
+    dateArr[0].week = '今';
+    dateArr[1].week = '明';
     
     this.setData({
-      storeId: options.storeId,
+      storeId: wx.getStorageSync(constant.STORE_INFO),
       dateList: dateArr,
       date: dateArr[0].dateData,
-      craftsmanId: options.craftsmanId ? options.craftsmanId : this.data.craftsmanId,
-      productId: options.productId,
-      craftsmanName: options.craftsmanName ? options.craftsmanName : this.data.craftsmanName,
-      productName: options.productName,
-      price: options.price
+      craftsmanId: wx.getStorageSync('staffId') ? wx.getStorageSync('staffId') : this.data.craftsmanId,
+      productId: wx.getStorageSync('productId'),
+      craftsmanName: wx.getStorageSync('staffName') ? wx.getStorageSync('staffName') : this.data.craftsmanName,
+      productName: wx.getStorageSync('productName'),
+      price: wx.getStorageSync('reservePrice'),
+      nowTime: new Date().getTime()
     })
 
-    reserveConfig.call(this)
+    wx.removeStorageSync('staffId');
+    wx.removeStorageSync('staffName');
+    wx.removeStorageSync('productId');
+    wx.removeStorageSync('productName');
+    wx.removeStorageSync('reservePrice');
+
+    reserveConfig.call(this);
+
+  },
+
+  //授权手机号 
+  getUserPhoneNumber: function (e) {
+    let encryptedData = e.detail.encryptedData;
+    let iv = e.detail.iv;
+    let data = {
+      encryptData: encryptedData,
+      iv: iv
+    }
+    memberCardService.decodeUserPhone(data).subscribe({
+      next: res => {
+        this.setData({
+          tel: res.phoneNumber
+        })
+        wx.setStorageSync(constant.phoneNumber, res.phoneNumber)
+      },
+      error: err => errDialog(err),
+      complete: () => wx.hideToast()
+    })
   },
 
   // 选择手艺人
   onCraftsmanClick: function() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/craftsman/select/select?label=order&storeId=' + this.data.storeId,
     })
   },
@@ -64,11 +102,11 @@ Page({
       return;
     }
     if (this.data.reserveType === 'MAN') {
-      wx.redirectTo({
+      wx.navigateTo({
         url: `/pages/product/select/select?craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&storeId=${this.data.storeId}&from=order`,
       })
     } else if (this.data.reserveType === 'PRODUCT') {
-      wx.redirectTo({
+      wx.navigateTo({
         url: `/pages/product/select/select?productIds=${this.data.productIds}&storeId=${this.data.storeId}&from=order`,
       })
     }
@@ -104,8 +142,9 @@ Page({
   // 选择时间
   onTimeClick: function(e) {
     if (this.data.showPreventBox) {return;}
-    let index = e.currentTarget.dataset.index
-    if (this.data.timeList.time[index] < this.data.nowTime && this.data.isToday) {
+    let index = e.currentTarget.dataset.index;
+    let reserve = e.currentTarget.dataset.reserve;
+    if (this.data.timeList.time[index] < this.data.nowTime && this.data.isToday || reserve) {
       this.setData({
         time: ''
       });
@@ -143,7 +182,23 @@ Page({
     }
 
     saveReserve.call(this)
+  },
+
+  successYBtnClick() {
+    this.setData({
+      success: false,
+    })
+    wx.navigateTo({
+      url: '/pages/personal/appointment/appointment',
+    })
+  },
+  successNBtnClick() {
+    this.setData({
+      success: false,
+    })
+    reserveConfig.call(this);
   }
+
 })
 
 // 查询店铺预约配置
@@ -227,7 +282,7 @@ function getStaffReserve() {
         let workTimeList = res.timeList;
         let reserveTimeArr = [];
         for (let i = 0; i < res.reservations.length; i++) {
-          reserveTimeArr.push(res.reservations[i].time)
+          reserveTimeArr.push(res.reservations[i].time.substring(0,5))
         }
         for (let i = 0; i < res.timeList.length; i++) {
           workTimeList[i] = {
@@ -292,20 +347,12 @@ function saveReserve() {
     delete data.productId;
     delete data.productName;
   }
+  let self = this;
   orderService.saveReserve(data).subscribe({
     next: res => {
       if(res) {
-        wx.showModal({
-          title: '提示',
-          content: '预约成功',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              wx.navigateBack({
-                delta: 1
-              })
-            }
-          }
+        self.setData({
+          success: true
         })
       }
     },
@@ -326,6 +373,7 @@ function getAfterSomeDay(date, num) {
     return {
       date: (odate.getMonth() + 1) + '.' + dateNum,
       year: odate.getFullYear(),
+      day: dateNum,
       week: changeDayToChinese.call(this,odate.getDay()),
       dateData: odate.getFullYear() + '-' + (odate.getMonth() + 1) + '-' + dateNum
     };
@@ -333,6 +381,7 @@ function getAfterSomeDay(date, num) {
     return {
       date: '0' + (odate.getMonth() + 1) + '.' + dateNum,
       year: odate.getFullYear(),
+      day: dateNum,
       week: changeDayToChinese.call(this,odate.getDay()),
       dateData: odate.getFullYear() + '-' + '0' + (odate.getMonth() + 1) + '-' + dateNum
     };
@@ -352,24 +401,24 @@ function changeDayToChinese(num) {
   let result = '';
   switch (num) {
     case 0:
-      result = '周日';
+      result = '日';
       break;
     case 1:
-      result = '周一';
+      result = '一';
       break;
     case 2:
-      result = '周二';
+      result = '二';
       break;
     case 3:
-      result = '周三';
+      result = '三';
       break;
     case 4:
-      return '周四';
+      return '四';
     case 5:
-      result = '周五';
+      result = '五';
       break;
     case 6:
-      result = '周六';
+      result = '六';
       break;
   }
   return result;

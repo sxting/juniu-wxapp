@@ -19,17 +19,21 @@ Page({
     staffList: [],
     productList: [],
     selectProductName: '',
-    selectStaffName: ''
+    selectStaffName: '',
+    orderId: ''
   },
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '发布评论',
+    })
     this.setData({
       storeId: wx.getStorageSync(constant.STORE_INFO),
       merchantId: wx.getStorageSync(constant.MERCHANTID),
-      productId: options.productId,
-      staffId: options.staffId
+      productId: options.productId ? options.productId : '',
+      staffId: options.staffId ? options.staffId : '',
+      activityId: options.activityId ? options.activityId : '',
+      orderId: options.orderId ? options.orderId : ''
     })
-    getStaffList.call(this);
-    getProductList.call(this);
   },
 
   // 整体评价
@@ -94,7 +98,7 @@ Page({
             let errorCode = datajson.errorCode
             that.setData({
               pictureId: that.data.pictureId 
-              ? data.pictureId + ',' + datajson.data.pictureId 
+              ? that.data.pictureId + ',' + datajson.data.pictureId 
               : datajson.data.pictureId,
             })
             if (errorCode != '10000') {
@@ -144,12 +148,13 @@ Page({
       score: this.data.starCount,
       content: this.data.commentContent,
       isShow: 1,
-      imageIds: this.data.pictureId
+      imageIds: this.data.pictureId,
+      activityId: this.data.activityId ? this.data.activityId : '',
+      orderId: this.data.orderId
     };
 
     commentService.making(data).subscribe({
       next: res => {
-        console.log(res)
         wx.navigateBack({
           delta: 1
         })
@@ -159,69 +164,5 @@ Page({
     })
 
 
-  },
-  selectProduct: function () {
-    wx.redirectTo({
-      url: '/pages/product/select/select?from=making&storeId=' + this.data.storeId,
-    })
-  },
-  selectStaff: function () {
-    wx.redirectTo({
-      url: '/pages/craftsman/select/select?from=making&storeId=' + this.data.storeId,
-    })
-  },
-  productValueChange: function (event) {
-    if (this.data.productList.length > 0) {
-      this.setData({
-        productId: this.data.productList[event.detail.value].productId,
-        selectProductName: this.data.productList[event.detail.value].productName
-      });
-    } else {
-      wx.showModal({
-        title: '暂无服务可选',
-        content: '',
-      })
-    }
-  },
-  staffValueChange: function (event) {
-    this.setData({
-      craftsmanId: this.data.staffList[event.detail.value].staffId,
-      selectStaffName: this.data.staffList[event.detail.value].staffName
-    });
   }
 })
-
-function getStaffList() {
-  let self = this;
-  let data = {
-    storeId: self.data.storeId,
-    pageNo: self.data.pageNo,
-    pageSize: self.data.pageSize
-  }
-  commentService.getStaffList(data).subscribe({
-    next: res => {
-      this.setData({
-        staffList: res.staffAppVOS
-      })
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
-}
-
-function getProductList() {
-  let data = {
-    storeId: this.data.storeId,
-    pageNo: this.data.pageNo,
-    pageSize: this.data.pageSize
-  }
-  commentService.getProductList(data).subscribe({
-    next: res => {
-      this.setData({
-        productList: res.content
-      })
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
-}

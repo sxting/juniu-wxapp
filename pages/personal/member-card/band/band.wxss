@@ -1,7 +1,64 @@
-/* pages/personal/member-card/band/band.wxss */
-
-.input {
-  margin-top: 10px;
+.page {
+  border-top: 2rpx solid #f3f3f3;
+}
+.placeholder {
+  font-size: 30rpx;
+  color: #D3D3D3;
+}
+.input-card {
+  margin-top: 30rpx;
+}
+.input-box {
+  height: 88rpx;
+  line-height: 88rpx;
+  position: relative;
+}
+.input-box:last-child {
+  border-top: 2rpx solid #f3f3f3;  
+}
+.input-box input {
+  height: 88rpx;
+  line-height: 88rpx;
+  padding-left: 20rpx;
+  width: 450rpx;
+}
+.input-box button {
+  background: #FFFFFF;
+  box-shadow: 0 0 4rpx 0 rgba(131,131,131,0.50);
+  border-radius: 96rpx;
+  width: 140rpx;
+  height: 48rpx;
+  text-align: center;
+  line-height: 48rpx;
+  font-size: 20rpx;
+  color: #BCBCBC;
+  padding: 0;
+  position: absolute;
+  top: 20rpx;
+  right: 40rpx;
+}
+.code-btn {
+  position: absolute;
+  width: 240rpx;
+  top: 0;
+  right: 0;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-left: 2rpx solid #f3f3f3;
+  color: #ff6600;
+  font-size: 28rpx;
+  text-align: center;
+}
+.btn-active {
+  background: #f60 !important;
+  border-radius: 4px;
+  font-family: PingFangSC-Regular;
+  font-size: 16px;
+  color: #fff !important;
+  border: none;
+}
+.bind-btn {
+  border-radius: 164rpx !important;
 }
 
 .btn-bd {
@@ -17,21 +74,6 @@
   font-size: 16px;
   color: #fff !important;
   border: none;
-}
-
-.btn-active {
-  background: #f60 !important;
-  border-radius: 4px;
-  font-family: PingFangSC-Regular;
-  font-size: 16px;
-  color: #fff !important;
-  border: none;
-}
-
-.btn-send-normal {
-  background: #c4c4c4 !important;
-  font-family: PingFangSC-Regular;
-  color: #fff !important;
 }
 
 .btn-send-active {

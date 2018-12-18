@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/home/home",
+    "pages/index/index",
     "pages/shop/shop",
     "pages/personal/index/index",
     "pages/personal/comment/comment",
@@ -23,12 +23,56 @@
     "pages/personal/member-card/consume/consume",
     "pages/ticket/index/index",
     "pages/ticket/detail/detail",
-    "pages/personal/ticket/ticket"
+    "pages/personal/ticket/ticket",
+    "pages/personal/order-form/order-form",
+    "pages/personal/order-form-detail/order-form-detail",
+    "pages/personal/refund/refund",
+    "pages/personal/member-card/list/list",
+    "pages/collage/product-detail/product-detail",
+    "pages/collage/collage-submit/collage-submit",
+    "pages/personal/collage-order/detail/detail",
+    "pages/collage/product-list/product-list",
+    "pages/personal/collage-order/order/order-list",
+    "pages/shop/index/index",
+    "pages/shop/video/detail/detail",
+    "pages/shop/image/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "桔牛",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#ff6600",
+    "backgroundColor": "#fff",
+    "height": "160",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "asset/images/home-icon.png",
+        "selectedIconPath": "asset/images/home-icon-select.png"
+      },
+      {
+        "pagePath": "pages/shop/index/index",
+        "text": "店铺",
+        "iconPath": "asset/images/shop-icon.png",
+        "selectedIconPath": "asset/images/shop-icon-select.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "预约",
+        "iconPath": "asset/images/reserve-icon.png",
+        "selectedIconPath": "asset/images/reserve-icon-select.png"
+      },
+      {
+        "pagePath": "pages/personal/index/index",
+        "text": "个人",
+        "iconPath": "asset/images/personal-icon.png",
+        "selectedIconPath": "asset/images/personal-icon-select.png"
+      }
+    ]
   }
 }

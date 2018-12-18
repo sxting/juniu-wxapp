@@ -104,9 +104,16 @@ function getTicketDetail(marketingId) {
     marketingId: marketingId
   }).subscribe({
     next: res => {
-      // res.validDateEnd = res.validDateEnd.spli
-      res.picUrl =
-        constant.OSS_IMAGE_URL + `${res.picUrl}/resize_78_58/mode_fill`;
+      if (res.picUrl) {
+        res.picUrl = constant.OSS_IMAGE_URL + `${res.picUrl}/resize_78_58/mode_fill`;
+      }
+      if (res.validDateStart) {
+        console.log(res.validDateStart)
+        res.validDateStart = res.validDateStart.split(' ')[0]
+      }
+      if (res.validDateEnd) {
+        res.validDateEnd = res.validDateEnd.split(' ')[0]
+      }
       self.setData({
         ticket: res
       });

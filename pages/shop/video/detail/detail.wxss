@@ -1,0 +1,84 @@
+page {
+  background-color: #f6f6f6;
+}
+.works-detail-box {
+  background-color: #fff;
+  padding-top: 30rpx;
+}
+.big-img {
+  width: 690rpx;
+  height: 400rpx;
+  margin: 30rpx;
+  margin-top: 0;
+  display: block;
+  background-color: pink;
+  border-radius: 10rpx;
+}
+.work-msg {
+  font-size: 30rpx;
+  color: #111111;
+  padding: 10rpx 30rpx 30rpx;
+}
+
+.icon-transmit {
+  color: #999;
+  padding:10rpx;
+  line-height:0;
+  background:#fff;
+}
+.icon-transmit::after {
+  border: none;
+}
+
+.other-works-box {
+  background-color: #fff;
+  padding: 30rpx;
+  padding-right: 0;
+}
+
+.works-detail-box .video-icon {
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  top: 160rpx;
+  left: 50%;
+  margin-left: -40rpx;
+}
+
+.video-alert {
+  background-color: #000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 200rpx;
+}
+.video-alert video {
+  width: 100vw;
+}
+
+
+
+.controls {
+  position: relative;
+  top: 50%;
+  height: 50px;
+  margin-top: -25px;
+  display: flex;
+}
+.play,.pause,.time {
+  flex: 1;
+  height: 100%;
+}
+.time {
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  color: white;
+  line-height: 50px;
+}
+.img {
+  width: 40px;
+  height: 40px;
+  margin: 5px auto;
+}

@@ -90,7 +90,7 @@ function getStoreInfo(storeId) {
   }).subscribe({
     next: res => {
       self.setData({
-        mobie: res.mobie
+        mobie: res.mobile
       });
     },
     error: err => errDialog(err),

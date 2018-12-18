@@ -6,6 +6,7 @@ import { constant } from '../../../utils/constant';
 Page({
   data: {
     icon20: 'http://i.zeze.com/attachment/forum/201610/30/150453u3oo7n3c702j7f08.jpg',
+    juniuImg: '/asset/images/product.png',
     storeId: '',
     productList: [],
     craftsmanId: '',
@@ -20,10 +21,14 @@ Page({
   },
 
   onLoad: function (options) {
-    this.setData({
-      storeId: options.storeId,
-      from: options.from
+    wx.setNavigationBarTitle({
+      title: '选择商品',
     })
+    this.setData({
+      storeId: wx.getStorageSync(constant.STORE_INFO),
+      from: options.from ? options.from : ''
+    })
+    console.log(options.from === 'order')
     if (options.from === 'order') {
       if (options.craftsmanId) {
         this.setData({
@@ -35,6 +40,11 @@ Page({
         }
         productService.getStaffProduct(data).subscribe({
           next: res => {
+            res.forEach((item) => {
+              if (item.picUrl) {
+                item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+              }
+            });
             this.setData({
               productList: res
             })
@@ -70,8 +80,11 @@ Page({
   //点击商品 
   onItemClick: function (e) {
     if (this.data.from === 'order') {
-      wx.redirectTo({
-        url: `/pages/order/order?storeId=${this.data.storeId}&craftsmanId=${this.data.craftsmanId}&craftsmanName=${this.data.craftsmanName}&productId=${e.currentTarget.dataset.productId}&productName=${e.currentTarget.dataset.productName}&price=${e.currentTarget.dataset.price}`,
+      wx.setStorageSync("productId", e.currentTarget.dataset.productId)
+      wx.setStorageSync("productName", e.currentTarget.dataset.productName)
+      wx.setStorageSync("reservePrice", e.currentTarget.dataset.price)
+      wx.switchTab({
+        url: `/pages/order/order`,
       })
     } else if (this.data.from === 'making') {
       wx.redirectTo({
@@ -90,7 +103,8 @@ Page({
     this.setData({
       categoryId: this.data.categoryList[event.detail.value].categoryId,
       productList: [],
-      selectName: this.data.categoryList[event.detail.value].categoryName
+      selectName: this.data.categoryList[event.detail.value].categoryName,
+      pageNo: 1,
     });
     getProductList.call(this);
   }
@@ -101,6 +115,11 @@ Page({
 function getReserveProductList(data) {
   productService.getReserveProduct(data).subscribe({
     next: res => {
+      res.forEach((item) => {
+        if (item.picUrl) {
+          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+        }
+      });
       this.setData({
         productList: res
       })
@@ -122,9 +141,10 @@ function getProductList() {
   }
   productService.getProductList(data).subscribe({
     next: res => {
-      //         constant.OSS_IMAGE_URL + `${res.url}/resize_375_180/mode_fill`;
       res.content.forEach((item) => {
-        item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+        if (item.picUrl) {
+          item.picUrl = constant.OSS_IMAGE_URL + `${item.picUrl}/resize_78_55/mode_fill`;
+        }
       });
       this.setData({
         productList: this.data.productList.concat(res.content),
@@ -141,8 +161,12 @@ function getProductList() {
 function getProductTyeList() {
   // getProdTypeList
   let self = this;
-  productService.getProdTypeList().subscribe({
+  let data = {
+    storeId: this.data.storeId,
+  }
+  productService.getProdTypeList(data).subscribe({
     next: res => {
+      res.unshift({categoryId: '', categoryName: '所有分类'});
       self.setData({
         categoryList: res
       });

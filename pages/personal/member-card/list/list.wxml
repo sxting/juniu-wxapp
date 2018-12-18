@@ -1,0 +1,45 @@
+<view class="page" wx:if="{{showClickBind == 'F'}}">
+  <view class='not-select' wx:if="{{productId}}" bindtap='onCardItemClick' data-cardid="no">
+    暂不使用会员卡
+    <text class='icon-select-box-selected' wx:if="{{selectedCardId === 'no'}}">
+      <text class='icon-duihao jn-icon'></text>
+    </text>
+    <text class='icon-select-box' wx:else></text>
+  </view>
+  <view class="card-item" wx:for="{{cards}}" bindtap="onCardItemClick" 
+  data-cardname="{{item.cardName}}" data-cardid="{{item.cardId}}" data-type="{{item.type}}" data-balance="{{item.balance}}">
+    <view wx:if="{{productId && (item.type == 'STORED' || item.type == 'REBATE') && item.balance/100 < price }}" class="prevent">
+      余额不足
+    </view>
+    <image class='select-image' src='/asset/images/select-icon.png' wx:if="{{productId && selectedCardId === item.cardId}}"></image>
+    <!-- <icon wx:if="{{productId && selectedCardId === item.cardId}}" class='jn-icon icon-right-1'></icon> -->
+    <image src="{{item.background ? item.background : jnImg}}"></image>
+    <view class="card">
+      <view class="fl">
+        <view class="card-name">{{item.cardName}}</view>
+      </view>
+      <view class="fr">
+        <view class="tel">{{item.phone}}</view>
+        <view class="person-name">{{item.customerName ? item.customerName : '无'}}</view>
+        <view class="jn-icon erweima"></view>
+      </view>
+      <view class="date">有效期：{{item.validate || item.validity}}</view>        
+    </view>
+  </view>
+</view>
+<view class="space-box" wx:if="{{showClickBind === 'F' && cards.length === 0}}">
+  <view class="space-bg">
+    <image src="/asset/images/nofind.png"></image>
+  </view>
+  <view class="space-text">尚未办理会员卡，请到店内办理</view>
+</view>
+<view class="space-box" wx:if="{{showClickBind === 'T' && cards.length === 0}}">
+  <view class="space-bg">
+    <image src="/asset/images/nofind.png"></image>
+  </view>
+  <view class="space-text">暂无会员卡信息</view>
+  <view>
+    <button class='btn-open-card' bindtap='bindMemberCard'>去绑定会员卡</button>
+  </view>
+</view>
+<!-- <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view>  -->

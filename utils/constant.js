@@ -2,18 +2,42 @@
  * Created by xiejinbin on 2017/2/22.
  */
 
+<<<<<<< HEAD
 const constant = {
   apiUrl: 'http://b-test.juniuo.com/wxapp',
   // apiUrl: 'https://tiyan.juniuo.com',
   // apiUrl: 'https://biz.juniuo.com/wxapp',
+=======
+var constant = {
+  TPLID: '2.19.12',
+  address: 'address',
+  phoneNumber: 'phoneNumber',
+  couponId: 'couponId',
+  couponPrice: 'couponPrice',
+  cardId: 'cardId',
+  cardName: 'cardName',
+  cardType: 'cardType',
+  CLIENT_ID: 'clientId',
+  sessionKey: 'sessionKey',
+  version2: 2,
+
+  // apiUrl: 'https://b-test.juniuo.com/wxapp',
+  // apiUrl2: 'https://b-test.juniuo.com/wxapp',
+  // apiUrlTwo: 'https://b-test.juniuo.com/',
+  // apiUrl3: 'https://b-test.juniuo.com/',
+  // imgUrl: 'https://b-test.juniuo.com/',
+  // OSS_IMAGE_URL: 'https://fdfs.juniuo.com/juniuo-pic/picture/juniuo/',
+
+  apiUrl: 'https://biz.juniuo.com/wxapp',
+  apiUrl2: 'https://biz.juniuo.com/wxapp', 
+>>>>>>> origin/master
   apiUrlTwo: 'https://biz.juniuo.com/',
-  // imgUrl: 'http://ts.diankayi.net/',
-  // apiUrl: 'https://biz.juniuo.com/wxapp',
-  OSS_IMAGE_URL: 'https://oss.juniuo.com/juniuo-pic/picture/juniuo/',
+  apiUrl3: 'https://biz.juniuo.com/', 
   imgUrl: 'https://biz.juniuo.com/',
   OSS_IMAGE_URL: 'https://oss.juniuo.com/juniuo-pic/picture/juniuo/',
+
   CARD_LOGO: 'card-log',
-  APP_ID: 'wxedcf0f0c4cc429c8',
+  APP_ID: 'wx3bb038494cd68262',
   TOKEN: 'app-token',
   EXPERIENCE_TOKEN: 'experience-token',
   STORE_INFO: 'store-info',
@@ -40,10 +64,12 @@ const constant = {
     STORE_FEE: 'STORE_FEE'
   },
   MERCHANTID : 'merchantId',
+  USER_ID: 'userId',
   CHEAP_CODE: 10170326,
   CONTACT: 18813074982,
   VERSION_NAME: 'version',
-  VERSION_VALUE: '1.09'
+  VERSION_VALUE: '1.09',
+  VER: 'ver',
 }
 module.exports = {
   constant: constant

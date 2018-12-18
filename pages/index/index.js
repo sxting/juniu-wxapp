@@ -7,6 +7,7 @@ import { service } from '../../service';
 var app = getApp()
 Page({
   data: {
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     motto: 'Hello World',
     userInfo: {},
     provinceName: '北京市',
@@ -22,15 +23,60 @@ Page({
     address: '',
     provinceId: '',
     cityId: '',
-    areaId: ''
+    areaId: '',
+    productId: '',
+    latitude: '',
+    longitude: '',
+    pinTuanId: ''
   },
-  //事件处理函数
-  // bindViewTap: function() {
-  //   wx.navigateTo({
-  //     url: '../logs/logs'
-  //   })
-  // },
-  onLoad: function () {
+  onLoad: function (options) {
+    let self = this;
+    wx.setNavigationBarTitle({
+      title: '适用门店',
+    })
+    if (options.productId) {
+      this.setData({
+        productId: options.productId
+      })
+      // 获取当前地理位置
+      wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+          self.setData({
+            latitude: res.latitude,
+            longitude: res.longitude
+          })
+          getStoreListInfo.call(self);
+          tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
+        }
+      })
+    } else if (options.pinTuanId) { 
+      this.setData({
+        pinTuanId: options.pinTuanId
+      })
+      let storeList = JSON.parse(options.stores)
+      storeList.forEach(function(item) {
+        item.address = item.storeAddress
+      })
+      this.setData({
+        storeList: storeList
+      })
+    } else {
+      // 获取当前地理位置
+      wx.getLocation({
+        type: 'wgs84',
+        success: function (res) {
+          self.setData({
+            latitude: res.latitude,
+            longitude: res.longitude
+          })
+          getStoreListInfo.call(self);
+          tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
+        }
+      })
+    }
+  },
+  onShow: function () {
     let self = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -39,26 +85,10 @@ Page({
         });
       }
     })
-    let token = wx.getStorageSync(constant.TOKEN);
-    wx.login({
-      success: function (result) {
-        wx.getUserInfo({
-          withCredentials: true,
-          success: function (res) {
-            let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-            let appId = 'wx3bb038494cd68262';
-            if (result.code) {
-              logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-            } else {
-              console.log('获取用户登录态失败！' + result.errMsg)
-            }
-          }
-        });
-      },
-      fail: function (res) { },
-      complete: function (res) { },
-    });
+
   },
+
+  // 改变地址所在区域
   bindRegionChange: function (e) {
     let self = this;
     self.setData({
@@ -83,17 +113,25 @@ Page({
       region: e.detail.value
     });
   },
-  /**搜索具体地址 */
+
+  /**点击搜索 搜索具体地址 */
   searchAddr: function (e) {
     this.setData({
       address: e.detail.value
     });
     getStoreListInfo.call(this);
   },
+
   routerToStoreIndex: function (e) {
-    wx.redirectTo({
-      url: '/pages/home/home?storeid=' + e.currentTarget.dataset.storeid
-    });
+    if (this.data.productId || this.data.pinTuanId) {
+      return;
+    }
+    wx.setStorageSync(constant.STORE_INFO, e.currentTarget.dataset.storeid);
+    wx.setStorageSync('storeName', e.currentTarget.dataset.storename)
+    
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })
 
@@ -136,11 +174,14 @@ function getStoreListInfo() {
   let shopQuery = {
     pageNo: self.data.pageNo,
     pageSize: self.data.pageSize,
+    // merchantId: '1500022449722218063731',
     merchantId: wx.getStorageSync(constant.MERCHANTID),
     address: self.data.address,
     provinceId: self.data.provinceId,
     cityId: self.data.cityId,
-    areaId: self.data.areaId
+    areaId: self.data.areaId,
+    latitude: self.data.latitude,
+    longitude: self.data.longitude
   };
   indexService.getStoreList(shopQuery).subscribe({
     next: res => {
@@ -176,38 +217,6 @@ function tencentLongAndLatiToAddress(latitude, longitude) {
       self.setData({
         region: [res.province, res.city, res.district],
         provinceName: res.province
-      })
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
-}
-
-function logIn(code, appid, rawData) {
-  let self = this;
-  service.logIn({ code: code, appid: appid, rawData: rawData }).subscribe({
-    next: res => {
-      // 1505274961239211095369
-      let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-      wx.setStorageSync(constant.MERCHANTID, extConfig.theAppid ? res.merchantId : '1505100477335167136848');
-      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg)
-      wx.setStorage({
-        key: constant.TOKEN,
-        data: res.juniuToken,
-        success: function (res) {
-          getStoreListInfo.call(self);
-          // 获取当前地理位置
-          wx.getLocation({
-            type: 'wgs84',
-            success: function (res) {
-              tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
-              var latitude = res.latitude
-              var longitude = res.longitude
-              var speed = res.speed
-              var accuracy = res.accuracy
-            }
-          })
-        }
       })
     },
     error: err => errDialog(err),
