@@ -31,7 +31,7 @@ Page({
       phoneNumber: self.data.storeInfo.mobile
     })
   },
- 
+
   goWorkDetail(e) {
     let type = e.currentTarget.dataset.type
     if (type === 'VIDEO') {
@@ -53,14 +53,14 @@ function getStoreInfo() {
   }
   shopService.storeInfoDetail(data).subscribe({
     next: res => {
-      if(res.label) {
+      if (res.label) {
         res.labelArr = res.label.split(' ')
       }
       let environmentArr = [], bannerCollArr = [];
       if (res.environment) {
         let arr = res.environment.split(',');
-        arr.forEach(function(item) {
-          environmentArr.push(constant.OSS_IMAGE_URL + `${item}/resize_345_239/mode_fill`)        
+        arr.forEach(function (item) {
+          environmentArr.push(constant.OSS_IMAGE_URL + `${item}/resize_345_239/mode_fill`)
         })
       }
       res.bannerColl.forEach(function (item) {
@@ -92,5 +92,5 @@ function getWorkList() {
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
-  }) 
+  })
 }

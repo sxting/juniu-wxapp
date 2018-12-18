@@ -2,12 +2,6 @@
  * Created by xiejinbin on 2017/2/22.
  */
 
-<<<<<<< HEAD
-const constant = {
-  apiUrl: 'http://b-test.juniuo.com/wxapp',
-  // apiUrl: 'https://tiyan.juniuo.com',
-  // apiUrl: 'https://biz.juniuo.com/wxapp',
-=======
 var constant = {
   TPLID: '2.19.12',
   address: 'address',
@@ -30,7 +24,6 @@ var constant = {
 
   apiUrl: 'https://biz.juniuo.com/wxapp',
   apiUrl2: 'https://biz.juniuo.com/wxapp', 
->>>>>>> origin/master
   apiUrlTwo: 'https://biz.juniuo.com/',
   apiUrl3: 'https://biz.juniuo.com/', 
   imgUrl: 'https://biz.juniuo.com/',
