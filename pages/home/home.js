@@ -131,7 +131,7 @@ Page({
   // 关闭领取优惠券信息
   closeThisAlertCoupon(){
     this.setData({
-      getNewuserInfo: false
+      getNewuserInfo: true
     })
   },
 
