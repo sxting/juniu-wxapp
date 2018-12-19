@@ -845,6 +845,10 @@ function receiveNewerCouponList(storeId){
           });
         }//找到面值最大的一张券展示
         console.log(newerCouponInfor);
+        if (newerCouponInfor){
+          newerCouponInfor.marketingName = newerCouponInfor.marketingName.length > 6 ? newerCouponInfor.marketingName.substring(0, 6)+'...' : newerCouponInfor.marketingName;
+          newerCouponInfor.useLimitMoneyText = newerCouponInfor.useLimitMoney > 0 ? '消费满' + newerCouponInfor.useLimitMoney / 100 + '元可使用' : '无使用门槛';
+        }
         this.setData({
           newerCouponListInfor: newerCouponInfor
         })

@@ -239,9 +239,9 @@
         <!--右边优惠券信息-->
         <view class='right-box-infor'>
           <view class='coupon-infor'>
-            <text class='name-coupon'>{{newerCouponListInfor.marketingName && newerCouponListInfor.marketingName.length > 8? newerCouponListInfor.marketingName.substring(0,8)+ '...' : newerCouponListInfor.marketingName}}</text>
+            <text class='name-coupon'>{{newerCouponListInfor.marketingName}}</text>
             <text>有效期：领取后{{newerCouponListInfor.validDateCount? newerCouponListInfor.validDateCount : 0}}天内有效</text>
-            <text>消费满{{newerCouponListInfor.useLimitMoney? newerCouponListInfor.useLimitMoney/100 : 0}}元可使用</text>
+            <text>{{newerCouponListInfor.useLimitMoneyText}}</text>
           </view>
         </view>
       </view>

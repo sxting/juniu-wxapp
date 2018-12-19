@@ -45,10 +45,10 @@
 			"current": 0,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "band",
-					"pathName": "pages/product/detail/detail",
-					"query": "productId=2c9172e2645f638801645f6c5a680005&storeId=1530602323164136822988"
+					"pathName": "pages/home/home",
+					"query": ""
 				}
 			]
 		}
