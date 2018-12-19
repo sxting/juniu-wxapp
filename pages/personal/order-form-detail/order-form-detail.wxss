@@ -182,9 +182,15 @@
   display: block;
   margin: 30rpx auto;
 }
+.code {
+  padding-bottom: 10rpx;
+}
 .code-num {
-  padding-bottom: 30rpx;
+  padding-bottom: 10rpx;
   text-align: center;
+}
+.code-used {
+  text-decoration: line-through
 }
 
 .order-box {
