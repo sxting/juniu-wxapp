@@ -221,8 +221,7 @@
 </view>
 
 <!--新客领券弹框  -->
-<!-- wx:if="{{!getNewuserInfo}}" -->
-<view class="alert-bg">
+<view class="alert-bg" wx:if="{{!getNewuserInfo}}">
   <view class="alert-box-cn">
     <image src='/asset/images/alertbg.png' class='alert-bg-cn'></image>
     <!-- 新人优惠券信息infor -->
