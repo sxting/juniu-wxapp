@@ -64,8 +64,8 @@
       </view>
       <view class="code-order-time" wx:if="{{orderDetail.status !== 'FINISH'}}">剩余有效期：{{leftDays}}天</view>
     </view>
+    <canvas canvas-id="barcode_orderid" />
     <view class="code" wx:for="{{orderDetail.vouchers}}" wx:for-index="index">
-      <canvas canvas-id="{{'barcode'+index}}" />
       <view class="code-num">券码 {{item.voucherCode}}</view>
     </view>
   </view>
