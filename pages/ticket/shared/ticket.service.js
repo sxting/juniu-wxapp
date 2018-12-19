@@ -19,6 +19,14 @@ ticketService.receiveTicket = (data) => {
   let url = api + '/member/sp/coupon/getCoupon.json';
   return http.post(url, data);
 }
+
+// 新人专享绑定手机号
+ticketService.bindMemberByGetCoupon = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let url = api + '/member/sp/coupon/bindMemberByGetCoupon.json';
+  return http.get(url, data);
+}
+
 module.exports = {
   ticketService: ticketService
 }
