@@ -87,7 +87,6 @@ Page({
             let appId = 'wx3bb038494cd68262';
             if (result.code) {
               logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-              userIsBind.call(self);//检测是否绑定了  是否需要弹出新人券弹框
             } else {
               console.log('获取用户登录态失败！' + result.errMsg)
             }
@@ -106,7 +105,6 @@ Page({
        },
       complete: function (res) { },
     });
-    receiveNewerCouponList.call(this);//获取新人领取优惠券的信息
   },
 
   // 跳转到查看更多拼团列表页
@@ -517,6 +515,8 @@ function closestStore () {
       getTicketInfo.call(self, res.storeId);
       getStoreInfo.call(self, res.storeId);
       getCollageListInfor.call(self);
+      userIsBind.call(this);//检测是否绑定了  是否需要弹出新人券弹框
+      receiveNewerCouponList.call(self, res.storeId);//获取新人领取优惠券的信息
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -820,10 +820,10 @@ function weekText(str) {
 }
 
 /*** 首页新人领取优惠券 ***/ 
-function receiveNewerCouponList(){
+function receiveNewerCouponList(storeId){
   let self  = this;
   let data = {
-    storeId: wx.getStorageSync(constant.STORE_INFO)
+    storeId: storeId
   }
   homeService.receiveNewerCouponList(data).subscribe({
     next: res => {
