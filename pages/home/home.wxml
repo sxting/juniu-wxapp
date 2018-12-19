@@ -221,7 +221,8 @@
 </view>
 
 <!--新客领券弹框  -->
-<view class="alert-bg" wx:if="{{!getNewuserInfo}}">
+<!-- wx:if="{{!getNewuserInfo}}" -->
+<view class="alert-bg">
   <view class="alert-box-cn">
     <image src='/asset/images/alertbg.png' class='alert-bg-cn'></image>
     <!-- 新人优惠券信息infor -->
@@ -238,9 +239,9 @@
         <!--右边优惠券信息-->
         <view class='right-box-infor'>
           <view class='coupon-infor'>
-            <text>新人专享券</text>
+            <text class='name-coupon'>{{newerCouponListInfor.marketingName && newerCouponListInfor.marketingName.length > 8? newerCouponListInfor.marketingName.substring(0,8)+ '...' : newerCouponListInfor.marketingName}}</text>
             <text>有效期：领取后{{newerCouponListInfor.validDateCount? newerCouponListInfor.validDateCount : 0}}天内有效</text>
-            <text>消费满{{newerCouponListInfor.useLimitMoney/100? newerCouponListInfor.useLimitMoney : 0}}元可使用</text>
+            <text>消费满{{newerCouponListInfor.useLimitMoney? newerCouponListInfor.useLimitMoney/100 : 0}}元可使用</text>
           </view>
         </view>
       </view>
