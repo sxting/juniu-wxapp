@@ -105,7 +105,6 @@ function getOrderDetail() {
         let nowTime = new Date().getTime();
         leftDays = Math.ceil((endTime - nowTime) / 1000 / 60 / 60 / 24);
       }
-
       this.setData({
         status: status,
         orderDetail: res,

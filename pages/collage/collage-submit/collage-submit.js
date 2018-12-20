@@ -5,6 +5,7 @@ import { constant } from '../../../utils/constant';
 import { homeService } from '../../home/shared/home.service';
 import { service } from '../../../service';
 import { memberCardService } from '../../personal/member-card/shared/service';
+import {formidService} from '../../../shared/service/formid.service.js';
 
 Page({
   data: {
@@ -28,6 +29,13 @@ Page({
   onTelChange: function (e) {
     this.setData({
       tel: e.detail.value
+    })
+  },
+
+  formSubmit: function (e) {
+    let formId = e.detail.formId; //获取formId
+    formidService.collectFormIds(formId).subscribe({
+      next: res => { }
     })
   },
 

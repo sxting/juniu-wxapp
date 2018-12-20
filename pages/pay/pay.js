@@ -3,6 +3,7 @@ import { constant } from '../../utils/constant';
 import { errDialog } from '../../utils/util';
 import { payService } from 'shared/service.js'
 import { service } from '../../service';
+import { formidService } from '../../shared/service/formid.service.js';
 // import { strip } from '../../utils/number-precision.js';
 var NP = require('../../utils/number-precision.js');
 
@@ -168,6 +169,13 @@ Page({
     }
     this.setData({
       showCardBuy: true
+    })
+  },
+
+  formSubmit: function (e) {
+    let formId = e.detail.formId; //获取formId
+    formidService.collectFormIds(formId).subscribe({
+      next: res => { }
     })
   },
 

@@ -4,7 +4,8 @@ import { errDialog, loading } from '../../../utils/util';
 import { constant } from '../../../utils/constant';
 import { homeService } from '../../home/shared/home.service';
 import { service } from '../../../service';
-import { productService } from '../../product/shared/service.js'
+import { productService } from '../../product/shared/service.js';
+import { formidService } from '../../../shared/service/formid.service.js';
 
 Page({
   data: {
@@ -187,6 +188,13 @@ Page({
     
     wx.navigateTo({
       url: `/pages/collage/collage-submit/collage-submit?pic=${pic}&pinTuanId=${pTId}&activityName=${actName}&peopleNumber=${ppN}&dealGroupNumber=${dGN}&activityPrice=${aPrice}&originalPrice=${oPrice}`,
+    })
+  },
+
+  formSubmit: function (e) {
+    let formId = e.detail.formId; //获取formId
+    formidService.collectFormIds(formId).subscribe({
+      next: res => { }
     })
   },
 

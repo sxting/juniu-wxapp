@@ -591,7 +591,8 @@ function logIn(code, appid, rawData) {
       wx.setStorageSync(constant.MERCHANTID, res.merchantId ? res.merchantId : '153179997107784038184');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
       wx.setStorageSync(constant.sessionKey, res.sessionKey);
-      wx.setStorageSync(constant.USER_ID, res.userId)      
+      wx.setStorageSync(constant.USER_ID, res.userId);
+      wx.setStorageSync(constant.OPEN_ID, res.openid);     
 
       if(res.ver == '2') {
         wx.setStorageSync(constant.VER, 2 );

@@ -60,7 +60,10 @@
         </view>
     </view>
     <!--确认预约-->
-    <view class="sure-btn" bindtap="onCommitBtnClick">确认预约</view>
+    <!-- <view class="sure-btn" bindtap="onCommitBtnClick">确认预约</view> -->
+    <form bindsubmit="formSubmit" bindtap='onCommitBtnClick' report-submit="true">
+      <button formType="submit" class='sure-btn'>确认预约</button>
+    </form> 
 
     <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 
 </view>
