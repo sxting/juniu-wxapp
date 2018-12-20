@@ -41,7 +41,10 @@
     <button class="tel-btn" open-type="getPhoneNumber" catchgetphonenumber="getUserPhoneNumber">授权手机号</button>
   </view>
 
-  <view class="order-submit" bindtap='onSubmitClick'>确认支付</view>
+  <form bindsubmit="formSubmit" bindtap='onSubmitClick' report-submit="true">
+    <button formType="submit" class='order-submit'>确认支付</button>
+  </form>
+  <!-- <view class="order-submit" bindtap='onSubmitClick'>确认支付</view> -->
 </view> 
 
 <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view> 

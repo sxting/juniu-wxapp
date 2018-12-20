@@ -80,7 +80,10 @@
     </scroll-view>
   </view>
 
-  <view class="go-pay" bindtap="alertCountSelect">立即购买</view>
+  <!-- <view class="go-pay" bindtap="alertCountSelect">立即购买</view> -->
+  <form bindsubmit="formSubmit" bindtap='alertCountSelect' report-submit="true">
+    <button formType="submit" class='go-pay'>立即购买</button>
+  </form>
 </view>
 
 <view class="big-img" wx:if="{{showBigImg}}" bindtap="onBigImgClick">
@@ -98,7 +101,10 @@
       <text class='count-btn-right' bindtap="onCountRightClick">+</text>
     </view>
   </view>
-  <view class="go-pay" bindtap="onBuyClick">立即购买</view>
+  <form bindsubmit="formSubmit" bindtap='onBuyClick' report-submit="true">
+    <button formType="submit" class='go-pay'>立即购买</button>
+  </form>
+  <!-- <view class="go-pay" bindtap="onBuyClick">立即购买</view> -->
 </view>
 
 <!--授权弹框  -->
