@@ -49,10 +49,21 @@
   </view>
 </view>
 
-<view class="pay-btn" wx:if="{{productCardLength > 0}}" bindtap="onOrderPayClick">立即支付</view>
+<view wx:if="{{productCardLength > 0}}">
+  <form bindsubmit="formSubmit" bindtap='onOrderPayClick' report-submit="true">
+    <button formType="submit" class='pay-btn'>立即支付</button>
+  </form>
+</view>
+<!-- <view class="pay-btn" wx:if="{{productCardLength > 0}}" bindtap="onOrderPayClick">立即支付</view> -->
 
 <view class="bottom-btn" wx:else>
+  <!-- <form bindsubmit="formSubmit" bindtap='onMoreRightsClick' report-submit="true">
+    <button formType="submit" class="moreyh {{noCardConfig ?  'disabled' : ''}}">更多优惠</button>
+  </form> -->
   <view class="moreyh {{noCardConfig ?  'disabled' : ''}}" bindtap="onMoreRightsClick">更多优惠</view>
+  <!-- <form bindsubmit="formSubmit" bindtap='onZhijieOrderPay' report-submit="true">
+    <button formType="submit" class='pay'>直接付款</button>
+  </form> -->
   <view class="pay" bindtap="onZhijieOrderPay">直接付款</view>
 </view>
 
@@ -81,7 +92,10 @@
         <view class="card-selected jn-icon icon-select" wx:if="{{ruleId == item.rules[0].ruleId}}"></view>
       </view>
     </view>
-    <view class="opencrad" bindtap="onPayBtnClick">开通并付款</view>
+    <form bindsubmit="formSubmit" bindtap='onPayBtnClick' report-submit="true">
+      <button formType="submit" class='opencrad'>开通并付款</button>
+    </form>
+    <!-- <view class="opencrad" bindtap="onPayBtnClick">开通并付款</view> -->
   </view>
 
   <view class="card-success alert-box" wx:else>

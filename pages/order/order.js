@@ -1,4 +1,5 @@
-import { orderService} from 'shared/service.js'
+import { orderService} from 'shared/service.js';
+import { formidService } from '../../shared/service/formid.service.js';
 import { errDialog } from '../../utils/util';
 import { constant } from '../../utils/constant';
 import { memberCardService } from '../personal/member-card/shared/service';
@@ -66,6 +67,13 @@ Page({
 
     reserveConfig.call(this);
 
+  },
+
+  formSubmit: function (e) {
+    let formId = e.detail.formId; //获取formId
+    formidService.collectFormIds(formId).subscribe({
+      next: res => {}
+    })
   },
 
   //授权手机号 
