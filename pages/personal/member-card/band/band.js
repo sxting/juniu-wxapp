@@ -104,11 +104,11 @@ Page({
       return;
     }
     if (this.data.validCode) {
-      // if (this.data.sceneType){//true 即为新人券
-      //   bindMemberByGetCoupon.call(this, this.data.storeId, this.data.phoneNumber, this.data.validCode);
-      // }else{
+      if (this.data.sceneType){//true 即为新人券
+        bindMemberByGetCoupon.call(this, this.data.storeId, this.data.phoneNumber, this.data.validCode);
+      }else{
         bindMemberCard.call(this, this.data.storeId, this.data.phoneNumber, this.data.validCode);
-      // }
+      }
     } else {
       errDialog('验证码不能为空');
     }
@@ -220,12 +220,20 @@ function bindMemberByGetCoupon(storeId, phone, validCode) {
         wx.showModal({
           title: '领取成功',
           content: '请到个中心我的优惠券中查看',
-          showCancel: false,
+          cancelText: '返回',
+          confirmText: '查看',
           success: function (res) {
-            console.log(res);
-            // wx.navigateBack({
-            //   delta: 1
-            // })
+            if (res.confirm) {
+              console.log('用户点击查看');
+              wx.redirectTo({
+                url: 'pages/personal/ticket/ticket',
+              })
+            } else if (res.cancel) {
+              console.log('用户点击返回');
+              wx.redirectTo({
+                url: '/pages/home/home',
+              })
+            }
           }
         })
       },
