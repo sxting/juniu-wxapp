@@ -105,7 +105,6 @@ function getOrderDetail() {
         let nowTime = new Date().getTime();
         leftDays = Math.ceil((endTime - nowTime) / 1000 / 60 / 60 / 24);
       }
-
       this.setData({
         status: status,
         orderDetail: res,
@@ -114,10 +113,7 @@ function getOrderDetail() {
         leftDays: leftDays
       })
 
-      let self = this;
-      res.vouchers.forEach(function(item, index) {
-        wxbarcode.barcode('barcode'+index, item.voucherCode, 520, 186);
-      })
+      wxbarcode.barcode('barcode_orderid', res.vouchers[0].voucherCode, 520, 186);
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
