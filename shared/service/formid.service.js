@@ -13,7 +13,7 @@ formidService.collectFormIds = (formId) => {
   }
   let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
   let url = api + '/member/platformUsers/collectFormIds.json';
-  return http.post2(url, data)
+  return http.post2(url, data, false)
 }
 
 module.exports = {

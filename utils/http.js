@@ -78,7 +78,7 @@ http.post = (url, data = {}, header = { 'content-type': 'application/json' }) =>
   return http_request(url, REQ_METHOD.POST, data, header)
 }
 
-http.post2 = (url, data = {}, header = { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' }) => {
+http.post2 = (url, data = {}, loading = true, header = { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' }) => {
   try {
     let value = wx.getStorageSync(constant.EXPERIENCE_TOKEN)
       ? wx.getStorageSync(constant.EXPERIENCE_TOKEN)
@@ -105,7 +105,7 @@ http.post2 = (url, data = {}, header = { 'content-type': 'application/x-www-form
       data[objName] = '';
     }
   }
-  return http_request2(url, REQ_METHOD.POST, data, header)
+  return http_request2(url, REQ_METHOD.POST, data, header, loading)
 }
 
 http.put = (url, data = {}, header = { 'content-type': 'application/json' }) => {
@@ -191,10 +191,13 @@ function http_request2(
   url,
   method = REQ_METHOD.GET,
   data = {},
-  header = { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' }) {
+  header = { 'content-type': 'application/x-www-form-urlencoded;charset=utf-8' },
+  loading = true) {
   const producer = {
     start: listener => {
-      loading();
+      if (loading) {
+        loading();
+      }
       wx.request({
         url: url,
         data: data,
