@@ -31,6 +31,7 @@ Page({
     productTagName: '服务项目',
     staffTagName: '手艺人',
     getNewuserInfo: true,//获取新客领券
+    hasNewcouponList: true,//是否有新人活动
     newerCouponListInfor: [],//首页新人券information
   },
   onShow() {
@@ -850,8 +851,10 @@ function receiveNewerCouponList(storeId){
           newerCouponInfor.marketingName = newerCouponInfor.marketingName.length > 6 ? newerCouponInfor.marketingName.substring(0, 6)+'...' : newerCouponInfor.marketingName;
           newerCouponInfor.useLimitMoneyText = newerCouponInfor.useLimitMoney > 0 ? '消费满' + newerCouponInfor.useLimitMoney / 100 + '元可使用' : '无使用门槛';
         }
+        let ifHasNewcoupon = newerCouponInfor? true : false;
         this.setData({
-          newerCouponListInfor: newerCouponInfor
+          newerCouponListInfor: newerCouponInfor,
+          hasNewcouponList: ifHasNewcoupon
         })
       }
     },
