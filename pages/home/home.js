@@ -830,7 +830,7 @@ function receiveNewerCouponList(storeId){
     next: res => {
       if (res) {
         let moneyMax = 0;
-        let newerCouponInfor;
+        let newerCouponInfor = '';
         let couponListInfor = [];
         res.forEach((item) => {
           if (item.marketingSence == 'WECHAT_NEWER_ACTIVITY'){
@@ -846,7 +846,7 @@ function receiveNewerCouponList(storeId){
           });
         }//找到面值最大的一张券展示
         console.log(newerCouponInfor);
-        if (newerCouponInfor){
+        if (newerCouponInfor){ 
           newerCouponInfor.marketingName = newerCouponInfor.marketingName.length > 6 ? newerCouponInfor.marketingName.substring(0, 6)+'...' : newerCouponInfor.marketingName;
           newerCouponInfor.useLimitMoneyText = newerCouponInfor.useLimitMoney > 0 ? '消费满' + newerCouponInfor.useLimitMoney / 100 + '元可使用' : '无使用门槛';
         }

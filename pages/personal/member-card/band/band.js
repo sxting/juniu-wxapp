@@ -24,7 +24,7 @@ Page({
     wx.setNavigationBarTitle({
       title: '绑定手机号',
     });
-    console.log(options.type);
+    console.log(options);
     this.setData(
       {
         storeId: wx.getStorageSync(constant.STORE_INFO),
@@ -152,6 +152,10 @@ function bindMemberCard(storeId, phone, validCode) {
         if (self.data.marketingid) {
           reciveTicket.call(self)
         } else if (self.data.form == 'product') {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else if (self.data.form === 'personal') {
           wx.navigateBack({
             delta: 1
           })

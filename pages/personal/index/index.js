@@ -44,7 +44,7 @@ Page({
   // 点击绑定手机号
   onBandPhoneClick() {
     wx.navigateTo({
-      url: '/pages/personal/member-card/band/band',
+      url: '/pages/personal/member-card/band/band?from=personal',
     })
   },
 
