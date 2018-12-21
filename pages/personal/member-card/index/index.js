@@ -17,7 +17,7 @@ Page({
   },
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '我的会员卡',
+      title: '我的会员',
     });
     this.setData({
       cardId: options.cardId

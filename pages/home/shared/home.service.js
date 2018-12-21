@@ -38,6 +38,13 @@ homeService.getSysConfig = (data) => {
   return http.get(apiUrl, data);
 }
 
+// 新人领取优惠券
+homeService.receiveNewerCouponList = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let apiUrl = api + '/member/sp/coupon/newerCouponList.json';
+  return http.get(apiUrl, data);
+}
+
 module.exports = {
   homeService: homeService
 }

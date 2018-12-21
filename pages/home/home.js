@@ -11,8 +11,7 @@ import { indexService } from '../index/shared/index.service';
 var app = getApp()
 Page({
   data: {
-    productImages: [
-    ],
+    productImages: [],
     storeId: '',
     storeName: '',
     scene: 0,
@@ -31,11 +30,13 @@ Page({
     collageProductList: [],//拼团列表
     productTagName: '服务项目',
     staffTagName: '手艺人',
+    getNewuserInfo: true,//获取新客领券
+    newerCouponListInfor: [],//首页新人券information
   },
   onShow() {
     if (this.data.isOnLoad) {
       getCollageListInfor.call(this);
-      getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));      
+      getStoreIndexInfo.call(this, this.data.storeId, wx.getStorageSync(constant.MERCHANTID));
       let self = this;
       homeService.ticketList({
         storeId: wx.getStorageSync(constant.STORE_INFO)
@@ -118,6 +119,20 @@ Page({
     console.log(e.currentTarget.dataset.activityid);
     wx.navigateTo({
       url: '/pages/collage/product-detail/product-detail?activityId=' + e.currentTarget.dataset.activityid
+    })
+  },
+
+  // 立即领取优惠券
+  bindReceiveCoupon(e){
+    wx.navigateTo({
+      url: '/pages/personal/member-card/band/band?marketingid=' + e.currentTarget.dataset.marketingid + '&type=coupon',
+    });
+  },
+
+  // 关闭领取优惠券信息
+  closeThisAlertCoupon(){
+    this.setData({
+      getNewuserInfo: true
     })
   },
 
@@ -500,6 +515,8 @@ function closestStore () {
       getTicketInfo.call(self, res.storeId);
       getStoreInfo.call(self, res.storeId);
       getCollageListInfor.call(self);
+      userIsBind.call(this);//检测是否绑定了  是否需要弹出新人券弹框
+      receiveNewerCouponList.call(self, res.storeId);//获取新人领取优惠券的信息
     },
     error: err => errDialog(err),
     complete: () => wx.hideToast()
@@ -801,4 +818,57 @@ function weekText(str) {
       break;
   }
   return name;
+}
+
+/*** 首页新人领取优惠券 ***/ 
+function receiveNewerCouponList(storeId){
+  let self  = this;
+  let data = {
+    storeId: storeId
+  }
+  homeService.receiveNewerCouponList(data).subscribe({
+    next: res => {
+      if (res) {
+        let moneyMax = 0;
+        let newerCouponInfor;
+        let couponListInfor = [];
+        res.forEach((item) => {
+          if (item.marketingSence == 'WECHAT_NEWER_ACTIVITY'){
+            couponListInfor.push(item);
+          }
+        });//筛选新人券
+        if (couponListInfor){
+          couponListInfor.forEach((item) => {
+            if (moneyMax < item.couponDefAmount) {
+              moneyMax = item.couponDefAmount;
+              newerCouponInfor = item;
+            }
+          });
+        }//找到面值最大的一张券展示
+        console.log(newerCouponInfor);
+        if (newerCouponInfor){
+          newerCouponInfor.marketingName = newerCouponInfor.marketingName.length > 6 ? newerCouponInfor.marketingName.substring(0, 6)+'...' : newerCouponInfor.marketingName;
+          newerCouponInfor.useLimitMoneyText = newerCouponInfor.useLimitMoney > 0 ? '消费满' + newerCouponInfor.useLimitMoney / 100 + '元可使用' : '无使用门槛';
+        }
+        this.setData({
+          newerCouponListInfor: newerCouponInfor
+        })
+      }
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
+}
+
+// 检测是否绑定 绑定就不展示新人券弹框
+function userIsBind(){
+  service.userIsBind().subscribe({
+    next: res => {
+      this.setData({
+        getNewuserInfo: res.isBind && res.isBind == 1 ? true : false
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  })
 }

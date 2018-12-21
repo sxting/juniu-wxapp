@@ -43,6 +43,6 @@
   </view>
   <view class="space-text">暂无会员卡信息</view>
   <view>
-    <button class='btn-open-card' bindtap='bindMemberCard'>去绑定会员卡</button>
+    <button class='btn-open-card' bindtap='bindMemberCard'>去绑定会员</button>
   </view>
 </view>
