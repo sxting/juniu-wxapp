@@ -66,14 +66,15 @@ Page({
           couponPrice: wx.getStorageSync(constant.couponPrice),
         })
       }
+      let reqPrice = NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice) > 0 ? NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice) : 0
       this.setData({
         selectedTicketId: wx.getStorageSync(constant.couponId),
-        payPrice: this.data.cardId ? 0 : NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice)
+        payPrice: this.data.cardId ? 0 : reqPrice
       })
        //如果选择了会员卡，改变优惠券的时候 需要重新计算会员卡的扣卡金额
       if (this.data.cardId && (wx.getStorageSync(constant.cardType) === 'STORED' || wx.getStorageSync(constant.cardType) === 'REBATE' || this.data.cardType === 'STORED' || this.data.cardType === 'REBATE')) {
         this.setData({
-          cardPrice: NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice)
+          cardPrice: reqPrice
         })
       }
       
@@ -86,7 +87,7 @@ Page({
           cardId: '',
           cardName: '',
           selectedCardId: wx.getStorageSync(constant.cardId),
-          payPrice: NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice)
+          payPrice: NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice) > 0 ? NP.minus(this.data.productInfo.currentPrice * this.data.count / 100, this.data.couponPrice) : 0
         })
       } else {
         this.setData({
@@ -413,7 +414,7 @@ function onlineBuyFun(data) {
       this.setData({
         orderId: res.orderId
       })
-      if (self.data.type == 'DEDUCTION') {
+      if (self.data.type == 'DEDUCTION' || res.status === 'PAID') {
         wx.navigateTo({
           url: '/pages/personal/order-form-detail/order-form-detail?orderId=' + this.data.orderId,
         })
