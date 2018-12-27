@@ -21,11 +21,15 @@ Page({
       title: wx.getStorageSync('storeName'),
     })
     let self = this;
-    setTimeout(function() {
-      self.setData({
-        userInfo: app.globalData.userInfo
-      });
-    }, 200)
+
+    wx.getUserInfo({
+      withCredentials: true,
+      success: function (res) {
+        self.setData({
+          userInfo: res.userInfo
+        });
+      }
+    })
   },
 
   onShow() {

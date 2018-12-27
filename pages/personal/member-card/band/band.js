@@ -167,6 +167,9 @@ function bindMemberCard(storeId, phone, validCode) {
       } else {
         errDialog('未找到手机号相关的会员卡，请到店里办理')
       }
+      self.setData({
+        loading: false
+      })
       // if (res.showClickBind === 'T') {
       //   errDialog('未找到手机号相关的会员卡，请到店里办理')
       // } else if (self.data.marketingid) {
@@ -176,8 +179,14 @@ function bindMemberCard(storeId, phone, validCode) {
       //     url: '/pages/personal/member-card/index/index',
       //   })
       // }
+     
     },
-    error: err => errDialog(err),
+    error: (err) => {
+      errDialog(err);
+      self.setData({
+        loading: false
+      })
+    },
     complete: () => {
       wx.hideToast();
       self.setData({
