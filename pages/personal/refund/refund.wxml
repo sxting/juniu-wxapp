@@ -9,7 +9,7 @@
 <view class="jn-bg"></view>
 <view class="refund-note">预计退款金额为{{canRefundAmount}}元，退款后金额将原路返回</view>
 <view class="juniu-bottom"><image src="/asset/images/logo.png"></image></view>
-<view class="jn-btn" bindtap="onRefundClick">退款金额 ￥{{orderDetail.paidMoney/100 ? orderDetail.paidMoney/100 : 0}}</view> 
+<view class="jn-btn" bindtap="onRefundClick">退款金额 ￥{{canRefundAmount}}</view> 
 
 <view class="alert-bg" wx:if="{{success}}">
   <view class="alert-box">
