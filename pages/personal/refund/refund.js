@@ -15,6 +15,7 @@ Page({
       orderId: options.orderId
     })
     getOrderDetail.call(this);
+    loadRefundAmount.call(this);
   },
 
   onRefundClick() {
@@ -47,7 +48,19 @@ function refund() {
     complete: () => wx.hideToast()
   })
 }
-
+//预计退款金额
+function loadRefundAmount(){
+  let data={orderId:this.data.orderId}
+  personalService.getRefundAmountInfo(data).subscribe({
+    next:res=>{
+      this.setData({
+        canRefundAmount: res.INIT/100
+      })
+    },
+    error: err => errDialog(err),
+    complete: () => wx.hideToast()
+  });
+}
 // 订单详情  
 function getOrderDetail() {
   let data = {

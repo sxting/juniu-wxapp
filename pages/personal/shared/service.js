@@ -2,11 +2,18 @@ import { constant } from '../../../utils/constant';
 import { http } from '../../../utils/http';
 let personalService = {};
 let API = constant.apiUrlTwo + 'pintuan';
+let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl;
 
 // 查询我的订单详情  /app/order/detail.json
 personalService.getOrderDetail = (data) => {
   let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
   let url = api + '/order/app/order/detail.json';
+  data.timestamp = new Date().getTime();
+  return http.get(url, data)
+}
+//查询退款需要金额
+personalService.getRefundAmountInfo=(data)=>{
+  let url = api +'/order/app/refund/queryOrderVoucherAmountInfo.json';
   data.timestamp = new Date().getTime();
   return http.get(url, data)
 }
