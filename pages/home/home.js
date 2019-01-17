@@ -616,9 +616,13 @@ function logIn(code, appid, rawData) {
               closestStore.call(self)
             },
             fail: function (result) {
-              wx.navigateTo({
-                url: '/pages/index/index',
-              })
+              self.setData({
+                home: false
+              });
+              getStoreListInfo.call(self);
+              // wx.navigateTo({
+              //   url: '/pages/index/index',
+              // })
             }
           })
         }
