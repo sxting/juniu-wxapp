@@ -71,7 +71,7 @@ Page({
 function orderSubmit() {
   let self = this;
   let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-  let appId = extConfig.theAppid ? extConfig.theAppid : 'wx3bb038494cd68262';
+  let appId = extConfig.theAppid ? extConfig.theAppid : 'wxedcf0f0c4cc429c8';
   if ((this.data.tel + '').length !== 11) {
     errDialog('请填写正确的手机号'); return;
   }

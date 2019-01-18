@@ -55,7 +55,7 @@ Page({
                 getUserInfo: true
               })
               let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-              let appId = 'wx3bb038494cd68262';
+              let appId = 'wxedcf0f0c4cc429c8';
               if (result.code) {
                 logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
               } else {
@@ -141,7 +141,7 @@ Page({
             getUserInfo: true
           })
           let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-          let appId = 'wx3bb038494cd68262';
+          let appId = 'wxedcf0f0c4cc429c8';
           console.log(result.code);
           if (result.code) {
             logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, e.detail.rawData);

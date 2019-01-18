@@ -267,7 +267,7 @@ function getCollageOrderDetail() {
 function orderPayment() {
   let self = this;
   let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-  let appId = extConfig.theAppid ? extConfig.theAppid : 'wx3bb038494cd68262';
+  let appId = extConfig.theAppid ? extConfig.theAppid : 'wxedcf0f0c4cc429c8';
   let data = {
     activityId: this.data.activityId,
     appid: appId,

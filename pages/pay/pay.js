@@ -350,8 +350,7 @@ function userIsBind() {
 function onlineBuy() {
   let self = this;
   let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-  //    wx3bb038494cd68262
-  let appId = extConfig.theAppid ? extConfig.theAppid : 'wx3bb038494cd68262';
+  let appId = extConfig.theAppid ? extConfig.theAppid : 'wxedcf0f0c4cc429c8';
   // type不能为空 在线购卡付款:OPENCARD, 在线付款:PAY, 扣减会员卡:DEDUCTION
   if ((this.data.cardType === 'METERING' || this.data.cardType === 'TIMES') && this.data.cardId) {
     this.data.couponId = '';

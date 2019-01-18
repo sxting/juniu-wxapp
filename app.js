@@ -12,7 +12,7 @@ App({
     })
   },
   onLaunch: function (options) {
-    let appId = 'wx3bb038494cd68262';
+    let appId = 'wxedcf0f0c4cc429c8';
     let self = this;
     if (this.globalData.scene) {
       this.globalData.scene = options.scene;
@@ -57,7 +57,7 @@ App({
   globalData: {
     userInfo: null,
     merchantId: '1498644115879207297302',
-    appId: 'wx3bb038494cd68262',
+    appId: 'wxedcf0f0c4cc429c8',
     scene: 0
   }
 })
