@@ -607,24 +607,32 @@ function logIn(code, appid, rawData) {
         success: function (res) {
           getSysConfig.call(self, `${wx.getStorageSync(constant.MERCHANTID)}_wechat_product`)
           getSysConfig.call(self, `${wx.getStorageSync(constant.MERCHANTID)}_wechat_staff`)
-          wx.getLocation({
-            success: function (result) {
-              self.setData({
-                latitude: result.latitude,
-                longitude: result.longitude
-              })
-              closestStore.call(self)
-            },
-            fail: function (result) {
-              self.setData({
-                home: false
-              });
-              getStoreListInfo.call(self);
-              // wx.navigateTo({
-              //   url: '/pages/index/index',
-              // })
-            }
-          })
+
+          if(self.data.storeId) {
+            getStoreIndexInfo.call(self, self.data.storeId, wx.getStorageSync(constant.MERCHANTID));
+            getTicketInfo.call(self, self.data.storeId);
+            getStoreInfo.call(self, self.data.storeId);
+            getCollageListInfor.call(self);
+          } else {
+            wx.getLocation({
+              success: function (result) {
+                self.setData({
+                  latitude: result.latitude,
+                  longitude: result.longitude
+                })
+                closestStore.call(self)
+              },
+              fail: function (result) {
+                self.setData({
+                  home: false
+                });
+                getStoreListInfo.call(self);
+                // wx.navigateTo({
+                //   url: '/pages/index/index',
+                // })
+              }
+            })
+          }
         }
       })
     },
