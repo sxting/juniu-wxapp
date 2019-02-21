@@ -49,14 +49,16 @@
   </view>
 </view>
 
-<view wx:if="{{productCardLength > 0}}">
+<!-- wx:if="{{productCardLength > 0}}" -->
+<view>
   <form bindsubmit="formSubmit" bindtap='onOrderPayClick' report-submit="true">
     <button formType="submit" class='pay-btn'>立即支付</button>
   </form>
 </view>
 <!-- <view class="pay-btn" wx:if="{{productCardLength > 0}}" bindtap="onOrderPayClick">立即支付</view> -->
 
-<view class="bottom-btn" wx:else>
+<!--  wx:else -->
+<view class="bottom-btn" wx:if="">
   <!-- <form bindsubmit="formSubmit" bindtap='onMoreRightsClick' report-submit="true">
     <button formType="submit" class="moreyh {{noCardConfig ?  'disabled' : ''}}">更多优惠</button>
   </form> -->
@@ -66,8 +68,6 @@
   </form> -->
   <view class="pay" bindtap="onZhijieOrderPay">直接付款</view>
 </view>
-
-<!-- <view class="juniu-bottom pay-ju-bottom"><image src="/asset/images/logo.png"></image></view>   -->
 
 <!-- 办卡弹框 -->
 <view class="member-rights-alert-bg" wx:if="{{showCardBuy}}">
