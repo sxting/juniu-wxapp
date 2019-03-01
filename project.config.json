@@ -47,7 +47,7 @@
 				{
 					"id": 0,
 					"name": "band",
-					"pathName": "pages/personal/refund/refund",
+					"pathName": "pages/home/home",
 					"query": "orderId=2018112115570615016355324"
 				}
 			]
