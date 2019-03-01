@@ -18,6 +18,8 @@
       </view>
     </view>
   </view>
+  <!-- 砍价 -->
+  <list1 token="{{token}}" store-id="{{storeId}}" />
   <!-- 拼团 -->
   <view class='collage-box' wx:if="{{ collageProductList.length > 0 }}">
     <view class='title-collage'>

@@ -33,6 +33,7 @@ Page({
     getNewuserInfo: true,//获取新客领券
     hasNewcouponList: true,//是否有新人活动
     newerCouponListInfor: [],//首页新人券information
+    token: 'DnEFIlM_BzgCKQxiVWkGZgY6ACQEHlVuVy5dO1IlVzJXZlJkBjYGa1ExDDhXOlZgA2AFZVUxUDhUNwFpUjdVMg4yBTFTagdpAnkMLVUjBnQGMQAjBCRVY1djXW9SJVc5V3FSZAZiBm5RMQxnVzJWMgNjBTRVNVA5VDwBaVI2VTMOPQU4UzMHbAJsDDlVZQY3BmMANQQyVT9XaV02UjNXYVdjUnUGKwZ-UXwMeFdzVjIDcwVvVSRQeFR3ATxSd1VxDigFLFNwBygCKAxkVXMGTgYwAHIEbVUoVz9dMlI1VzZXalI0BmYGPlFsDDRXO1ZnA2UFY1VjUDdUbQE_UjZVMA49BWJTagdoAj0MMVVjBj8GZQBjBGBVPVcuXXw='
   },
   onShow() {
     if (this.data.isOnLoad) {
@@ -75,37 +76,37 @@ Page({
       })
     }
     let self = this;
-    wx.login({
-      success: function (result) {
-        wx.getUserInfo({
-          withCredentials: true,
-          success: function (res) {
-            self.setData({
-              getUserInfo: true
-            })
-            let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-            console.log(extConfig);
-            let appId = 'wxedcf0f0c4cc429c8';
-            if (result.code) {
-              logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-            } else {
-              console.log('获取用户登录态失败！' + result.errMsg)
-            }
-          },
-          fail: function() {
-            self.setData({
-              getUserInfo: false
-            })
-          }
-        });
-      },
-      fail: function (res) {
-        self.setData({
-          getUserInfo: false
-        })
-       },
-      complete: function (res) { },
-    });
+    // wx.login({
+    //   success: function (result) {
+    //     wx.getUserInfo({
+    //       withCredentials: true,
+    //       success: function (res) {
+    //         self.setData({
+    //           getUserInfo: true
+    //         })
+    //         let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+    //         console.log(extConfig);
+    //         let appId = 'wxedcf0f0c4cc429c8';
+    //         if (result.code) {
+    //           logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+    //         } else {
+    //           console.log('获取用户登录态失败！' + result.errMsg)
+    //         }
+    //       },
+    //       fail: function() {
+    //         self.setData({
+    //           getUserInfo: false
+    //         })
+    //       }
+    //     });
+    //   },
+    //   fail: function (res) {
+    //     self.setData({
+    //       getUserInfo: false
+    //     })
+    //    },
+    //   complete: function (res) { },
+    // });
   },
 
   // 跳转到查看更多拼团列表页
@@ -600,6 +601,11 @@ function logIn(code, appid, rawData) {
       } else {
         wx.setStorageSync(constant.VER, 1);
       }
+
+
+      self.setData({
+        token: res.juniuToken
+      })
 
       wx.setStorage({
         key: constant.TOKEN,

@@ -35,8 +35,15 @@
     "pages/personal/collage-order/order/order-list",
     "pages/shop/index/index",
     "pages/shop/video/detail/detail",
-    "pages/shop/image/detail/detail"
+    "pages/shop/image/detail/detail",
+    "pages/kanjia/submit/submit"
   ],
+  "plugins": {
+    "myPlugin": {
+      "version": "1.0.0",
+      "provider": "wx3bb038494cd68262"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
