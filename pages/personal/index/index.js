@@ -71,6 +71,12 @@ Page({
     })
   },
 
+  goMyBarginOrder(){
+    wx.navigateTo({
+      url: `plugin://myPlugin/order-list`
+    })
+  },
+
   //跳转到我的预约页面 
   goMyAppointment: function() {
     wx.navigateTo({
