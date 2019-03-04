@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/login/login",
     "pages/index/index",
     "pages/shop/shop",
     "pages/personal/index/index",
@@ -36,7 +37,8 @@
     "pages/shop/index/index",
     "pages/shop/video/detail/detail",
     "pages/shop/image/detail/detail",
-    "pages/kanjia/submit/submit"
+    "pages/kanjia/submit/submit",
+    "pages/kanjia/detail/detail"
   ],
   "plugins": {
     "myPlugin": {

@@ -69,7 +69,6 @@ Page({
     this.setData({
       storeId: option.storeid ? option.storeid : wx.getStorageSync(constant.STORE_INFO),
       scene: app.globalData.scene,
-      token: wx.getStorageSync(constant.TOKEN)
     });
     if (this.data.scene === 1026) {
       this.setData({
@@ -77,6 +76,7 @@ Page({
       })
     }
     let self = this;
+    // wx.removeStorageSync(constant.TOKEN)
     wx.login({
       success: function (result) {
         wx.getUserInfo({
@@ -603,11 +603,10 @@ function logIn(code, appid, rawData) {
         wx.setStorageSync(constant.VER, 1);
       }
 
-
       self.setData({
         token: res.juniuToken
       })
-
+      
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,
