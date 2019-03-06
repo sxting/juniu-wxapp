@@ -1,6 +1,8 @@
 import { constant } from '../../../utils/constant';
 import { kanjiaService } from '../shared/kanjia.service';
 import { errDialog, loading } from '../../../utils/util';
+import { service } from '../../../service';
+
 
 Page({
   data: {
@@ -31,7 +33,7 @@ Page({
       encryptData: encryptedData,
       iv: iv
     }
-    kanjiaService.decodeUserPhone(data).subscribe({
+    service.decodeUserPhone(data).subscribe({
       next: res => {
         this.setData({
           tel: res.phoneNumber

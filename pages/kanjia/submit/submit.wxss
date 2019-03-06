@@ -93,6 +93,7 @@
   font-size: 28rpx;
   color: #FF6600;
   margin-top: 22rpx;
+  padding: 0;
 }
 
 .pay-btn {

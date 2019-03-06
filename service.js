@@ -14,6 +14,14 @@ service.userIsBind = () => {
   let apiUrl = api + '/member/sp/coupon/isBind.json';
   return http.get(apiUrl);
 }
+
+// 用户手机号解密  /app/decodeUserPhone
+service.decodeUserPhone = (data) => {
+  let api = wx.getStorageSync(constant.VER) == constant.version2 ? constant.apiUrl2 : constant.apiUrl
+  let apiUrl = api + '/order/app/decodeUserPhone.json';
+  return http.get(apiUrl, data);
+}
+
 module.exports = {
   service: service
 }
