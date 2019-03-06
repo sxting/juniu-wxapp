@@ -91,6 +91,7 @@ function productCardList() {
           item.background = constant.OSS_IMAGE_URL + `${item.background}/resize_345_120/mode_fill`;
         }
       });
+      console.log(res);
       self.setData({
         cards: res
       });

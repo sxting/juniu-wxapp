@@ -27,7 +27,8 @@ Page({
     productId: '',
     latitude: '',
     longitude: '',
-    pinTuanId: ''
+    pinTuanId: '',
+    kanjiaId: ''
   },
   onLoad: function (options) {
     let self = this;
@@ -50,9 +51,10 @@ Page({
           tencentLongAndLatiToAddress.call(self, res.latitude, res.longitude);
         }
       })
-    } else if (options.pinTuanId) { 
+    } else if (options.pinTuanId || options.kanjiaId) { 
       this.setData({
-        pinTuanId: options.pinTuanId
+        pinTuanId: options.pinTuanId ? options.pinTuanId : '',
+        kanjiaId: options.kanjiaId ? options.kanjiaId : ''
       })
       let storeList = JSON.parse(options.stores)
       storeList.forEach(function(item) {
@@ -123,7 +125,7 @@ Page({
   },
 
   routerToStoreIndex: function (e) {
-    if (this.data.productId || this.data.pinTuanId) {
+    if (this.data.productId || this.data.pinTuanId || this.data.kanjiaId) {
       return;
     }
     wx.setStorageSync(constant.STORE_INFO, e.currentTarget.dataset.storeid);
