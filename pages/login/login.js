@@ -47,6 +47,7 @@ function logIn(code, appid, rawData) {
   let self = this;
   service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
+      console.log(res)
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, res.merchantId ? res.merchantId : '153179997107784038184');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
@@ -58,7 +59,8 @@ function logIn(code, appid, rawData) {
       wx.setStorage({
         key: constant.TOKEN,
         data: res.juniuToken,
-        success: function (res) {
+        success: function (result) {
+          console.log(res.juniuToken);
           wx.navigateTo({
             url: "plugin://myPlugin/kanjia-product-detail?type=share&storeId=" + self.data.storeId + "&orderNo=" + self.data.orderNo + "&activityId=" + self.data.activityId + "&token=" + res.juniuToken,
           })
