@@ -50,7 +50,7 @@ Page({
 
     let data = {
       appid: appid,
-      buyerPhone: '',
+      buyerPhone: this.data.tel,
       orderNo: this.data.orderNo,
     }
     console.log(data);
