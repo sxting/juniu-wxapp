@@ -12,6 +12,7 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(options)
     this.setData({
       orderNo: options.orderNo ? options.orderNo : '',
       storeId: options.storeId,
@@ -55,7 +56,11 @@ Page({
       buyerPhone: this.data.tel,
       orderNo: this.data.orderNo,
     }
+    if ((this.data.tel + '').length !== 11) {
+      errDialog('请填写正确的手机号'); return;
+    }
     console.log(data);
+    let self = this;
     kanjiaService.preorder(data).subscribe({
       next: res => {
         wx.requestPayment({
@@ -72,7 +77,7 @@ Page({
           },
           fail: function (result) {
             wx.navigateTo({
-              url: 'plugin://myPlugin/order-detail?orderNo=' + res.orderId,
+              url: 'plugin://myPlugin/order-detail?orderNo=' + res.orderId + '&storeId=' + self.data.storeId + '&bargainDetail=' + JSON.stringify(self.data.bargainDetail),
             });
             console.log(result);
           },

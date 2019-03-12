@@ -15,10 +15,10 @@
       <text>原价</text><text class='fr'>{{bargainDetail.activityItem.originalPrice/100}}元</text>
     </view>
     <view class='item'>
-      <text>当前价格</text><text class='fr'>{{bargainDetail.currentPrice/100}}元</text>
+      <text>当前价格</text><text class='fr'>{{bargainDetail.currentPrice ? bargainDetail.currentPrice/100 : bargainDetail.activityItem.originalPrice/100}}元</text>
     </view>
     <view class='item'>
-      <text>实付款</text> <text class='fr pay-price'>{{bargainDetail.currentPrice/100}}<text>元</text></text>
+      <text>实付款</text> <text class='fr pay-price'>{{bargainDetail.currentPrice ? bargainDetail.currentPrice/100 : bargainDetail.activityItem.originalPrice/100}}<text>元</text></text>
     </view>
   </view>
 
