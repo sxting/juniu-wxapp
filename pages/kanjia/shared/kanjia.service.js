@@ -10,6 +10,11 @@ kanjiaService.preorder = (data) => {
   return http.get(apiUrl, data);
 }
 
+kanjiaService.initiateBargain = (data) => {
+  let apiUrl = api + '/activity/consumer/bargain/initiate.json';
+  return http.get(apiUrl, data);
+}
+
 module.exports = {
   kanjiaService: kanjiaService
 }
