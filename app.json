@@ -42,7 +42,7 @@
   ],
   "plugins": {
     "myPlugin": {
-      "version": "1.0.5",
+      "version": "1.0.6",
       "provider": "wx3bb038494cd68262"
     }
   },
