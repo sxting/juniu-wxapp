@@ -15,6 +15,16 @@ var constant = {
   sessionKey: 'sessionKey',
   version2: 2,
 
+  page: {
+    home: '/pages/home/home',
+    staff: '/pages/craftsman/detail/detail',
+    product: '/pages/product/detail/detail',
+    collage: '/pages/collage/product-detail/product-detail',
+    video: '/pages/shop/video/detail/detail',
+    image: '/pages/shop/image/detail/detail',
+    kanjia: 'plugin://myPlugin/kanjia-product-detail',
+  },
+
   apiUrl: 'https://b-test.juniuo.com/wxapp',
   apiUrl2: 'https://b-test.juniuo.com/wxapp',
   apiUrlTwo: 'https://b-test.juniuo.com/',

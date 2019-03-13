@@ -42,13 +42,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": 0,
 					"name": "band",
 					"pathName": "pages/kanjia/submit/submit",
 					"query": "orderNo=null&storeId=1531800050458194516965&bargainDetail={\"activityName\":\"砍价活动\",\"activityNotices\":[],\"activityGmtStart\":\"2019-03-06 10:41:37\",\"activityGmtEnd\":\"2019-04-30 23:59:59\",\"joinLimitCount\":-1,\"joinTimeLimit\":24,\"joinTimeLimitUnit\":\"HOUR\",\"activityItem\":{\"itemId\":\"2c9172e46769417401677708c90b0014\",\"itemName\":\"洗洗洗\",\"itemType\":\"PRODUCT\",\"itemStock\":992,\"originalPrice\":10000,\"activityPrice\":1},\"activityRule\":{\"strategy\":\"LOW_PRICE_RANDOM\",\"bargainCount\":1,\"initiatorBargainCount\":1,\"participantBargainCount\":1},\"voucherRule\":{\"voucherType\":\"RELATIVE\",\"verifyDays\":7,\"voucherGmtStart\":null,\"voucherGmtEnd\":null,\"enableRefund\":false,\"enableOverdueAutoRefund\":false},\"activityId\":\"1551840090366180992577\",\"activityStatus\":\"STARTED\",\"dealVolume\":null,\"cover\":{\"imageId\":\"l20ruj9hsqkU\",\"imageUrl\":\"https://fdfs.juniuo.com/juniuo-pic/picture/juniuo/l20ruj9hsqkU/resize_375_259/mode_fill\"},\"picColl\":[],\"applyStores\":[{\"storeId\":\"1532508633921127321564\",\"storeName\":\"审美朝阳店\",\"storeAddress\":\"北京市海淀区圣熙八号购物中心\",\"storePhones\":[\"01088744783\"],\"current\":false},{\"storeId\":\"1531895704924182909999\",\"storeName\":\"审美立水桥店\",\"storeAddress\":\"平西府(地铁站)\",\"storePhones\":[\"13800138000\"],\"current\":false},{\"storeId\":\"1531800050458194516965\",\"storeName\":\"审美六道口店\",\"storeAddress\":\"六道口(地铁站)\",\"storePhones\":[\"17600332672\"],\"current\":true}],\"orderNo\":null,\"currentPrice\":null,\"bargainStatus\":null,\"paymentStatus\":null,\"bargainStartTime\":null,\"bargainEndTime\":null,\"bargainRecord\":null,\"initiator\":false,\"remainBargainCount\":null}",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "login",
+					"pathName": "pages/login/login",
+					"query": "page=/pages/home/home&aa=123",
 					"scene": null
 				}
 			]

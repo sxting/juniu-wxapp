@@ -5,22 +5,49 @@ import { constant } from '../../utils/constant';
 var app = getApp()
 Page({
   data: {
-    orderNo: '',
-    type: '',
-    storeId: '',
-    activityId: ''
+    showBox: false,
+    page: '/pages/home/home',
   },
 
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '登录授权',
     })
-    this.setData({
-      orderNo: options.orderNo ? options.orderNo : '',
-      type: options.type ? options.type : '',
-      storeId: options.storeId ? options.storeId : '',
-      activityId: options.activityId ? options.activityId : ''
+    wx.showLoading({
+      title: '加载中',
     })
+    let self = this;
+    wx.getSetting({
+      success(res) {
+        console.log(res.authSetting)
+        console.log(res.authSetting['scope.userInfo']);
+        if (res.authSetting['scope.userInfo']) {
+          console.log(res.authSetting['scope.userInfo']);
+
+          wx.login({
+            success: function (result) {
+              wx.getUserInfo({
+                success: res => {
+                  logIn.call(self,result.code, res.rawData);
+                },
+                fail: () => {
+                  self.setData({
+                    showBox: true
+                  })
+                }
+              })
+            }
+          });
+        } else {
+          wx.hideLoading();
+          self.setData({
+            showBox: true
+          })
+        }
+      }
+    })
+    console.log(options);
+    
   },
 
   bindgetuserinfo(e) {
@@ -28,10 +55,8 @@ Page({
     if (e.detail.errMsg == 'getUserInfo:ok') {
       wx.login({
         success: function (result) {
-          let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-          let appId = 'wxedcf0f0c4cc429c8';
           if (result.code) {
-            logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, e.detail.rawData);
+            logIn.call(self, result.code, e.detail.rawData);
           } else {
             console.log('获取用户登录态失败！' + result.errMsg)
           }
@@ -43,7 +68,10 @@ Page({
   },
 })
 
-function logIn(code, appid, rawData) {
+function logIn(code, rawData) {
+  let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+  let appid = extConfig.theAppid ? extConfig.theAppid : 'wxedcf0f0c4cc429c8';
+
   let self = this;
   service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
@@ -61,9 +89,9 @@ function logIn(code, appid, rawData) {
         data: res.juniuToken,
         success: function (result) {
           console.log(res.juniuToken);
-          wx.redirectTo({
-            url: "plugin://myPlugin/kanjia-product-detail?type=share&storeId=" + self.data.storeId + "&orderNo=" + self.data.orderNo + "&activityId=" + self.data.activityId + "&token=" + res.juniuToken,
-          })
+          // wx.redirectTo({
+          //   url: "plugin://myPlugin/kanjia-product-detail?type=share&storeId=" + self.data.storeId + "&orderNo=" + self.data.orderNo + "&activityId=" + self.data.activityId + "&token=" + res.juniuToken,
+          // })
         }
       })
     },
