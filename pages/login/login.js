@@ -61,7 +61,7 @@ function logIn(code, appid, rawData) {
         data: res.juniuToken,
         success: function (result) {
           console.log(res.juniuToken);
-          wx.navigateTo({
+          wx.redirectTo({
             url: "plugin://myPlugin/kanjia-product-detail?type=share&storeId=" + self.data.storeId + "&orderNo=" + self.data.orderNo + "&activityId=" + self.data.activityId + "&token=" + res.juniuToken,
           })
         }
