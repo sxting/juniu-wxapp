@@ -47,14 +47,10 @@ Page({
   },
 
   submit() {
-    let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-    let appId = 'wx3bb038494cd68262';
-    let appid = extConfig.theAppid ? extConfig.theAppid : appId;
     if ((this.data.tel + '').length !== 11) {
       errDialog('请填写正确的手机号'); return;
     }
     let self = this;
-
     if(this.data.orderNo) {
       pay.call(this)
     } else {
@@ -67,7 +63,7 @@ Page({
             this.setData({
               orderNo: res
             })
-            pay.call(this)
+            pay.call(self)
           }
         },
         error: err => errDialog(err),
@@ -79,11 +75,15 @@ Page({
 })    
 
 function pay() {
+  let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+  let appId = 'wx3bb038494cd68262';
+  let appid = extConfig.theAppid ? extConfig.theAppid : appId;
   let data = {
     appid: appid,
     buyerPhone: this.data.tel,
     orderNo: this.data.orderNo,
   };
+  let self = this;
   kanjiaService.preorder(data).subscribe({
     next: res => {
       wx.requestPayment({
