@@ -75,7 +75,7 @@ function getCardList(storeId) {
     next: res => {
       res.cards.forEach((item) => {
         if (item.background) {
-          item.background = constant.OSS_IMAGE_URL + `${item.background}/resize_345_120/mode_fill`;
+          item.background = constant.OSS_IMAGE_URL + `${item.background}/resize_345_200/mode_fill`;
         }
         if (item.cardId == self.data.cardId) {
           self.setData({
