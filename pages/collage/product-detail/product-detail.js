@@ -46,8 +46,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '项目详情',
     })
-    //1534471289389691289260, 1534492886056393843540, 1534735240436269620378
-    //1534486340978192233874, 1534492911020635915801, 1534839570793107958230
 
     this.setData({
       storeName: wx.getStorageSync('storeName'),
@@ -55,55 +53,22 @@ Page({
       groupId: options.groupId ? options.groupId : '',
     })
     
-    getProductCommentList.call(this);
-
     if (options.type == 'share') {
       this.setData({
         showBtn: true
       })
-      wx.setStorageSync(constant.STORE_INFO, options.storeId)
-      let self = this;
-      wx.login({
-        success: function (result) {
-          wx.getUserInfo({
-            withCredentials: true,
-            success: function (res) {
-              self.setData({
-                getUserInfo: true
-              })
-              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-              let appId = 'wxedcf0f0c4cc429c8';
-              if (result.code) {
-                logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-              } else {
-                console.log('获取用户登录态失败！' + result.errMsg)
-              }
-            },
-            fail: function () {
-              self.setData({
-                getUserInfo: false
-              })
-            }
-          });
-        },
-        fail: function (res) {
-          self.setData({
-            getUserInfo: false
-          })
-        },
-        complete: function (res) { },
-      });
-    } else {
-      getProductDetail.call(this);
+      wx.setStorageSync(constant.STORE_INFO, options.storeId);
     }
-   
+    getStoreInfo.call(this)
+    getProductCommentList.call(this);
+    getProductDetail.call(this);
   },
 
-  onShow: function () {
-    if (wx.getStorageSync(constant.STORE_INFO)) {
-      getStoreInfo.call(this)
-    }
-  },
+  // onShow: function () {
+  //   if (wx.getStorageSync(constant.STORE_INFO)) {
+  //     getStoreInfo.call(this)
+  //   }
+  // },
 
   onStoreClick() {
     wx.navigateTo({
@@ -155,7 +120,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/collage/product-detail/product-detail?type=share&storeId=' + wx.getStorageSync(constant.STORE_INFO) + '&activityId=' + this.data.pinTuanId,
+      path: '/pages/login/login?type=share&storeId=' + wx.getStorageSync(constant.STORE_INFO) + '&activityId=' + this.data.pinTuanId + '&page=' + constant.page.collage,
       success: function (res) {
         console.log(res);
       },
@@ -424,7 +389,8 @@ function getStoreInfo() {
     next: res => {
       self.setData({
         address: res.address,
-        tel: res.mobile
+        tel: res.mobile,
+        storeName: res.storeName
       });
       wx.setStorageSync(constant.address, res.address)
     },

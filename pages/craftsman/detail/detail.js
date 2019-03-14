@@ -87,7 +87,7 @@ Page({
     // staffId = 1507865304614994341106 & storeId=1500534105280134281527
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/craftsman/detail/detail?type=shared&storeId=' + this.data.storeId + '&staffId=' + this.data.staffId,
+      path: '/pages/login/login?type=shared&storeId=' + this.data.storeId + '&staffId=' + this.data.staffId + '&page=' + constant.page.staff,
       success: function (res) {
         // 转发成功
         console.log(res);

@@ -39,47 +39,17 @@ Page({
 
     let self = this;
     if (options.type === 'shared') {
-      wx.login({
-        success: function (result) {
-          wx.getUserInfo({
-            withCredentials: true,
-            success: function (res) {
-              self.setData({
-                getUserInfo: true
-              })
-              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-              let appId = 'wxedcf0f0c4cc429c8';
-              if (result.code) {
-                logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-              } else {
-                console.log('获取用户登录态失败！' + result.errMsg)
-              }
-            },
-            fail: function () {
-              self.setData({
-                getUserInfo: false
-              })
-            }
-          });
-        },
-        fail: function (res) {
-          self.setData({
-            getUserInfo: false
-          })
-         },
-        complete: function (res) { },
-      });
-    } else {
-      getProductDetail.call(this);
-      getProductCommentList.call(this)
-      getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
+      wx.setStorageSync(constant.STORE_INFO, this.data.storeId);      
     }
+    getProductDetail.call(this);
+    getProductCommentList.call(this)
+    getStoreInfo.call(this, this.data.storeId)
   },
 
   onShareAppMessage: function (res) {
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/product/detail/detail?type=shared&storeId=' + this.data.storeId + '&productId=' + this.data.productId,
+      path: '/pages/login/login?type=shared&storeId=' + this.data.storeId + '&productId=' + this.data.productId + '&page=' + constant.page.product,
       success: function (res) {
         // 转发成功
         console.log(res);
