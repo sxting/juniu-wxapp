@@ -33,7 +33,7 @@ Page({
     getNewuserInfo: true,//获取新客领券
     hasNewcouponList: true,//是否有新人活动
     newerCouponListInfor: [],//首页新人券information
-    token: ''
+    token: wx.getStorageSync(constant.TOKEN)
   },
   onShow() {
     if (this.data.isOnLoad) {
@@ -76,38 +76,62 @@ Page({
       })
     }
     let self = this;
-    // wx.removeStorageSync(constant.TOKEN)
-    wx.login({
-      success: function (result) {
-        wx.getUserInfo({
-          withCredentials: true,
-          success: function (res) {
-            self.setData({
-              getUserInfo: true
-            })
-            let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-            console.log(extConfig);
-            let appId = 'wxedcf0f0c4cc429c8';
-            if (result.code) {
-              logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-            } else {
-              console.log('获取用户登录态失败！' + result.errMsg)
-            }
-          },
-          fail: function() {
-            self.setData({
-              getUserInfo: false
-            })
-          }
-        });
-      },
-      fail: function (res) {
-        self.setData({
-          getUserInfo: false
-        })
-       },
-      complete: function (res) { },
-    });
+    getSysConfig.call(self, `${wx.getStorageSync(constant.MERCHANTID)}_wechat_product`)
+    getSysConfig.call(self, `${wx.getStorageSync(constant.MERCHANTID)}_wechat_staff`)
+
+    if (self.data.storeId) {
+      getStoreIndexInfo.call(self, self.data.storeId, wx.getStorageSync(constant.MERCHANTID));
+      getTicketInfo.call(self, self.data.storeId);
+      getStoreInfo.call(self, self.data.storeId);
+      getCollageListInfor.call(self);
+    } else {
+      wx.getLocation({
+        success: function (result) {
+          self.setData({
+            latitude: result.latitude,
+            longitude: result.longitude
+          })
+          closestStore.call(self)
+        },
+        fail: function (result) {
+          self.setData({
+            home: false
+          });
+          getStoreListInfo.call(self);
+        }
+      })
+    }
+    // wx.login({
+    //   success: function (result) {
+    //     wx.getUserInfo({
+    //       withCredentials: true,
+    //       success: function (res) {
+    //         self.setData({
+    //           getUserInfo: true
+    //         })
+    //         let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
+    //         console.log(extConfig);
+    //         let appId = 'wxedcf0f0c4cc429c8';
+    //         if (result.code) {
+    //           logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
+    //         } else {
+    //           console.log('获取用户登录态失败！' + result.errMsg)
+    //         }
+    //       },
+    //       fail: function() {
+    //         self.setData({
+    //           getUserInfo: false
+    //         })
+    //       }
+    //     });
+    //   },
+    //   fail: function (res) {
+    //     self.setData({
+    //       getUserInfo: false
+    //     })
+    //    },
+    //   complete: function (res) { },
+    // });
   },
 
   // 跳转到查看更多拼团列表页
@@ -187,7 +211,7 @@ Page({
   onShareAppMessage: function(res) {
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/home/home?storeid=' + this.data.storeId + '&merchantId=' + wx.getStorageSync(constant.MERCHANTID),
+      path: '/pages/login/login?page=' + constant.page.home +'&storeid=' + this.data.storeId + '&merchantId=' + wx.getStorageSync(constant.MERCHANTID),
       success: function (res) {
         // 转发成功
         console.log(res);

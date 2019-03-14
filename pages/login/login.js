@@ -7,9 +7,15 @@ Page({
   data: {
     showBox: false,
     page: '/pages/home/home',
+    options: {}
   },
 
   onLoad: function (options) {
+    console.log(options);
+    this.setData({
+      page: options.page ? options.page : '/pages/home/home',
+      options: options
+    })
     wx.setNavigationBarTitle({
       title: '登录授权',
     })
@@ -19,11 +25,7 @@ Page({
     let self = this;
     wx.getSetting({
       success(res) {
-        console.log(res.authSetting)
-        console.log(res.authSetting['scope.userInfo']);
         if (res.authSetting['scope.userInfo']) {
-          console.log(res.authSetting['scope.userInfo']);
-
           wx.login({
             success: function (result) {
               wx.getUserInfo({
@@ -45,9 +47,7 @@ Page({
           })
         }
       }
-    })
-    console.log(options);
-    
+    })    
   },
 
   bindgetuserinfo(e) {
@@ -75,7 +75,6 @@ function logIn(code, rawData) {
   let self = this;
   service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
     next: res => {
-      console.log(res)
       let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
       wx.setStorageSync(constant.MERCHANTID, res.merchantId ? res.merchantId : '153179997107784038184');
       wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
@@ -88,10 +87,21 @@ function logIn(code, rawData) {
         key: constant.TOKEN,
         data: res.juniuToken,
         success: function (result) {
-          console.log(res.juniuToken);
-          // wx.redirectTo({
-          //   url: "plugin://myPlugin/kanjia-product-detail?type=share&storeId=" + self.data.storeId + "&orderNo=" + self.data.orderNo + "&activityId=" + self.data.activityId + "&token=" + res.juniuToken,
-          // })
+          let str = '';
+          for(let key in self.data.options) {
+            str += `&${key}=${self.data.options[key]}`
+          }
+          str = str.substring(1);
+          console.log(self.data.page.indexOf('plugin://'))
+          if (self.data.page.indexOf('plugin://') > -1) {
+            wx.reLaunch({
+              url: `${self.data.page}?${str}&token=${res.juniuToken}`,
+            })
+          } else {
+            wx.reLaunch({
+              url: `${self.data.page}?${str}`,
+            })
+          }
         }
       })
     },

@@ -36,52 +36,19 @@ Page({
     })
     this.setData({
       staffId: options.staffId,
-      storeId: options.storeId,
+      storeId: options.storeId ? options.storeId : wx.getStorageSync(constant.STORE_INFO),
       storeName: wx.getStorageSync('storeName')
     })
 
     let self = this;
 
     if (options.type && options.type === 'shared') {
-      this.setData({
-        storeId: options.storeId
-      })
-      wx.login({
-        success: function (result) {
-          wx.getUserInfo({
-            withCredentials: true,
-            success: function (res) {
-              self.setData({
-                getUserInfo: true
-              })
-              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-              let appId = 'wxedcf0f0c4cc429c8';
-              if (result.code) {
-                logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-              } else {
-                console.log('获取用户登录态失败！' + result.errMsg)
-              }
-            },
-            fail: function () {
-              self.setData({
-                getUserInfo: false
-              })
-            }
-          });
-        },
-        fail: function (res) { 
-          self.setData({
-            getUserInfo: false
-          })
-        },
-        complete: function (res) { },
-      });
-    } else {
-      getStaffDetail.call(this);
-      getComments.call(this);
-      getWorkList.call(this);
-      getStoreInfo.call(this, wx.getStorageSync(constant.STORE_INFO))
-    }  
+      wx.setStorageSync(constant.STORE_INFO, this.data.storeId);
+    }
+    getStaffDetail.call(this);
+    getComments.call(this);
+    getWorkList.call(this);
+    getStoreInfo.call(this, this.data.storeId)
   },
 
   onShow: function() {
@@ -322,6 +289,7 @@ function getStoreInfo(storId) {
       self.setData({
         address: res.address,
         tel: res.mobile,
+        storeName: res.storeName
       });
       wx.setStorageSync(constant.address, res.address)
     },
