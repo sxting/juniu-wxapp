@@ -23,7 +23,6 @@ Page({
     tab: 'works',
     worksList: [],
     imageWidth: 168,
-    getUserInfo: true
   },
   
   onLoad: function (options) {
@@ -96,33 +95,6 @@ Page({
         // 转发失败
         console.log(res);
       }
-    }
-  },
-
-  bindgetuserinfo(e) {
-    let self = this;
-    if (e.detail.errMsg == 'getUserInfo:ok') {
-      wx.login({
-        success: function (result) {
-          self.setData({
-            getUserInfo: true
-          })
-          let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-          let appId = 'wxedcf0f0c4cc429c8';
-          console.log(result.code);
-          if (result.code) {
-            logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, e.detail.rawData);
-          } else {
-            console.log('获取用户登录态失败！' + result.errMsg)
-          }
-        },
-        fail: function (res) {
-          self.setData({
-            getUserInfo: false
-          })
-        },
-        complete: function (res) { },
-      });
     }
   },
 

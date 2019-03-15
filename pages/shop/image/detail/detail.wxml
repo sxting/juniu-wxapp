@@ -19,12 +19,3 @@
     </view>
   </view>
 </view>
-
-<!--授权弹框  -->
-<view class="alert-bg" wx:if="{{!getUserInfo}}">
-  <view class="alert-box">
-    <view class="alert-title">温馨提示</view>
-    <view class="alert-tip">您需要先授权才能正常访问</view>
-    <button class="alert-btn" open-type="getUserInfo" bindgetuserinfo="bindgetuserinfo">确定</button>
-  </view>
-</view>

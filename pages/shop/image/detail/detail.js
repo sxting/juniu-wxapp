@@ -29,67 +29,9 @@ Page({
       this.setData({
         storeId: options.storeId
       })
-      let self = this;
-      wx.login({
-        success: function (result) {
-          wx.getUserInfo({
-            withCredentials: true,
-            success: function (res) {
-              self.setData({
-                getUserInfo: true
-              })
-              let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-              let appId = 'wxedcf0f0c4cc429c8';
-              if (result.code) {
-                logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, res.rawData);
-              } else {
-                console.log('获取用户登录态失败！' + result.errMsg)
-              }
-            },
-            fail: function () {
-              self.setData({
-                getUserInfo: false
-              })
-            }
-          });
-        },
-        fail: function (res) {
-          self.setData({
-            getUserInfo: false
-          })
-        },
-        complete: function (res) { },
-      });
-    } else {
-      getData.call(this);
-    }
-  },
-
-  bindgetuserinfo(e) {
-    let self = this;
-    if (e.detail.errMsg == 'getUserInfo:ok') {
-      wx.login({
-        success: function (result) {
-          self.setData({
-            getUserInfo: true
-          })
-          let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-          let appId = 'wxedcf0f0c4cc429c8';
-          console.log(result.code);
-          if (result.code) {
-            logIn.call(self, result.code, extConfig.theAppid ? extConfig.theAppid : appId, e.detail.rawData);
-          } else {
-            console.log('获取用户登录态失败！' + result.errMsg)
-          }
-        },
-        fail: function (res) {
-          self.setData({
-            getUserInfo: false
-          })
-        },
-        complete: function (res) { },
-      });
-    }
+      wx.setStorageSync(constant.STORE_INFO, this.data.storeId);
+    } 
+    getData.call(this);
   },
 
   onLittleImgClick(e) {
@@ -102,7 +44,7 @@ Page({
   onShareAppMessage: function (res) {
     return {
       title: wx.getStorageSync('storeName'),
-      path: '/pages/shop/image/detail/detail?type=share&productionId=' + this.data.productionId,
+      path: '/pages/login/login?type=share&productionId=' + this.data.productionId + '&page=' + constant.page.image,
       success: function (res) {
         console.log(res);
       },
@@ -153,37 +95,6 @@ function getData() {
       this.setData({
         imageList: imageList,
         bigImage: imageList[0]
-      })
-    },
-    error: err => errDialog(err),
-    complete: () => wx.hideToast()
-  })
-}
-
-function logIn(code, appid, rawData) {
-  let self = this;
-  console.log(rawData)
-  service.logIn({ code: code, appid: appid, rawData: rawData, tplid: constant.TPLID }).subscribe({
-    next: res => {
-      let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {};
-      wx.setStorageSync(constant.MERCHANTID, res.merchantId ? res.merchantId : '153179997107784038184');
-      wx.setStorageSync(constant.CARD_LOGO, res.appHeadImg);
-      wx.setStorageSync(constant.sessionKey, res.sessionKey);
-      wx.setStorageSync(constant.USER_ID, res.userId);
-      wx.setStorageSync(constant.STORE_INFO, this.data.storeId);
-
-      if (res.ver == '2') {
-        wx.setStorageSync(constant.VER, 2);
-      } else {
-        wx.setStorageSync(constant.VER, 1);
-      }
-
-      wx.setStorage({
-        key: constant.TOKEN,
-        data: res.juniuToken,
-        success: function (res) {  
-          getData.call(self)
-        }
       })
     },
     error: err => errDialog(err),
