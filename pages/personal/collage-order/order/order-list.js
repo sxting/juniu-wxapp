@@ -146,7 +146,7 @@ function getCollageOrderList(type){
             joiningGroupArr.push(item);
           } else if (item.tabStatus === 'FINISHED_GROUP') {//待消费
             finishedGroupArr.push(item);
-          } else if (item.tabStatus === 'FINISHED') {//已完成
+          } else if (item.tabStatus === 'FINISHED' || item.tabStatus == 'ENDED') {//已完成
             finishedArr.push(item);
           }
         })
