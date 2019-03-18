@@ -33,7 +33,7 @@ Page({
     getNewuserInfo: true,//获取新客领券
     hasNewcouponList: true,//是否有新人活动
     newerCouponListInfor: [],//首页新人券information
-    token: wx.getStorageSync(constant.TOKEN)
+    token: ''
   },
   onShow() {
     if (this.data.isOnLoad) {
@@ -69,6 +69,7 @@ Page({
     this.setData({
       storeId: option.storeid ? option.storeid : wx.getStorageSync(constant.STORE_INFO),
       scene: app.globalData.scene,
+      token: wx.getStorageSync(constant.TOKEN)
     });
     if (this.data.scene === 1026) {
       this.setData({
