@@ -68,7 +68,7 @@ Page({
     let self = this;
     return {
       title: wx.getStorageSync('邀请好友'),
-      path: '/pages/collage/product-detail/product-detail?groupId=' + this.data.groupId + '&activityId=' + this.data.activityId + '&storeId=' + wx.getStorageSync(constant.STORE_INFO) + '&type=share',
+      path: '/pages/login/login?groupId=' + this.data.groupId + '&activityId=' + this.data.activityId + '&storeId=' + wx.getStorageSync(constant.STORE_INFO) + '&type=share' + '&page=' + constant.page.collage,
       success: function (res) {
         // 转发成功
         console.log(res + '转发成功');
